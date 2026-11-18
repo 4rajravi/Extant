@@ -1,0 +1,24 @@
+{
+  "document": {
+    "doc_id": "rbi:md:2025:0147:v1",
+    "corpus": "rbi",
+    "title": "Master Direction – Non-Banking Financial Company – Scale Based Regulation, 2025",
+    "instrument_type": "master_direction",
+    "authority_rank": 30,
+    "source_url": "https://example.org/rbi/md/2025/0147.pdf",
+    "source_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "parse_status": "parsed"
+  },
+  "paragraph": {
+    "para_id": "rbi:md:2025:0147:v1#ch4.3A",
+    "doc_id": "rbi:md:2025:0147:v1",
+    "ordinal": 42,
+    "chapter": "IV",
+    "para_number": "4.3A",
+    "heading_path": "Chapter IV > Reporting > 4.3A",
+    "body": "An NBFC in the Upper Layer shall report its large exposures to the Reserve Bank within 21 days from the end of each quarter.",
+    "source_page": 17
+  },
+  "entity_labels": ["NBFC – Upper Layer", "NBFC – Middle Layer"],
+  "expected": "Master Direction – Non-Banking Financial Company – Scale Based Regulation, 2025\nChapter IV > Reporting > 4.3A\nApplies to: NBFC – Upper Layer, NBFC – Middle Layer\nAn NBFC in the Upper Layer shall report its large exposures to the Reserve Bank within 21 days from the end of each quarter."
+}

@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    services:
+      postgres:
+        image: pgvector/pgvector:pg18
+        env:
+          POSTGRES_USER: extant
+          POSTGRES_PASSWORD: extant_ci
+          POSTGRES_DB: extant
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U extant -d extant"
+          --health-interval 2s
+          --health-timeout 5s
+          --health-retries 30
+
+    env:
+      # Throwaway credentials for the service container above, nothing real.
+      EXTANT_WRITER_DSN: postgresql://extant:extant_ci@localhost:5432/extant
+      EXTANT_READER_DSN: postgresql://extant_reader:extant_reader_ci@localhost:5432/extant
+      # Turns a missing database into a failure instead of skipped integration tests.
+      EXTANT_REQUIRE_INTEGRATION: "1"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+
+      - name: Install (lockfile must be current)
+        id: install
+        run: uv sync --locked
+
+      # Each check runs even if an earlier one failed, so one push reports every failure.
+      # Any failed step still turns the job red.
+      - name: ruff check
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: uv run ruff check .
+
+      - name: ruff format --check
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: uv run ruff format --check .
+
+      - name: mypy --strict
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: uv run mypy
+
+      - name: pytest, unit and integration
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: uv run pytest

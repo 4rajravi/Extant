@@ -1,0 +1,24 @@
+# Local Postgres 18 with pgvector for development. Credentials come from the environment
+# (docker compose also reads .env); the defaults are throwaway development values.
+services:
+  db:
+    image: pgvector/pgvector:pg18
+    environment:
+      POSTGRES_USER: ${EXTANT_PG_USER:-extant}
+      POSTGRES_PASSWORD: ${EXTANT_PG_PASSWORD:-extant_dev}
+      POSTGRES_DB: ${EXTANT_PG_DB:-extant}
+    ports:
+      # A non default host port, so it never collides with a Postgres already on the Mac.
+      - "127.0.0.1:${EXTANT_PG_PORT:-54329}:5432"
+    volumes:
+      # Postgres 18 images keep PGDATA under /var/lib/postgresql/18/docker and expect the
+      # volume at /var/lib/postgresql, not /var/lib/postgresql/data as before 18.
+      - extant_pg:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+
+volumes:
+  extant_pg:
