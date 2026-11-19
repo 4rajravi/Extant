@@ -36,11 +36,14 @@ from extant.core.hashing import sha256_hex
 from extant.core.identity import (
     CORPUS_RE,
     InvalidIdentifierError,
+    canonical_ref,
     doc_id_of,
     parse_doc_id,
     parse_para_id,
     parse_schema_name,
     validate_entity_code,
+    validate_source_anchor,
+    withdrawal_key,
 )
 
 # --------------------------------------------------------------------------- field types
@@ -84,6 +87,8 @@ Sha256Hex = Annotated[str, StringConstraints(pattern=r"^[0-9a-f]{64}$")]
 HttpUrlStr = Annotated[str, StringConstraints(pattern=r"^https?://\S+$")]
 HalfFloat = Annotated[float, Field(allow_inf_nan=False, ge=-HALFVEC_MAX, le=HALFVEC_MAX)]
 PageNumber = Annotated[int, Field(ge=1, le=INTEGER_MAX)]
+# '#<element id>' or 'block:<index>' into the extracted source; see identity.py.
+SourceAnchor = Annotated[str, AfterValidator(validate_source_anchor)]
 
 FacetScope = Literal["document", "paragraph"]
 ConcordanceRelation = Literal["consolidated_into", "repealed", "obsolete", "retained"]
@@ -141,7 +146,11 @@ class Document(_Row):
 
 class Paragraph(_Row):
     """A paragraph as published. ``body`` is verbatim, and ``content_hash`` is
-    ``sha256(body)`` over its UTF-8 bytes."""
+    ``sha256(body)`` over its UTF-8 bytes.
+
+    Located by ``source_page`` (a PDF source), ``source_anchor`` (an HTML source, resolved in
+    the page whose bytes hash to the document's ``source_sha256``), or both; never neither.
+    """
 
     para_id: ParaIdStr
     doc_id: DocIdStr
@@ -151,7 +160,8 @@ class Paragraph(_Row):
     heading_path: str | None = None  # 'Chapter IV > Reporting > 4.3A'
     body: NonBlankStr
     content_hash: Sha256Hex
-    source_page: PageNumber
+    source_page: PageNumber | None = None
+    source_anchor: SourceAnchor | None = None
 
     @model_validator(mode="after")
     def _consistent(self) -> Self:
@@ -159,6 +169,8 @@ class Paragraph(_Row):
             raise ValueError(f"para_id {self.para_id!r} does not belong to {self.doc_id!r}")
         if self.content_hash != sha256_hex(self.body):
             raise ValueError("content_hash is not sha256(body)")
+        if self.source_page is None and self.source_anchor is None:
+            raise ValueError("a paragraph needs a source_page, a source_anchor, or both")
         return self
 
 
@@ -246,6 +258,7 @@ class ConcordanceEntry(_Row):
     relation: ConcordanceRelation
     evidence_doc_id: DocIdStr
     evidence_page: PageNumber | None = None
+    evidence_anchor: SourceAnchor | None = None  # for evidence read from HTML
 
     @model_validator(mode="after")
     def _consistent(self) -> Self:
@@ -267,12 +280,26 @@ class Withdrawal(_Row):
     applies, matching the half-open convention on ``Chunk``.
     """
 
-    circular_ref: NonBlankStr
+    withdrawal_key: Sha256Hex  # identity.withdrawal_key(canonical_ref, circular_date, title)
+    circular_ref: NonBlankStr  # as published, which may not be a reference at all
+    canonical_ref: str | None = None  # the join key; None when circular_ref is not a reference
     title: str | None = None
-    circular_date: date | None = None
+    circular_date: date
     withdrawn_by_doc_id: DocIdStr
     announced_on: date
     effective_on: date
+
+    @model_validator(mode="after")
+    def _keyed(self) -> Self:
+        if (
+            self.canonical_ref is not None
+            and canonical_ref(self.canonical_ref) != self.canonical_ref
+        ):
+            raise ValueError(f"canonical_ref {self.canonical_ref!r} is not in canonical form")
+        expected = withdrawal_key(self.canonical_ref, self.circular_date, self.title)
+        if self.withdrawal_key != expected:
+            raise ValueError("withdrawal_key is not the key of canonical_ref, circular_date, title")
+        return self
 
 
 class ParaIdAlias(_Row):
@@ -304,16 +331,25 @@ class CitationError(ValueError):
 
 
 class Citation(_Row):
-    """What the composer is allowed to emit: a paragraph, a verbatim quote from it and the
-    page it was printed on. There is no table behind it.
+    """What the composer is allowed to emit: a paragraph, a verbatim quote from it and where
+    it sits in the source, a page, a source anchor, or both. There is no table behind it.
 
     ``verify`` checks the quote against ``Paragraph.body`` and nothing else. Checking
-    against ``embed_text`` would let the composed header be cited as regulation.
+    against ``embed_text`` would let the composed header be cited as regulation. It also
+    refuses a source anchor that differs from the paragraph's own. A page is not compared,
+    because a paragraph can run across pages.
     """
 
     para_id: ParaIdStr
     quote: NonBlankStr
-    source_page: PageNumber
+    source_page: PageNumber | None = None
+    source_anchor: SourceAnchor | None = None
+
+    @model_validator(mode="after")
+    def _located(self) -> Self:
+        if self.source_page is None and self.source_anchor is None:
+            raise ValueError("a citation needs a source_page, a source_anchor, or both")
+        return self
 
     @property
     def doc_id(self) -> str:
@@ -328,3 +364,12 @@ class Citation(_Row):
             )
         if self.quote not in paragraph.body:
             raise CitationError(f"quote is not a verbatim substring of {self.para_id!r}")
+        if (
+            self.source_anchor is not None
+            and paragraph.source_anchor is not None
+            and self.source_anchor != paragraph.source_anchor
+        ):
+            raise CitationError(
+                f"citation points to {self.source_anchor!r} but {self.para_id!r} is at"
+                f" {paragraph.source_anchor!r}"
+            )

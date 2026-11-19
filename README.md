@@ -5,8 +5,17 @@ something, as of when, and for whom, and every answer carries a verified citatio
 refusal. The first corpus is the RBI Master Directions, followed by the Income-tax Act and
 then GST; each corpus is an adapter under `extant/corpora/`, not a rewrite.
 
-This repository is at **Phase 0**: the scaffold, domain models, schema tooling, settings and
-CI. There is no scraper, parser, retrieval or agent yet.
+This repository is at **Phase 1**: on top of the Phase 0 scaffold, domain models, schema
+tooling, settings and CI, the RBI corpus is crawled, extracted, parsed into paragraphs and mined
+for gold labels, and measured in a coverage report. There is no retrieval, embedding or agent
+yet, and Phase 1 makes no model or embedding API call.
+
+- The corpus adapter and how to run it: [`extant/corpora/rbi/README.md`](extant/corpora/rbi/README.md)
+- The coverage report: [`evals/coverage-rbi-20261119.md`](evals/coverage-rbi-20261119.md), with
+  the baseline in [`evals/baseline-counts.json`](evals/baseline-counts.json) and the label sets
+  in [`evals/labels/rbi/`](evals/labels/rbi/)
+- The reconnaissance and every decision taken in Phase 1:
+  [`evals/recon-rbi-20261119.md`](evals/recon-rbi-20261119.md)
 
 ## Two planes, one contract
 
