@@ -32,7 +32,9 @@ anchor      a lowercase kind prefix then dot separated alphanumeric segments, fo
 
 from __future__ import annotations
 
+import hashlib
 import re
+import unicodedata
 from dataclasses import dataclass
 from datetime import date, datetime
 
@@ -93,6 +95,12 @@ class DocId:
     def base(self) -> str:
         """The identifier without its version, shared by every version of one instrument."""
         return str(self).rsplit(":", 1)[0]
+
+
+def make_doc_base(corpus: str, instrument: str, year: int, serial: int) -> str:
+    """A doc_id without its version, ``rbi:md:2025:0204``: shared by every version of one
+    instrument. Validated exactly as a full doc_id would be."""
+    return make_doc_id(corpus, instrument, year, serial, 1).rsplit(":", 1)[0]
 
 
 def make_doc_id(corpus: str, instrument: str, year: int, serial: int, version: int) -> str:
@@ -217,6 +225,41 @@ def is_schema_name(value: str) -> bool:
     return True
 
 
+# --------------------------------------------------------------------------- source anchors
+
+# Where in its source a paragraph sits, when the source has no page numbers. The RBI corpus is
+# read from HTML (decided 19 November 2026), so a paragraph is located by an anchor into the
+# extracted page, and the page itself is pinned by ``documents.source_sha256``:
+#
+#     #<element id>     the page's own id on the block, e.g. "#F9", "#C3K"; preferred, because
+#                       the page links to it and a browser can jump to it
+#     block:<index>     the block's position in the extracted page, from 0, when it has no id
+#
+# A paragraph from a PDF carries ``source_page`` instead, and may carry both.
+
+_ELEMENT_ID = r"[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}"
+SOURCE_ANCHOR_RE = re.compile(rf"#{_ELEMENT_ID}|block:(?:0|[1-9][0-9]{{0,6}})")
+
+
+def make_id_anchor(element_id: str) -> str:
+    return validate_source_anchor(f"#{element_id}")
+
+
+def make_block_anchor(index: int) -> str:
+    if index < 0:
+        raise InvalidIdentifierError(f"block index must be non-negative: {index}")
+    return validate_source_anchor(f"block:{index}")
+
+
+def validate_source_anchor(value: str) -> str:
+    if SOURCE_ANCHOR_RE.fullmatch(value) is None:
+        raise InvalidIdentifierError(
+            f"malformed source anchor {value!r}, expected '#<element id>' such as '#F9'"
+            " or 'block:<index>' such as 'block:212'"
+        )
+    return value
+
+
 # --------------------------------------------------------------------------- entity codes
 
 
@@ -228,28 +271,118 @@ def validate_entity_code(value: str) -> str:
 
 
 # --------------------------------------------------------------------------- circular references
+#
+# The rules below were derived from the 10,323 distinct reference strings in RBI's three
+# published lists (withdrawn, standalone, draft repeal) and the references inside the
+# directions, observed in November 2026. Each rule names the surface forms it exists for.
+# They are deliberately conservative: forms are merged only where the difference is plainly
+# typographic. Leading zeros, renamed departments (DBOD, DBR, DOR) and guessed typos such as
+# DBDO are left alone, because merging two real circulars would corrupt every join silently.
+
+
+class InvalidReferenceError(InvalidIdentifierError):
+    """A string in a reference column that is not a circular reference at all, such as
+    "Mail Box Clarification" or "D.O. Letter"."""
+
+
+# Descriptive words written in front of a reference: "Master Direction DBR.Dir.No.85/...",
+# "Master Direction/DBR.FSD.No.101/...", "Notification No.DNBR.041/...", "RBI circular DBR...".
+_INSTRUMENT_PREFIX = re.compile(
+    r"^(?:MASTER\s+DIRECTIONS?|MASTER\s+CIRCULARS?|NOTIFICATIONS?|RBI\s+CIRCULARS?|CIRCULARS?)"
+    r"(?=[\s/.:\-]|NO\b)[\s/.:\-]*"
+)
+# "RBI/2016-17/DBR.FID.No.1/01.02.000/2016-17": an RBI serial wrapped around a department
+# reference. A bare RBI serial such as "RBI/DOR/2025-26/269" is the reference and is kept.
+_RBI_WRAPPER = re.compile(r"^RBI/\d{4}-\d{2,4}/(?=[A-Z]{2,}[A-Z.()]*\.)")
+# "DBODNo.", "RPCDNo.", "UBDNo.": a department code glued to "No.".
+_GLUED_NO = re.compile(r"^(DBOD|RPCD|UBD)NO(?=[.:])")
+# The "No." token in all its spellings: "No.", "NO.", "No:", "No. ", "No ", and "No" before a
+# separator. Only a standalone token, never the letters inside a word.
+_NO_TOKEN = re.compile(r"(?<![A-Z0-9])NO(?:[.:]\s*|\s+|(?=[(/]))")
+# Typographic errors in a department code that are unambiguous: a lower case L for an I
+# ("lECD.No.2046/04.02.02B/2001-02"); there is no LECD department.
+_PREFIX_TYPOS = {"LECD": "IECD"}
+_SPACE_BETWEEN_WORDS = re.compile(r"(?<=[A-Z0-9])\s+(?=[A-Z0-9])")
+_TRAILING = re.compile(r"[\s.,;*@]+$")
+_SURFACE_ENDS = re.compile(r"^[\s.,;:]+")
 
 
 def canonical_ref(raw: str) -> str:
-    """Normalise a circular reference to its canonical join key. Phase 1.
+    """Normalise a circular reference to its canonical join key.
 
-    Circular references reach us in many surface forms, from the consolidation annexes,
-    the withdrawal list and the circulars themselves, and the concordance and withdrawal
-    joins only work if every form collapses to one key. The canonical form is uppercase,
-    has no spaces and has its departmental prefix normalised:
+    Circular references reach us in many surface forms, from the published lists and the
+    directions themselves, and the withdrawal and concordance joins only work if every form
+    collapses to one key. The canonical form is uppercase, has no spaces, no "No." tokens and
+    no descriptive prefix:
 
-        'DBOD.No.BP.BC.1/21.04.048/2015-16'  ->  'DBOD.BP.BC.1/21.04.048/2015-16'
+        'DBOD.No.BP.BC.1/21.04.048/2015-16'           ->  'DBOD.BP.BC.1/21.04.048/2015-16'
+        'Notification No. DFC.55/DG (O)-87'           ->  'DFC.55/DG(O)-87'
+        'DOR.SIG.FIN.REC 8/26.03.001/2023-24'         ->  'DOR.SIG.FIN.REC.8/26.03.001/2023-24'
+        'RPCD.No.RRB.BC.35/03.05.33©/2008-09'    ->  'RPCD.RRB.BC.35/03.05.33(C)/2008-09'
 
-    Must be idempotent: ``canonical_ref(canonical_ref(x)) == canonical_ref(x)``.
+    Idempotent: ``canonical_ref(canonical_ref(x)) == canonical_ref(x)``. Raises
+    InvalidReferenceError for a string with no digit in it, which is not a reference.
     """
-    raise NotImplementedError("canonical_ref is Phase 1, mined from the RBI corpus")
+    s = unicodedata.normalize("NFKC", raw).replace("©", "(C)").replace("\\", "/")
+    s = s.upper().strip()
+    s = _TRAILING.sub("", _SURFACE_ENDS.sub("", s))
+    s = _INSTRUMENT_PREFIX.sub("", s)
+    s = _RBI_WRAPPER.sub("", s)
+    s = _GLUED_NO.sub(r"\1.", s)
+    s = _NO_TOKEN.sub(".", s)
+    s = _SPACE_BETWEEN_WORDS.sub(".", s)
+    s = re.sub(r"\s+", "", s).replace(":", ".")
+    s = re.sub(r"\.{2,}", ".", s)
+    s = re.sub(r"\.(?=[/(),])|(?<=[/(,])\.", "", s)
+    s = s.strip(".")
+    head, sep, rest = s.partition(".")
+    s = _PREFIX_TYPOS.get(head, head) + sep + rest
+    if not any(ch.isdigit() for ch in s):
+        raise InvalidReferenceError(f"not a circular reference: {raw!r}")
+    return s
 
 
 def ref_variants(canonical: str) -> list[str]:
-    """Surface forms a canonical reference is known to appear as. Phase 1.
+    """Surface forms a canonical reference is known to appear as.
 
     The inverse direction of ``canonical_ref``, used to search raw text for mentions of a
-    circular. Every variant must satisfy ``canonical_ref(v) == canonical``, and the list
-    includes ``canonical`` itself.
+    circular: the canonical form; "No." after the department code ("DBOD.No.BP.BC.1/..."); "No."
+    before the serial number ("DBOD.BP.BC.No.1/..."); and a mixed case department for the
+    codes RBI writes that way ("DoR.", "DoS."). Every variant satisfies
+    ``canonical_ref(v) == canonical``, and the list starts with ``canonical`` itself.
     """
-    raise NotImplementedError("ref_variants is Phase 1, mined from the RBI corpus")
+    if canonical_ref(canonical) != canonical:
+        raise InvalidReferenceError(f"not a canonical reference: {canonical!r}")
+    candidates = [canonical]
+    head, sep, rest = canonical.partition(".")
+    if sep:
+        candidates.append(f"{head}.No.{rest}")
+    serial = re.search(r"(?<=\.)(\d[^./]*)(?=/)", canonical)
+    if serial:
+        candidates.append(canonical[: serial.start()] + "No." + canonical[serial.start() :])
+    for code, mixed in (("DOR", "DoR"), ("DOS", "DoS")):
+        if canonical.startswith(code + ".") or canonical.startswith(code + "("):
+            candidates.append(mixed + canonical[len(code) :])
+    variants: list[str] = []
+    for v in candidates:
+        if v not in variants and canonical_ref(v) == canonical:
+            variants.append(v)
+    return variants
+
+
+# --------------------------------------------------------------------------- withdrawal keys
+
+
+def withdrawal_key(canonical: str | None, circular_date: date, title: str | None) -> str:
+    """The identity of one withdrawn circular (decided 19 November 2026).
+
+    A reference alone is not unique: RBI lists some notifications once per amendment under the
+    original number and date ("Amended upto 01.10.2002 - ..."), and 154 rows carry no reference
+    at all ("Mail Box Clarification"). Reference, circular date and title together are unique, and
+    rows equal on all three are one circular listed twice. The key is the sha256 of the three,
+    the reference canonical (empty when there is none) and the title as published.
+    """
+    if canonical is not None and canonical_ref(canonical) != canonical:
+        raise InvalidReferenceError(f"not a canonical reference: {canonical!r}")
+    material = "\x1f".join((canonical or "", circular_date.isoformat(), title or ""))
+    return hashlib.sha256(material.encode("utf-8")).hexdigest()
