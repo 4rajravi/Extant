@@ -136,8 +136,9 @@ Output, rebuilt each run from the cache, under `derived/parsed/`:
 simple, one with no applicability paragraph, one with annexes), each with `source.html`,
 `page.txt` (its blocks, numbered) and `EXPECTED.md`. A person fills `EXPECTED.md` with the counts
 and the anchor list read from the page, never from the parser's output;
-`tests/unit/test_parser_gate.py` fails while any `TODO_HUMAN` remains and then checks the parser
-against exactly those values.
+`tests/unit/test_parser_gate.py` reports an expected failure (`xfail`, listed in every run's
+summary) while any `TODO_HUMAN` remains, and once a file is filled checks the parser against
+exactly those values.
 
 ## The coverage report
 

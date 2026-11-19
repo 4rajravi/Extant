@@ -8,8 +8,9 @@ Reserve Bank of India (Payments Banks – Digital Banking Channels Authorisation
 - Files here: `source.html` (the page as fetched) and `page.txt` (its blocks, numbered)
 
 **For a person to fill in.** Read the source page or `page.txt`, never a program's output, and
-replace every TODO_HUMAN below. The parser gate test (`tests/unit/test_parser_gate.py`) fails
-while any TODO_HUMAN remains, and afterwards checks the parser against exactly these values.
+replace every TODO_HUMAN below. The parser gate test (`tests/unit/test_parser_gate.py`) reports
+an expected failure while any TODO_HUMAN remains, and afterwards checks the parser against
+exactly these values.
 
 Rules (decided 19 November 2026): one paragraph per printed paragraph number, taking in its
 sub-paragraphs, provisos, lists, tables and the numbered notes under those tables. A paragraph's
