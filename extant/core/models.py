@@ -216,11 +216,18 @@ class Chunk(_Row):
 
     ``chunk_id`` is assigned by the database (bigserial) and is None before insert. The
     generated ``fts`` column is database-only and has no field here.
+
+    A paragraph over the chunker's size limit is split into pieces that share its
+    ``para_id`` and differ by ``sub_index`` (0 for an unsplit paragraph and the first piece);
+    each piece's ``body`` is an exact substring of the paragraph's. ``ordinal`` is the
+    paragraph's, copied so neighbourhood expansion needs no join (migration 0004).
     """
 
     chunk_id: int | None = Field(default=None, ge=1)
     para_id: ParaIdStr
+    sub_index: int = Field(default=0, ge=0, le=SMALLINT_MAX)
     doc_id: DocIdStr
+    ordinal: int = Field(ge=0, le=INTEGER_MAX)
     body: NonBlankStr
     embed_text: NonBlankStr
     content_hash: Sha256Hex

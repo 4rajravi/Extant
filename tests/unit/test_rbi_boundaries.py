@@ -89,6 +89,7 @@ def test_discovery_and_crawl_never_extract_pdfs() -> None:
         "parse_run.py",
         "anchors.py",
         "report.py",
+        "chunk.py",
     ],
 )
 def test_offline_steps_import_no_http_client(name: str) -> None:

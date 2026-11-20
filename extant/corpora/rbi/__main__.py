@@ -1,4 +1,5 @@
-"""python -m extant.corpora.rbi crawl | pdf-list | import-pdfs | extract | parse | mine | report"""
+"""python -m extant.corpora.rbi crawl | pdf-list | import-pdfs | extract | parse | mine | report
+| chunk | embed | assemble | verify"""
 
 from __future__ import annotations
 
@@ -37,6 +38,9 @@ def _parser() -> argparse.ArgumentParser:
     ):
         p = sub.add_parser(name, help=text)
         p.add_argument("--sample", type=int, metavar="N", help="only the first N documents")
+    from extant.corpora.rbi.index_cli import add_commands
+
+    add_commands(sub)
     return parser
 
 
@@ -48,6 +52,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         print(f"error: {exc}", file=sys.stderr)
         return 2
     data_dir = settings.data_dir.resolve()
+
+    from extant.corpora.rbi.index_cli import COMMANDS
+    from extant.corpora.rbi.index_cli import run as run_index
+
+    if args.command in COMMANDS:
+        return run_index(args, data_dir)
 
     if args.command == "crawl":
         from extant.corpora.rbi.acquisition import (

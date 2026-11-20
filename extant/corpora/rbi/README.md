@@ -11,6 +11,10 @@ uv run python -m extant.corpora.rbi extract    # step 2, offline from the cache
 uv run python -m extant.corpora.rbi parse      # step 3, paragraphs
 uv run python -m extant.corpora.rbi mine       # step 4, labels, identities and versions
 uv run python -m extant.corpora.rbi report     # the coverage report, the baseline, the label sets
+uv run python -m extant.corpora.rbi chunk      # step 5, chunk rows (offline)
+uv run python -m extant.corpora.rbi embed --dry-run   # step 6: cache misses, tokens, cost; no calls
+uv run python -m extant.corpora.rbi embed      # step 6: embeds only what public.vec_cache lacks
+uv run python -m extant.corpora.rbi assemble   # steps 7 and 8: a new build schema, verified
 ```
 
 `extract` and `parse` take `--sample N` for the first N documents. `parse` and `mine` each need
@@ -24,6 +28,9 @@ no work, and bumping a version redoes that step and nothing upstream of it.
 | extract | `source_sha256` + `HTML_EXTRACTOR_VERSION` | `html-3` |
 | parse | `source_sha256` + extractor version + `PARSER_VERSION` | `p2` |
 | mine | the cached pages + `MINER_VERSION` | `m1` |
+| chunk | the parsed files + `CHUNKER_VERSION` | `c1` |
+| embed | `content_hash` + model id, dimension, quantisation | `openai/text-embedding-3-large`, 256, float16 |
+| assemble, verify | all of the above; a new schema every build | |
 
 **The HTML direction pages are the source of record** (decided 19 November 2026). Step 2
 extracts them with `extract_html.py`; `extract.py` (PyMuPDF) handles any PDF a person imports,
@@ -163,6 +170,92 @@ Offline, from the cache and the derived files. It writes, and these are committe
 and fails when the manifest or the baseline names a different code version from the code, so a
 version bump without a rerun of `report` cannot be committed unnoticed.
 
+## Phase 2: the index and retrieval
+
+### Step 5, chunk
+
+`chunk.py`, `CHUNKER_VERSION` `1`, with the splitter in `extant/index/chunking.py`. One chunk per
+paragraph, with `doc_id`, `ordinal`, `entity_codes`, `valid_from`, `valid_to` and
+`authority_rank` copied onto it so the hot table answers a query without a join. A paragraph
+over about 900 tokens (characters / 4) is split at sentence and line boundaries with one sentence
+of overlap; the pieces share its `para_id` and differ by `sub_index`, and each piece's `body` is
+an exact substring of the paragraph's. Entity scope is the `applies_to` facets, or the listing
+category for the 5 directions whose applicability text names none. Validity is half-open: a
+version is in force from its start until the next version's start (rule in `chunk.py`'s
+docstring). Tables come from the HTML as `|`-separated rows inside the body, unchanged. Output:
+`derived/chunks/c<CHUNKER_VERSION>-<inputs digest>/chunks.jsonl`.
+
+`body` is the regulator's text; `embed_text` is the composed header (title, heading path,
+"Applies to: ...") plus that body and is only ever embedded. Quotes, groundedness checks and the
+generated `fts` column use `body`, never `embed_text`.
+
+### Step 6, embed
+
+The model is OpenAI `text-embedding-3-large` at 256 dimensions, requested server side with
+`dimensions=256` (decided 19 November 2026). Every vector is L2-normalised after it arrives,
+whatever the provider promises: a truncated unit vector is not a unit vector. Vectors are cached
+in `public.vec_cache` on `content_hash` plus model id, dimension and quantisation, so a model
+change misses the cache and a rebuild embeds only changed text. Requests are batched (256 texts
+or 100,000 tokens), retried with backoff on 429, 5xx and transport errors, and each batch's
+vectors commit together or not at all, so an interrupted run resumes paying only for what is
+missing. `--dry-run` reports misses, tokens and cost and calls nothing; `--sample N` embeds the
+first N documents. Needs `EXTANT_OPENAI_API_KEY` in `.env` except for `--dry-run`.
+`EXTANT_EMBEDDING_PROVIDER=test` gives free deterministic hash vectors, for tests and rehearsals.
+
+### Steps 7 and 8, assemble and verify
+
+`assemble` creates `idx_rbi_<YYYYMMDD>_<commit>` from the migrations, loads documents,
+paragraphs, facets, entity types, chunks (each joined to its cached vector), concordance and
+withdrawals, writes the manifest and runs the verification, all in one transaction: a build is
+complete or leaves nothing. It refuses a dirty working tree, since the manifest's commit would
+not reproduce it, unless `--allow-dirty`. The manifest records the corpus, commit, every code
+version, the embedding model, dimension and quantisation, the counts, each document's
+`source_sha256`, and the baseline. A version published only as PDF has no document row, so a
+`supersedes_doc_id` pointing at one is moved to the nearest earlier version that has one (30
+links).
+
+Verification fails the build, it never warns: no paragraph without a chunk, no split paragraph
+without its first piece, every vector unit norm within 0.01, then counts against the previous
+build's manifest (or `evals/baseline-counts.json` on the first build) with tolerances documents
+0, paragraphs 0.02, concordance 0.05, chunks 0.02. A deliberate drop is a new committed baseline
+with a reason, never a looser tolerance.
+
+### Determinism, at two levels
+
+Steps 1 to 5 are fully deterministic: the same inputs and code versions give byte-identical
+chunk rows, and `tests/unit/test_rbi_chunk.py` pins them with golden digests. From step 6 on, a
+build is reproducible only in the weaker sense that its manifest records every input and version
+needed to rebuild it. A hosted embedding API makes no promise of bit-identical vectors, so no
+claim of a bit-identical rebuild is made.
+
+### Retrieval
+
+`extant/retrieval.py`, one public function, `retrieve(conn, query, entity_codes, as_of, *,
+embedder, options)`, with the connection's `search_path` naming the build. It never calls a
+generative model. A query with a literal circular reference takes the deterministic fast path
+(`canonical_ref`, then `withdrawals`, `concordance` and mentions through `ref_variants`) and
+makes no embedding call. Every other query runs one statement that filters by entity overlap and
+validity into a `MATERIALIZED` set before either arm's `LIMIT`, then exact cosine distance
+(ascending) and `ts_rank_cd` (descending) over it, fused by weighted reciprocal rank fusion.
+There is deliberately no vector index; the module docstring gives the four designs considered.
+`ts_rank_cd` is not BM25 and sits behind `LexicalArm` for the Phase 3 ablation.
+
+Fragments collapse to their parent paragraph before anything is returned, and each result's
+ordinal neighbours are added as `expanded` context with no score, so expansion cannot move a
+recall number (`options.expand`, on by default). `entity_codes` match by overlap as given: a
+caller asking about an NBFC subtype passes the subtype and `nbfc`.
+
+The design's component boundary says one SQL round trip; the hybrid path makes three: the
+search, the hydration of the fused results with their parent paragraphs, and one batched
+neighbourhood lookup. Fusion must run between the first two because it needs both arms' ranks.
+
+### The smoke suite
+
+`evals/smoke-rbi.toml` holds ten queries over the four types (applicability, traceback, diff,
+as of) and ten entity categories. A person marks the expected paragraphs from the candidates
+`python -m extant.corpora.rbi candidates --schema <build>` writes; `uv run pytest -m smoke` fails
+on an unmarked query. It is deselected by default and needs a build and an API key.
+
 ## Paragraph anchors
 
 Decided 19 November 2026; rules in `anchors.py`. A para_id is `<doc_id>#<anchor>`: `p<number>` by
@@ -221,6 +314,7 @@ extract/html-<N>/<sha[:2]>/<source_sha256>.json            step 2 output, HTML
 extract/v<EXTRACTOR_VERSION>/<sha[:2]>/<source_sha256>.json   step 2 output, PDF
 derived/labels/m<MINER_VERSION>/                              step 4 output
 derived/parsed/                                               step 3 output
+derived/chunks/c<CHUNKER_VERSION>-<digest>/                   step 5 output
 ```
 
 Only 2xx responses become cache entries. A failure is in the manifest only, and the next
@@ -292,6 +386,8 @@ Enforced by `tests/unit/test_rbi_boundaries.py`.
   library; `importer.py` is also offline.
 - `sources.py` and `crawl.py` discover links in cached HTML and never extract PDFs.
 - `extract.py`, `extract_html.py`, `lists.py`, `mine.py`, `identifiers.py`, `entities.py`,
-  `anchors.py`, `parse.py`, `parse_run.py` and `report.py` are offline and import no HTTP
-  client.
+  `anchors.py`, `parse.py`, `parse_run.py`, `report.py` and `chunk.py` are offline and import no
+  HTTP client.
+- `extant/retrieval.py` imports no model client and no HTTP client: its only network access is
+  the embedder it is handed, which the fast path never calls.
 - Nothing under `corpora/rbi/` imports a model or embedding client.

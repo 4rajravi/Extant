@@ -67,6 +67,7 @@ def test_migration_files_are_found_in_order() -> None:
         "0001_initial",
         "0002_source_anchor",
         "0003_withdrawal_key",
+        "0004_chunk_order",
     ]
     assert index_grants().path.name == "grants.sql"
 

@@ -151,6 +151,8 @@ def test_chunks_indexes_exist_and_no_ann_index(conn: Connection, build: str) -> 
         "chunks_entity": "gin",
         "chunks_valid": "btree",
         "chunks_para": "btree",
+        "chunks_para_sub": "btree",
+        "chunks_doc_ord": "btree",
     }
     methods = {method for _, method, _ in rows}
     assert "hnsw" not in methods
@@ -165,7 +167,12 @@ def test_create_records_the_build_manifest(conn: Connection, build: str) -> None
     )
     assert rows["schema"] == build
     assert rows["corpus"] == "test"
-    assert rows["migrations"] == ["0001_initial", "0002_source_anchor", "0003_withdrawal_key"]
+    assert rows["migrations"] == [
+        "0001_initial",
+        "0002_source_anchor",
+        "0003_withdrawal_key",
+        "0004_chunk_order",
+    ]
     assert "created_at" in rows
     [info] = [b for b in list_builds(conn) if b.schema == build]
     assert info.complete
@@ -274,7 +281,12 @@ def test_fts_populates_on_insert(conn: Connection, build: str) -> None:
 def test_entity_codes_gin_containment(conn: Connection, build: str) -> None:
     _seed(conn, build)
     ids = {
-        codes: insert(conn, build, "chunks", f.chunk(entity_codes=codes, embedding=f.embedding(i)))
+        codes: insert(
+            conn,
+            build,
+            "chunks",
+            f.chunk(entity_codes=codes, sub_index=i, embedding=f.embedding(i)),
+        )
         for i, codes in enumerate([("nbfc_ul",), ("sfb", "ucb"), ("ucb",)])
     }
     query = sql.SQL(
@@ -317,13 +329,14 @@ def test_wrong_dimension_is_rejected_by_the_column(conn: Connection, build: str)
     with pytest.raises(psycopg.errors.DataException, match="expected 256 dimensions"):
         conn.execute(
             sql.SQL(
-                "INSERT INTO {}.chunks (para_id, doc_id, body, embed_text, content_hash,"
-                " entity_codes, valid_from, authority_rank, embedding)"
-                " VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+                "INSERT INTO {}.chunks (para_id, doc_id, ordinal, body, embed_text,"
+                " content_hash, entity_codes, valid_from, authority_rank, embedding)"
+                " VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
             ).format(sql.Identifier(build)),
             [
                 row["para_id"],
                 row["doc_id"],
+                row["ordinal"],
                 row["body"],
                 row["embed_text"],
                 row["content_hash"],
@@ -333,6 +346,33 @@ def test_wrong_dimension_is_rejected_by_the_column(conn: Connection, build: str)
                 "[" + ",".join(["0"] * 255) + "]",
             ],
         )
+
+
+def test_pieces_of_a_paragraph_share_its_para_id_but_not_a_sub_index(
+    conn: Connection, build: str
+) -> None:
+    _seed(conn, build)
+    insert(conn, build, "chunks", f.chunk(sub_index=0))
+    insert(conn, build, "chunks", f.chunk(sub_index=1, embedding=f.embedding(1)))
+    with pytest.raises(psycopg.errors.UniqueViolation):
+        insert(conn, build, "chunks", f.chunk(sub_index=1, embedding=f.embedding(2)))
+
+
+def test_neighbourhood_lookup_uses_the_doc_ordinal_index(conn: Connection, build: str) -> None:
+    _seed(conn, build)
+    insert(conn, build, "chunks", f.chunk())
+    with conn.transaction():
+        conn.execute("SET LOCAL enable_seqscan = off")
+        plan = "\n".join(
+            str(r[0])
+            for r in conn.execute(
+                sql.SQL(
+                    "EXPLAIN SELECT para_id FROM {}.chunks WHERE doc_id = %s AND ordinal = %s"
+                ).format(sql.Identifier(build)),
+                (f.DOC_ID, 41),
+            ).fetchall()
+        )
+    assert "chunks_doc_ord" in plan
 
 
 # --------------------------------------------------------------------------- drop

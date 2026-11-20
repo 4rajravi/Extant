@@ -69,7 +69,8 @@ warn_required_dynamic_aliases = true
 # --------------------------------------------------------------------------- pytest
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = ["-ra", "--strict-markers", "--strict-config"]
+addopts = ["-ra", "--strict-markers", "--strict-config", "-m", "not smoke"]
 markers = [
   "integration: needs a real PostgreSQL with pgvector, reached through EXTANT_WRITER_DSN",
+  "smoke: the ten-query smoke suite; needs a built index and an embedding API key (pytest -m smoke)",
 ]

@@ -72,6 +72,7 @@ def chunk(**overrides: Any) -> Chunk:
     fields: dict[str, Any] = {
         "para_id": para.para_id,
         "doc_id": para.doc_id,
+        "ordinal": para.ordinal,
         "body": para.body,
         "embed_text": embed_text,
         "entity_codes": ("nbfc_ul",),
