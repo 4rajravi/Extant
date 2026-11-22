@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import secrets
+from datetime import date
 
 import psycopg
 import pytest
@@ -11,6 +12,8 @@ from psycopg.conninfo import make_conninfo
 
 from extant.core.constants import EMBEDDING_DIM, READER_ROLE
 from extant.core.hashing import sha256_hex
+from extant.core.identity import withdrawal_key
+from extant.core.models import Withdrawal
 from extant.core.schema import (
     Connection,
     SchemaError,
@@ -148,6 +151,8 @@ def test_chunks_indexes_exist_and_no_ann_index(conn: Connection, build: str) -> 
         "chunks_entity": "gin",
         "chunks_valid": "btree",
         "chunks_para": "btree",
+        "chunks_para_sub": "btree",
+        "chunks_doc_ord": "btree",
     }
     methods = {method for _, method, _ in rows}
     assert "hnsw" not in methods
@@ -162,7 +167,12 @@ def test_create_records_the_build_manifest(conn: Connection, build: str) -> None
     )
     assert rows["schema"] == build
     assert rows["corpus"] == "test"
-    assert rows["migrations"] == ["0001_initial"]
+    assert rows["migrations"] == [
+        "0001_initial",
+        "0002_source_anchor",
+        "0003_withdrawal_key",
+        "0004_chunk_order",
+    ]
     assert "created_at" in rows
     [info] = [b for b in list_builds(conn) if b.schema == build]
     assert info.complete
@@ -172,6 +182,78 @@ def test_create_records_the_build_manifest(conn: Connection, build: str) -> None
 def test_create_refuses_an_existing_name(conn: Connection, build: str) -> None:
     with pytest.raises(SchemaError, match="already exists"):
         create(conn, build)
+
+
+def test_paragraphs_are_located_by_page_or_anchor(conn: Connection, build: str) -> None:
+    cols = dict(
+        conn.execute(
+            "SELECT table_name || '.' || column_name, is_nullable FROM information_schema.columns"
+            " WHERE table_schema = %s AND column_name IN"
+            " ('source_page', 'source_anchor', 'evidence_page', 'evidence_anchor')",
+            (build,),
+        ).fetchall()
+    )
+    assert cols == {
+        "paragraphs.source_page": "YES",
+        "paragraphs.source_anchor": "YES",
+        "concordance.evidence_page": "YES",
+        "concordance.evidence_anchor": "YES",
+    }
+    insert(conn, build, "documents", f.document())
+    insert(conn, build, "paragraphs", f.paragraph(source_page=None, source_anchor="#C3K"))
+    with pytest.raises(psycopg.errors.CheckViolation, match="paragraphs_located"):
+        conn.execute(
+            sql.SQL(
+                "INSERT INTO {}.paragraphs (para_id, doc_id, ordinal, body, content_hash)"
+                " VALUES (%s, %s, %s, %s, %s)"
+            ).format(sql.Identifier(build)),
+            ("rbi:md:2025:0147:v1#p9", f.DOC_ID, 9, "x", sha256_hex("x")),
+        )
+
+
+def test_withdrawals_are_keyed_by_withdrawal_key(conn: Connection, build: str) -> None:
+    pk = conn.execute(
+        "SELECT a.attname FROM pg_index i JOIN pg_class c ON c.oid = i.indrelid"
+        " JOIN pg_namespace n ON n.oid = c.relnamespace"
+        " JOIN pg_attribute a ON a.attrelid = c.oid AND a.attnum = ANY(i.indkey)"
+        " WHERE n.nspname = %s AND c.relname = 'withdrawals' AND i.indisprimary",
+        (build,),
+    ).fetchall()
+    assert pk == [("withdrawal_key",)]
+    # One reference, one date, two titles: two withdrawals, as RBI lists amended notifications.
+    for title in (
+        "Amended upto 01.10.2002 - NBFC Acceptance",
+        "Amended upto 30.06.2005 - Schedules",
+    ):
+        key = withdrawal_key("DFC.118/DG(SPT)-98", date(1998, 1, 31), title)
+        insert(
+            conn,
+            build,
+            "withdrawals",
+            Withdrawal(
+                withdrawal_key=key,
+                circular_ref="Notification No.DFC.118/DG(SPT)-98",
+                canonical_ref="DFC.118/DG(SPT)-98",
+                title=title,
+                circular_date=date(1998, 1, 31),
+                withdrawn_by_doc_id="rbi:circ:2025:0100:v1",
+                announced_on=date(2025, 11, 28),
+                effective_on=date(2025, 11, 28),
+            ),
+        )
+    count = conn.execute(
+        sql.SQL("SELECT count(*) FROM {}.withdrawals").format(sql.Identifier(build))
+    ).fetchone()
+    assert count == (2,)
+    with pytest.raises(psycopg.errors.NotNullViolation):
+        conn.execute(
+            sql.SQL(
+                "INSERT INTO {}.withdrawals (withdrawal_key, circular_ref, withdrawn_by_doc_id,"
+                " announced_on, effective_on) VALUES (%s, 'X', 'rbi:circ:2025:0100:v1',"
+                " '2025-11-28', '2025-11-28')"
+            ).format(sql.Identifier(build)),
+            ("a" * 64,),
+        )
 
 
 # --------------------------------------------------------------------------- chunks
@@ -199,7 +281,12 @@ def test_fts_populates_on_insert(conn: Connection, build: str) -> None:
 def test_entity_codes_gin_containment(conn: Connection, build: str) -> None:
     _seed(conn, build)
     ids = {
-        codes: insert(conn, build, "chunks", f.chunk(entity_codes=codes, embedding=f.embedding(i)))
+        codes: insert(
+            conn,
+            build,
+            "chunks",
+            f.chunk(entity_codes=codes, sub_index=i, embedding=f.embedding(i)),
+        )
         for i, codes in enumerate([("nbfc_ul",), ("sfb", "ucb"), ("ucb",)])
     }
     query = sql.SQL(
@@ -242,13 +329,14 @@ def test_wrong_dimension_is_rejected_by_the_column(conn: Connection, build: str)
     with pytest.raises(psycopg.errors.DataException, match="expected 256 dimensions"):
         conn.execute(
             sql.SQL(
-                "INSERT INTO {}.chunks (para_id, doc_id, body, embed_text, content_hash,"
-                " entity_codes, valid_from, authority_rank, embedding)"
-                " VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+                "INSERT INTO {}.chunks (para_id, doc_id, ordinal, body, embed_text,"
+                " content_hash, entity_codes, valid_from, authority_rank, embedding)"
+                " VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
             ).format(sql.Identifier(build)),
             [
                 row["para_id"],
                 row["doc_id"],
+                row["ordinal"],
                 row["body"],
                 row["embed_text"],
                 row["content_hash"],
@@ -258,6 +346,33 @@ def test_wrong_dimension_is_rejected_by_the_column(conn: Connection, build: str)
                 "[" + ",".join(["0"] * 255) + "]",
             ],
         )
+
+
+def test_pieces_of_a_paragraph_share_its_para_id_but_not_a_sub_index(
+    conn: Connection, build: str
+) -> None:
+    _seed(conn, build)
+    insert(conn, build, "chunks", f.chunk(sub_index=0))
+    insert(conn, build, "chunks", f.chunk(sub_index=1, embedding=f.embedding(1)))
+    with pytest.raises(psycopg.errors.UniqueViolation):
+        insert(conn, build, "chunks", f.chunk(sub_index=1, embedding=f.embedding(2)))
+
+
+def test_neighbourhood_lookup_uses_the_doc_ordinal_index(conn: Connection, build: str) -> None:
+    _seed(conn, build)
+    insert(conn, build, "chunks", f.chunk())
+    with conn.transaction():
+        conn.execute("SET LOCAL enable_seqscan = off")
+        plan = "\n".join(
+            str(r[0])
+            for r in conn.execute(
+                sql.SQL(
+                    "EXPLAIN SELECT para_id FROM {}.chunks WHERE doc_id = %s AND ordinal = %s"
+                ).format(sql.Identifier(build)),
+                (f.DOC_ID, 41),
+            ).fetchall()
+        )
+    assert "chunks_doc_ord" in plan
 
 
 # --------------------------------------------------------------------------- drop

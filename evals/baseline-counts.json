@@ -1,0 +1,27 @@
+{
+ "generated": "2026-11-19",
+ "code": {
+  "html_extractor": "html-3",
+  "parser": "p2",
+  "miner": "m1"
+ },
+ "documents": 630,
+ "paragraphs": 62920,
+ "concordance": 4,
+ "withdrawals": 10067,
+ "detail": {
+  "listed_directions": 313,
+  "versions": 668,
+  "current_versions_with_text": 312,
+  "current_paragraphs": 25337,
+  "estimated_tokens_current": 4351263,
+  "withdrawals_regulation": 9439,
+  "withdrawals_supervision": 628,
+  "retained": 989
+ },
+ "tolerances": {
+  "documents": 0.0,
+  "paragraphs": 0.02,
+  "concordance": 0.05
+ }
+}

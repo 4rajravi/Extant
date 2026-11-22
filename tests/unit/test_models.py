@@ -7,6 +7,7 @@ from pydantic import ValidationError
 from extant.core.authority import AuthorityRank
 from extant.core.constants import EMBEDDING_DIM
 from extant.core.hashing import sha256_hex
+from extant.core.identity import withdrawal_key
 from extant.core.models import (
     BuildManifest,
     Citation,
@@ -180,6 +181,16 @@ def test_paragraph_body_is_kept_verbatim() -> None:
     assert f.paragraph(body=body).body == body
 
 
+def test_paragraph_is_located_by_page_anchor_or_both() -> None:
+    assert f.paragraph(source_page=None, source_anchor="#C3K").source_anchor == "#C3K"
+    assert f.paragraph(source_page=None, source_anchor="block:212").source_page is None
+    assert f.paragraph(source_anchor="#F9").source_page == 17
+    with pytest.raises(ValidationError, match="source_page, a source_anchor, or both"):
+        f.paragraph(source_page=None)
+    with pytest.raises(ValidationError, match="source_anchor"):
+        f.paragraph(source_page=None, source_anchor="page 17")
+
+
 # --------------------------------------------------------------------------- other tables
 
 
@@ -224,21 +235,46 @@ def test_concordance_entry() -> None:
         )
 
 
+def _withdrawal(**overrides: object) -> Withdrawal:
+    fields: dict[str, object] = {
+        "circular_ref": "DBOD.No.BP.BC.1/21.04.048/2015-16",
+        "canonical_ref": "DBOD.BP.BC.1/21.04.048/2015-16",
+        "title": "Master Circular - Prudential norms",
+        "circular_date": date(2015, 7, 1),
+        "withdrawn_by_doc_id": "rbi:circ:2025:0100:v1",
+        "announced_on": date(2025, 11, 28),
+        "effective_on": date(2026, 1, 1),
+    }
+    fields.update(overrides)
+    if "withdrawal_key" not in fields:  # computed only when not supplied, never eagerly
+        fields["withdrawal_key"] = withdrawal_key(
+            fields["canonical_ref"],  # type: ignore[arg-type]
+            fields["circular_date"],  # type: ignore[arg-type]
+            fields["title"],  # type: ignore[arg-type]
+        )
+    return Withdrawal.model_validate(fields)
+
+
 def test_withdrawal_keeps_announcement_and_effect_apart() -> None:
-    w = Withdrawal(
-        circular_ref="DBOD.BP.BC.1/21.04.048/2015-16",
-        withdrawn_by_doc_id=f.DOC_ID,
-        announced_on=date(2025, 4, 1),
-        effective_on=date(2025, 10, 1),
-    )
+    w = _withdrawal()
     assert w.announced_on < w.effective_on
     with pytest.raises(ValidationError, match="withdrawn_by_doc_id"):
-        Withdrawal(
-            circular_ref="X",
-            withdrawn_by_doc_id="not-an-id",
-            announced_on=date(2025, 4, 1),
-            effective_on=date(2025, 4, 1),
-        )
+        _withdrawal(withdrawn_by_doc_id="not-an-id")
+
+
+def test_withdrawal_is_keyed_by_reference_date_and_title() -> None:
+    with pytest.raises(ValidationError, match="withdrawal_key is not the key"):
+        _withdrawal(withdrawal_key="0" * 64)
+    with pytest.raises(ValidationError, match="not in canonical form"):
+        _withdrawal(canonical_ref="DBOD.No.BP.BC.1/21.04.048/2015-16", withdrawal_key="0" * 64)
+    with pytest.raises(ValidationError, match="circular_date"):
+        Withdrawal.model_validate(
+            {"withdrawal_key": "0" * 64, "circular_ref": "X", "withdrawn_by_doc_id": f.DOC_ID,
+             "announced_on": date(2025, 11, 28), "effective_on": date(2025, 11, 28)}
+        )  # fmt: skip
+    # a published cell that is not a reference has no canonical_ref
+    unref = _withdrawal(circular_ref="Mail Box Clarification", canonical_ref=None)
+    assert unref.canonical_ref is None
 
 
 def test_para_id_alias() -> None:
@@ -287,6 +323,26 @@ def test_citation_rejects_a_paraphrase_and_the_wrong_paragraph() -> None:
         Citation(
             para_id="rbi:md:2025:0147:v1#ch4.3B", quote="within 21 days", source_page=17
         ).verify(para)
+
+
+def test_citation_by_anchor() -> None:
+    para = f.paragraph(source_page=None, source_anchor="#C3K")
+    Citation(para_id=f.PARA_ID, quote="within 21 days", source_anchor="#C3K").verify(para)
+    with pytest.raises(CitationError, match="points to"):
+        Citation(para_id=f.PARA_ID, quote="within 21 days", source_anchor="block:3").verify(para)
+    with pytest.raises(ValidationError, match="source_page, a source_anchor, or both"):
+        Citation(para_id=f.PARA_ID, quote="within 21 days")
+
+
+def test_concordance_evidence_anchor_is_validated() -> None:
+    entry = ConcordanceEntry(
+        old_ref="X", relation="repealed", evidence_doc_id=f.DOC_ID, evidence_anchor="block:5"
+    )
+    assert entry.evidence_anchor == "block:5"
+    with pytest.raises(ValidationError, match="evidence_anchor"):
+        ConcordanceEntry(
+            old_ref="X", relation="repealed", evidence_doc_id=f.DOC_ID, evidence_anchor="row 5"
+        )
 
 
 def test_citation_fields_are_validated() -> None:

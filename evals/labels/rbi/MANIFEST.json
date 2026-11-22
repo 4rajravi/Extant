@@ -1,0 +1,11 @@
+{
+ "sets": {
+  "withdrawals.jsonl": "Withdrawal records, Department of Regulation, RBI/2025-26/100",
+  "withdrawals_supervision.jsonl": "Withdrawal records, Department of Supervision, RBI/DoS/2026-27/221",
+  "supersession.jsonl": "ConcordanceEntry records from repeal annexes, document level",
+  "retained.jsonl": "circulars RBI retained as standalone instead of consolidating"
+ },
+ "html_extractor": "html-3",
+ "parser": "p2",
+ "miner": "m1"
+}

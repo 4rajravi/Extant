@@ -25,10 +25,16 @@ from extant.core.models import Document, Paragraph
 
 
 def compose_embed_text(
-    document: Document, paragraph: Paragraph, entity_labels: Sequence[str]
+    document: Document,
+    paragraph: Paragraph,
+    entity_labels: Sequence[str],
+    *,
+    body: str | None = None,
 ) -> str:
     """Compose the string Phase 2 embeds for one paragraph. A paragraph with no heading
-    path omits that line rather than embedding an empty or 'None' line."""
+    path omits that line rather than embedding an empty or 'None' line. ``body`` is the
+    text under the header: the paragraph's own body by default, or one piece of it when the
+    chunker splits an oversized paragraph."""
     if paragraph.doc_id != document.doc_id:
         raise ValueError(f"{paragraph.para_id!r} is not a paragraph of {document.doc_id!r}")
     if not entity_labels:
@@ -42,5 +48,5 @@ def compose_embed_text(
     if paragraph.heading_path:
         lines.append(paragraph.heading_path)
     lines.append(f"Applies to: {', '.join(entity_labels)}")
-    lines.append(paragraph.body)
+    lines.append(paragraph.body if body is None else body)
     return "\n".join(lines)

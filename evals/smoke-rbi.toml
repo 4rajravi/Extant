@@ -1,0 +1,91 @@
+# The ten-query smoke suite for the RBI index (Phase 2).
+#
+# The queries were proposed by Claude. The expected paragraphs are marked by a person, from the
+# candidates `python -m extant.corpora.rbi candidates` prints against a built index, and never
+# by the code under test: a suite whose ground truth came from the retriever measures nothing.
+# Replace each TODO_HUMAN with the para_ids that correctly answer the query (any one of them in
+# the top results counts as found). tests/smoke/test_smoke.py fails, rather than skips, while a
+# query is unmarked. Run it with: uv run pytest -m smoke
+#
+# Types: applicability (who a rule binds), traceback (what replaced what), diff (how two rules
+# differ), as_of (what was in force on a date).
+
+[[query]]
+id = "q01"
+type = "applicability"
+text = "Which companies are the Housing Finance Companies Directions applicable to?"
+entity_codes = ["nbfc_hfc", "nbfc"]
+as_of = 2026-11-19
+expected = ["rbi:md:2025:0365:v5#p3"]
+
+[[query]]
+id = "q02"
+type = "applicability"
+text = "Which banks must follow the commercial bank rules on declaring dividends and remitting profits?"
+entity_codes = ["cb"]
+as_of = 2026-11-19
+expected = ["rbi:md:2025:0387:v1#p3"]
+
+[[query]]
+id = "q03"
+type = "applicability"
+text = "Do the capital adequacy norms apply to all India financial institutions like NABARD, SIDBI and EXIM Bank?"
+entity_codes = ["aifi"]
+as_of = 2026-11-19
+expected = ["rbi:md:2025:0321:v5#p3"]
+
+[[query]]
+id = "q04"
+type = "traceback"
+text = "What replaced circular DOR.ACC.REC.87/21-02-067/2025-26?"
+entity_codes = ["cb"]
+as_of = 2026-11-19
+expected = ["rbi:md:2025:0387:v1#annex3"]
+
+[[query]]
+id = "q05"
+type = "traceback"
+text = "Which earlier direction did the 2026 local area bank dividend directions repeal?"
+entity_codes = ["lab"]
+as_of = 2026-11-19
+expected = ["rbi:md:2025:0389:v1#annex3"]
+
+[[query]]
+id = "q06"
+type = "diff"
+text = "How does the minimum capital adequacy requirement differ between small finance banks and payments banks?"
+entity_codes = ["sfb", "pb"]
+as_of = 2026-11-19
+expected = ["rbi:md:2025:0182:v8#p10", "rbi:md:2025:0211:v4#p8"]
+
+[[query]]
+id = "q07"
+type = "diff"
+text = "How often must rural co-operative banks and asset reconstruction companies update customer KYC?"
+entity_codes = ["rcb", "arc"]
+as_of = 2026-11-19
+expected = ["rbi:md:2025:0316:v3#p41", "rbi:md:2025:0377:v2#p41"]
+
+[[query]]
+id = "q08"
+type = "as_of"
+text = "What minimum capital to risk weighted assets ratio did a small finance bank have to maintain?"
+entity_codes = ["sfb"]
+as_of = 2026-01-15
+expected = ["rbi:md:2025:0182:v3#p10"]
+
+[[query]]
+id = "q09"
+type = "as_of"
+text = "How must a regional rural bank set the interest rate on its advances?"
+entity_codes = ["rrb"]
+as_of = 2025-12-01
+expected = ["rbi:md:2025:0259:v1#p5"]
+
+[[query]]
+id = "q10"
+type = "as_of"
+text = "What exposure limits applied to an urban co-operative bank's loans to a single borrower?"
+entity_codes = ["ucb"]
+as_of = 2026-06-01
+expected = ["rbi:md:2025:0281:v1#p6", "rbi:md:2025:0277:v2#p108"]

@@ -4,17 +4,18 @@ import pytest
 
 from extant.core.identity import (
     InvalidIdentifierError,
-    canonical_ref,
     doc_id_of,
     is_schema_name,
+    make_block_anchor,
     make_doc_id,
+    make_id_anchor,
     make_para_id,
     make_schema_name,
     parse_doc_id,
     parse_para_id,
     parse_schema_name,
-    ref_variants,
     validate_entity_code,
+    validate_source_anchor,
 )
 
 VALID_DOC_IDS = [
@@ -177,8 +178,25 @@ def test_entity_codes() -> None:
             validate_entity_code(bad)
 
 
-def test_reference_normaliser_is_declared_for_phase_1() -> None:
-    with pytest.raises(NotImplementedError):
-        canonical_ref("DBOD.No.BP.BC.1/21.04.048/2015-16")
-    with pytest.raises(NotImplementedError):
-        ref_variants("DBOD.BP.BC.1/21.04.048/2015-16")
+@pytest.mark.parametrize("anchor", ["#F9", "#C3K", "#ch4.3A", "#a_b-c:d", "block:0", "block:212"])
+def test_source_anchors_accepted(anchor: str) -> None:
+    assert validate_source_anchor(anchor) == anchor
+
+
+@pytest.mark.parametrize(
+    "anchor",
+    ["", "F9", "#", "# F9", "#F9 ", "#F#9", "#-F9", "block:", "block:-1", "block:01",
+     "block:1a", "page:3", "#" + "a" * 129, "block:12\n"],
+)  # fmt: skip
+def test_malformed_source_anchors_rejected(anchor: str) -> None:
+    with pytest.raises(InvalidIdentifierError):
+        validate_source_anchor(anchor)
+
+
+def test_anchor_constructors() -> None:
+    assert make_id_anchor("F9") == "#F9"
+    assert make_block_anchor(212) == "block:212"
+    with pytest.raises(InvalidIdentifierError):
+        make_block_anchor(-1)
+    with pytest.raises(InvalidIdentifierError):
+        make_id_anchor("has space")

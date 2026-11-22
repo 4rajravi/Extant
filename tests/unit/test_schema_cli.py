@@ -63,7 +63,12 @@ def test_cli_reports_missing_settings(tmp_path: Path) -> None:
 
 def test_migration_files_are_found_in_order() -> None:
     assert [m.name for m in public_migrations()] == ["0001_bootstrap"]
-    assert [m.name for m in index_migrations()] == ["0001_initial"]
+    assert [m.name for m in index_migrations()] == [
+        "0001_initial",
+        "0002_source_anchor",
+        "0003_withdrawal_key",
+        "0004_chunk_order",
+    ]
     assert index_grants().path.name == "grants.sql"
 
 
@@ -75,6 +80,13 @@ def test_migrations_render_with_quoted_identifiers() -> None:
     assert 'SET LOCAL search_path TO "idx_rbi_20261118_a3f91c4", public;' in ddl
     assert f"halfvec({EMBEDDING_DIM})" in ddl
     assert "{" not in ddl  # every placeholder was filled
+    anchor = index_migrations()[1].render(schema=schema).as_string(None)
+    assert 'SET LOCAL search_path TO "idx_rbi_20261118_a3f91c4", public;' in anchor
+    assert "CHECK (source_page IS NOT NULL OR source_anchor IS NOT NULL)" in anchor
+    assert "{" not in anchor
+    key = index_migrations()[2].render(schema=schema).as_string(None)
+    assert "ADD PRIMARY KEY (withdrawal_key)" in key
+    assert "'^[0-9a-f]{64}$'" in key  # doubled braces render as single braces
 
     grants = index_grants().render(schema=schema, reader=reader).as_string(None)
     assert 'GRANT SELECT ON ALL TABLES IN SCHEMA "idx_rbi_20261118_a3f91c4" TO "extant_reader"' in (

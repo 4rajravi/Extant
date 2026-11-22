@@ -1,0 +1,18 @@
+{
+ "chunker_version": "1",
+ "max_chunk_tokens": 900,
+ "fixtures": {
+  "rbi-md-2025-0175-v1": {
+   "chunks": 82,
+   "sha256": "d2ed83c3823e8be00cc80562c6c9ad6187a0d41e639ebb8a7366c1d2159e60ed"
+  },
+  "rbi-md-2025-0259-v1": {
+   "chunks": 14,
+   "sha256": "c74e4fb41e69a443f639eecd5dbfeda8efa0ffd2a5bf396bf29dbf2eabe3f0be"
+  },
+  "rbi-md-2025-0382-v1": {
+   "chunks": 26,
+   "sha256": "fb5852f4516163f021ee473f28206cb8fe783ad8bac8fdd29807e9522b9ccabb"
+  }
+ }
+}
