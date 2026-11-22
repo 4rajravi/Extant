@@ -1,0 +1,60 @@
+{
+ "arm": "hybrid",
+ "schema": [
+  "idx_rbi_20261120_38ede3c"
+ ],
+ "sets": {
+  "concordance": {
+   "as_of_violations": 0,
+   "entity_violations": 0,
+   "mrr_doc": 1.0,
+   "mrr_para": null,
+   "n": 1,
+   "recall@10_doc": 1.0,
+   "recall@10_para": null,
+   "recall@1_doc": 1.0,
+   "recall@1_para": null,
+   "recall@20_doc": 1.0,
+   "recall@20_para": null,
+   "recall@5_doc": 1.0,
+   "recall@5_para": null
+  },
+  "temporal": {
+   "as_of_violations": 0,
+   "entity_violations": 0,
+   "mrr_doc": 0.9556250000000001,
+   "mrr_para": 0.944214015151515,
+   "n": 160,
+   "recall@10_doc": 1.0,
+   "recall@10_para": 0.9875,
+   "recall@1_doc": 0.93125,
+   "recall@1_para": 0.91875,
+   "recall@20_doc": 1.0,
+   "recall@20_para": 0.99375,
+   "recall@5_doc": 1.0,
+   "recall@5_para": 0.98125
+  },
+  "withdrawal": {
+   "as_of_violations": 0,
+   "entity_violations": 0,
+   "mrr_doc": 0.9425051334702259,
+   "mrr_para": null,
+   "n": 487,
+   "recall@10_doc": 0.9425051334702259,
+   "recall@10_para": null,
+   "recall@1_doc": 0.9425051334702259,
+   "recall@1_para": null,
+   "recall@20_doc": 0.9425051334702259,
+   "recall@20_para": null,
+   "recall@5_doc": 0.9425051334702259,
+   "recall@5_para": null
+  }
+ },
+ "split": "dev",
+ "tolerances": {
+  "as_of_violations": 0,
+  "entity_violations": 0,
+  "mrr": 0.02,
+  "recall": 0.02
+ }
+}

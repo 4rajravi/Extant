@@ -8,6 +8,8 @@ from datetime import date
 from pathlib import Path
 
 import psycopg
+from pydantic import SecretStr
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from extant.core.identity import make_schema_name
 from extant.corpora.rbi.build import BASELINE, git_state, load_inputs, texts_to_embed
@@ -37,9 +39,13 @@ def add_commands(sub: argparse._SubParsersAction[argparse.ArgumentParser]) -> No
         "candidates", help="retrieve the smoke queries and write their candidates for marking"
     )
     cands.add_argument("--schema", required=True)
+    pub = sub.add_parser(
+        "publish", help="copy a verified build to EXTANT_PUBLISH_DSN (Neon) for serving and CI"
+    )
+    pub.add_argument("--schema", required=True)
 
 
-COMMANDS = frozenset({"chunk", "embed", "assemble", "verify", "candidates"})
+COMMANDS = frozenset({"chunk", "embed", "assemble", "verify", "candidates", "publish"})
 SMOKE = Path(__file__).resolve().parents[3] / "evals" / "smoke-rbi.toml"
 
 
@@ -97,6 +103,9 @@ def _run(args: argparse.Namespace, data_dir: Path) -> int:
     if args.command == "candidates":
         return _candidates(dsn, args.schema, settings)
 
+    if args.command == "publish":
+        return _publish(dsn, args.schema)
+
     with psycopg.connect(dsn, autocommit=True) as conn:
         if args.command == "verify":
             report = verify(conn, args.schema, baseline=BASELINE)
@@ -120,6 +129,41 @@ def _run(args: argparse.Namespace, data_dir: Path) -> int:
     print(f"built {schema} in {result.seconds:.0f}s, verified against {against}")
     print(f"counts: {result.counts}")
     print(f"size on disk: {size / 1e6:.1f} MB")
+    return 0
+
+
+class PublishSettings(BaseSettings):
+    """The publish target. Both values live in .env only; the reader DSN is also the CI
+    gate's repository secret."""
+
+    model_config = SettingsConfigDict(env_prefix="EXTANT_", env_file=".env", extra="ignore")
+    publish_dsn: SecretStr
+    publish_reader_dsn: SecretStr
+
+
+def _publish(dsn: str, schema: str) -> int:
+    from pydantic import ValidationError
+
+    from extant.index.publish import publish
+
+    try:
+        target = PublishSettings()
+    except ValidationError:
+        print(
+            "error: set EXTANT_PUBLISH_DSN (an owner connection to the target) and"
+            " EXTANT_PUBLISH_READER_DSN (extant_reader on the target) in .env",
+            file=sys.stderr,
+        )
+        return 2
+    with (
+        psycopg.connect(dsn, autocommit=True) as source,
+        psycopg.connect(target.publish_dsn.get_secret_value(), autocommit=True) as dest,
+    ):
+        verify(source, schema, baseline=BASELINE)  # only a build that verifies is published
+        result = publish(
+            source, dest, schema, reader_dsn=target.publish_reader_dsn.get_secret_value()
+        )
+    print(f"published {result.schema}: {result.counts}")
     return 0
 
 

@@ -1,0 +1,50 @@
+{
+ "builder": "2",
+ "eval_as_of": "2026-11-20",
+ "holdout": {
+  "cutoff": "2026-06-30",
+  "model": "claude-opus-5-5"
+ },
+ "html_extractor": "html-3",
+ "miner": "m1",
+ "not_built": {
+  "faq": "Phase 1 mined no FAQ labels; the RBI FAQ recon decides whether to mine them"
+ },
+ "parser": "p2",
+ "seed": 20261120,
+ "sets": {
+  "concordance": {
+   "dev": 1,
+   "file": "concordance.p2.jsonl",
+   "holdout": 0,
+   "level": [
+    "document"
+   ],
+   "queries": 4,
+   "sha256": "ef9a97f16b51fa07b18257d56085cb390f5ee94b84cc81ae1cbec87941d2caa0",
+   "test": 3
+  },
+  "temporal": {
+   "dev": 160,
+   "file": "temporal.p2.jsonl",
+   "holdout": 106,
+   "level": [
+    "paragraph"
+   ],
+   "queries": 288,
+   "sha256": "800ca7faf27f647aec32b6b4e7a088c0da7ff6ecf2f58c7ac839e767a36e9a33",
+   "test": 128
+  },
+  "withdrawal": {
+   "dev": 487,
+   "file": "withdrawal.p2.jsonl",
+   "holdout": 54,
+   "level": [
+    "document"
+   ],
+   "queries": 1000,
+   "sha256": "e6b7f6f6bb5b7d92b3daaef15ae52e7772ea55ede18114de6d2085f04ff1c192",
+   "test": 513
+  }
+ }
+}

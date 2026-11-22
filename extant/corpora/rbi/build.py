@@ -132,7 +132,10 @@ def load_inputs(data_dir: Path, *, git_commit: str, git_dirty: bool) -> BuildInp
         "built_from_commit": git_commit,
         "source_sha256": {d.doc_id: d.source_sha256 for d in documents},
         "supersedes_moved_past_pdf_only_versions": moved,
-        "eval_baseline": "evals/baseline-counts.json",
+        # Two different baselines, named apart (see evals/baseline.py): the row counts step 8
+        # verifies against, and the retrieval scores the eval gate compares with.
+        "counts_baseline": "evals/baseline-counts.json",
+        "eval_baseline": "evals/baseline.json",
         "label_sets": "evals/labels/rbi/MANIFEST.json",
     }
     return BuildInputs(

@@ -64,3 +64,55 @@ jobs:
       - name: pytest, unit and integration
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: uv run pytest
+
+  # The retrieval gate: the shipped arm on every eval set's dev split, against the committed
+  # baseline. It reads the published build on Neon as the read only role and embeds nothing
+  # (query vectors are committed), so it is free to run on every push. See evals/README.md.
+  retrieval-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      EXTANT_READER_DSN: ${{ secrets.EXTANT_EVAL_READER_DSN }}
+      INDEX_SCHEMA: ${{ vars.EXTANT_INDEX_SCHEMA }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # Until Neon is set up there is no published build to read, so the gate skips with a
+      # warning on the run's summary page instead of failing every push. Once the secret and
+      # the variable exist, every step below runs and a regression fails the job.
+      - name: The gate is configured
+        id: config
+        run: |
+          if [ -z "$EXTANT_READER_DSN" ] || [ -z "$INDEX_SCHEMA" ]; then
+            echo "::warning::Retrieval gate SKIPPED: no published build to read. Add the repository secret EXTANT_EVAL_READER_DSN and the variable EXTANT_INDEX_SCHEMA (evals/README.md, 'CI gate')."
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: astral-sh/setup-uv@v6
+        if: steps.config.outputs.configured == 'true'
+        with:
+          python-version: "3.12"
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+
+      - name: Install (lockfile must be current)
+        if: steps.config.outputs.configured == 'true'
+        run: uv sync --locked
+
+      - name: Retrieval eval
+        if: steps.config.outputs.configured == 'true'
+        run: uv run python -m evals.retrieval --schema "$INDEX_SCHEMA" --out results.parquet
+
+      - name: Gate against baseline
+        if: steps.config.outputs.configured == 'true'
+        run: uv run python -m evals.gate --baseline evals/baseline.json --results results.parquet
+
+      - name: Keep the per query results
+        if: ${{ !cancelled() && steps.config.outputs.configured == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: retrieval-eval-results
+          path: results*.parquet
+          if-no-files-found: ignore

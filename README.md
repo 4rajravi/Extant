@@ -5,11 +5,12 @@ something, as of when, and for whom, and every answer carries a verified citatio
 refusal. The first corpus is the RBI Master Directions, followed by the Income-tax Act and
 then GST; each corpus is an adapter under `extant/corpora/`, not a rewrite.
 
-This repository is at **Phase 2**: on top of the Phase 0 scaffold, domain models, schema
+This repository is at **Phase 3**: on top of the Phase 0 scaffold, domain models, schema
 tooling, settings and CI, the RBI corpus is crawled, extracted, parsed into paragraphs and mined
 for gold labels (Phase 1), then chunked, embedded, assembled into a versioned, verified build
-schema and searched by a hybrid retrieval library (Phase 2). There is no agent, refusal logic,
-reranker or eval harness yet; no generative model is called anywhere.
+schema and searched by a hybrid retrieval library (Phase 2), and retrieval is measured by an
+eval harness with six ablations, a committed baseline and a CI gate (Phase 3). There is no
+agent or refusal logic yet; no generative model is called anywhere.
 
 - The corpus adapter and how to run it: [`extant/corpora/rbi/README.md`](extant/corpora/rbi/README.md)
 - The coverage report: [`evals/coverage-rbi-20261119.md`](evals/coverage-rbi-20261119.md), with
@@ -17,6 +18,8 @@ reranker or eval harness yet; no generative model is called anywhere.
   in [`evals/labels/rbi/`](evals/labels/rbi/)
 - The reconnaissance and every decision taken in Phase 1:
   [`evals/recon-rbi-20261119.md`](evals/recon-rbi-20261119.md)
+- The retrieval eval, its leakage controls and the CI gate: [`evals/README.md`](evals/README.md),
+  with the ablation table in [`evals/ablations.md`](evals/ablations.md)
 
 ## Two planes, one contract
 

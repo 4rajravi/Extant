@@ -27,7 +27,8 @@ exact and has nothing to tune.
 
 The lexical arm is ``ts_rank_cd``, cover density, which is weaker than BM25. It sits behind
 ``LexicalArm`` so a second implementation can replace it without touching fusion; which one
-wins is a Phase 3 ablation, not decided here.
+wins is a Phase 3 ablation, not decided here. The dense arm sits behind ``DenseArm`` for the
+same reason: Phase 3 compares vector configurations the serving build does not store.
 
 Fragments of a split paragraph collapse to their parent before anything is returned: a
 candidate is always a paragraph the regulator numbered, with its whole body, never a piece.
@@ -83,15 +84,61 @@ class TsRankCd:
         )
 
 
+class DenseArm(Protocol):
+    """The dense arm: a CTE body over ``allowed`` returning ``(chunk_id, dist)``, best first
+    (lower distance is better), reading the query vector ``%(qvec)s`` and limited to
+    ``%(k)s`` rows. ``column`` is the ``chunks`` column it reads, carried into ``allowed`` as
+    ``embedding``."""
+
+    @property
+    def name(self) -> str: ...
+
+    @property
+    def column(self) -> str: ...
+
+    def cte(self) -> str: ...
+
+
+_IDENTIFIER = re.compile(r"[a-z_][a-z0-9_]{0,62}")
+
+
+@dataclass(frozen=True)
+class ExactCosine:
+    """Exact cosine distance over the filtered set. The serving default reads the build's
+    ``halfvec(256)`` column; the Phase 3 ablations point it at other columns and types."""
+
+    name: str = "exact_cosine"
+    column: str = "embedding"
+    vector_type: str = "halfvec"
+
+    def __post_init__(self) -> None:
+        # Both are interpolated into SQL, so both must be plain identifiers.
+        for value in (self.column, self.vector_type):
+            if not _IDENTIFIER.fullmatch(value):
+                raise ValueError(f"not an identifier: {value!r}")
+
+    def cte(self) -> str:
+        return (
+            f"SELECT chunk_id, embedding <=> %(qvec)s::{self.vector_type} AS dist"  # noqa: S608
+            " FROM allowed ORDER BY dist ASC, chunk_id LIMIT %(k)s"
+        )
+
+
 @dataclass(frozen=True)
 class RetrievalOptions:
     k: int = 50  # rows each arm returns before fusion
     top_n: int = 10  # ranked paragraphs returned
-    weights: tuple[float, float] = (1.0, 1.0)  # dense, lexical
+    weights: tuple[float, float] = (1.0, 1.0)  # dense, lexical; 0 leaves an arm out of fusion
     rrf_k: int = 60
     expand: bool = True
     radius: int = 1  # ordinal neighbours either side
     lexical: LexicalArm = field(default_factory=TsRankCd)
+    dense: DenseArm = field(default_factory=ExactCosine)
+    # "pre" filters before either arm's LIMIT, which is the design. "post" exists for the
+    # Phase 3 ablation only: each arm takes its LIMIT over the whole build and the filter
+    # runs afterwards, the failure the design exists to avoid. Both modes return only rows
+    # that pass the filter, so "post" loses recall and never leaks.
+    filter_stage: Literal["pre", "post"] = "pre"
 
 
 @dataclass(frozen=True)
@@ -136,21 +183,40 @@ _FILTER = (
     " AND valid_from <= %(as_of)s"
     " AND (valid_to IS NULL OR valid_to > %(as_of)s)"
 )
-# Only module constants are interpolated into these statements; every value is a parameter.
-_ALLOWED = f"allowed AS MATERIALIZED (SELECT chunk_id, embedding, fts FROM chunks WHERE {_FILTER})"  # noqa: S608
-_DENSE = (
-    "SELECT chunk_id, embedding <=> %(qvec)s::halfvec AS dist"
-    " FROM allowed ORDER BY dist ASC, chunk_id LIMIT %(k)s"
+_FILTER_C = (
+    "c.entity_codes && %(entity)s::text[]"
+    " AND c.valid_from <= %(as_of)s"
+    " AND (c.valid_to IS NULL OR c.valid_to > %(as_of)s)"
 )
 
 
-def search_sql(lexical: LexicalArm) -> str:
-    """The hybrid search statement: filter first, materialised, then both arms."""
-    # Constants and the arm's own SQL are interpolated; every value is a parameter.
+def search_sql(
+    lexical: LexicalArm,
+    dense: DenseArm | None = None,
+    filter_stage: Literal["pre", "post"] = "pre",
+) -> str:
+    """The hybrid search statement: filter first, materialised, then both arms. With
+    ``filter_stage="post"``, the ablation: both arms over the whole build, filtered after."""
+    arm = dense or ExactCosine()
+    if not _IDENTIFIER.fullmatch(arm.column):
+        raise ValueError(f"not an identifier: {arm.column!r}")
+    # Only identifiers checked above, module constants and the arms' own SQL are
+    # interpolated into these statements; every value is a parameter.
+    columns = f"chunk_id, {arm.column} AS embedding, fts"
+    if filter_stage == "pre":
+        return (
+            f"WITH allowed AS MATERIALIZED (SELECT {columns} FROM chunks WHERE {_FILTER}),"  # noqa: S608
+            f" dense AS ({arm.cte()}), lexical AS ({lexical.cte()})"
+            " SELECT 'dense' AS src, chunk_id, dist AS score FROM dense"
+            " UNION ALL SELECT 'lexical', chunk_id, score FROM lexical"
+        )
     return (
-        f"WITH {_ALLOWED}, dense AS ({_DENSE}), lexical AS ({lexical.cte()})"  # noqa: S608
-        " SELECT 'dense' AS src, chunk_id, dist AS score FROM dense"
-        " UNION ALL SELECT 'lexical', chunk_id, score FROM lexical"
+        f"WITH allowed AS (SELECT {columns} FROM chunks),"  # noqa: S608
+        f" dense AS ({arm.cte()}), lexical AS ({lexical.cte()})"
+        " SELECT 'dense' AS src, x.chunk_id, x.dist AS score FROM dense x"
+        f" JOIN chunks c ON c.chunk_id = x.chunk_id WHERE {_FILTER_C}"
+        " UNION ALL SELECT 'lexical', x.chunk_id, x.score FROM lexical x"
+        f" JOIN chunks c ON c.chunk_id = x.chunk_id WHERE {_FILTER_C}"
     )
 
 
@@ -192,9 +258,12 @@ def _rank_arms(rows: Sequence[tuple[str, int, float]]) -> dict[str, list[int]]:
 def _rrf(
     ranked_lists: Sequence[Sequence[int]], weights: Sequence[float], k: int = 60
 ) -> list[tuple[int, float]]:
-    """Reciprocal rank fusion: ``sum(w / (k + rank))`` per item, best first."""
+    """Reciprocal rank fusion: ``sum(w / (k + rank))`` per item, best first. An arm with
+    weight 0 is left out entirely, so its rows cannot pad the list at a score of 0."""
     scores: dict[int, float] = defaultdict(float)
     for ranked, weight in zip(ranked_lists, weights, strict=True):
+        if weight == 0:
+            continue
         for rank, chunk_id in enumerate(ranked, start=1):
             scores[chunk_id] += weight / (k + rank)
     return sorted(scores.items(), key=lambda kv: (-kv[1], kv[0]))
@@ -329,7 +398,8 @@ def retrieve(
 
     vector = l2_normalise(embedder.embed([query], kind="query").vectors[0])
     rows = conn.execute(
-        search_sql(opts.lexical), {**params, "q": query, "qvec": halfvec_literal(vector)}
+        search_sql(opts.lexical, opts.dense, opts.filter_stage),
+        {**params, "q": query, "qvec": halfvec_literal(vector)},
     ).fetchall()
     arms = _rank_arms([(str(r[0]), int(r[1]), float(r[2])) for r in rows])
     fused = _rrf([arms["dense"], arms["lexical"]], opts.weights, opts.rrf_k)

@@ -15,7 +15,13 @@ uv run python -m extant.corpora.rbi chunk      # step 5, chunk rows (offline)
 uv run python -m extant.corpora.rbi embed --dry-run   # step 6: cache misses, tokens, cost; no calls
 uv run python -m extant.corpora.rbi embed      # step 6: embeds only what public.vec_cache lacks
 uv run python -m extant.corpora.rbi assemble   # steps 7 and 8: a new build schema, verified
+uv run python -m extant.corpora.rbi publish --schema <build>   # copy a verified build to Neon
 ```
+
+A build's manifest names both of its baselines apart: `counts_baseline` is
+`evals/baseline-counts.json` (row counts, what step 8 verifies against) and `eval_baseline` is
+`evals/baseline.json` (retrieval scores, what the eval gate compares with). `evals/README.md`
+has the rule.
 
 `extract` and `parse` take `--sample N` for the first N documents. `parse` and `mine` each need
 only `crawl` and `extract`; `report` reads the output of both. Every step after
