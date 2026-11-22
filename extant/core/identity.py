@@ -386,3 +386,30 @@ def withdrawal_key(canonical: str | None, circular_date: date, title: str | None
         raise InvalidReferenceError(f"not a canonical reference: {canonical!r}")
     material = "\x1f".join((canonical or "", circular_date.isoformat(), title or ""))
     return hashlib.sha256(material.encode("utf-8")).hexdigest()
+
+
+# --------------------------------------------------------------------------- in a question
+
+_REF_TOKEN = re.compile(r"(?<![\w/])[A-Za-z][\w.()&-]*/[\w.()&/-]+")
+_SPACE_AFTER_NO = re.compile(r"\b(No\.)\s+(?=[\w(])", re.IGNORECASE)
+
+
+def find_references(query: str) -> list[tuple[str, str]]:
+    """``(surface, canonical)`` for every literal circular or direction reference in a
+    question, without touching a database, so the agent's parse node can call it: a token
+    that starts with a letter, contains a slash and a digit, and that ``canonical_ref``
+    accepts."""
+    found: dict[str, str] = {}
+    for m in _REF_TOKEN.finditer(_SPACE_AFTER_NO.sub(r"\1", query)):
+        token = m.group(0).rstrip(".,;:")
+        if token.count("(") < token.count(")"):
+            token = token.rstrip(")")
+        if len(token) < 8 or not any(ch.isdigit() for ch in token):
+            continue
+        try:
+            canonical = canonical_ref(token)
+        except InvalidReferenceError:
+            continue
+        if "/" in canonical and canonical not in found.values():
+            found[token] = canonical
+    return list(found.items())

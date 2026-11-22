@@ -1,0 +1,101 @@
+{
+ "embedding_model": "openai/text-embedding-3-large",
+ "entities": {
+  "aifi": "All India Financial Institutions",
+  "arc": "Asset Reconstruction Companies",
+  "cb": "Commercial Banks",
+  "cic": "Credit Information Companies",
+  "lab": "Local Area Banks",
+  "nbfc": "Non-Banking Financial Companies",
+  "nbfc_aa": "NBFC-Account Aggregator",
+  "nbfc_bl": "NBFC-Base Layer",
+  "nbfc_cic": "NBFC-Core Investment Company",
+  "nbfc_d": "Deposit taking NBFC",
+  "nbfc_factor": "NBFC-Factor",
+  "nbfc_hfc": "Housing Finance Company",
+  "nbfc_icc": "NBFC-Investment and Credit Company",
+  "nbfc_idf": "Infrastructure Debt Fund-Non-Banking Financial Company",
+  "nbfc_ifc": "Non-Banking Financial Company-Infrastructure Finance Company",
+  "nbfc_mfi": "Non-Banking Financial Company \u2013 Microfinance Institution",
+  "nbfc_mgc": "Mortgage Guarantee Company",
+  "nbfc_ml": "NBFC-Middle Layer",
+  "nbfc_nofhc": "Non-Operative Financial Holding Company",
+  "nbfc_p2p": "NBFC-Peer to Peer Lending Platform",
+  "nbfc_spd": "Standalone Primary Dealer",
+  "nbfc_tl": "NBFC-TL, NBFCs falling in the Top Layer",
+  "nbfc_ul": "NBFC - Upper Layer",
+  "pb": "Payments Banks",
+  "rcb": "Rural Co-operative Banks",
+  "rrb": "Regional Rural Banks",
+  "sfb": "Small Finance Banks",
+  "ucb": "Urban Co-operative Banks"
+ },
+ "index": {},
+ "index_version": "idx_rbi_20261120_38ede3c",
+ "models": {},
+ "recorded": {
+  "caveats": [],
+  "node_log": [
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.03,
+    "model": null,
+    "node": "parse",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.0,
+    "model": null,
+    "node": "refuse_early",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.02,
+    "model": null,
+    "node": "finalize",
+    "output_tokens": 0
+   }
+  ],
+  "outcome": "refusal",
+  "path": "refuse",
+  "refusal_reason": "computation_requested",
+  "response": {
+   "as_of": "2026-11-20",
+   "cost_eur": 0.0,
+   "degraded": [],
+   "dropped": [],
+   "entity_type": "cb",
+   "index_version": "idx_rbi_20261120_38ede3c",
+   "latency_ms": 0,
+   "result": {
+    "message": "Extant states what RBI's directions require and cites them; it does not calculate figures for an institution or choose between options for it (the question asks to calculate).",
+    "nearest": [],
+    "outcome": "refusal",
+    "reason": "computation_requested"
+   },
+   "retrieved": []
+  }
+ },
+ "spec": {
+  "as_of": "2026-11-20",
+  "entity": "cb",
+  "expect": "computation_requested, no model call",
+  "name": "computation_by_pattern",
+  "question": "Calculate the CRAR for my bank if Tier 1 capital is 500 crore and RWA is 4,000 crore."
+ },
+ "today": "2026-11-22"
+}
