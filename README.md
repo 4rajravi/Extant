@@ -5,7 +5,7 @@ something, as of when, and for whom, and every answer carries a verified citatio
 refusal. The first corpus is the RBI Master Directions, followed by the Income-tax Act and
 then GST; each corpus is an adapter under `extant/corpora/`, not a rewrite.
 
-This repository is at **Phase 7**. On top of the Phase 0 scaffold, the RBI corpus is crawled,
+This repository is at **Phase 8**. On top of the Phase 0 scaffold, the RBI corpus is crawled,
 extracted, parsed and mined for gold labels (Phase 1), chunked, embedded and assembled into a
 versioned, verified build schema searched by a hybrid retrieval library (Phase 2), and
 retrieval is measured by an eval harness with six ablations and a CI gate (Phase 3). An agent
@@ -13,7 +13,8 @@ graph answers a question with verified citations or a stated refusal (Phase 4), 
 wrap it: redaction at admission, middleware around every model call, a daily cap in Postgres,
 a degradation ladder, structured request logs and an adversarial suite that gates CI
 (Phase 5). Answers are measured end to end, with ablation arms and a bounded retry (Phase 6),
-and the whole is served over MCP, statelessly, as six tools and two resources (Phase 7).
+the whole is served over MCP, statelessly, as six tools and two resources (Phase 7), and
+over HTTP as four endpoints with rate limiting, cap enforcement and split probes (Phase 8).
 
 - The corpus adapter and how to run it: [`extant/corpora/rbi/README.md`](extant/corpora/rbi/README.md)
 - The coverage report: [`evals/coverage-rbi-20261119.md`](evals/coverage-rbi-20261119.md), with
@@ -28,6 +29,7 @@ and the whole is served over MCP, statelessly, as six tools and two resources (P
   with the adversarial suite's results in [`evals/adversarial-results.md`](evals/adversarial-results.md)
 - The answer level eval: [`evals/answers.md`](evals/answers.md)
 - The MCP server, its tools and its verification boundary: [`extant/mcp_server/README.md`](extant/mcp_server/README.md)
+- The HTTP API, its status codes, probes and limits: [`extant/api/README.md`](extant/api/README.md)
 
 ## Why prompt injection is already bounded
 

@@ -22,6 +22,7 @@ from psycopg import sql
 from extant.agent.models import Candidate, ReferenceRecord, WithdrawalRecord
 from extant.agent.runtime import Index, Search
 from extant.core.authority import AuthorityRank
+from extant.core.schema import in_build
 from extant.index.embed import Embedded, Embedder, EmbeddingError, Kind, ModelIdentity
 from extant.retrieval import Candidate as Retrieved
 from extant.retrieval import RetrievalOptions, retrieve
@@ -106,6 +107,8 @@ class PgIndex:
     def __init__(self, conn: psycopg.Connection, schema: str, embedder: Embedder) -> None:
         self.conn = conn
         self.schema = schema
+        # The session setting serves a direct connection; every method below also names the
+        # build per transaction (in_build), which is what holds through a pooler.
         conn.execute(sql.SQL("SET search_path TO {}, public").format(sql.Identifier(schema)))
         self._embedder = embedder
         self._counter: _Counting | None = None
@@ -116,11 +119,15 @@ class PgIndex:
         return self._embedder.identity.model_id
 
     def entity_codes(self) -> tuple[str, ...]:
-        rows = self.conn.execute("SELECT code FROM entity_types ORDER BY code").fetchall()
+        with in_build(self.conn, self.schema):
+            rows = self.conn.execute("SELECT code FROM entity_types ORDER BY code").fetchall()
         return tuple(str(r[0]) for r in rows)
 
     def entity_labels(self) -> dict[str, str]:
-        rows = self.conn.execute("SELECT code, label FROM entity_types ORDER BY code").fetchall()
+        with in_build(self.conn, self.schema):
+            rows = self.conn.execute(
+                "SELECT code, label FROM entity_types ORDER BY code"
+            ).fetchall()
         return {str(c): str(label) for c, label in rows}
 
     def search(
@@ -137,23 +144,27 @@ class PgIndex:
         before_calls, before_tokens = self._counter.calls, self._counter.tokens
         opts = RetrievalOptions(top_n=top_n, validity=validity, expand=validity == "in_force")
         degraded: list[str] = []
-        try:
-            result = retrieve(
-                self.conn, query, entity_codes, as_of, embedder=self._counter, options=opts
-            )
-        except EmbeddingError:
-            degraded = ["lexical_only"]
-            lexical = RetrievalOptions(
-                top_n=top_n, validity=validity, weights=(0.0, 1.0), expand=validity == "in_force"
-            )
-            result = retrieve(
-                self.conn,
-                query,
-                entity_codes,
-                as_of,
-                embedder=_Unit(self._embedder.identity),
-                options=lexical,
-            )
+        with in_build(self.conn, self.schema):
+            try:
+                result = retrieve(
+                    self.conn, query, entity_codes, as_of, embedder=self._counter, options=opts
+                )
+            except EmbeddingError:  # raised by the embed call, before any statement
+                degraded = ["lexical_only"]
+                lexical = RetrievalOptions(
+                    top_n=top_n,
+                    validity=validity,
+                    weights=(0.0, 1.0),
+                    expand=validity == "in_force",
+                )
+                result = retrieve(
+                    self.conn,
+                    query,
+                    entity_codes,
+                    as_of,
+                    embedder=_Unit(self._embedder.identity),
+                    options=lexical,
+                )
         origin = "ranked" if validity == "in_force" else "probe"
         return Search(
             candidates=[to_candidate(c, asked_for=as_of, origin=origin) for c in result.candidates],
@@ -169,14 +180,15 @@ class PgIndex:
         self, query: str, entity_codes: tuple[str, ...], as_of: date
     ) -> tuple[list[Candidate], list[ReferenceRecord]]:
         opts = RetrievalOptions(top_n=5, validity="any", expand=False)
-        result = retrieve(
-            self.conn,
-            query,
-            entity_codes,
-            as_of,
-            embedder=_NoEmbedding(self._embedder.identity),
-            options=opts,
-        )
+        with in_build(self.conn, self.schema):
+            result = retrieve(
+                self.conn,
+                query,
+                entity_codes,
+                as_of,
+                embedder=_NoEmbedding(self._embedder.identity),
+                options=opts,
+            )
         if result.path != "reference":
             return [], []
         records = [
@@ -203,18 +215,20 @@ class PgIndex:
         """The same numbered paragraph in the version of its direction in force on ``day``."""
         doc_id, anchor = para_id.split("#", 1)
         direction = doc_id.rsplit(":v", 1)[0]
-        row = self.conn.execute(
-            "SELECT c.chunk_id FROM chunks c WHERE c.trusted AND c.doc_id LIKE %(d)s"
-            " AND c.sub_index = 0"
-            " AND split_part(c.para_id, '#', 2) = %(a)s AND c.valid_from <= %(day)s"
-            " AND (c.valid_to IS NULL OR c.valid_to > %(day)s) ORDER BY c.valid_from DESC LIMIT 1",
-            {"d": direction + ":v%", "a": anchor, "day": day},
-        ).fetchone()
-        if row is None:
-            return None
         from extant.retrieval import _HYDRATE, _candidate
 
-        (hit,) = self.conn.execute(_HYDRATE, {"ids": [row[0]]}).fetchall()
+        with in_build(self.conn, self.schema):
+            row = self.conn.execute(
+                "SELECT c.chunk_id FROM chunks c WHERE c.trusted AND c.doc_id LIKE %(d)s"
+                " AND c.sub_index = 0"
+                " AND split_part(c.para_id, '#', 2) = %(a)s AND c.valid_from <= %(day)s"
+                " AND (c.valid_to IS NULL OR c.valid_to > %(day)s)"
+                " ORDER BY c.valid_from DESC LIMIT 1",
+                {"d": direction + ":v%", "a": anchor, "day": day},
+            ).fetchone()
+            if row is None:
+                return None
+            (hit,) = self.conn.execute(_HYDRATE, {"ids": [row[0]]}).fetchall()
         return to_candidate(
             _candidate(hit[1:], rank=None, score=None), asked_for=day, origin="diff"
         )

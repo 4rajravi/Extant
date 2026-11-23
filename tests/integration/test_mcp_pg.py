@@ -15,16 +15,14 @@ import psycopg
 import pytest
 from mcp import Client
 
-from extant.agent.service import Readiness
-from extant.agent.serving import Serving
-from extant.agent.settings import AgentSettings
+from extant.agent.serving import Serving, make_pool
 from extant.core.identity import make_schema_name
 from extant.core.schema import drop, schema_exists
 from extant.index.assemble import assemble
 from extant.index.embed import Embedded, HashEmbedder, Kind, embed_missing, plan
 from extant.mcp_server.backend import PgBackend
 from extant.mcp_server.server import MANIFEST_URI, build_server
-from tests.integration.synthetic import D1V1, D1V2, D4, LABEL, REF_SURFACE, build_inputs
+from tests.integration.synthetic import D1V1, D1V2, D4, REF_SURFACE, build_inputs
 
 pytestmark = pytest.mark.integration
 
@@ -53,17 +51,26 @@ def schema(writer_dsn: str, bootstrapped: None) -> Iterator[str]:
             drop(c, name)
 
 
-def _backend(reader_dsn: str, schema: str, embedder: Any) -> PgBackend:
+@pytest.fixture
+def pools(reader_dsn: str) -> Iterator[list[Any]]:
+    made: list[Any] = []
+    yield made
+    for pool in made:
+        pool.close()
+
+
+def _backend(reader_dsn: str, schema: str, embedder: Any, pools: list[Any]) -> PgBackend:
+    pool = make_pool(reader_dsn)
+    pools.append(pool)
     return PgBackend(
         Serving(
-            dsn=reader_dsn,
+            pool=pool,
             schema=schema,
             cap=1,
             embedder=embedder,
-            agent=AgentSettings(),
-            entities=LABEL,
+            models=lambda store: {},
+            eur_per_usd=0.9,
             cache=None,
-            readiness=Readiness([], []),
         )
     )
 
@@ -79,8 +86,8 @@ def _call(backend: PgBackend, tool: str, args: dict[str, Any]) -> dict[str, Any]
     return anyio.run(go)
 
 
-def test_lookups_make_no_embedding_call(reader_dsn: str, schema: str) -> None:
-    b = _backend(reader_dsn, schema, Refuses())
+def test_lookups_make_no_embedding_call(reader_dsn: str, schema: str, pools: list[Any]) -> None:
+    b = _backend(reader_dsn, schema, Refuses(), pools)
     para = _call(b, "fetch_paragraph", {"para_id": f"{D1V1.doc_id}#p1"})
     assert para["paragraph"]["in_force_to"] == "2026-01-01"
     assert para["index_version"] == schema
@@ -105,8 +112,10 @@ def test_lookups_make_no_embedding_call(reader_dsn: str, schema: str) -> None:
     assert [d["doc_id"] for d in listed["directions"]] == [D4.doc_id, D1V2.doc_id]
 
 
-def test_search_applies_the_entity_and_the_date(reader_dsn: str, schema: str) -> None:
-    b = _backend(reader_dsn, schema, HashEmbedder())
+def test_search_applies_the_entity_and_the_date(
+    reader_dsn: str, schema: str, pools: list[Any]
+) -> None:
+    b = _backend(reader_dsn, schema, HashEmbedder(), pools)
     found = _call(b, "search", {"query": "dividend records", "entity": "cb", "as_of": "2025-06-01"})
     assert found["results"]
     for c in found["results"] + found["context"]:
@@ -117,10 +126,10 @@ def test_search_applies_the_entity_and_the_date(reader_dsn: str, schema: str) ->
 
 
 def test_the_manifest_resource_names_the_build_the_tools_report(
-    reader_dsn: str, schema: str
+    reader_dsn: str, schema: str, pools: list[Any]
 ) -> None:
     async def go() -> str:
-        async with Client(build_server(_backend(reader_dsn, schema, Refuses()))) as client:
+        async with Client(build_server(_backend(reader_dsn, schema, Refuses(), pools))) as client:
             read = await client.read_resource(MANIFEST_URI)
             return str(json.loads(read.contents[0].text)["index_version"])  # type: ignore[union-attr]
 

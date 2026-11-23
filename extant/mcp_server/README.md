@@ -67,8 +67,8 @@ change set for a span it cannot see.
 Revision 2026-07-28 has no session and no initialize handshake: every request is one POST
 carrying its own protocol version, client capabilities and client info in `_meta`, with
 `MCP-Protocol-Version` and `Mcp-Method` headers that must agree with the body (a mismatch is a
-400 with code -32020). The server keeps nothing between requests either: it opens a read only
-connection per call and closes it, and runs streamable HTTP with `stateless_http=True`, so a
+400 with code -32020). The server keeps nothing between requests either: each call borrows a read
+only connection from the process's pool and returns it, and runs streamable HTTP with `stateless_http=True`, so a
 client still on an older revision (one that performs the handshake, such as MCP Inspector
 2.16) is served without a session too. Any number of replicas can serve the same clients.
 
