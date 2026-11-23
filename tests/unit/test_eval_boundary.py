@@ -7,6 +7,7 @@ is held by a test rather than by a convention.
 from __future__ import annotations
 
 import ast
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -33,7 +34,23 @@ def test_no_serving_module_names_the_harness_dynamically() -> None:
         assert not {v for v in literals if isinstance(v, str) and v.startswith("evals.")}, path
 
 
-def test_importing_every_serving_module_loads_no_part_of_the_harness() -> None:
+# The probe imports extant.core.settings, which by design refuses to import without its
+# required settings (Phase 0). CI sets only the database DSNs and has no .env, so the probe
+# is given throwaway values for the rest; anything the environment already sets wins. None
+# of them is used: nothing connects, embeds or calls a model on import.
+_THROWAWAY = {
+    "EXTANT_WRITER_DSN": "postgresql://extant:unused@localhost:1/extant",
+    "EXTANT_READER_DSN": "postgresql://extant_reader:unused@localhost:1/extant",
+    "EXTANT_BUILD_SCHEMA": "idx_rbi_20990101_abcdef1",
+    "EXTANT_EMBEDDING_PROVIDER": "openai",
+    "EXTANT_EMBEDDING_MODEL": "text-embedding-3-large",
+    "EXTANT_LLM_PROVIDER": "anthropic",
+    "EXTANT_ROUTER_MODEL": "claude-haiku-5-5",
+    "EXTANT_COMPOSER_MODEL": "claude-opus-5-5",
+}
+
+
+def test_importing_every_serving_module_loads_no_part_of_the_harness(tmp_path: Path) -> None:
     modules = sorted(
         ".".join(p.relative_to(REPO).with_suffix("").parts)
         for p in SERVING
@@ -44,7 +61,13 @@ def test_importing_every_serving_module_loads_no_part_of_the_harness() -> None:
         f"for m in {modules!r}: importlib.import_module(m.removesuffix('.__init__'))\n"
         "print(sorted(m for m in sys.modules if m == 'evals' or m.startswith('evals.')))"
     )
-    out = subprocess.run([sys.executable, "-c", probe], capture_output=True, text=True, check=True)
+    # Run away from the repository's .env, as CI does, so a local .env cannot hide a module
+    # that fails to import without one.
+    env = {**_THROWAWAY, **os.environ, "PYTHONPATH": str(REPO)}
+    out = subprocess.run(
+        [sys.executable, "-c", probe], capture_output=True, text=True, cwd=tmp_path, env=env
+    )
+    assert out.returncode == 0, out.stderr[-2000:]
     assert out.stdout.strip() == "[]"
 
 
