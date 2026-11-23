@@ -328,7 +328,11 @@ def main(argv: Sequence[str] | None = None) -> int:
 
         reranker = CrossEncoderReranker()
     rows, summary = run(
-        connect=lambda: psycopg.connect(dsn, autocommit=True),
+        # One read only transaction for the whole run, not autocommit: through Neon's pooler
+        # (PgBouncer, transaction mode) each autocommit statement may land on a different
+        # server connection, which silently drops SET search_path (48 of 60 statements in a
+        # test), and the pooler refuses search_path as a startup option.
+        connect=lambda: psycopg.connect(dsn),
         schema=args.schema,
         sets=sets,
         split=args.split,
