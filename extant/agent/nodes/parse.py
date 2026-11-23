@@ -20,6 +20,7 @@ from extant.agent import patterns, prompts
 from extant.agent.models import AgentState, Caveat, ParseOutput
 from extant.agent.runtime import Given, Spend, parsed
 from extant.core.identity import find_references
+from extant.guards.errors import ModelUnavailableError
 
 
 def run(state: AgentState, given: Given, spend: Spend) -> dict[str, Any]:
@@ -44,9 +45,28 @@ def run(state: AgentState, given: Given, spend: Spend) -> dict[str, Any]:
     else:
         if given.model is None:
             raise RuntimeError("parse needs a model for a question no pattern settles")
-        done = spend.complete(
-            given.model, ParseOutput, system=prompts.parse_system(given.entities), user=q
-        )
+        try:
+            done = spend.complete(
+                given.model, ParseOutput, system=prompts.parse_system(given.entities), user=q
+            )
+        except ModelUnavailableError:
+            # Rung 3: no classification, so no composed answer either. The deterministic
+            # patterns above have already run; what is left is retrieved and shown as is.
+            update |= {
+                "path": "full",
+                "retrieval_only": True,
+                "degraded": ["retrieval_only"],
+            }
+            caveats.append(Caveat.DEGRADED_RETRIEVAL)
+            if as_of is None:
+                as_of, source = state.today, "today"
+                caveats.append(Caveat.AS_OF_ASSUMED)
+            return update | {
+                "entity_type": entity,
+                "as_of": as_of,
+                "as_of_source": source,
+                "caveats": caveats,
+            }
         out = parsed(done, ParseOutput)
         update |= {"query_kind": out.query_kind, "topic_terms": out.topic_terms[:6]}
         if entity is None and out.entity_type in given.entities:

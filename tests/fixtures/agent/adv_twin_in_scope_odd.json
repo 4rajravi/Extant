@@ -1,0 +1,928 @@
+{
+ "embedding_model": "openai/text-embedding-3-large",
+ "entities": {
+  "aifi": "All India Financial Institutions",
+  "arc": "Asset Reconstruction Companies",
+  "cb": "Commercial Banks",
+  "cic": "Credit Information Companies",
+  "lab": "Local Area Banks",
+  "nbfc": "Non-Banking Financial Companies",
+  "nbfc_aa": "NBFC-Account Aggregator",
+  "nbfc_bl": "NBFC-Base Layer",
+  "nbfc_cic": "NBFC-Core Investment Company",
+  "nbfc_d": "Deposit taking NBFC",
+  "nbfc_factor": "NBFC-Factor",
+  "nbfc_hfc": "Housing Finance Company",
+  "nbfc_icc": "NBFC-Investment and Credit Company",
+  "nbfc_idf": "Infrastructure Debt Fund-Non-Banking Financial Company",
+  "nbfc_ifc": "Non-Banking Financial Company-Infrastructure Finance Company",
+  "nbfc_mfi": "Non-Banking Financial Company \u2013 Microfinance Institution",
+  "nbfc_mgc": "Mortgage Guarantee Company",
+  "nbfc_ml": "NBFC-Middle Layer",
+  "nbfc_nofhc": "Non-Operative Financial Holding Company",
+  "nbfc_p2p": "NBFC-Peer to Peer Lending Platform",
+  "nbfc_spd": "Standalone Primary Dealer",
+  "nbfc_tl": "NBFC-TL, NBFCs falling in the Top Layer",
+  "nbfc_ul": "NBFC - Upper Layer",
+  "pb": "Payments Banks",
+  "rcb": "Rural Co-operative Banks",
+  "rrb": "Regional Rural Banks",
+  "sfb": "Small Finance Banks",
+  "ucb": "Urban Co-operative Banks"
+ },
+ "index": {
+  "[\"search\", \"Listed shares as security: how much of their value may a bank lend to an individual, per RBI?\", \"('cb',)\", \"2026-11-20\", \"any\", \"5\"]": {
+   "candidates": [
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "219G. Banks shall lay down the LTV for loans against eligible securities to individuals as per their credit policy, subject to the following ceilings:\nEligible Securities | LTV Ceiling\nGovernment Securities (including T-Bills) | As per bank\u2019s policy\nSovereign Gold Bonds (SGBs) | As applicable in case of loans against Gold and Silver Collateral\nListed shares and listed convertible debt securities | 60 per cent\nMutual Funds (excluding Debt MFs), Units of ETF and Units of REITs/InvITs | 75 per cent\nDebt Mutual Funds | 85 per cent\nListed Debt Securities with rating:\nAAA\nAA \u2013 BBB | 85 per cent\n75 per cent",
+     "dense_rank": 1,
+     "doc_id": "rbi:md:2025:0154:v4",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "nbfc",
+      "nbfc_spd"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.01639344262295082,
+     "heading_path": "Chapter XIII - Loans Against Financial Assets > Q.2.2 LTV Requirements",
+     "lexical_rank": null,
+     "ordinal": 261,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0154:v4#p219G",
+     "paragraph_number": "219G",
+     "rank": 1,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/NotificationPreVersion.aspx?id=13156&Histid=214",
+     "valid_from": "2026-07-01",
+     "valid_to": "2026-07-15"
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "219G. Banks shall lay down the LTV for loans against eligible securities to individuals as per their credit policy, subject to the following ceilings:\nEligible Securities | LTV Ceiling\nGovernment Securities (including T-Bills) | As per bank\u2019s policy\nSovereign Gold Bonds (SGBs) | As applicable in case of loans against Gold and Silver Collateral\nListed shares and listed convertible debt securities | 60 per cent\nMutual Funds (excluding Debt MFs), Units of ETF and Units of REITs/InvITs | 75 per cent\nDebt Mutual Funds | 85 per cent\nListed Debt Securities with rating:\nAAA\nAA \u2013 BBB | 85 per cent\n75 per cent",
+     "dense_rank": 2,
+     "doc_id": "rbi:md:2025:0154:v5",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "nbfc",
+      "nbfc_spd"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.016129032258064516,
+     "heading_path": "Chapter XIII - Loans Against Financial Assets > Q.2.2 LTV Requirements",
+     "lexical_rank": null,
+     "ordinal": 261,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0154:v5#p219G",
+     "paragraph_number": "219G",
+     "rank": 2,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/NotificationPreVersion.aspx?id=13156&Histid=271",
+     "valid_from": "2026-07-15",
+     "valid_to": "2026-10-01"
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "219G. Banks shall lay down the LTV for loans against eligible securities to individuals as per their credit policy, subject to the following ceilings:\nEligible Securities | LTV Ceiling\nGovernment Securities (including T-Bills) | As per bank\u2019s policy\nSovereign Gold Bonds (SGBs) | As applicable in case of loans against Gold and Silver Collateral\nListed shares and listed convertible debt securities | 60 per cent\nMutual Funds (excluding Debt MFs), Units of ETF and Units of REITs/InvITs | 75 per cent\nDebt Mutual Funds | 85 per cent\nListed Debt Securities with rating:\nAAA\nAA \u2013 BBB | 85 per cent\n75 per cent",
+     "dense_rank": 3,
+     "doc_id": "rbi:md:2025:0154:v6",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "nbfc",
+      "nbfc_spd"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015873015873015872,
+     "heading_path": "Chapter XIII - Loans Against Financial Assets > Q.2.2 LTV Requirements",
+     "lexical_rank": null,
+     "ordinal": 276,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0154:v6#p219G",
+     "paragraph_number": "219G",
+     "rank": 3,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13156",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "171. Loans against the primary / collateral security of shares / debentures should be limited to \u20b95 lakh if the security is in physical form and up to \u20b910 lakh if the security is in demat form.",
+     "dense_rank": 4,
+     "doc_id": "rbi:md:2025:0277:v1",
+     "doc_title": "Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "ucb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015625,
+     "heading_path": "Chapter X - Loans Against Financial Assets > A. Loans Against Shares",
+     "lexical_rank": null,
+     "ordinal": 170,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0277:v1#p171",
+     "paragraph_number": "171",
+     "rank": 4,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/NotificationPreVersion.aspx?id=13028&Histid=53",
+     "valid_from": "2025-11-28",
+     "valid_to": "2026-04-01"
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "171. Loans against the primary / collateral security of shares / debentures should be limited to \u20b95 lakh if the security is in physical form and up to \u20b910 lakh if the security is in demat form.",
+     "dense_rank": 5,
+     "doc_id": "rbi:md:2025:0277:v2",
+     "doc_title": "Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "ucb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015384615384615385,
+     "heading_path": "Chapter X - Loans Against Financial Assets > A. Loans Against Shares",
+     "lexical_rank": null,
+     "ordinal": 170,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0277:v2#p171",
+     "paragraph_number": "171",
+     "rank": 5,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/NotificationPreVersion.aspx?id=13028&Histid=218",
+     "valid_from": "2026-04-01",
+     "valid_to": "2026-07-15"
+    }
+   ],
+   "degraded": [],
+   "embedding_calls": 0,
+   "embedding_tokens": 0,
+   "neighbours": []
+  },
+  "[\"search\", \"Listed shares as security: how much of their value may a bank lend to an individual, per RBI?\", \"('cb',)\", \"2026-11-20\", \"in_force\", \"6\"]": {
+   "candidates": [
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "219G. Banks shall lay down the LTV for loans against eligible securities to individuals as per their credit policy, subject to the following ceilings:\nEligible Securities | LTV Ceiling\nGovernment Securities (including T-Bills) | As per bank\u2019s policy\nSovereign Gold Bonds (SGBs) | As applicable in case of loans against Gold and Silver Collateral\nListed shares and listed convertible debt securities | 60 per cent\nMutual Funds (excluding Debt MFs), Units of ETF and Units of REITs/InvITs | 75 per cent\nDebt Mutual Funds | 85 per cent\nListed Debt Securities with rating:\nAAA\nAA \u2013 BBB | 85 per cent\n75 per cent",
+     "dense_rank": 1,
+     "doc_id": "rbi:md:2025:0154:v6",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "nbfc",
+      "nbfc_spd"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.01639344262295082,
+     "heading_path": "Chapter XIII - Loans Against Financial Assets > Q.2.2 LTV Requirements",
+     "lexical_rank": null,
+     "ordinal": 276,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0154:v6#p219G",
+     "paragraph_number": "219G",
+     "rank": 1,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13156",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "171. Loans against the primary / collateral security of shares / debentures should be limited to \u20b95 lakh if the security is in physical form and up to \u20b910 lakh if the security is in demat form.",
+     "dense_rank": 2,
+     "doc_id": "rbi:md:2025:0277:v4",
+     "doc_title": "Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "ucb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.016129032258064516,
+     "heading_path": "Chapter X - Loans Against Financial Assets > A. Loans Against Shares",
+     "lexical_rank": null,
+     "ordinal": 170,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0277:v4#p171",
+     "paragraph_number": "171",
+     "rank": 2,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13028",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "219L. Within the above limits as prescribed in paragraphs 219J and 219K above, loan up to \u20b925 lakh per individual may be granted for the purpose of acquisition of securities in secondary markets.",
+     "dense_rank": 3,
+     "doc_id": "rbi:md:2025:0154:v6",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "nbfc",
+      "nbfc_spd"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015873015873015872,
+     "heading_path": "Chapter XIII - Loans Against Financial Assets > Q.2.3 Prudential Ceilings",
+     "lexical_rank": null,
+     "ordinal": 281,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0154:v6#p219L",
+     "paragraph_number": "219L",
+     "rank": 3,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13156",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "173. Aggregate of all loans against the security of shares and debentures should be within the overall ceiling of twenty per cent of Tier - I capital of the bank as on 31st March of the previous financial year, as defined in Reserve Bank of India (Urban Co-operative Banks \u2013 Prudential Norms on Capital Adequacy) Directions, 2025.",
+     "dense_rank": 4,
+     "doc_id": "rbi:md:2025:0277:v4",
+     "doc_title": "Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "ucb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015625,
+     "heading_path": "Chapter X - Loans Against Financial Assets > A. Loans Against Shares",
+     "lexical_rank": null,
+     "ordinal": 172,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0277:v4#p173",
+     "paragraph_number": "173",
+     "rank": 4,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13028",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "172. A margin of fifty per cent should be maintained on all such advances.",
+     "dense_rank": 5,
+     "doc_id": "rbi:md:2025:0277:v4",
+     "doc_title": "Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "ucb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015384615384615385,
+     "heading_path": "Chapter X - Loans Against Financial Assets > A. Loans Against Shares",
+     "lexical_rank": null,
+     "ordinal": 171,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0277:v4#p172",
+     "paragraph_number": "172",
+     "rank": 5,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13028",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "219M. Banks may grant loans to individuals after ensuring due diligence for subscribing to shares under initial public offer (IPO), follow-on public offer (FPO), or under employee stock option plan (ESOP) upto \u20b925 lakh per individual at the banking system level.\nProvided that the loan amount shall not exceed 75 per cent of the subscription value, i.e., borrowers shall contribute a minimum cash margin of 25 per cent. Provided further that no loan, whether secured or unsecured, shall be granted by a bank to its own employees or Employees\u2019 Trust set up by the bank for purchasing its own Securities under IPOs/FPOs/ESOPs or from the secondary market.",
+     "dense_rank": 6,
+     "doc_id": "rbi:md:2025:0154:v6",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "nbfc",
+      "nbfc_spd"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015151515151515152,
+     "heading_path": "Chapter XIII - Loans Against Financial Assets > Q.2.4 IPO/FPO/ESOP Financing",
+     "lexical_rank": null,
+     "ordinal": 282,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0154:v6#p219M",
+     "paragraph_number": "219M",
+     "rank": 6,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13156",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    }
+   ],
+   "degraded": [],
+   "embedding_calls": 1,
+   "embedding_tokens": 22,
+   "neighbours": [
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "219F. Banks may lend to individuals against eligible securities, subject to the LTVs and prudential ceilings specified hereunder.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0154:v6",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "nbfc",
+      "nbfc_spd"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0154:v6#p219G",
+     "fusion_score": null,
+     "heading_path": "Chapter XIII - Loans Against Financial Assets > Q.2.1 Scope",
+     "lexical_rank": null,
+     "ordinal": 275,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0154:v6#p219F",
+     "paragraph_number": "219F",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13156",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "219H. LTV shall be monitored on an ongoing basis and a bank shall take steps to rectify the breaches immediately, but in no case later than seven working days from the day of occurrence of such a breach.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0154:v6",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "nbfc",
+      "nbfc_spd"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0154:v6#p219G",
+     "fusion_score": null,
+     "heading_path": "Chapter XIII - Loans Against Financial Assets > Q.2.2 LTV Requirements",
+     "lexical_rank": null,
+     "ordinal": 277,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0154:v6#p219H",
+     "paragraph_number": "219H",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13156",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "219K. The amount of loan from the banking system that can be granted to individuals against eligible securities, other than those mentioned in paragraph 219J above, shall be capped at \u20b91 crore per individual.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0154:v6",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "nbfc",
+      "nbfc_spd"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0154:v6#p219L",
+     "fusion_score": null,
+     "heading_path": "Chapter XIII - Loans Against Financial Assets > Q.2.3 Prudential Ceilings",
+     "lexical_rank": null,
+     "ordinal": 280,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0154:v6#p219K",
+     "paragraph_number": "219K",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13156",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "219N. It shall be ensured that a lien is created on the shares to be allotted under the IPOs/FPOs/ESOPs, and such shares shall be pledged to the lender upon allotment.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0154:v6",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "nbfc",
+      "nbfc_spd"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0154:v6#p219M",
+     "fusion_score": null,
+     "heading_path": "Chapter XIII - Loans Against Financial Assets > Q.2.4 IPO/FPO/ESOP Financing",
+     "lexical_rank": null,
+     "ordinal": 283,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0154:v6#p219N",
+     "paragraph_number": "219N",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13156",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "170. Advances against units of mutual funds can be extended only to individuals as in the case of advances against the security of shares, debentures and bonds.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0277:v4",
+     "doc_title": "Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "ucb"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0277:v4#p171",
+     "fusion_score": null,
+     "heading_path": "Chapter X - Loans Against Financial Assets > A. Loans Against Shares",
+     "lexical_rank": null,
+     "ordinal": 169,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0277:v4#p170",
+     "paragraph_number": "170",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13028",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "174. UCBs shall be guided by provisions of Master Direction \u2013 Reserve Bank of India (Filing of Supervisory Returns) Directions \u2013 2024 dated February 27, 2024, for submission of return on advances against security of shares / debentures.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0277:v4",
+     "doc_title": "Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "ucb"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0277:v4#p173",
+     "fusion_score": null,
+     "heading_path": "Chapter X - Loans Against Financial Assets > A. Loans Against Shares",
+     "lexical_rank": null,
+     "ordinal": 173,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0277:v4#p174",
+     "paragraph_number": "174",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13028",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    }
+   ]
+  }
+ },
+ "index_version": "idx_rbi_20261123_c23c1e8",
+ "models": {
+  "00db92d445bb83a11413471f566599fa0a0546aa543c78da82b0316b399d00c5": {
+   "input_tokens": 1748,
+   "latency_ms": 1425.1,
+   "model": "claude-haiku-5-5",
+   "output_tokens": 109,
+   "parsed": {
+    "as_of": null,
+    "compare_as_of": null,
+    "computation_requested": false,
+    "entity_type": "cb",
+    "in_scope": true,
+    "query_kind": "applicability",
+    "topic_terms": [
+     "loans against shares",
+     "listed shares as collateral",
+     "loan to value ratio",
+     "individual borrowers",
+     "bank lending limits"
+    ]
+   },
+   "schema": "ParseOutput",
+   "user": "Listed shares as security: how much of their value may a bank lend to an individual, per RBI?"
+  },
+  "cc43c89e444b4bc6c2179333235a8b3d0d57311f751929b503a210d7c703905b": {
+   "input_tokens": 3153,
+   "latency_ms": 4400.6,
+   "model": "claude-opus-5-5",
+   "output_tokens": 404,
+   "parsed": {
+    "claims": [
+     {
+      "candidate_indices": [
+       0
+      ],
+      "quotes": [
+       "Banks shall lay down the LTV for loans against eligible securities to individuals as per their credit policy, subject to the following ceilings:",
+       "Listed shares and listed convertible debt securities | 60 per cent"
+      ],
+      "text": "A commercial bank sets the loan-to-value (LTV) ratio for loans to individuals against eligible securities in its credit policy, but for listed shares the LTV ceiling is 60 per cent of their value."
+     },
+     {
+      "candidate_indices": [
+       7
+      ],
+      "quotes": [
+       "LTV shall be monitored on an ongoing basis and a bank shall take steps to rectify the breaches immediately, but in no case later than seven working days from the day of occurrence of such a breach."
+      ],
+      "text": "The bank must monitor LTV on an ongoing basis and rectify any breach immediately, and in no case later than seven working days from the day the breach occurs."
+     },
+     {
+      "candidate_indices": [
+       6
+      ],
+      "quotes": [
+       "Banks may lend to individuals against eligible securities, subject to the LTVs and prudential ceilings specified hereunder."
+      ],
+      "text": "Lending to individuals against eligible securities is also subject to prudential ceilings in addition to the LTV limits."
+     }
+    ],
+    "insufficient": false,
+    "missing": null
+   },
+   "schema": "ComposerOutput",
+   "user": "Question: Listed shares as security: how much of their value may a bank lend to an individual, per RBI?\nEntity type: cb\nIn force on: 2026-11-20\n\n[0] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 219G (Chapter XIII - Loans Against Financial Assets > Q.2.2 LTV Requirements)\n219G. Banks shall lay down the LTV for loans against eligible securities to individuals as per their credit policy, subject to the following ceilings:\nEligible Securities | LTV Ceiling\nGovernment Securities (including T-Bills) | As per bank\u2019s policy\nSovereign Gold Bonds (SGBs) | As applicable in case of loans against Gold and Silver Collateral\nListed shares and listed convertible debt securities | 60 per cent\nMutual Funds (excluding Debt MFs), Units of ETF and Units of REITs/InvITs | 75 per cent\nDebt Mutual Funds | 85 per cent\nListed Debt Securities with rating:\nAAA\nAA \u2013 BBB | 85 per cent\n75 per cent\n\n[1] Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025, paragraph 171 (Chapter X - Loans Against Financial Assets > A. Loans Against Shares)\n171. Loans against the primary / collateral security of shares / debentures should be limited to \u20b95 lakh if the security is in physical form and up to \u20b910 lakh if the security is in demat form.\n\n[2] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 219L (Chapter XIII - Loans Against Financial Assets > Q.2.3 Prudential Ceilings)\n219L. Within the above limits as prescribed in paragraphs 219J and 219K above, loan up to \u20b925 lakh per individual may be granted for the purpose of acquisition of securities in secondary markets.\n\n[3] Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025, paragraph 173 (Chapter X - Loans Against Financial Assets > A. Loans Against Shares)\n173. Aggregate of all loans against the security of shares and debentures should be within the overall ceiling of twenty per cent of Tier - I capital of the bank as on 31st March of the previous financial year, as defined in Reserve Bank of India (Urban Co-operative Banks \u2013 Prudential Norms on Capital Adequacy) Directions, 2025.\n\n[4] Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025, paragraph 172 (Chapter X - Loans Against Financial Assets > A. Loans Against Shares)\n172. A margin of fifty per cent should be maintained on all such advances.\n\n[5] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 219M (Chapter XIII - Loans Against Financial Assets > Q.2.4 IPO/FPO/ESOP Financing)\n219M. Banks may grant loans to individuals after ensuring due diligence for subscribing to shares under initial public offer (IPO), follow-on public offer (FPO), or under employee stock option plan (ESOP) upto \u20b925 lakh per individual at the banking system level.\nProvided that the loan amount shall not exceed 75 per cent of the subscription value, i.e., borrowers shall contribute a minimum cash margin of 25 per cent. Provided further that no loan, whether secured or unsecured, shall be granted by a bank to its own employees or Employees\u2019 Trust set up by the bank for purchasing its own Securities under IPOs/FPOs/ESOPs or from the secondary market.\n\n[6] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 219F (Chapter XIII - Loans Against Financial Assets > Q.2.1 Scope)\n219F. Banks may lend to individuals against eligible securities, subject to the LTVs and prudential ceilings specified hereunder.\n\n[7] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 219H (Chapter XIII - Loans Against Financial Assets > Q.2.2 LTV Requirements)\n219H. LTV shall be monitored on an ongoing basis and a bank shall take steps to rectify the breaches immediately, but in no case later than seven working days from the day of occurrence of such a breach.\n\n[8] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 219K (Chapter XIII - Loans Against Financial Assets > Q.2.3 Prudential Ceilings)\n219K. The amount of loan from the banking system that can be granted to individuals against eligible securities, other than those mentioned in paragraph 219J above, shall be capped at \u20b91 crore per individual.\n\n[9] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 219N (Chapter XIII - Loans Against Financial Assets > Q.2.4 IPO/FPO/ESOP Financing)\n219N. It shall be ensured that a lien is created on the shares to be allotted under the IPOs/FPOs/ESOPs, and such shares shall be pledged to the lender upon allotment.\n\n[10] Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025, paragraph 170 (Chapter X - Loans Against Financial Assets > A. Loans Against Shares)\n170. Advances against units of mutual funds can be extended only to individuals as in the case of advances against the security of shares, debentures and bonds.\n\n[11] Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025, paragraph 174 (Chapter X - Loans Against Financial Assets > A. Loans Against Shares)\n174. UCBs shall be guided by provisions of Master Direction \u2013 Reserve Bank of India (Filing of Supervisory Returns) Directions \u2013 2024 dated February 27, 2024, for submission of return on advances against security of shares / debentures."
+  }
+ },
+ "recorded": {
+  "caveats": [],
+  "node_log": [
+   {
+    "calls": 1,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.00020637000000000002,
+    "input_tokens": 1748,
+    "latency_ms": 1425.16,
+    "model": "claude-haiku-5-5",
+    "node": "parse",
+    "output_tokens": 109
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 1,
+    "embedding_tokens": 22,
+    "eur": 2.5740000000000003e-06,
+    "input_tokens": 0,
+    "latency_ms": 444.71,
+    "model": null,
+    "node": "retrieve",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.18,
+    "model": null,
+    "node": "expand",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.07,
+    "model": null,
+    "node": "gate",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.01,
+    "model": null,
+    "node": "authority",
+    "output_tokens": 0
+   },
+   {
+    "calls": 1,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0186228,
+    "input_tokens": 3153,
+    "latency_ms": 4400.76,
+    "model": "claude-opus-5-5",
+    "node": "compose",
+    "output_tokens": 404
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 2.92,
+    "model": null,
+    "node": "verify",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.0,
+    "model": null,
+    "node": "judge",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 2.02,
+    "model": null,
+    "node": "finalize",
+    "output_tokens": 0
+   }
+  ],
+  "outcome": "answer",
+  "path": "full",
+  "refusal_reason": null,
+  "response": {
+   "as_of": "2026-11-20",
+   "cost_eur": 0.018832,
+   "degraded": [],
+   "dropped": [
+    {
+     "detail": "in force 2026-07-01 to 2026-07-15, asked for 2026-11-20",
+     "para_id": "rbi:md:2025:0154:v4#p219G",
+     "reason": "superseded"
+    },
+    {
+     "detail": "in force 2026-07-15 to 2026-10-01, asked for 2026-11-20",
+     "para_id": "rbi:md:2025:0154:v5#p219G",
+     "reason": "superseded"
+    },
+    {
+     "detail": "in force 2025-11-28 to 2026-04-01, asked for 2026-11-20",
+     "para_id": "rbi:md:2025:0277:v1#p171",
+     "reason": "superseded"
+    },
+    {
+     "detail": "in force 2026-04-01 to 2026-07-15, asked for 2026-11-20",
+     "para_id": "rbi:md:2025:0277:v2#p171",
+     "reason": "superseded"
+    }
+   ],
+   "entity_type": "cb",
+   "index_version": "idx_rbi_20261123_c23c1e8",
+   "latency_ms": 6276,
+   "notice": null,
+   "redactions": [],
+   "result": {
+    "caveats": [],
+    "claims": [
+     {
+      "citations": [
+       {
+        "authority_rank": 30,
+        "binding": true,
+        "doc_id": "rbi:md:2025:0154:v6",
+        "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025",
+        "effective_from": "2026-10-01",
+        "effective_to": null,
+        "entity_scope": [
+         "cb",
+         "nbfc",
+         "nbfc_spd"
+        ],
+        "para_id": "rbi:md:2025:0154:v6#p219G",
+        "paragraph_number": "219G",
+        "quote_end": 150,
+        "quote_start": 6,
+        "source_page": null,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13156"
+       }
+      ],
+      "text": "A commercial bank sets the loan-to-value (LTV) ratio for loans to individuals against eligible securities in its credit policy, but for listed shares the LTV ceiling is 60 per cent of their value."
+     },
+     {
+      "citations": [
+       {
+        "authority_rank": 30,
+        "binding": true,
+        "doc_id": "rbi:md:2025:0154:v6",
+        "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025",
+        "effective_from": "2026-10-01",
+        "effective_to": null,
+        "entity_scope": [
+         "cb",
+         "nbfc",
+         "nbfc_spd"
+        ],
+        "para_id": "rbi:md:2025:0154:v6#p219H",
+        "paragraph_number": "219H",
+        "quote_end": 203,
+        "quote_start": 6,
+        "source_page": null,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13156"
+       }
+      ],
+      "text": "The bank must monitor LTV on an ongoing basis and rectify any breach immediately, and in no case later than seven working days from the day the breach occurs."
+     },
+     {
+      "citations": [
+       {
+        "authority_rank": 30,
+        "binding": true,
+        "doc_id": "rbi:md:2025:0154:v6",
+        "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025",
+        "effective_from": "2026-10-01",
+        "effective_to": null,
+        "entity_scope": [
+         "cb",
+         "nbfc",
+         "nbfc_spd"
+        ],
+        "para_id": "rbi:md:2025:0154:v6#p219F",
+        "paragraph_number": "219F",
+        "quote_end": 129,
+        "quote_start": 6,
+        "source_page": null,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13156"
+       }
+      ],
+      "text": "Lending to individuals against eligible securities is also subject to prudential ceilings in addition to the LTV limits."
+     }
+    ],
+    "outcome": "answer"
+   },
+   "retrieved": [
+    {
+     "dense_rank": 1,
+     "expanded": false,
+     "fusion_score": 0.01639344262295082,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0154:v6#p219G"
+    },
+    {
+     "dense_rank": 2,
+     "expanded": false,
+     "fusion_score": 0.016129032258064516,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0277:v4#p171"
+    },
+    {
+     "dense_rank": 3,
+     "expanded": false,
+     "fusion_score": 0.015873015873015872,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0154:v6#p219L"
+    },
+    {
+     "dense_rank": 4,
+     "expanded": false,
+     "fusion_score": 0.015625,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0277:v4#p173"
+    },
+    {
+     "dense_rank": 5,
+     "expanded": false,
+     "fusion_score": 0.015384615384615385,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0277:v4#p172"
+    },
+    {
+     "dense_rank": 6,
+     "expanded": false,
+     "fusion_score": 0.015151515151515152,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0154:v6#p219M"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0154:v6#p219F"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0154:v6#p219H"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0154:v6#p219K"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0154:v6#p219N"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0277:v4#p170"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0277:v4#p174"
+    },
+    {
+     "dense_rank": 1,
+     "expanded": false,
+     "fusion_score": 0.01639344262295082,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0154:v4#p219G"
+    },
+    {
+     "dense_rank": 2,
+     "expanded": false,
+     "fusion_score": 0.016129032258064516,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0154:v5#p219G"
+    },
+    {
+     "dense_rank": 4,
+     "expanded": false,
+     "fusion_score": 0.015625,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0277:v1#p171"
+    },
+    {
+     "dense_rank": 5,
+     "expanded": false,
+     "fusion_score": 0.015384615384615385,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0277:v2#p171"
+    }
+   ]
+  }
+ },
+ "spec": {
+  "as_of": "2026-11-20",
+  "entity": "cb",
+  "expect": "an answer: oddly phrased, in scope (paragraph 219G sets a 60 per cent ceiling)",
+  "name": "adv_twin_in_scope_odd",
+  "question": "Listed shares as security: how much of their value may a bank lend to an individual, per RBI?"
+ },
+ "today": "2026-11-22"
+}

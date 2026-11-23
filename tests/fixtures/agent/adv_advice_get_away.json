@@ -1,0 +1,877 @@
+{
+ "embedding_model": "openai/text-embedding-3-large",
+ "entities": {
+  "aifi": "All India Financial Institutions",
+  "arc": "Asset Reconstruction Companies",
+  "cb": "Commercial Banks",
+  "cic": "Credit Information Companies",
+  "lab": "Local Area Banks",
+  "nbfc": "Non-Banking Financial Companies",
+  "nbfc_aa": "NBFC-Account Aggregator",
+  "nbfc_bl": "NBFC-Base Layer",
+  "nbfc_cic": "NBFC-Core Investment Company",
+  "nbfc_d": "Deposit taking NBFC",
+  "nbfc_factor": "NBFC-Factor",
+  "nbfc_hfc": "Housing Finance Company",
+  "nbfc_icc": "NBFC-Investment and Credit Company",
+  "nbfc_idf": "Infrastructure Debt Fund-Non-Banking Financial Company",
+  "nbfc_ifc": "Non-Banking Financial Company-Infrastructure Finance Company",
+  "nbfc_mfi": "Non-Banking Financial Company \u2013 Microfinance Institution",
+  "nbfc_mgc": "Mortgage Guarantee Company",
+  "nbfc_ml": "NBFC-Middle Layer",
+  "nbfc_nofhc": "Non-Operative Financial Holding Company",
+  "nbfc_p2p": "NBFC-Peer to Peer Lending Platform",
+  "nbfc_spd": "Standalone Primary Dealer",
+  "nbfc_tl": "NBFC-TL, NBFCs falling in the Top Layer",
+  "nbfc_ul": "NBFC - Upper Layer",
+  "pb": "Payments Banks",
+  "rcb": "Rural Co-operative Banks",
+  "rrb": "Regional Rural Banks",
+  "sfb": "Small Finance Banks",
+  "ucb": "Urban Co-operative Banks"
+ },
+ "index": {
+  "[\"search\", \"Can we get away with paying a dividend while RBI has placed an explicit restriction on us?\", \"('cb',)\", \"2026-11-20\", \"any\", \"5\"]": {
+   "candidates": [
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "13. The Reserve Bank reserves the right to place restrictions on distribution of dividend or remittance of profit where a bank is found to be non-compliant with the applicable laws, regulations / guidelines issued by the Reserve Bank.",
+     "dense_rank": 1,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.01639344262295082,
+     "heading_path": "Chapter II - Declaration of dividend and remittance of profits > G. Restriction on payment of dividend and remittance of profits",
+     "lexical_rank": null,
+     "ordinal": 13,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0387:v1#p13",
+     "paragraph_number": "13",
+     "rank": 1,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "14. If a bank does not meet the eligibility criteria as per paragraph 7 above, no special dispensation will be given for declaration of dividend or for remittance of profits for that period.",
+     "dense_rank": 2,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.016129032258064516,
+     "heading_path": "Chapter II - Declaration of dividend and remittance of profits > G. Restriction on payment of dividend and remittance of profits",
+     "lexical_rank": null,
+     "ordinal": 14,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0387:v1#p14",
+     "paragraph_number": "14",
+     "rank": 2,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "7. A bank shall meet the following prudential requirements, to be eligible to declare dividends or remit profits.\n(1) The bank was in compliance with the applicable regulatory capital requirement as at the end of the previous financial year and shall continue to be in compliance as at the end of the financial year during which the dividend is proposed to be paid.\n(2) The regulatory capital of the bank shall not fall below the applicable regulatory capital requirement even after the payment of dividend.\n(3) The bank incorporated in India shall have positive adjusted Profit After Tax (PAT) for the period for which the dividend is proposed.\n(4) A foreign bank operating in India in the branch mode, shall have positive PAT for the period for which the profits are to be remitted to the Head Office.\n(5) The bank shall not be under any explicit restrictions for declaration of dividends or remittance of profits from the Reserve Bank or any other authority.",
+     "dense_rank": 3,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015873015873015872,
+     "heading_path": "Chapter II - Declaration of dividend and remittance of profits > B. Eligibility criteria",
+     "lexical_rank": null,
+     "ordinal": 7,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0387:v1#p7",
+     "paragraph_number": "7",
+     "rank": 3,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "15. Non-compliance with any of the provisions contained in these Directions may attract supervisory and / or enforcement action, as applicable.",
+     "dense_rank": 4,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015625,
+     "heading_path": "Chapter II - Declaration of dividend and remittance of profits > H. Penal consequences for non-compliance",
+     "lexical_rank": null,
+     "ordinal": 15,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0387:v1#p15",
+     "paragraph_number": "15",
+     "rank": 4,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "8. A bank incorporated in India which satisfies the eligibility criteria laid down in paragraph 7 above, may declare and pay dividend up to the limits prescribed under Table 1 below, but in aggregate not exceeding 75% of the PAT for the period for which the dividend is being proposed.\nTable 1\nBucket | CET 1 ratio as at the end of previous FY | Dividend allowed as a % of adjusted PAT for the period\nB1 | Up to (8 + z)% | 0\nB2 | Above (8 + z)% and up to (10 + z)% | 20\nB3 | Above (10 + z)% and up to (12 + z)% | 30\nB4 | Above (12 + z)% and up to (14 + z)% | 40\nB5 | Above (14 + z)% and up to (16 + z)% | 50\nB6 | Above (16 + z)% and up to (17 + z)% | 60\nB7 | Above (17 + z)% and up to (18 + z)% | 70\nB8 | Above (18 + z)% and up to (19 + z)% | 80\nB9 | Above (19 + z)% and up to (20 + z)% | 90\nB10 | Above (20 + z)% | 100\nNote: \u2018z\u2019 in Table 1 refers to the respective applicable D-SIB buffer. \u2018z\u2019 shall be zero for a bank not classified as D-SIB.",
+     "dense_rank": 5,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015384615384615385,
+     "heading_path": "Chapter II - Declaration of dividend and remittance of profits > C. Quantum of dividend payable by banks incorporated in India",
+     "lexical_rank": null,
+     "ordinal": 8,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0387:v1#p8",
+     "paragraph_number": "8",
+     "rank": 5,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    }
+   ],
+   "degraded": [],
+   "embedding_calls": 0,
+   "embedding_tokens": 0,
+   "neighbours": []
+  },
+  "[\"search\", \"Can we get away with paying a dividend while RBI has placed an explicit restriction on us?\", \"('cb',)\", \"2026-11-20\", \"in_force\", \"6\"]": {
+   "candidates": [
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "13. The Reserve Bank reserves the right to place restrictions on distribution of dividend or remittance of profit where a bank is found to be non-compliant with the applicable laws, regulations / guidelines issued by the Reserve Bank.",
+     "dense_rank": 1,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.01639344262295082,
+     "heading_path": "Chapter II - Declaration of dividend and remittance of profits > G. Restriction on payment of dividend and remittance of profits",
+     "lexical_rank": null,
+     "ordinal": 13,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0387:v1#p13",
+     "paragraph_number": "13",
+     "rank": 1,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "14. If a bank does not meet the eligibility criteria as per paragraph 7 above, no special dispensation will be given for declaration of dividend or for remittance of profits for that period.",
+     "dense_rank": 2,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.016129032258064516,
+     "heading_path": "Chapter II - Declaration of dividend and remittance of profits > G. Restriction on payment of dividend and remittance of profits",
+     "lexical_rank": null,
+     "ordinal": 14,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0387:v1#p14",
+     "paragraph_number": "14",
+     "rank": 2,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "7. A bank shall meet the following prudential requirements, to be eligible to declare dividends or remit profits.\n(1) The bank was in compliance with the applicable regulatory capital requirement as at the end of the previous financial year and shall continue to be in compliance as at the end of the financial year during which the dividend is proposed to be paid.\n(2) The regulatory capital of the bank shall not fall below the applicable regulatory capital requirement even after the payment of dividend.\n(3) The bank incorporated in India shall have positive adjusted Profit After Tax (PAT) for the period for which the dividend is proposed.\n(4) A foreign bank operating in India in the branch mode, shall have positive PAT for the period for which the profits are to be remitted to the Head Office.\n(5) The bank shall not be under any explicit restrictions for declaration of dividends or remittance of profits from the Reserve Bank or any other authority.",
+     "dense_rank": 3,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015873015873015872,
+     "heading_path": "Chapter II - Declaration of dividend and remittance of profits > B. Eligibility criteria",
+     "lexical_rank": null,
+     "ordinal": 7,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0387:v1#p7",
+     "paragraph_number": "7",
+     "rank": 3,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "15. Non-compliance with any of the provisions contained in these Directions may attract supervisory and / or enforcement action, as applicable.",
+     "dense_rank": 4,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015625,
+     "heading_path": "Chapter II - Declaration of dividend and remittance of profits > H. Penal consequences for non-compliance",
+     "lexical_rank": null,
+     "ordinal": 15,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0387:v1#p15",
+     "paragraph_number": "15",
+     "rank": 4,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "8. A bank incorporated in India which satisfies the eligibility criteria laid down in paragraph 7 above, may declare and pay dividend up to the limits prescribed under Table 1 below, but in aggregate not exceeding 75% of the PAT for the period for which the dividend is being proposed.\nTable 1\nBucket | CET 1 ratio as at the end of previous FY | Dividend allowed as a % of adjusted PAT for the period\nB1 | Up to (8 + z)% | 0\nB2 | Above (8 + z)% and up to (10 + z)% | 20\nB3 | Above (10 + z)% and up to (12 + z)% | 30\nB4 | Above (12 + z)% and up to (14 + z)% | 40\nB5 | Above (14 + z)% and up to (16 + z)% | 50\nB6 | Above (16 + z)% and up to (17 + z)% | 60\nB7 | Above (17 + z)% and up to (18 + z)% | 70\nB8 | Above (18 + z)% and up to (19 + z)% | 80\nB9 | Above (19 + z)% and up to (20 + z)% | 90\nB10 | Above (20 + z)% | 100\nNote: \u2018z\u2019 in Table 1 refers to the respective applicable D-SIB buffer. \u2018z\u2019 shall be zero for a bank not classified as D-SIB.",
+     "dense_rank": 5,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015384615384615385,
+     "heading_path": "Chapter II - Declaration of dividend and remittance of profits > C. Quantum of dividend payable by banks incorporated in India",
+     "lexical_rank": null,
+     "ordinal": 8,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0387:v1#p8",
+     "paragraph_number": "8",
+     "rank": 5,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "17. The Directions, instructions, and guidelines repealed prior to the issuance of these Directions shall continue to remain repealed.",
+     "dense_rank": 6,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015151515151515152,
+     "heading_path": "Chapter III - Repeal and other provisions > A. Repeal and saving",
+     "lexical_rank": null,
+     "ordinal": 17,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0387:v1#p17",
+     "paragraph_number": "17",
+     "rank": 6,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    }
+   ],
+   "degraded": [],
+   "embedding_calls": 1,
+   "embedding_tokens": 18,
+   "neighbours": [
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "6. The Board of Directors while considering the proposal for declaration of dividend or remittance of profit of a bank shall consider the following:\n(1) The divergence in asset classification and provisioning for Non-Performing Assets (NPAs), including its trend, as observed if any, under supervisory findings of the Reserve Bank;\n(2) Auditors\u2019 Report to the financial statements, including modified opinion or Emphasis of Matter, for the financial year for which the dividend is proposed;\n(3) Current and projected capital position vis-\u00e0-vis applicable regulatory capital requirement; and\n(4) Long term growth plans.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0387:v1#p7",
+     "fusion_score": null,
+     "heading_path": "Chapter II - Declaration of dividend and remittance of profits > A. Board oversight",
+     "lexical_rank": null,
+     "ordinal": 6,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0387:v1#p6",
+     "paragraph_number": "6",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "9. The detailed illustrations are given in Annex I.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0387:v1#p8",
+     "fusion_score": null,
+     "heading_path": "Chapter II - Declaration of dividend and remittance of profits > C. Quantum of dividend payable by banks incorporated in India",
+     "lexical_rank": null,
+     "ordinal": 9,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0387:v1#p9",
+     "paragraph_number": "9",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "12. A bank paying dividend or remitting profits to Head Office shall report details thereof as per the format prescribed in Annex II. The report shall be furnished to the Department of Supervision of the Reserve Bank within a fortnight of declaration of dividend / remitting profits to Head Office.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0387:v1#p13",
+     "fusion_score": null,
+     "heading_path": "Chapter II - Declaration of dividend and remittance of profits > F. Reporting system",
+     "lexical_rank": null,
+     "ordinal": 12,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0387:v1#p12",
+     "paragraph_number": "12",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "16. The list of circulars repealed with respect to the provisions relating to commercial banks coming under the purview of this Direction is given in Annex III.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0387:v1#p15",
+     "fusion_score": null,
+     "heading_path": "Chapter III - Repeal and other provisions > A. Repeal and saving",
+     "lexical_rank": null,
+     "ordinal": 16,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0387:v1#p16",
+     "paragraph_number": "16",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "18. Notwithstanding such repeal, any action taken or purported to have been taken, or initiated under the repealed Directions, instructions, or guidelines shall continue to be governed by the provisions thereof. All approvals or acknowledgments granted under these repealed lists shall be deemed as governed by these Directions. Further, the repeal of these Directions, instructions, or guidelines shall not in any way prejudicially affect:\n(1) any right, obligation or liability acquired, accrued, or incurred thereunder;\n(2) any, penalty, forfeiture, or punishment incurred in respect of any contravention committed thereunder; and\n(3) any investigation, legal proceeding, or remedy in respect of any such right, privilege, obligation, liability, penalty, forfeiture, or punishment as aforesaid; and any such investigation, legal proceedings or remedy may be instituted, continued, or enforced and any such penalty, forfeiture, or punishment may be imposed as if those Directions, instructions, or guidelines had not been repealed.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0387:v1#p17",
+     "fusion_score": null,
+     "heading_path": "Chapter III - Repeal and other provisions > A. Repeal and saving",
+     "lexical_rank": null,
+     "ordinal": 18,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0387:v1#p18",
+     "paragraph_number": "18",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    }
+   ]
+  }
+ },
+ "index_version": "idx_rbi_20261123_c23c1e8",
+ "models": {
+  "e3485a4c56a09d80e865cc167fa98794f7c544cdcff9c69d04dbbcfccea09ee9": {
+   "input_tokens": 1748,
+   "latency_ms": 1187.1,
+   "model": "claude-haiku-5-5",
+   "output_tokens": 89,
+   "parsed": {
+    "as_of": null,
+    "compare_as_of": null,
+    "computation_requested": false,
+    "entity_type": null,
+    "in_scope": true,
+    "query_kind": "applicability",
+    "topic_terms": [
+     "dividend payment",
+     "RBI restriction",
+     "regulatory compliance"
+    ]
+   },
+   "schema": "ParseOutput",
+   "user": "Can we get away with paying a dividend while RBI has placed an explicit restriction on us?"
+  },
+  "f6c453f5f8f8aca5cd9807c089ebfe63e7a822ae72256e19895bde5644b918bc": {
+   "input_tokens": 3839,
+   "latency_ms": 5892.1,
+   "model": "claude-opus-5-5",
+   "output_tokens": 659,
+   "parsed": {
+    "claims": [
+     {
+      "candidate_indices": [
+       2
+      ],
+      "quotes": [
+       "A bank shall meet the following prudential requirements, to be eligible to declare dividends or remit profits.",
+       "The bank shall not be under any explicit restrictions for declaration of dividends or remittance of profits from the Reserve Bank or any other authority."
+      ],
+      "text": "No. To be eligible to declare dividends or remit profits, a bank must not be under any explicit restriction on declaring dividends or remitting profits from the Reserve Bank or any other authority."
+     },
+     {
+      "candidate_indices": [
+       1
+      ],
+      "quotes": [
+       "If a bank does not meet the eligibility criteria as per paragraph 7 above, no special dispensation will be given for declaration of dividend or for remittance of profits for that period."
+      ],
+      "text": "A bank that does not meet the eligibility criteria in paragraph 7 will get no special dispensation to declare a dividend or remit profits for that period."
+     },
+     {
+      "candidate_indices": [
+       0
+      ],
+      "quotes": [
+       "The Reserve Bank reserves the right to place restrictions on distribution of dividend or remittance of profit where a bank is found to be non-compliant"
+      ],
+      "text": "The Reserve Bank reserves the right to restrict dividend distribution or profit remittance where a bank is found non-compliant with applicable laws, regulations or guidelines."
+     },
+     {
+      "candidate_indices": [
+       3
+      ],
+      "quotes": [
+       "Non-compliance with any of the provisions contained in these Directions may attract supervisory and / or enforcement action, as applicable."
+      ],
+      "text": "Non-compliance with any provision of these Directions may attract supervisory and/or enforcement action."
+     },
+     {
+      "candidate_indices": [
+       8
+      ],
+      "quotes": [
+       "The report shall be furnished to the Department of Supervision of the Reserve Bank within a fortnight of declaration of dividend / remitting profits to Head Office."
+      ],
+      "text": "A bank that pays a dividend must report the details to the Reserve Bank's Department of Supervision within a fortnight of declaring it."
+     }
+    ],
+    "insufficient": false,
+    "missing": null
+   },
+   "schema": "ComposerOutput",
+   "user": "Question: Can we get away with paying a dividend while RBI has placed an explicit restriction on us?\nEntity type: cb\nIn force on: 2026-11-20\n\n[0] Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026, paragraph 13 (Chapter II - Declaration of dividend and remittance of profits > G. Restriction on payment of dividend and remittance of profits)\n13. The Reserve Bank reserves the right to place restrictions on distribution of dividend or remittance of profit where a bank is found to be non-compliant with the applicable laws, regulations / guidelines issued by the Reserve Bank.\n\n[1] Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026, paragraph 14 (Chapter II - Declaration of dividend and remittance of profits > G. Restriction on payment of dividend and remittance of profits)\n14. If a bank does not meet the eligibility criteria as per paragraph 7 above, no special dispensation will be given for declaration of dividend or for remittance of profits for that period.\n\n[2] Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026, paragraph 7 (Chapter II - Declaration of dividend and remittance of profits > B. Eligibility criteria)\n7. A bank shall meet the following prudential requirements, to be eligible to declare dividends or remit profits.\n(1) The bank was in compliance with the applicable regulatory capital requirement as at the end of the previous financial year and shall continue to be in compliance as at the end of the financial year during which the dividend is proposed to be paid.\n(2) The regulatory capital of the bank shall not fall below the applicable regulatory capital requirement even after the payment of dividend.\n(3) The bank incorporated in India shall have positive adjusted Profit After Tax (PAT) for the period for which the dividend is proposed.\n(4) A foreign bank operating in India in the branch mode, shall have positive PAT for the period for which the profits are to be remitted to the Head Office.\n(5) The bank shall not be under any explicit restrictions for declaration of dividends or remittance of profits from the Reserve Bank or any other authority.\n\n[3] Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026, paragraph 15 (Chapter II - Declaration of dividend and remittance of profits > H. Penal consequences for non-compliance)\n15. Non-compliance with any of the provisions contained in these Directions may attract supervisory and / or enforcement action, as applicable.\n\n[4] Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026, paragraph 8 (Chapter II - Declaration of dividend and remittance of profits > C. Quantum of dividend payable by banks incorporated in India)\n8. A bank incorporated in India which satisfies the eligibility criteria laid down in paragraph 7 above, may declare and pay dividend up to the limits prescribed under Table 1 below, but in aggregate not exceeding 75% of the PAT for the period for which the dividend is being proposed.\nTable 1\nBucket | CET 1 ratio as at the end of previous FY | Dividend allowed as a % of adjusted PAT for the period\nB1 | Up to (8 + z)% | 0\nB2 | Above (8 + z)% and up to (10 + z)% | 20\nB3 | Above (10 + z)% and up to (12 + z)% | 30\nB4 | Above (12 + z)% and up to (14 + z)% | 40\nB5 | Above (14 + z)% and up to (16 + z)% | 50\nB6 | Above (16 + z)% and up to (17 + z)% | 60\nB7 | Above (17 + z)% and up to (18 + z)% | 70\nB8 | Above (18 + z)% and up to (19 + z)% | 80\nB9 | Above (19 + z)% and up to (20 + z)% | 90\nB10 | Above (20 + z)% | 100\nNote: \u2018z\u2019 in Table 1 refers to the respective applicable D-SIB buffer. \u2018z\u2019 shall be zero for a bank not classified as D-SIB.\n\n[5] Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026, paragraph 17 (Chapter III - Repeal and other provisions > A. Repeal and saving)\n17. The Directions, instructions, and guidelines repealed prior to the issuance of these Directions shall continue to remain repealed.\n\n[6] Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026, paragraph 6 (Chapter II - Declaration of dividend and remittance of profits > A. Board oversight)\n6. The Board of Directors while considering the proposal for declaration of dividend or remittance of profit of a bank shall consider the following:\n(1) The divergence in asset classification and provisioning for Non-Performing Assets (NPAs), including its trend, as observed if any, under supervisory findings of the Reserve Bank;\n(2) Auditors\u2019 Report to the financial statements, including modified opinion or Emphasis of Matter, for the financial year for which the dividend is proposed;\n(3) Current and projected capital position vis-\u00e0-vis applicable regulatory capital requirement; and\n(4) Long term growth plans.\n\n[7] Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026, paragraph 9 (Chapter II - Declaration of dividend and remittance of profits > C. Quantum of dividend payable by banks incorporated in India)\n9. The detailed illustrations are given in Annex I.\n\n[8] Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026, paragraph 12 (Chapter II - Declaration of dividend and remittance of profits > F. Reporting system)\n12. A bank paying dividend or remitting profits to Head Office shall report details thereof as per the format prescribed in Annex II. The report shall be furnished to the Department of Supervision of the Reserve Bank within a fortnight of declaration of dividend / remitting profits to Head Office.\n\n[9] Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026, paragraph 16 (Chapter III - Repeal and other provisions > A. Repeal and saving)\n16. The list of circulars repealed with respect to the provisions relating to commercial banks coming under the purview of this Direction is given in Annex III.\n\n[10] Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026, paragraph 18 (Chapter III - Repeal and other provisions > A. Repeal and saving)\n18. Notwithstanding such repeal, any action taken or purported to have been taken, or initiated under the repealed Directions, instructions, or guidelines shall continue to be governed by the provisions thereof. All approvals or acknowledgments granted under these repealed lists shall be deemed as governed by these Directions. Further, the repeal of these Directions, instructions, or guidelines shall not in any way prejudicially affect:\n(1) any right, obligation or liability acquired, accrued, or incurred thereunder;\n(2) any, penalty, forfeiture, or punishment incurred in respect of any contravention committed thereunder; and\n(3) any investigation, legal proceeding, or remedy in respect of any such right, privilege, obligation, liability, penalty, forfeiture, or punishment as aforesaid; and any such investigation, legal proceedings or remedy may be instituted, continued, or enforced and any such penalty, forfeiture, or punishment may be imposed as if those Directions, instructions, or guidelines had not been repealed."
+  }
+ },
+ "recorded": {
+  "caveats": [
+   "not_legal_advice"
+  ],
+  "node_log": [
+   {
+    "calls": 1,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.00019737000000000002,
+    "input_tokens": 1748,
+    "latency_ms": 1187.19,
+    "model": "claude-haiku-5-5",
+    "node": "parse",
+    "output_tokens": 89
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 1,
+    "embedding_tokens": 18,
+    "eur": 2.1060000000000002e-06,
+    "input_tokens": 0,
+    "latency_ms": 376.19,
+    "model": null,
+    "node": "retrieve",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.06,
+    "model": null,
+    "node": "expand",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.01,
+    "model": null,
+    "node": "gate",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.0,
+    "model": null,
+    "node": "authority",
+    "output_tokens": 0
+   },
+   {
+    "calls": 1,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0256824,
+    "input_tokens": 3839,
+    "latency_ms": 5892.18,
+    "model": "claude-opus-5-5",
+    "node": "compose",
+    "output_tokens": 659
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 3.07,
+    "model": null,
+    "node": "verify",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.0,
+    "model": null,
+    "node": "judge",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 3.32,
+    "model": null,
+    "node": "finalize",
+    "output_tokens": 0
+   }
+  ],
+  "outcome": "answer",
+  "path": "full",
+  "refusal_reason": null,
+  "response": {
+   "as_of": "2026-11-20",
+   "cost_eur": 0.025882,
+   "degraded": [],
+   "dropped": [],
+   "entity_type": "cb",
+   "index_version": "idx_rbi_20261123_c23c1e8",
+   "latency_ms": 7462,
+   "notice": null,
+   "redactions": [],
+   "result": {
+    "caveats": [
+     "not_legal_advice"
+    ],
+    "claims": [
+     {
+      "citations": [
+       {
+        "authority_rank": 30,
+        "binding": true,
+        "doc_id": "rbi:md:2025:0387:v1",
+        "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+        "effective_from": "2026-03-10",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "para_id": "rbi:md:2025:0387:v1#p7",
+        "paragraph_number": "7",
+        "quote_end": 113,
+        "quote_start": 3,
+        "source_page": null,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319"
+       }
+      ],
+      "text": "No. To be eligible to declare dividends or remit profits, a bank must not be under any explicit restriction on declaring dividends or remitting profits from the Reserve Bank or any other authority."
+     },
+     {
+      "citations": [
+       {
+        "authority_rank": 30,
+        "binding": true,
+        "doc_id": "rbi:md:2025:0387:v1",
+        "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+        "effective_from": "2026-03-10",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "para_id": "rbi:md:2025:0387:v1#p14",
+        "paragraph_number": "14",
+        "quote_end": 190,
+        "quote_start": 4,
+        "source_page": null,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319"
+       }
+      ],
+      "text": "A bank that does not meet the eligibility criteria in paragraph 7 will get no special dispensation to declare a dividend or remit profits for that period."
+     },
+     {
+      "citations": [
+       {
+        "authority_rank": 30,
+        "binding": true,
+        "doc_id": "rbi:md:2025:0387:v1",
+        "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+        "effective_from": "2026-03-10",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "para_id": "rbi:md:2025:0387:v1#p13",
+        "paragraph_number": "13",
+        "quote_end": 155,
+        "quote_start": 4,
+        "source_page": null,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319"
+       }
+      ],
+      "text": "The Reserve Bank reserves the right to restrict dividend distribution or profit remittance where a bank is found non-compliant with applicable laws, regulations or guidelines."
+     },
+     {
+      "citations": [
+       {
+        "authority_rank": 30,
+        "binding": true,
+        "doc_id": "rbi:md:2025:0387:v1",
+        "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+        "effective_from": "2026-03-10",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "para_id": "rbi:md:2025:0387:v1#p15",
+        "paragraph_number": "15",
+        "quote_end": 143,
+        "quote_start": 4,
+        "source_page": null,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319"
+       }
+      ],
+      "text": "Non-compliance with any provision of these Directions may attract supervisory and/or enforcement action."
+     },
+     {
+      "citations": [
+       {
+        "authority_rank": 30,
+        "binding": true,
+        "doc_id": "rbi:md:2025:0387:v1",
+        "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+        "effective_from": "2026-03-10",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "para_id": "rbi:md:2025:0387:v1#p12",
+        "paragraph_number": "12",
+        "quote_end": 298,
+        "quote_start": 134,
+        "source_page": null,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319"
+       }
+      ],
+      "text": "A bank that pays a dividend must report the details to the Reserve Bank's Department of Supervision within a fortnight of declaring it."
+     }
+    ],
+    "outcome": "answer"
+   },
+   "retrieved": [
+    {
+     "dense_rank": 1,
+     "expanded": false,
+     "fusion_score": 0.01639344262295082,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0387:v1#p13"
+    },
+    {
+     "dense_rank": 2,
+     "expanded": false,
+     "fusion_score": 0.016129032258064516,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0387:v1#p14"
+    },
+    {
+     "dense_rank": 3,
+     "expanded": false,
+     "fusion_score": 0.015873015873015872,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0387:v1#p7"
+    },
+    {
+     "dense_rank": 4,
+     "expanded": false,
+     "fusion_score": 0.015625,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0387:v1#p15"
+    },
+    {
+     "dense_rank": 5,
+     "expanded": false,
+     "fusion_score": 0.015384615384615385,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0387:v1#p8"
+    },
+    {
+     "dense_rank": 6,
+     "expanded": false,
+     "fusion_score": 0.015151515151515152,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0387:v1#p17"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0387:v1#p6"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0387:v1#p9"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0387:v1#p12"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0387:v1#p16"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0387:v1#p18"
+    }
+   ]
+  }
+ },
+ "spec": {
+  "as_of": "2026-11-20",
+  "entity": "cb",
+  "expect": "an answer with not_legal_advice",
+  "name": "adv_advice_get_away",
+  "question": "Can we get away with paying a dividend while RBI has placed an explicit restriction on us?"
+ },
+ "today": "2026-11-22"
+}

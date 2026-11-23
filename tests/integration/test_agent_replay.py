@@ -8,22 +8,16 @@ it exists for. Together they cover every refusal class the graph raises and ever
 
 from __future__ import annotations
 
-import json
 import socket
-from datetime import date
 from pathlib import Path
 from typing import Any
 
 import httpx
 import pytest
 
-from extant.agent.graph import ask, build
-from extant.agent.index import RecordedIndex
-from extant.agent.llm import ReplayModel
-from extant.agent.models import AgentState, Caveat, RefusalReason
-from extant.agent.runtime import Deps
+from extant.agent.models import Caveat, RefusalReason
+from tests.replay_support import FIXTURES, load, replay
 
-FIXTURES = Path(__file__).resolve().parents[1] / "fixtures" / "agent"
 FILES = sorted(FIXTURES.glob("*.json"))
 
 # What each derived fixture exists to produce.
@@ -49,36 +43,8 @@ def no_network(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setattr(socket, "create_connection", refuse)
 
 
-def replay(data: dict[str, Any]) -> AgentState:
-    store = data["models"]
-    models = {
-        role: ReplayModel(model, store, source=FIXTURES)
-        for role, model in (
-            ("parse", "claude-haiku-5-5"),
-            ("compose", "claude-opus-5-5"),
-            ("judge", "claude-haiku-5-5"),
-        )
-    }
-    deps = Deps(
-        models=models,
-        index=RecordedIndex(data["index"], data["embedding_model"]),
-        entities=data["entities"],
-    )
-    spec = data["spec"]
-    return ask(
-        build(deps),
-        spec["question"],
-        index_version=data["index_version"],
-        entity=spec["entity"],
-        as_of=date.fromisoformat(spec["as_of"]) if spec["as_of"] else None,
-        today=date.fromisoformat(data["today"]),
-        request_id=spec["name"],
-    )
-
-
 def _load(path: Path) -> dict[str, Any]:
-    data: dict[str, Any] = json.loads(path.read_text(encoding="utf-8"))
-    return data
+    return load(path)
 
 
 @pytest.mark.parametrize("path", FILES, ids=lambda p: p.stem)

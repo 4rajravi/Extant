@@ -1,0 +1,1023 @@
+{
+ "embedding_model": "openai/text-embedding-3-large",
+ "entities": {
+  "aifi": "All India Financial Institutions",
+  "arc": "Asset Reconstruction Companies",
+  "cb": "Commercial Banks",
+  "cic": "Credit Information Companies",
+  "lab": "Local Area Banks",
+  "nbfc": "Non-Banking Financial Companies",
+  "nbfc_aa": "NBFC-Account Aggregator",
+  "nbfc_bl": "NBFC-Base Layer",
+  "nbfc_cic": "NBFC-Core Investment Company",
+  "nbfc_d": "Deposit taking NBFC",
+  "nbfc_factor": "NBFC-Factor",
+  "nbfc_hfc": "Housing Finance Company",
+  "nbfc_icc": "NBFC-Investment and Credit Company",
+  "nbfc_idf": "Infrastructure Debt Fund-Non-Banking Financial Company",
+  "nbfc_ifc": "Non-Banking Financial Company-Infrastructure Finance Company",
+  "nbfc_mfi": "Non-Banking Financial Company \u2013 Microfinance Institution",
+  "nbfc_mgc": "Mortgage Guarantee Company",
+  "nbfc_ml": "NBFC-Middle Layer",
+  "nbfc_nofhc": "Non-Operative Financial Holding Company",
+  "nbfc_p2p": "NBFC-Peer to Peer Lending Platform",
+  "nbfc_spd": "Standalone Primary Dealer",
+  "nbfc_tl": "NBFC-TL, NBFCs falling in the Top Layer",
+  "nbfc_ul": "NBFC - Upper Layer",
+  "pb": "Payments Banks",
+  "rcb": "Rural Co-operative Banks",
+  "rrb": "Regional Rural Banks",
+  "sfb": "Small Finance Banks",
+  "ucb": "Urban Co-operative Banks"
+ },
+ "index": {
+  "[\"search\", \"What is the maximum exposure a lender may take on a single borrower?\", \"('cb',)\", \"2026-11-20\", \"any\", \"5\"]": {
+   "candidates": [
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "80. Exposure to an NBFC predominantly engaged in lending against collateral of gold jewellery: A bank\u2019s exposure to a single NBFC which is predominantly engaged in lending against collateral of gold jewellery (hereafter referred to as \u2018gold loans\u2019) i.e. such loans comprising 50 percent or more of its financial assets, shall not exceed 7.5 percent of the bank\u2019s capital funds (Tier I plus Tier II Capital). However, this exposure ceiling may go up by 5 percent, i.e., up to 12.5 percent of a bank\u2019s capital funds if the additional exposure is on account of funds on-lent by such NBFCs to the infrastructure sector.",
+     "dense_rank": 1,
+     "doc_id": "rbi:md:2025:0158:v2",
+     "doc_title": "Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.01639344262295082,
+     "heading_path": "Chapter III - Large Exposures Framework > I.2.1 Exposure Ceilings proposed under LEF",
+     "lexical_rank": null,
+     "ordinal": 80,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0158:v2#p80",
+     "paragraph_number": "80",
+     "rank": 1,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/NotificationPreVersion.aspx?id=13152&Histid=202",
+     "valid_from": "2026-04-01",
+     "valid_to": "2026-07-01"
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "80. Exposure to an NBFC predominantly engaged in lending against collateral of gold jewellery: A bank\u2019s exposure to a single NBFC which is predominantly engaged in lending against collateral of gold jewellery (hereafter referred to as \u2018gold loans\u2019) i.e. such loans comprising 50 percent or more of its financial assets, shall not exceed 7.5 percent of the bank\u2019s capital funds (Tier I plus Tier II Capital). However, this exposure ceiling may go up by 5 percent, i.e., up to 12.5 percent of a bank\u2019s capital funds if the additional exposure is on account of funds on-lent by such NBFCs to the infrastructure sector.",
+     "dense_rank": 2,
+     "doc_id": "rbi:md:2025:0158:v3",
+     "doc_title": "Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.016129032258064516,
+     "heading_path": "Chapter III - Large Exposures Framework > I.2.1 Exposure Ceilings proposed under LEF",
+     "lexical_rank": null,
+     "ordinal": 80,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0158:v3#p80",
+     "paragraph_number": "80",
+     "rank": 2,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/NotificationPreVersion.aspx?id=13152&Histid=277",
+     "valid_from": "2026-07-01",
+     "valid_to": "2026-10-01"
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "80. Exposure to an NBFC predominantly engaged in lending against collateral of gold jewellery: A bank\u2019s exposure to a single NBFC which is predominantly engaged in lending against collateral of gold jewellery (hereafter referred to as \u2018gold loans\u2019) i.e. such loans comprising 50 percent or more of its financial assets, shall not exceed 7.5 percent of the bank\u2019s capital funds (Tier I plus Tier II Capital). However, this exposure ceiling may go up by 5 percent, i.e., up to 12.5 percent of a bank\u2019s capital funds if the additional exposure is on account of funds on-lent by such NBFCs to the infrastructure sector.",
+     "dense_rank": 3,
+     "doc_id": "rbi:md:2025:0158:v4",
+     "doc_title": "Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015873015873015872,
+     "heading_path": "Chapter III - Large Exposures Framework > I.2.1 Exposure Ceilings proposed under LEF",
+     "lexical_rank": null,
+     "ordinal": 80,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0158:v4#p80",
+     "paragraph_number": "80",
+     "rank": 3,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13152",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "15. The sum of all the exposure values of a bank to a single counterparty shall not be higher than 20 percent of the bank\u2019s available eligible capital base at all times.\nIn exceptional cases, the Board of the bank may allow an additional five percent exposure of the bank\u2019s available eligible capital base. The bank shall lay down a Board approved policy in this regard.",
+     "dense_rank": 4,
+     "doc_id": "rbi:md:2025:0158:v2",
+     "doc_title": "Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015625,
+     "heading_path": "Chapter III - Large Exposures Framework > D.1 Single Counterparty",
+     "lexical_rank": null,
+     "ordinal": 15,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0158:v2#p15",
+     "paragraph_number": "15",
+     "rank": 4,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/NotificationPreVersion.aspx?id=13152&Histid=202",
+     "valid_from": "2026-04-01",
+     "valid_to": "2026-07-01"
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "15. The sum of all the exposure values of a bank to a single counterparty shall not be higher than 20 percent of the bank\u2019s available eligible capital base at all times.\nIn exceptional cases, the Board of the bank may allow an additional five percent exposure of the bank\u2019s available eligible capital base. The bank shall lay down a Board approved policy in this regard.",
+     "dense_rank": 5,
+     "doc_id": "rbi:md:2025:0158:v3",
+     "doc_title": "Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015384615384615385,
+     "heading_path": "Chapter III - Large Exposures Framework > D.1 Single Counterparty",
+     "lexical_rank": null,
+     "ordinal": 15,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0158:v3#p15",
+     "paragraph_number": "15",
+     "rank": 5,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/NotificationPreVersion.aspx?id=13152&Histid=277",
+     "valid_from": "2026-07-01",
+     "valid_to": "2026-10-01"
+    }
+   ],
+   "degraded": [],
+   "embedding_calls": 0,
+   "embedding_tokens": 0,
+   "neighbours": []
+  },
+  "[\"search\", \"What is the maximum exposure a lender may take on a single borrower?\", \"('cb',)\", \"2026-11-20\", \"in_force\", \"6\"]": {
+   "candidates": [
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "80. Exposure to an NBFC predominantly engaged in lending against collateral of gold jewellery: A bank\u2019s exposure to a single NBFC which is predominantly engaged in lending against collateral of gold jewellery (hereafter referred to as \u2018gold loans\u2019) i.e. such loans comprising 50 percent or more of its financial assets, shall not exceed 7.5 percent of the bank\u2019s capital funds (Tier I plus Tier II Capital). However, this exposure ceiling may go up by 5 percent, i.e., up to 12.5 percent of a bank\u2019s capital funds if the additional exposure is on account of funds on-lent by such NBFCs to the infrastructure sector.",
+     "dense_rank": 1,
+     "doc_id": "rbi:md:2025:0158:v4",
+     "doc_title": "Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.01639344262295082,
+     "heading_path": "Chapter III - Large Exposures Framework > I.2.1 Exposure Ceilings proposed under LEF",
+     "lexical_rank": null,
+     "ordinal": 80,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0158:v4#p80",
+     "paragraph_number": "80",
+     "rank": 1,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13152",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "15. The sum of all the exposure values of a bank to a single counterparty shall not be higher than 20 percent of the bank\u2019s available eligible capital base at all times.\nIn exceptional cases, the Board of the bank may allow an additional five percent exposure of the bank\u2019s available eligible capital base. The bank shall lay down a Board approved policy in this regard.",
+     "dense_rank": 2,
+     "doc_id": "rbi:md:2025:0158:v4",
+     "doc_title": "Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.016129032258064516,
+     "heading_path": "Chapter III - Large Exposures Framework > D.1 Single Counterparty",
+     "lexical_rank": null,
+     "ordinal": 15,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0158:v4#p15",
+     "paragraph_number": "15",
+     "rank": 2,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13152",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "79. Exposure to an NBFC excluding gold loan company: A bank\u2019s exposure to a single NBFC will be restricted to 20 percent of its eligible capital base. However, based on the risk perception, more stringent exposure limits in respect of certain categories of NBFCs may be considered.",
+     "dense_rank": 3,
+     "doc_id": "rbi:md:2025:0158:v4",
+     "doc_title": "Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015873015873015872,
+     "heading_path": "Chapter III - Large Exposures Framework > I.2.1 Exposure Ceilings proposed under LEF",
+     "lexical_rank": null,
+     "ordinal": 79,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0158:v4#p79",
+     "paragraph_number": "79",
+     "rank": 3,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13152",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "73. At the portfolio cut-off date, the aggregated value of all exposures to a single obligor shall not exceed 1 per cent of the aggregated outstanding exposure value of all exposures in the portfolio.\nProvided that the applicable maximum concentration threshold could be increased to 2 per cent if the originator retains subordinated tranche(s) that form credit enhancements that are loss absorbing, and which cover at least the first 10 per cent of losses. These tranche(s) retained by the originator shall not be eligible for the STC capital treatment.",
+     "dense_rank": 4,
+     "doc_id": "rbi:md:2025:0160:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Securitisation Transactions) Directions, 2025",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015625,
+     "heading_path": "Chapter III - Simple, transparent and comparable (STC) securitisations > A.15 Granularity of the pool",
+     "lexical_rank": null,
+     "ordinal": 73,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0160:v1#p73",
+     "paragraph_number": "73",
+     "rank": 4,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13150",
+     "valid_from": "2025-11-28",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "93. The bank should have an internal sub-limit on its aggregate exposures to all NBFCs, having gold loans to the extent of 50 percent or more of their total financial assets, taken together. This sub-limit should be within the internal limit, where fixed by the bank for its aggregate exposure to all NBFCs put together as mentioned in paragraph 92.",
+     "dense_rank": 5,
+     "doc_id": "rbi:md:2025:0158:v4",
+     "doc_title": "Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015384615384615385,
+     "heading_path": "Chapter V - Exposure Norms > A.1.2 Exposure to NBFC Sector",
+     "lexical_rank": null,
+     "ordinal": 93,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0158:v4#p93",
+     "paragraph_number": "93",
+     "rank": 5,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13152",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "94. [*****]",
+     "dense_rank": 6,
+     "doc_id": "rbi:md:2025:0158:v4",
+     "doc_title": "Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015151515151515152,
+     "heading_path": "Chapter V - Exposure Norms > A.1.3 Exposure to Real Estate",
+     "lexical_rank": null,
+     "ordinal": 94,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0158:v4#p94",
+     "paragraph_number": "94",
+     "rank": 6,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13152",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    }
+   ],
+   "degraded": [],
+   "embedding_calls": 1,
+   "embedding_tokens": 14,
+   "neighbours": [
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "14. A bank shall report its large exposure to the RBI, Department of Supervision, Central Office, (DOS, CO), as per the reporting template given in Annex \u2013 I. The reporting, inter-alia, shall include the following:\n(1) all exposures, measured as specified in paragraphs 32 to 85 of this Chapter with values equal to or above 10 percent of the bank\u2019s eligible capital (i.e., meeting the definition of a large exposure as per paragraph 4(6));\n(2) all other exposures, measured as specified in paragraphs 32 to 85 of this Chapter without the effect of the CRM, with values equal to or above 10 percent of the bank\u2019s eligible capital base;\n(3) all the exempted exposures (except intra-day inter-bank exposures) with values equal to or above 10 percent of the bank\u2019s eligible capital base; and\n(4) 20 largest exposures included in the scope of application, irrespective of the values of these exposures relative to the bank\u2019s eligible capital base.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0158:v4",
+     "doc_title": "Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0158:v4#p15",
+     "fusion_score": null,
+     "heading_path": "Chapter III - Large Exposures Framework > C. Reporting",
+     "lexical_rank": null,
+     "ordinal": 14,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0158:v4#p14",
+     "paragraph_number": "14",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13152",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "16. The sum of all the exposure values of a bank to a group of connected counterparties (as defined in paragraphs 19 to 31) shall not be higher than 25 percent of the bank\u2019s available eligible capital base at all times.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0158:v4",
+     "doc_title": "Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0158:v4#p15",
+     "fusion_score": null,
+     "heading_path": "Chapter III - Large Exposures Framework > D.2 Group of Connected Counterparties:",
+     "lexical_rank": null,
+     "ordinal": 16,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0158:v4#p16",
+     "paragraph_number": "16",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13152",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "78. Other types of exposures that are not directly related to clearing services provided by the CCP, such as equity stake funding facilities, credit facilities, guarantees etc., shall be measured according to the rules set out in these Directions, as for any other type of counterparty. These exposures shall be added together and be subjected to the LE limit of 25 percent of the eligible capital base\nProvided that, if equity stakes in the CCP are deducted from the capital on which the large exposure limit is based, these shall not be included as exposure to the CCP.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0158:v4",
+     "doc_title": "Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0158:v4#p79",
+     "fusion_score": null,
+     "heading_path": "Chapter III - Large Exposures Framework > I.1.2 Other exposures",
+     "lexical_rank": null,
+     "ordinal": 78,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0158:v4#p78",
+     "paragraph_number": "78",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13152",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "81. Exposure to connected NBFCs: A bank\u2019s exposure to a group of connected NBFCs or group of connected counterparties having NBFCs in the group will be restricted to 25 percent of its Tier I Capital.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0158:v4",
+     "doc_title": "Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0158:v4#p80",
+     "fusion_score": null,
+     "heading_path": "Chapter III - Large Exposures Framework > I.2.1 Exposure Ceilings proposed under LEF",
+     "lexical_rank": null,
+     "ordinal": 81,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0158:v4#p81",
+     "paragraph_number": "81",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13152",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "92. A bank may also consider fixing internal limits for its aggregate exposure to all NBFCs put together.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0158:v4",
+     "doc_title": "Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0158:v4#p93",
+     "fusion_score": null,
+     "heading_path": "Chapter V - Exposure Norms > A.1.2 Exposure to NBFC Sector",
+     "lexical_rank": null,
+     "ordinal": 92,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0158:v4#p92",
+     "paragraph_number": "92",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13152",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "94A. A bank shall fix internal limits for its aggregate exposure to real estate sector, as also sub-limits for various sub-categories of real estate exposures in accordance with its business model.\nProvided that the sub-limit for a bank's aggregate exposure towards real estate investment trusts (REITs) shall be subject to a prudential ceiling of 10 per cent of the bank's eligible capital base.\n]",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0158:v4",
+     "doc_title": "Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0158:v4#p94",
+     "fusion_score": null,
+     "heading_path": "Chapter V - Exposure Norms > A.1.3 Exposure to Real Estate",
+     "lexical_rank": null,
+     "ordinal": 95,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0158:v4#p94A",
+     "paragraph_number": "94A",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13152",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "72. At the portfolio cut-off date (Date post which no credit claim or receivable transfer shall happen to SPE except against breach of representation and warranties as permitted under these directions) the underlying exposures have to meet the conditions under the Standardised Approach for credit risk, and after taking into account any eligible credit risk mitigation, for being assigned a risk weight equal to or smaller than:\n(1) 40 per cent on a value-weighted average exposure basis for the portfolio where the exposures are loans secured by residential mortgages or fully guaranteed residential loans;\n(2) 50 per cent on an individual exposure basis where the exposure is a loan secured by a commercial mortgage;\n(3) 75 per cent on an individual exposure basis where the exposure is a retail exposure; or\n(4) 100 per cent on an individual exposure basis for any other exposure.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0160:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Securitisation Transactions) Directions, 2025",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0160:v1#p73",
+     "fusion_score": null,
+     "heading_path": "Chapter III - Simple, transparent and comparable (STC) securitisations > A.14 Credit risk of underlying exposures",
+     "lexical_rank": null,
+     "ordinal": 72,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0160:v1#p72",
+     "paragraph_number": "72",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13150",
+     "valid_from": "2025-11-28",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "74. The originator shall disclose to investors all necessary information at the transaction level to allow investors to determine whether the securitisation is STC compliant. Based on the information provided by the originator, the investor must make its own assessment of the securitisation\u2018s STC compliance status before applying the alternative capital treatment.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0160:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Securitisation Transactions) Directions, 2025",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0160:v1#p73",
+     "fusion_score": null,
+     "heading_path": "Chapter III - Simple, transparent and comparable (STC) securitisations > B. Disclosure and Prudential Oversight for STC Securitisations",
+     "lexical_rank": null,
+     "ordinal": 74,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0160:v1#p74",
+     "paragraph_number": "74",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13150",
+     "valid_from": "2025-11-28",
+     "valid_to": null
+    }
+   ]
+  }
+ },
+ "index_version": "idx_rbi_20261123_c23c1e8",
+ "models": {
+  "4df96c00b4b12b5bb994eed5722aa4589b5c9680661c7f8b4618479115421e67": {
+   "input_tokens": 1740,
+   "latency_ms": 1379.6,
+   "model": "claude-haiku-5-5",
+   "output_tokens": 92,
+   "parsed": {
+    "as_of": null,
+    "compare_as_of": null,
+    "computation_requested": false,
+    "entity_type": null,
+    "in_scope": true,
+    "query_kind": "applicability",
+    "topic_terms": [
+     "single borrower exposure limit",
+     "concentration norms",
+     "lender exposure cap"
+    ]
+   },
+   "schema": "ParseOutput",
+   "user": "What is the maximum exposure a lender may take on a single borrower?"
+  },
+  "b4f6c9b8453362e6e9292659edf6efc1e65098b9e49b91bc82e9acab1c4ac5e8": {
+   "input_tokens": 4147,
+   "latency_ms": 5900.1,
+   "model": "claude-opus-5-5",
+   "output_tokens": 706,
+   "parsed": {
+    "claims": [
+     {
+      "candidate_indices": [
+       1
+      ],
+      "quotes": [
+       "The sum of all the exposure values of a bank to a single counterparty shall not be higher than 20 percent of the bank\u2019s available eligible capital base at all times."
+      ],
+      "text": "A bank's total exposure to a single counterparty must not exceed 20 percent of its available eligible capital base at all times."
+     },
+     {
+      "candidate_indices": [
+       1
+      ],
+      "quotes": [
+       "In exceptional cases, the Board of the bank may allow an additional five percent exposure of the bank\u2019s available eligible capital base.",
+       "The bank shall lay down a Board approved policy in this regard."
+      ],
+      "text": "In exceptional cases, the bank's Board may allow an additional five percent exposure to a single counterparty, under a Board-approved policy."
+     },
+     {
+      "candidate_indices": [
+       7
+      ],
+      "quotes": [
+       "shall not be higher than 25 percent of the bank\u2019s available eligible capital base at all times"
+      ],
+      "text": "Exposure to a group of connected counterparties is capped at 25 percent of the bank's available eligible capital base."
+     },
+     {
+      "candidate_indices": [
+       2
+      ],
+      "quotes": [
+       "A bank\u2019s exposure to a single NBFC will be restricted to 20 percent of its eligible capital base.",
+       "more stringent exposure limits in respect of certain categories of NBFCs may be considered"
+      ],
+      "text": "A bank's exposure to a single NBFC, other than a gold loan company, is restricted to 20 percent of its eligible capital base. More stringent limits may apply to certain categories of NBFCs."
+     },
+     {
+      "candidate_indices": [
+       0
+      ],
+      "quotes": [
+       "shall not exceed 7.5 percent of the bank\u2019s capital funds (Tier I plus Tier II Capital)",
+       "up to 12.5 percent of a bank\u2019s capital funds if the additional exposure is on account of funds on-lent by such NBFCs to the infrastructure sector"
+      ],
+      "text": "Exposure to a single NBFC predominantly engaged in gold loans must not exceed 7.5 percent of the bank's capital funds. It may go up to 12.5 percent if the additional exposure is on account of funds on-lent to the infrastructure sector."
+     }
+    ],
+    "insufficient": false,
+    "missing": null
+   },
+   "schema": "ComposerOutput",
+   "user": "Question: What is the maximum exposure a lender may take on a single borrower?\nEntity type: cb\nIn force on: 2026-11-20\n\n[0] Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025, paragraph 80 (Chapter III - Large Exposures Framework > I.2.1 Exposure Ceilings proposed under LEF)\n80. Exposure to an NBFC predominantly engaged in lending against collateral of gold jewellery: A bank\u2019s exposure to a single NBFC which is predominantly engaged in lending against collateral of gold jewellery (hereafter referred to as \u2018gold loans\u2019) i.e. such loans comprising 50 percent or more of its financial assets, shall not exceed 7.5 percent of the bank\u2019s capital funds (Tier I plus Tier II Capital). However, this exposure ceiling may go up by 5 percent, i.e., up to 12.5 percent of a bank\u2019s capital funds if the additional exposure is on account of funds on-lent by such NBFCs to the infrastructure sector.\n\n[1] Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025, paragraph 15 (Chapter III - Large Exposures Framework > D.1 Single Counterparty)\n15. The sum of all the exposure values of a bank to a single counterparty shall not be higher than 20 percent of the bank\u2019s available eligible capital base at all times.\nIn exceptional cases, the Board of the bank may allow an additional five percent exposure of the bank\u2019s available eligible capital base. The bank shall lay down a Board approved policy in this regard.\n\n[2] Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025, paragraph 79 (Chapter III - Large Exposures Framework > I.2.1 Exposure Ceilings proposed under LEF)\n79. Exposure to an NBFC excluding gold loan company: A bank\u2019s exposure to a single NBFC will be restricted to 20 percent of its eligible capital base. However, based on the risk perception, more stringent exposure limits in respect of certain categories of NBFCs may be considered.\n\n[3] Reserve Bank of India (Commercial Banks \u2013 Securitisation Transactions) Directions, 2025, paragraph 73 (Chapter III - Simple, transparent and comparable (STC) securitisations > A.15 Granularity of the pool)\n73. At the portfolio cut-off date, the aggregated value of all exposures to a single obligor shall not exceed 1 per cent of the aggregated outstanding exposure value of all exposures in the portfolio.\nProvided that the applicable maximum concentration threshold could be increased to 2 per cent if the originator retains subordinated tranche(s) that form credit enhancements that are loss absorbing, and which cover at least the first 10 per cent of losses. These tranche(s) retained by the originator shall not be eligible for the STC capital treatment.\n\n[4] Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025, paragraph 93 (Chapter V - Exposure Norms > A.1.2 Exposure to NBFC Sector)\n93. The bank should have an internal sub-limit on its aggregate exposures to all NBFCs, having gold loans to the extent of 50 percent or more of their total financial assets, taken together. This sub-limit should be within the internal limit, where fixed by the bank for its aggregate exposure to all NBFCs put together as mentioned in paragraph 92.\n\n[5] Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025, paragraph 94 (Chapter V - Exposure Norms > A.1.3 Exposure to Real Estate)\n94. [*****]\n\n[6] Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025, paragraph 14 (Chapter III - Large Exposures Framework > C. Reporting)\n14. A bank shall report its large exposure to the RBI, Department of Supervision, Central Office, (DOS, CO), as per the reporting template given in Annex \u2013 I. The reporting, inter-alia, shall include the following:\n(1) all exposures, measured as specified in paragraphs 32 to 85 of this Chapter with values equal to or above 10 percent of the bank\u2019s eligible capital (i.e., meeting the definition of a large exposure as per paragraph 4(6));\n(2) all other exposures, measured as specified in paragraphs 32 to 85 of this Chapter without the effect of the CRM, with values equal to or above 10 percent of the bank\u2019s eligible capital base;\n(3) all the exempted exposures (except intra-day inter-bank exposures) with values equal to or above 10 percent of the bank\u2019s eligible capital base; and\n(4) 20 largest exposures included in the scope of application, irrespective of the values of these exposures relative to the bank\u2019s eligible capital base.\n\n[7] Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025, paragraph 16 (Chapter III - Large Exposures Framework > D.2 Group of Connected Counterparties:)\n16. The sum of all the exposure values of a bank to a group of connected counterparties (as defined in paragraphs 19 to 31) shall not be higher than 25 percent of the bank\u2019s available eligible capital base at all times.\n\n[8] Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025, paragraph 78 (Chapter III - Large Exposures Framework > I.1.2 Other exposures)\n78. Other types of exposures that are not directly related to clearing services provided by the CCP, such as equity stake funding facilities, credit facilities, guarantees etc., shall be measured according to the rules set out in these Directions, as for any other type of counterparty. These exposures shall be added together and be subjected to the LE limit of 25 percent of the eligible capital base\nProvided that, if equity stakes in the CCP are deducted from the capital on which the large exposure limit is based, these shall not be included as exposure to the CCP.\n\n[9] Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025, paragraph 81 (Chapter III - Large Exposures Framework > I.2.1 Exposure Ceilings proposed under LEF)\n81. Exposure to connected NBFCs: A bank\u2019s exposure to a group of connected NBFCs or group of connected counterparties having NBFCs in the group will be restricted to 25 percent of its Tier I Capital.\n\n[10] Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025, paragraph 92 (Chapter V - Exposure Norms > A.1.2 Exposure to NBFC Sector)\n92. A bank may also consider fixing internal limits for its aggregate exposure to all NBFCs put together.\n\n[11] Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025, paragraph 94A (Chapter V - Exposure Norms > A.1.3 Exposure to Real Estate)\n94A. A bank shall fix internal limits for its aggregate exposure to real estate sector, as also sub-limits for various sub-categories of real estate exposures in accordance with its business model.\nProvided that the sub-limit for a bank's aggregate exposure towards real estate investment trusts (REITs) shall be subject to a prudential ceiling of 10 per cent of the bank's eligible capital base.\n]\n\n[12] Reserve Bank of India (Commercial Banks \u2013 Securitisation Transactions) Directions, 2025, paragraph 72 (Chapter III - Simple, transparent and comparable (STC) securitisations > A.14 Credit risk of underlying exposures)\n72. At the portfolio cut-off date (Date post which no credit claim or receivable transfer shall happen to SPE except against breach of representation and warranties as permitted under these directions) the underlying exposures have to meet the conditions under the Standardised Approach for credit risk, and after taking into account any eligible credit risk mitigation, for being assigned a risk weight equal to or smaller than:\n(1) 40 per cent on a value-weighted average exposure basis for the portfolio where the exposures are loans secured by residential mortgages or fully guaranteed residential loans;\n(2) 50 per cent on an individual exposure basis where the exposure is a loan secured by a commercial mortgage;\n(3) 75 per cent on an individual exposure basis where the exposure is a retail exposure; or\n(4) 100 per cent on an individual exposure basis for any other exposure.\n\n[13] Reserve Bank of India (Commercial Banks \u2013 Securitisation Transactions) Directions, 2025, paragraph 74 (Chapter III - Simple, transparent and comparable (STC) securitisations > B. Disclosure and Prudential Oversight for STC Securitisations)\n74. The originator shall disclose to investors all necessary information at the transaction level to allow investors to determine whether the securitisation is STC compliant. Based on the information provided by the originator, the investor must make its own assessment of the securitisation\u2018s STC compliance status before applying the alternative capital treatment."
+  }
+ },
+ "recorded": {
+  "caveats": [],
+  "node_log": [
+   {
+    "calls": 1,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.00019800000000000002,
+    "input_tokens": 1740,
+    "latency_ms": 1379.68,
+    "model": "claude-haiku-5-5",
+    "node": "parse",
+    "output_tokens": 92
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 1,
+    "embedding_tokens": 14,
+    "eur": 1.6380000000000002e-06,
+    "input_tokens": 0,
+    "latency_ms": 332.24,
+    "model": null,
+    "node": "retrieve",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.05,
+    "model": null,
+    "node": "expand",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.04,
+    "model": null,
+    "node": "gate",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.0,
+    "model": null,
+    "node": "authority",
+    "output_tokens": 0
+   },
+   {
+    "calls": 1,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0276372,
+    "input_tokens": 4147,
+    "latency_ms": 5900.19,
+    "model": "claude-opus-5-5",
+    "node": "compose",
+    "output_tokens": 706
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 4.87,
+    "model": null,
+    "node": "verify",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.0,
+    "model": null,
+    "node": "judge",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 3.14,
+    "model": null,
+    "node": "finalize",
+    "output_tokens": 0
+   }
+  ],
+  "outcome": "answer",
+  "path": "full",
+  "refusal_reason": null,
+  "response": {
+   "as_of": "2026-11-20",
+   "cost_eur": 0.027837,
+   "degraded": [],
+   "dropped": [
+    {
+     "detail": "in force 2026-04-01 to 2026-07-01, asked for 2026-11-20",
+     "para_id": "rbi:md:2025:0158:v2#p80",
+     "reason": "superseded"
+    },
+    {
+     "detail": "in force 2026-07-01 to 2026-10-01, asked for 2026-11-20",
+     "para_id": "rbi:md:2025:0158:v3#p80",
+     "reason": "superseded"
+    },
+    {
+     "detail": "in force 2026-04-01 to 2026-07-01, asked for 2026-11-20",
+     "para_id": "rbi:md:2025:0158:v2#p15",
+     "reason": "superseded"
+    },
+    {
+     "detail": "in force 2026-07-01 to 2026-10-01, asked for 2026-11-20",
+     "para_id": "rbi:md:2025:0158:v3#p15",
+     "reason": "superseded"
+    }
+   ],
+   "entity_type": "cb",
+   "index_version": "idx_rbi_20261123_c23c1e8",
+   "latency_ms": 7620,
+   "notice": null,
+   "redactions": [],
+   "result": {
+    "caveats": [],
+    "claims": [
+     {
+      "citations": [
+       {
+        "authority_rank": 30,
+        "binding": true,
+        "doc_id": "rbi:md:2025:0158:v4",
+        "doc_title": "Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025",
+        "effective_from": "2026-10-01",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "para_id": "rbi:md:2025:0158:v4#p15",
+        "paragraph_number": "15",
+        "quote_end": 169,
+        "quote_start": 4,
+        "source_page": null,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13152"
+       }
+      ],
+      "text": "A bank's total exposure to a single counterparty must not exceed 20 percent of its available eligible capital base at all times."
+     },
+     {
+      "citations": [
+       {
+        "authority_rank": 30,
+        "binding": true,
+        "doc_id": "rbi:md:2025:0158:v4",
+        "doc_title": "Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025",
+        "effective_from": "2026-10-01",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "para_id": "rbi:md:2025:0158:v4#p15",
+        "paragraph_number": "15",
+        "quote_end": 306,
+        "quote_start": 170,
+        "source_page": null,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13152"
+       }
+      ],
+      "text": "In exceptional cases, the bank's Board may allow an additional five percent exposure to a single counterparty, under a Board-approved policy."
+     },
+     {
+      "citations": [
+       {
+        "authority_rank": 30,
+        "binding": true,
+        "doc_id": "rbi:md:2025:0158:v4",
+        "doc_title": "Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025",
+        "effective_from": "2026-10-01",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "para_id": "rbi:md:2025:0158:v4#p16",
+        "paragraph_number": "16",
+        "quote_end": 218,
+        "quote_start": 124,
+        "source_page": null,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13152"
+       }
+      ],
+      "text": "Exposure to a group of connected counterparties is capped at 25 percent of the bank's available eligible capital base."
+     },
+     {
+      "citations": [
+       {
+        "authority_rank": 30,
+        "binding": true,
+        "doc_id": "rbi:md:2025:0158:v4",
+        "doc_title": "Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025",
+        "effective_from": "2026-10-01",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "para_id": "rbi:md:2025:0158:v4#p79",
+        "paragraph_number": "79",
+        "quote_end": 150,
+        "quote_start": 53,
+        "source_page": null,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13152"
+       }
+      ],
+      "text": "A bank's exposure to a single NBFC, other than a gold loan company, is restricted to 20 percent of its eligible capital base. More stringent limits may apply to certain categories of NBFCs."
+     },
+     {
+      "citations": [
+       {
+        "authority_rank": 30,
+        "binding": true,
+        "doc_id": "rbi:md:2025:0158:v4",
+        "doc_title": "Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025",
+        "effective_from": "2026-10-01",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "para_id": "rbi:md:2025:0158:v4#p80",
+        "paragraph_number": "80",
+        "quote_end": 406,
+        "quote_start": 320,
+        "source_page": null,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13152"
+       }
+      ],
+      "text": "Exposure to a single NBFC predominantly engaged in gold loans must not exceed 7.5 percent of the bank's capital funds. It may go up to 12.5 percent if the additional exposure is on account of funds on-lent to the infrastructure sector."
+     }
+    ],
+    "outcome": "answer"
+   },
+   "retrieved": [
+    {
+     "dense_rank": 1,
+     "expanded": false,
+     "fusion_score": 0.01639344262295082,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0158:v4#p80"
+    },
+    {
+     "dense_rank": 2,
+     "expanded": false,
+     "fusion_score": 0.016129032258064516,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0158:v4#p15"
+    },
+    {
+     "dense_rank": 3,
+     "expanded": false,
+     "fusion_score": 0.015873015873015872,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0158:v4#p79"
+    },
+    {
+     "dense_rank": 4,
+     "expanded": false,
+     "fusion_score": 0.015625,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0160:v1#p73"
+    },
+    {
+     "dense_rank": 5,
+     "expanded": false,
+     "fusion_score": 0.015384615384615385,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0158:v4#p93"
+    },
+    {
+     "dense_rank": 6,
+     "expanded": false,
+     "fusion_score": 0.015151515151515152,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0158:v4#p94"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0158:v4#p14"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0158:v4#p16"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0158:v4#p78"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0158:v4#p81"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0158:v4#p92"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0158:v4#p94A"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0160:v1#p72"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0160:v1#p74"
+    },
+    {
+     "dense_rank": 1,
+     "expanded": false,
+     "fusion_score": 0.01639344262295082,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0158:v2#p80"
+    },
+    {
+     "dense_rank": 2,
+     "expanded": false,
+     "fusion_score": 0.016129032258064516,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0158:v3#p80"
+    },
+    {
+     "dense_rank": 4,
+     "expanded": false,
+     "fusion_score": 0.015625,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0158:v2#p15"
+    },
+    {
+     "dense_rank": 5,
+     "expanded": false,
+     "fusion_score": 0.015384615384615385,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0158:v3#p15"
+    }
+   ]
+  }
+ },
+ "spec": {
+  "as_of": "2026-11-20",
+  "entity": "cb",
+  "expect": "an answer: the entity_required question with its entity given",
+  "name": "adv_twin_entity",
+  "question": "What is the maximum exposure a lender may take on a single borrower?"
+ },
+ "today": "2026-11-22"
+}

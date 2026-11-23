@@ -1,0 +1,952 @@
+{
+ "embedding_model": "openai/text-embedding-3-large",
+ "entities": {
+  "aifi": "All India Financial Institutions",
+  "arc": "Asset Reconstruction Companies",
+  "cb": "Commercial Banks",
+  "cic": "Credit Information Companies",
+  "lab": "Local Area Banks",
+  "nbfc": "Non-Banking Financial Companies",
+  "nbfc_aa": "NBFC-Account Aggregator",
+  "nbfc_bl": "NBFC-Base Layer",
+  "nbfc_cic": "NBFC-Core Investment Company",
+  "nbfc_d": "Deposit taking NBFC",
+  "nbfc_factor": "NBFC-Factor",
+  "nbfc_hfc": "Housing Finance Company",
+  "nbfc_icc": "NBFC-Investment and Credit Company",
+  "nbfc_idf": "Infrastructure Debt Fund-Non-Banking Financial Company",
+  "nbfc_ifc": "Non-Banking Financial Company-Infrastructure Finance Company",
+  "nbfc_mfi": "Non-Banking Financial Company \u2013 Microfinance Institution",
+  "nbfc_mgc": "Mortgage Guarantee Company",
+  "nbfc_ml": "NBFC-Middle Layer",
+  "nbfc_nofhc": "Non-Operative Financial Holding Company",
+  "nbfc_p2p": "NBFC-Peer to Peer Lending Platform",
+  "nbfc_spd": "Standalone Primary Dealer",
+  "nbfc_tl": "NBFC-TL, NBFCs falling in the Top Layer",
+  "nbfc_ul": "NBFC - Upper Layer",
+  "pb": "Payments Banks",
+  "rcb": "Rural Co-operative Banks",
+  "rrb": "Regional Rural Banks",
+  "sfb": "Small Finance Banks",
+  "ucb": "Urban Co-operative Banks"
+ },
+ "index": {
+  "[\"search\", \"Should we stop paying dividends if our CET1 ratio falls below 8 per cent?\", \"('cb',)\", \"2026-11-20\", \"any\", \"5\"]": {
+   "candidates": [
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "8. A bank incorporated in India which satisfies the eligibility criteria laid down in paragraph 7 above, may declare and pay dividend up to the limits prescribed under Table 1 below, but in aggregate not exceeding 75% of the PAT for the period for which the dividend is being proposed.\nTable 1\nBucket | CET 1 ratio as at the end of previous FY | Dividend allowed as a % of adjusted PAT for the period\nB1 | Up to (8 + z)% | 0\nB2 | Above (8 + z)% and up to (10 + z)% | 20\nB3 | Above (10 + z)% and up to (12 + z)% | 30\nB4 | Above (12 + z)% and up to (14 + z)% | 40\nB5 | Above (14 + z)% and up to (16 + z)% | 50\nB6 | Above (16 + z)% and up to (17 + z)% | 60\nB7 | Above (17 + z)% and up to (18 + z)% | 70\nB8 | Above (18 + z)% and up to (19 + z)% | 80\nB9 | Above (19 + z)% and up to (20 + z)% | 90\nB10 | Above (20 + z)% | 100\nNote: \u2018z\u2019 in Table 1 refers to the respective applicable D-SIB buffer. \u2018z\u2019 shall be zero for a bank not classified as D-SIB.",
+     "dense_rank": 1,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.01639344262295082,
+     "heading_path": "Chapter II - Declaration of dividend and remittance of profits > C. Quantum of dividend payable by banks incorporated in India",
+     "lexical_rank": null,
+     "ordinal": 8,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0387:v1#p8",
+     "paragraph_number": "8",
+     "rank": 1,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "14. If a bank does not meet the eligibility criteria as per paragraph 7 above, no special dispensation will be given for declaration of dividend or for remittance of profits for that period.",
+     "dense_rank": 2,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.016129032258064516,
+     "heading_path": "Chapter II - Declaration of dividend and remittance of profits > G. Restriction on payment of dividend and remittance of profits",
+     "lexical_rank": null,
+     "ordinal": 14,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0387:v1#p14",
+     "paragraph_number": "14",
+     "rank": 2,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "251. The Framework\n(1) A bank is required to maintain a CCB of 2.5 per cent which shall comprise of CET1 capital, above the regulatory minimum capital requirement of 9 per cent.\nExplanation \u2013 CET1 shall first be used to meet the minimum capital requirements (including the 7 per cent Tier 1 and 9 per cent total capital requirements, if necessary), before the remainder can contribute to the CCB requirement.\n(2) Capital distribution constraints shall be imposed on a bank when capital level falls within this range. However, a bank shall be able to conduct business as normal when its capital levels fall into the conservation range as it experiences losses. Therefore, the constraints imposed are related to the distributions only and are not related to the operations of banks.\n(3) Elements subject to the restrictions on distributions: Dividends and share buybacks, discretionary payments on other Tier 1 capital instruments and discretionary bonus payments to staff shall constitute items considered to be distributions. Payments which do not result in depletion of CET1 capital, (for example certain scrip dividends) are not considered distributions. Earnings are defined as distributable profits before the deduction of elements subject to the restriction on distributions mentioned above. Earnings are calculated after the tax which would have been reported had none of the distributable items been paid. As such, any tax impact of making such distributions is reversed out. If a bank does not have positive earnings and has a CET1 ratio less than 8 per cent, it shall not make positive net distributions.\nNote - A scrip dividend is a scrip issue made in lieu of a cash dividend. The term \u2018scrip dividends\u2019 also includes bonus shares.\n(4) The distribution constraints imposed on a bank when its capital levels fall into the range increase as the bank\u2019s capital levels approach the minimum requirements. The Table 46 below shows the minimum capital conservation ratios a bank shall meet at various levels of the CET1 capital ratios:\nTable 46: Minimum capital conservation standards for individual bank\nCET1\nratio after including the current periods retained earnings | Minimum capital conservation ratios\n(expressed as a percentage of earnings)\n5.5% - 6.125% | 100%\n>6.125% - 6.75% | 80%\n>6.75% - 7.375% | 60%\n>7.375% - 8.0% | 40%\n>8.0% | 0%\nFor example, a bank with a CET1 capital ratio in the range of 6.125 per cent to 6.75 per cent shall be required to conserve 80 per cent of its earnings in the subsequent financial year (i.e., payout no more than 20 per cent in terms of dividends, share buybacks and discretionary bonus payments is allowed).\n(5) The CET1 ratio includes amounts used to meet the minimum CET1 capital requirement of 5.5 per cent but excludes any additional CET1 needed to meet the 7 per cent Tier 1 and 9 per cent total capital requirements. For example, a bank maintains CET1 capital of 9 per cent and has no AT1 or Tier 2 capital. Therefore, the bank shall meet all minimum capital requirements, but shall have a zero-conservation buffer and therefore, the bank shall be subject to 100 per cent constraint on distributions of capital by way of dividends, share-buybacks and discretionary bonuses.\n(6) The capital conservation buffer can be drawn down only when a bank faces a systemic or idiosyncratic stress.\n(7) A bank shall not choose in normal times to operate in the buffer range simply to compete with other banks and win market share. This aspect shall be specifically looked into by the Reserve Bank during the SREP. If, at any time, a bank is found to have allowed its CCB to fall in normal times, particularly by increasing its risk weighted assets without a commensurate increase in the CET1 Ratio (although adhering to the restrictions on distributions), this shall be viewed seriously. Such a bank shall be required to bring the buffer to the desired level within a time limit prescribed by the Reserve Bank.\n(8) A bank which draws down its CCB during a stressed period shall also have a definite plan to replenish the buffer as part of ICAAP and strive to bring the buffer to the desired level within a time limit agreed to with the Reserve Bank during the SREP.\n(9) A bank may also choose to raise new capital from the market as an alternative to conserving internally generated capital. However, if a bank decides to make payments in excess of the constraints imposed as explained above, the bank, with the prior approval of the Reserve Bank, shall have to use the option of raising capital from the market equal to the amount above the constraint which it wishes to distribute.",
+     "dense_rank": 3,
+     "doc_id": "rbi:md:2025:0151:v3",
+     "doc_title": "Reserve Bank of India (Commercial Banks - Prudential Norms on Capital Adequacy) Directions, 2025",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015873015873015872,
+     "heading_path": "A Capital Conservation Buffer (CCB) Framework",
+     "lexical_rank": null,
+     "ordinal": 251,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0151:v3#p251",
+     "paragraph_number": "251",
+     "rank": 3,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/NotificationPreVersion.aspx?id=13159&Histid=11",
+     "valid_from": "2026-01-09",
+     "valid_to": "2026-03-10"
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "251. The Framework\n(1) A bank is required to maintain a CCB of 2.5 per cent which shall comprise of CET1 capital, above the regulatory minimum capital requirement of 9 per cent.\nExplanation \u2013 CET1 shall first be used to meet the minimum capital requirements (including the 7 per cent Tier 1 and 9 per cent total capital requirements, if necessary), before the remainder can contribute to the CCB requirement.\n(2) Capital distribution constraints shall be imposed on a bank when capital level falls within this range. However, a bank shall be able to conduct business as normal when its capital levels fall into the conservation range as it experiences losses. Therefore, the constraints imposed are related to the distributions only and are not related to the operations of banks.\n(3) Elements subject to the restrictions on distributions: Dividends and share buybacks, discretionary payments on other Tier 1 capital instruments and discretionary bonus payments to staff shall constitute items considered to be distributions. Payments which do not result in depletion of CET1 capital, (for example certain scrip dividends) are not considered distributions. Earnings are defined as distributable profits before the deduction of elements subject to the restriction on distributions mentioned above. Earnings are calculated after the tax which would have been reported had none of the distributable items been paid. As such, any tax impact of making such distributions is reversed out. If a bank does not have positive earnings and has a CET1 ratio less than 8 per cent, it shall not make positive net distributions.\nNote - A scrip dividend is a scrip issue made in lieu of a cash dividend. The term \u2018scrip dividends\u2019 also includes bonus shares.\n(4) The distribution constraints imposed on a bank when its capital levels fall into the range increase as the bank\u2019s capital levels approach the minimum requirements. The Table 46 below shows the minimum capital conservation ratios a bank shall meet at various levels of the CET1 capital ratios:\nTable 46: Minimum capital conservation standards for individual bank\nCET1\nratio after including the current periods retained earnings | Minimum capital conservation ratios\n(expressed as a percentage of earnings)\n5.5% - 6.125% | 100%\n>6.125% - 6.75% | 80%\n>6.75% - 7.375% | 60%\n>7.375% - 8.0% | 40%\n>8.0% | 0%\nFor example, a bank with a CET1 capital ratio in the range of 6.125 per cent to 6.75 per cent shall be required to conserve 80 per cent of its earnings in the subsequent financial year (i.e., payout no more than 20 per cent in terms of dividends, share buybacks and discretionary bonus payments is allowed).\n(5) The CET1 ratio includes amounts used to meet the minimum CET1 capital requirement of 5.5 per cent but excludes any additional CET1 needed to meet the 7 per cent Tier 1 and 9 per cent total capital requirements. For example, a bank maintains CET1 capital of 9 per cent and has no AT1 or Tier 2 capital. Therefore, the bank shall meet all minimum capital requirements, but shall have a zero-conservation buffer and therefore, the bank shall be subject to 100 per cent constraint on distributions of capital by way of dividends, share-buybacks and discretionary bonuses.\n(6) The capital conservation buffer can be drawn down only when a bank faces a systemic or idiosyncratic stress.\n(7) A bank shall not choose in normal times to operate in the buffer range simply to compete with other banks and win market share. This aspect shall be specifically looked into by the Reserve Bank during the SREP. If, at any time, a bank is found to have allowed its CCB to fall in normal times, particularly by increasing its risk weighted assets without a commensurate increase in the CET1 Ratio (although adhering to the restrictions on distributions), this shall be viewed seriously. Such a bank shall be required to bring the buffer to the desired level within a time limit prescribed by the Reserve Bank.\n(8) A bank which draws down its CCB during a stressed period shall also have a definite plan to replenish the buffer as part of ICAAP and strive to bring the buffer to the desired level within a time limit agreed to with the Reserve Bank during the SREP.\n(9) A bank may also choose to raise new capital from the market as an alternative to conserving internally generated capital. However, if a bank decides to make payments in excess of the constraints imposed as explained above, the bank, with the prior approval of the Reserve Bank, shall have to use the option of raising capital from the market equal to the amount above the constraint which it wishes to distribute.",
+     "dense_rank": 4,
+     "doc_id": "rbi:md:2025:0151:v4",
+     "doc_title": "Reserve Bank of India (Commercial Banks - Prudential Norms on Capital Adequacy) Directions, 2025",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015625,
+     "heading_path": "A Capital Conservation Buffer (CCB) Framework",
+     "lexical_rank": null,
+     "ordinal": 251,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0151:v4#p251",
+     "paragraph_number": "251",
+     "rank": 4,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/NotificationPreVersion.aspx?id=13159&Histid=103",
+     "valid_from": "2026-03-10",
+     "valid_to": "2026-05-08"
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "251. The Framework\n(1) A bank is required to maintain a CCB of 2.5 per cent which shall comprise of CET1 capital, above the regulatory minimum capital requirement of 9 per cent.\nExplanation \u2013 CET1 shall first be used to meet the minimum capital requirements (including the 7 per cent Tier 1 and 9 per cent total capital requirements, if necessary), before the remainder can contribute to the CCB requirement.\n(2) Capital distribution constraints shall be imposed on a bank when capital level falls within this range. However, a bank shall be able to conduct business as normal when its capital levels fall into the conservation range as it experiences losses. Therefore, the constraints imposed are related to the distributions only and are not related to the operations of banks.\n(3) Elements subject to the restrictions on distributions: Dividends and share buybacks, discretionary payments on other Tier 1 capital instruments and discretionary bonus payments to staff shall constitute items considered to be distributions. Payments which do not result in depletion of CET1 capital, (for example certain scrip dividends) are not considered distributions. Earnings are defined as distributable profits before the deduction of elements subject to the restriction on distributions mentioned above. Earnings are calculated after the tax which would have been reported had none of the distributable items been paid. As such, any tax impact of making such distributions is reversed out. If a bank does not have positive earnings and has a CET1 ratio less than 8 per cent, it shall not make positive net distributions.\nNote - A scrip dividend is a scrip issue made in lieu of a cash dividend. The term \u2018scrip dividends\u2019 also includes bonus shares.\n(4) The distribution constraints imposed on a bank when its capital levels fall into the range increase as the bank\u2019s capital levels approach the minimum requirements. The Table 46 below shows the minimum capital conservation ratios a bank shall meet at various levels of the CET1 capital ratios:\nTable 46: Minimum capital conservation standards for individual bank\nCET1\nratio after including the current periods retained earnings | Minimum capital conservation ratios\n(expressed as a percentage of earnings)\n5.5% - 6.125% | 100%\n>6.125% - 6.75% | 80%\n>6.75% - 7.375% | 60%\n>7.375% - 8.0% | 40%\n>8.0% | 0%\nFor example, a bank with a CET1 capital ratio in the range of 6.125 per cent to 6.75 per cent shall be required to conserve 80 per cent of its earnings in the subsequent financial year (i.e., payout no more than 20 per cent in terms of dividends, share buybacks and discretionary bonus payments is allowed).\n(5) The CET1 ratio includes amounts used to meet the minimum CET1 capital requirement of 5.5 per cent but excludes any additional CET1 needed to meet the 7 per cent Tier 1 and 9 per cent total capital requirements. For example, a bank maintains CET1 capital of 9 per cent and has no AT1 or Tier 2 capital. Therefore, the bank shall meet all minimum capital requirements, but shall have a zero-conservation buffer and therefore, the bank shall be subject to 100 per cent constraint on distributions of capital by way of dividends, share-buybacks and discretionary bonuses.\n(6) The capital conservation buffer can be drawn down only when a bank faces a systemic or idiosyncratic stress.\n(7) A bank shall not choose in normal times to operate in the buffer range simply to compete with other banks and win market share. This aspect shall be specifically looked into by the Reserve Bank during the SREP. If, at any time, a bank is found to have allowed its CCB to fall in normal times, particularly by increasing its risk weighted assets without a commensurate increase in the CET1 Ratio (although adhering to the restrictions on distributions), this shall be viewed seriously. Such a bank shall be required to bring the buffer to the desired level within a time limit prescribed by the Reserve Bank.\n(8) A bank which draws down its CCB during a stressed period shall also have a definite plan to replenish the buffer as part of ICAAP and strive to bring the buffer to the desired level within a time limit agreed to with the Reserve Bank during the SREP.\n(9) A bank may also choose to raise new capital from the market as an alternative to conserving internally generated capital. However, if a bank decides to make payments in excess of the constraints imposed as explained above, the bank, with the prior approval of the Reserve Bank, shall have to use the option of raising capital from the market equal to the amount above the constraint which it wishes to distribute.",
+     "dense_rank": 5,
+     "doc_id": "rbi:md:2025:0151:v5",
+     "doc_title": "Reserve Bank of India (Commercial Banks - Prudential Norms on Capital Adequacy) Directions, 2025",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015384615384615385,
+     "heading_path": "A Capital Conservation Buffer (CCB) Framework",
+     "lexical_rank": null,
+     "ordinal": 251,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0151:v5#p251",
+     "paragraph_number": "251",
+     "rank": 5,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/NotificationPreVersion.aspx?id=13159&Histid=112",
+     "valid_from": "2026-05-08",
+     "valid_to": "2026-05-18"
+    }
+   ],
+   "degraded": [],
+   "embedding_calls": 0,
+   "embedding_tokens": 0,
+   "neighbours": []
+  },
+  "[\"search\", \"Should we stop paying dividends if our CET1 ratio falls below 8 per cent?\", \"('cb',)\", \"2026-11-20\", \"in_force\", \"6\"]": {
+   "candidates": [
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "8. A bank incorporated in India which satisfies the eligibility criteria laid down in paragraph 7 above, may declare and pay dividend up to the limits prescribed under Table 1 below, but in aggregate not exceeding 75% of the PAT for the period for which the dividend is being proposed.\nTable 1\nBucket | CET 1 ratio as at the end of previous FY | Dividend allowed as a % of adjusted PAT for the period\nB1 | Up to (8 + z)% | 0\nB2 | Above (8 + z)% and up to (10 + z)% | 20\nB3 | Above (10 + z)% and up to (12 + z)% | 30\nB4 | Above (12 + z)% and up to (14 + z)% | 40\nB5 | Above (14 + z)% and up to (16 + z)% | 50\nB6 | Above (16 + z)% and up to (17 + z)% | 60\nB7 | Above (17 + z)% and up to (18 + z)% | 70\nB8 | Above (18 + z)% and up to (19 + z)% | 80\nB9 | Above (19 + z)% and up to (20 + z)% | 90\nB10 | Above (20 + z)% | 100\nNote: \u2018z\u2019 in Table 1 refers to the respective applicable D-SIB buffer. \u2018z\u2019 shall be zero for a bank not classified as D-SIB.",
+     "dense_rank": 1,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.01639344262295082,
+     "heading_path": "Chapter II - Declaration of dividend and remittance of profits > C. Quantum of dividend payable by banks incorporated in India",
+     "lexical_rank": null,
+     "ordinal": 8,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0387:v1#p8",
+     "paragraph_number": "8",
+     "rank": 1,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "14. If a bank does not meet the eligibility criteria as per paragraph 7 above, no special dispensation will be given for declaration of dividend or for remittance of profits for that period.",
+     "dense_rank": 2,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.016129032258064516,
+     "heading_path": "Chapter II - Declaration of dividend and remittance of profits > G. Restriction on payment of dividend and remittance of profits",
+     "lexical_rank": null,
+     "ordinal": 14,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0387:v1#p14",
+     "paragraph_number": "14",
+     "rank": 2,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "13. The Reserve Bank reserves the right to place restrictions on distribution of dividend or remittance of profit where a bank is found to be non-compliant with the applicable laws, regulations / guidelines issued by the Reserve Bank.",
+     "dense_rank": 3,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015873015873015872,
+     "heading_path": "Chapter II - Declaration of dividend and remittance of profits > G. Restriction on payment of dividend and remittance of profits",
+     "lexical_rank": null,
+     "ordinal": 13,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0387:v1#p13",
+     "paragraph_number": "13",
+     "rank": 3,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "11. When a bank is placed under PCA, one or more of the following corrective actions may be prescribed:\nMandatory and Discretionary Actions\nSpecifications | Mandatory Actions | Discretionary Actions\nRisk Threshold 1 | i. Restriction on dividend distribution / remittance of profits.\nii. Promoters / Owners / Parent (in the case of foreign banks) to bring in capital | Common Menu\ni. Special Supervisory Actions\nii. Strategy related\niii. Governance related\niv. Capital related\nv. Credit risk related\nvi. Market risk related\nvii. HR related\nviii. Profitability related\nix. Operations / Business related\nx. Any other\nRisk Threshold 2 | In addition to mandatory actions of Threshold 1,\ni. Restriction on branch expansion; domestic and/or overseas\nRisk Threshold 3 | In addition to mandatory actions of Threshold 1 & 2,\ni. Appropriate restrictions on capital expenditure, other than for technological upgradation within Board approved limits",
+     "dense_rank": 4,
+     "doc_id": "rbi:md:2026:0416:v2",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Miscellaneous) Supervisory Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015625,
+     "heading_path": "Chapter IV - Prompt Corrective Action Framework",
+     "lexical_rank": null,
+     "ordinal": 11,
+     "origin": "ranked",
+     "para_id": "rbi:md:2026:0416:v2#p11",
+     "paragraph_number": "11",
+     "rank": 4,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13637",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "6. The Board of Directors while considering the proposal for declaration of dividend or remittance of profit of a bank shall consider the following:\n(1) The divergence in asset classification and provisioning for Non-Performing Assets (NPAs), including its trend, as observed if any, under supervisory findings of the Reserve Bank;\n(2) Auditors\u2019 Report to the financial statements, including modified opinion or Emphasis of Matter, for the financial year for which the dividend is proposed;\n(3) Current and projected capital position vis-\u00e0-vis applicable regulatory capital requirement; and\n(4) Long term growth plans.",
+     "dense_rank": 5,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015384615384615385,
+     "heading_path": "Chapter II - Declaration of dividend and remittance of profits > A. Board oversight",
+     "lexical_rank": null,
+     "ordinal": 6,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0387:v1#p6",
+     "paragraph_number": "6",
+     "rank": 5,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "7. A bank shall meet the following prudential requirements, to be eligible to declare dividends or remit profits.\n(1) The bank was in compliance with the applicable regulatory capital requirement as at the end of the previous financial year and shall continue to be in compliance as at the end of the financial year during which the dividend is proposed to be paid.\n(2) The regulatory capital of the bank shall not fall below the applicable regulatory capital requirement even after the payment of dividend.\n(3) The bank incorporated in India shall have positive adjusted Profit After Tax (PAT) for the period for which the dividend is proposed.\n(4) A foreign bank operating in India in the branch mode, shall have positive PAT for the period for which the profits are to be remitted to the Head Office.\n(5) The bank shall not be under any explicit restrictions for declaration of dividends or remittance of profits from the Reserve Bank or any other authority.",
+     "dense_rank": 6,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015151515151515152,
+     "heading_path": "Chapter II - Declaration of dividend and remittance of profits > B. Eligibility criteria",
+     "lexical_rank": null,
+     "ordinal": 7,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0387:v1#p7",
+     "paragraph_number": "7",
+     "rank": 6,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    }
+   ],
+   "degraded": [],
+   "embedding_calls": 1,
+   "embedding_tokens": 17,
+   "neighbours": [
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "5. All other expressions unless defined herein shall have the same meaning as have been assigned to them under the applicable Acts, Rules / Regulations made thereunder, or any statutory modification or re-enactment thereto or as used in commercial parlance, as the case may be.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0387:v1#p6",
+     "fusion_score": null,
+     "heading_path": "Chapter I > C. Definitions",
+     "lexical_rank": null,
+     "ordinal": 5,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0387:v1#p5",
+     "paragraph_number": "5",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "9. The detailed illustrations are given in Annex I.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0387:v1#p8",
+     "fusion_score": null,
+     "heading_path": "Chapter II - Declaration of dividend and remittance of profits > C. Quantum of dividend payable by banks incorporated in India",
+     "lexical_rank": null,
+     "ordinal": 9,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0387:v1#p9",
+     "paragraph_number": "9",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "12. A bank paying dividend or remitting profits to Head Office shall report details thereof as per the format prescribed in Annex II. The report shall be furnished to the Department of Supervision of the Reserve Bank within a fortnight of declaration of dividend / remitting profits to Head Office.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0387:v1#p13",
+     "fusion_score": null,
+     "heading_path": "Chapter II - Declaration of dividend and remittance of profits > F. Reporting system",
+     "lexical_rank": null,
+     "ordinal": 12,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0387:v1#p12",
+     "paragraph_number": "12",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "15. Non-compliance with any of the provisions contained in these Directions may attract supervisory and / or enforcement action, as applicable.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0387:v1#p14",
+     "fusion_score": null,
+     "heading_path": "Chapter II - Declaration of dividend and remittance of profits > H. Penal consequences for non-compliance",
+     "lexical_rank": null,
+     "ordinal": 15,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0387:v1#p15",
+     "paragraph_number": "15",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "10. Once a bank is placed under PCA, taking the bank out of PCA Framework and / or withdrawal of restrictions imposed under the PCA Framework will be considered:\n(1) if no breaches in risk thresholds in any of the parameters are observed as per four continuous quarterly financial statements, one of which should be Audited Annual Financial Statement (subject to assessment by RBI); and\n(2) based on Supervisory comfort of the RBI, including an assessment on sustainability of profitability of the bank.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2026:0416:v2",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Miscellaneous) Supervisory Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2026:0416:v2#p11",
+     "fusion_score": null,
+     "heading_path": "Chapter IV - Prompt Corrective Action Framework",
+     "lexical_rank": null,
+     "ordinal": 10,
+     "origin": "expanded",
+     "para_id": "rbi:md:2026:0416:v2#p10",
+     "paragraph_number": "10",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13637",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "12. Details on the common menu for selection of Discretionary Corrective Actions are as hereunder:\n(1) Special Supervisory Actions\n(i) Special Supervisory Monitoring Meetings (SSMMs) at quarterly or other identified frequency.\n(ii) Special inspections / targeted scrutiny of the bank.\n(iii) Cause a special audit of the bank by the extant Supervisory mechanism and / or through external auditors.\n(iv) Resolution of the bank by Amalgamation or Reconstruction [Reference Section 45 of Banking Regulation Act 1949 (BR Act)].\n(2) Strategy related Actions\nRBI to advise the bank\u2019s Board to:\n(i) Activate the Recovery Plan that has been duly approved by the Supervisor.\n(ii) Undertake a detailed review of business model in terms of sustainability of the business model, profitability of business lines and activities, and medium and long-term viability.\n(iii) Review short term strategy focusing on addressing immediate concerns.\n(iv) Review medium term business plans, identify achievable targets, and set concrete milestones for progress and achievement.\n(v) Undertake business process reengineering as appropriate.\n(vi) Undertake restructuring of operations as appropriate.\n(3) Governance related Actions\n(i) RBI to actively engage with the bank\u2019s Board on various aspects as considered appropriate.\n(ii) RBI to recommend to Owners (Government / Promoters / Parent of foreign bank branch) to bring in new Management / Board.\n(iii) RBI to remove managerial persons under Section 36AA of the BR Act as applicable.\n(iv) RBI to supersede the Board under Section 36ACA of the BR Act / recommend supersession of the Board as applicable.\n(v) RBI to require bank to invoke claw back and malus clauses and other actions as available in regulatory guidelines and impose other restrictions or conditions permissible under the BR Act.\n(vi) Impose restrictions on directors\u2019 or management compensation, as applicable.\n(4) Capital related Actions\n(i) Detailed Board level review of capital planning.\n(ii) Submission of plans and proposals for raising additional capital.\n(iii) Requiring the bank to bolster reserves through retained profits.\n(iv) Restriction on investment in subsidiaries / associates.\n(v) Restriction in expansion of high risk-weighted assets to conserve capital.\n(vi) Reduction in exposure to high-risk sectors to conserve capital.\n(vii) Restrictions on increasing stake in subsidiaries and other group companies.\n(5) Credit Risk related Actions\n(i) Preparation of time bound plan and commitment for reduction of stock of NPAs.\n(ii) Preparation of and commitment to plan for containing generation of fresh NPAs.\n(iii) Higher provisions for NPAs / Non-Performing Investments (NPIs) and as part of the coverage regime.\n(iv) Strengthening of loan review mechanism.\n(v) Restrictions / reduction in total credit risk weight density (example: restriction / reduction in credit for borrowers below certain rating grades, restriction / reduction in unsecured exposures).\n(vi) Reduction in loan concentrations; in identified sectors, industries or borrowers.\n(vii) Sale of assets.\n(viii) Action plan for recovery of assets through identification of areas (geography wise, industry segment-wise, and borrower-wise) and setting up of dedicated Recovery Task Forces and Lok Adalats.\n(ix) Prohibition on expansion of credit / investment portfolios other than investment in government securities / other High-Quality Liquid Investments.\n(6) Market Risk related Actions\n(i) Restrictions on / reduction in borrowings from the inter-bank market.\n(ii) Restrictions on accessing / renewing wholesale deposits / costly deposits / certificates of deposits.\n(iii) Restrictions on derivative activities, derivatives that permit collateral substitution.\n(iv) Restriction on excess maintenance of collateral held that could contractually be called any time by the counterparty.\n(7) HR related Actions\n(i) Restriction on staff expansion.\n(ii) Review of specialized training needs of existing staff.\n(8) Profitability related Actions\n(i) Restrictions on capital expenditure, other than for technological upgradation within Board approved limits.\n(ii) Restrictions / reduction in variable operating costs.\n(9) Operations related Actions\n(i) Restrictions on branch expansion plans; domestic or overseas.\n(ii) Reduction in business at overseas branches / subsidiaries / in other entities.\n(iii) Restrictions on entering into new lines of business.\n(iv) Reduction in leverage through reduction in non-fund-based business.\n(v) Reduction in risky assets.\n(vi) Restrictions on non-credit asset creation.\n(vii) Restrictions on undertaking businesses as specified.\n(viii) Restriction / reduction of outsourcing activities.\n(ix) Restrictions on new borrowings.\n(10) Other Actions\n(i) Any other specific action that RBI may deem fit considering specific circumstances of the bank.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2026:0416:v2",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Miscellaneous) Supervisory Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2026:0416:v2#p11",
+     "fusion_score": null,
+     "heading_path": "Chapter IV - Prompt Corrective Action Framework",
+     "lexical_rank": null,
+     "ordinal": 12,
+     "origin": "expanded",
+     "para_id": "rbi:md:2026:0416:v2#p12",
+     "paragraph_number": "12",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13637",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    }
+   ]
+  }
+ },
+ "index_version": "idx_rbi_20261123_c23c1e8",
+ "models": {
+  "03bba7c7cfa86b1449bde96b9f1ab3bacd5b901f0471f075453cebdf0f28bee0": {
+   "input_tokens": 1748,
+   "latency_ms": 1760.0,
+   "model": "claude-haiku-5-5",
+   "output_tokens": 98,
+   "parsed": {
+    "as_of": null,
+    "compare_as_of": null,
+    "computation_requested": false,
+    "entity_type": null,
+    "in_scope": true,
+    "query_kind": "applicability",
+    "topic_terms": [
+     "CET1 ratio",
+     "dividend restrictions",
+     "capital conservation",
+     "distribution constraints"
+    ]
+   },
+   "schema": "ParseOutput",
+   "user": "Should we stop paying dividends if our CET1 ratio falls below 8 per cent?"
+  },
+  "1b4c3be6e2235a83ab74410cdf9d0dc50a9484aefcab94b31c26eb262215f531": {
+   "input_tokens": 856,
+   "latency_ms": 1786.2,
+   "model": "claude-haiku-5-5",
+   "output_tokens": 8,
+   "parsed": {
+    "supported": true
+   },
+   "schema": "JudgeOutput",
+   "user": "Claim: For a bank incorporated in India, the dividend allowed depends on its CET1 ratio as at the end of the previous financial year. If that ratio is up to (8 + z) per cent, the dividend allowed is 0 per cent of adjusted PAT.\n\nParagraphs:\n8. A bank incorporated in India which satisfies the eligibility criteria laid down in paragraph 7 above, may declare and pay dividend up to the limits prescribed under Table 1 below, but in aggregate not exceeding 75% of the PAT for the period for which the dividend is being proposed.\nTable 1\nBucket | CET 1 ratio as at the end of previous FY | Dividend allowed as a % of adjusted PAT for the period\nB1 | Up to (8 + z)% | 0\nB2 | Above (8 + z)% and up to (10 + z)% | 20\nB3 | Above (10 + z)% and up to (12 + z)% | 30\nB4 | Above (12 + z)% and up to (14 + z)% | 40\nB5 | Above (14 + z)% and up to (16 + z)% | 50\nB6 | Above (16 + z)% and up to (17 + z)% | 60\nB7 | Above (17 + z)% and up to (18 + z)% | 70\nB8 | Above (18 + z)% and up to (19 + z)% | 80\nB9 | Above (19 + z)% and up to (20 + z)% | 90\nB10 | Above (20 + z)% | 100\nNote: \u2018z\u2019 in Table 1 refers to the respective applicable D-SIB buffer. \u2018z\u2019 shall be zero for a bank not classified as D-SIB."
+  },
+  "a41518c17a46f305a8ff124247d1461d490f421d431d359f095de3754c6b12fe": {
+   "input_tokens": 5779,
+   "latency_ms": 7390.7,
+   "model": "claude-opus-5-5",
+   "output_tokens": 830,
+   "parsed": {
+    "claims": [
+     {
+      "candidate_indices": [
+       0
+      ],
+      "quotes": [
+       "CET 1 ratio as at the end of previous FY",
+       "B1 | Up to (8 + z)% | 0"
+      ],
+      "text": "For a bank incorporated in India, the dividend allowed depends on its CET1 ratio as at the end of the previous financial year. If that ratio is up to (8 + z) per cent, the dividend allowed is 0 per cent of adjusted PAT."
+     },
+     {
+      "candidate_indices": [
+       0
+      ],
+      "quotes": [
+       "\u2018z\u2019 in Table 1 refers to the respective applicable D-SIB buffer. \u2018z\u2019 shall be zero for a bank not classified as D-SIB.",
+       "B1 | Up to (8 + z)% | 0"
+      ],
+      "text": "'z' is the applicable D-SIB buffer and is zero for a bank not classified as a D-SIB. For a non-D-SIB bank, a CET1 ratio of up to 8 per cent therefore allows no dividend. For a D-SIB, the zero-dividend bucket extends above 8 per cent, up to 8 per cent plus its buffer."
+     },
+     {
+      "candidate_indices": [
+       5
+      ],
+      "quotes": [
+       "The bank was in compliance with the applicable regulatory capital requirement as at the end of the previous financial year and shall continue to be in compliance",
+       "The regulatory capital of the bank shall not fall below the applicable regulatory capital requirement even after the payment of dividend."
+      ],
+      "text": "Separately, to be eligible to declare dividends at all, a bank must have complied with the applicable regulatory capital requirement at the end of the previous financial year. It must also stay compliant, including after paying the dividend."
+     },
+     {
+      "candidate_indices": [
+       0
+      ],
+      "quotes": [
+       "in aggregate not exceeding 75% of the PAT for the period"
+      ],
+      "text": "Any dividend paid is also capped in aggregate at 75 per cent of PAT for the period."
+     }
+    ],
+    "insufficient": false,
+    "missing": null
+   },
+   "schema": "ComposerOutput",
+   "user": "Question: Should we stop paying dividends if our CET1 ratio falls below 8 per cent?\nEntity type: cb\nIn force on: 2026-11-20\n\n[0] Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026, paragraph 8 (Chapter II - Declaration of dividend and remittance of profits > C. Quantum of dividend payable by banks incorporated in India)\n8. A bank incorporated in India which satisfies the eligibility criteria laid down in paragraph 7 above, may declare and pay dividend up to the limits prescribed under Table 1 below, but in aggregate not exceeding 75% of the PAT for the period for which the dividend is being proposed.\nTable 1\nBucket | CET 1 ratio as at the end of previous FY | Dividend allowed as a % of adjusted PAT for the period\nB1 | Up to (8 + z)% | 0\nB2 | Above (8 + z)% and up to (10 + z)% | 20\nB3 | Above (10 + z)% and up to (12 + z)% | 30\nB4 | Above (12 + z)% and up to (14 + z)% | 40\nB5 | Above (14 + z)% and up to (16 + z)% | 50\nB6 | Above (16 + z)% and up to (17 + z)% | 60\nB7 | Above (17 + z)% and up to (18 + z)% | 70\nB8 | Above (18 + z)% and up to (19 + z)% | 80\nB9 | Above (19 + z)% and up to (20 + z)% | 90\nB10 | Above (20 + z)% | 100\nNote: \u2018z\u2019 in Table 1 refers to the respective applicable D-SIB buffer. \u2018z\u2019 shall be zero for a bank not classified as D-SIB.\n\n[1] Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026, paragraph 14 (Chapter II - Declaration of dividend and remittance of profits > G. Restriction on payment of dividend and remittance of profits)\n14. If a bank does not meet the eligibility criteria as per paragraph 7 above, no special dispensation will be given for declaration of dividend or for remittance of profits for that period.\n\n[2] Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026, paragraph 13 (Chapter II - Declaration of dividend and remittance of profits > G. Restriction on payment of dividend and remittance of profits)\n13. The Reserve Bank reserves the right to place restrictions on distribution of dividend or remittance of profit where a bank is found to be non-compliant with the applicable laws, regulations / guidelines issued by the Reserve Bank.\n\n[3] Reserve Bank of India (Commercial Banks \u2013 Miscellaneous) Supervisory Directions, 2026, paragraph 11 (Chapter IV - Prompt Corrective Action Framework)\n11. When a bank is placed under PCA, one or more of the following corrective actions may be prescribed:\nMandatory and Discretionary Actions\nSpecifications | Mandatory Actions | Discretionary Actions\nRisk Threshold 1 | i. Restriction on dividend distribution / remittance of profits.\nii. Promoters / Owners / Parent (in the case of foreign banks) to bring in capital | Common Menu\ni. Special Supervisory Actions\nii. Strategy related\niii. Governance related\niv. Capital related\nv. Credit risk related\nvi. Market risk related\nvii. HR related\nviii. Profitability related\nix. Operations / Business related\nx. Any other\nRisk Threshold 2 | In addition to mandatory actions of Threshold 1,\ni. Restriction on branch expansion; domestic and/or overseas\nRisk Threshold 3 | In addition to mandatory actions of Threshold 1 & 2,\ni. Appropriate restrictions on capital expenditure, other than for technological upgradation within Board approved limits\n\n[4] Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026, paragraph 6 (Chapter II - Declaration of dividend and remittance of profits > A. Board oversight)\n6. The Board of Directors while considering the proposal for declaration of dividend or remittance of profit of a bank shall consider the following:\n(1) The divergence in asset classification and provisioning for Non-Performing Assets (NPAs), including its trend, as observed if any, under supervisory findings of the Reserve Bank;\n(2) Auditors\u2019 Report to the financial statements, including modified opinion or Emphasis of Matter, for the financial year for which the dividend is proposed;\n(3) Current and projected capital position vis-\u00e0-vis applicable regulatory capital requirement; and\n(4) Long term growth plans.\n\n[5] Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026, paragraph 7 (Chapter II - Declaration of dividend and remittance of profits > B. Eligibility criteria)\n7. A bank shall meet the following prudential requirements, to be eligible to declare dividends or remit profits.\n(1) The bank was in compliance with the applicable regulatory capital requirement as at the end of the previous financial year and shall continue to be in compliance as at the end of the financial year during which the dividend is proposed to be paid.\n(2) The regulatory capital of the bank shall not fall below the applicable regulatory capital requirement even after the payment of dividend.\n(3) The bank incorporated in India shall have positive adjusted Profit After Tax (PAT) for the period for which the dividend is proposed.\n(4) A foreign bank operating in India in the branch mode, shall have positive PAT for the period for which the profits are to be remitted to the Head Office.\n(5) The bank shall not be under any explicit restrictions for declaration of dividends or remittance of profits from the Reserve Bank or any other authority.\n\n[6] Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026, paragraph 5 (Chapter I > C. Definitions)\n5. All other expressions unless defined herein shall have the same meaning as have been assigned to them under the applicable Acts, Rules / Regulations made thereunder, or any statutory modification or re-enactment thereto or as used in commercial parlance, as the case may be.\n\n[7] Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026, paragraph 9 (Chapter II - Declaration of dividend and remittance of profits > C. Quantum of dividend payable by banks incorporated in India)\n9. The detailed illustrations are given in Annex I.\n\n[8] Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026, paragraph 12 (Chapter II - Declaration of dividend and remittance of profits > F. Reporting system)\n12. A bank paying dividend or remitting profits to Head Office shall report details thereof as per the format prescribed in Annex II. The report shall be furnished to the Department of Supervision of the Reserve Bank within a fortnight of declaration of dividend / remitting profits to Head Office.\n\n[9] Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026, paragraph 15 (Chapter II - Declaration of dividend and remittance of profits > H. Penal consequences for non-compliance)\n15. Non-compliance with any of the provisions contained in these Directions may attract supervisory and / or enforcement action, as applicable.\n\n[10] Reserve Bank of India (Commercial Banks \u2013 Miscellaneous) Supervisory Directions, 2026, paragraph 10 (Chapter IV - Prompt Corrective Action Framework)\n10. Once a bank is placed under PCA, taking the bank out of PCA Framework and / or withdrawal of restrictions imposed under the PCA Framework will be considered:\n(1) if no breaches in risk thresholds in any of the parameters are observed as per four continuous quarterly financial statements, one of which should be Audited Annual Financial Statement (subject to assessment by RBI); and\n(2) based on Supervisory comfort of the RBI, including an assessment on sustainability of profitability of the bank.\n\n[11] Reserve Bank of India (Commercial Banks \u2013 Miscellaneous) Supervisory Directions, 2026, paragraph 12 (Chapter IV - Prompt Corrective Action Framework)\n12. Details on the common menu for selection of Discretionary Corrective Actions are as hereunder:\n(1) Special Supervisory Actions\n(i) Special Supervisory Monitoring Meetings (SSMMs) at quarterly or other identified frequency.\n(ii) Special inspections / targeted scrutiny of the bank.\n(iii) Cause a special audit of the bank by the extant Supervisory mechanism and / or through external auditors.\n(iv) Resolution of the bank by Amalgamation or Reconstruction [Reference Section 45 of Banking Regulation Act 1949 (BR Act)].\n(2) Strategy related Actions\nRBI to advise the bank\u2019s Board to:\n(i) Activate the Recovery Plan that has been duly approved by the Supervisor.\n(ii) Undertake a detailed review of business model in terms of sustainability of the business model, profitability of business lines and activities, and medium and long-term viability.\n(iii) Review short term strategy focusing on addressing immediate concerns.\n(iv) Review medium term business plans, identify achievable targets, and set concrete milestones for progress and achievement.\n(v) Undertake business process reengineering as appropriate.\n(vi) Undertake restructuring of operations as appropriate.\n(3) Governance related Actions\n(i) RBI to actively engage with the bank\u2019s Board on various aspects as considered appropriate.\n(ii) RBI to recommend to Owners (Government / Promoters / Parent of foreign bank branch) to bring in new Management / Board.\n(iii) RBI to remove managerial persons under Section 36AA of the BR Act as applicable.\n(iv) RBI to supersede the Board under Section 36ACA of the BR Act / recommend supersession of the Board as applicable.\n(v) RBI to require bank to invoke claw back and malus clauses and other actions as available in regulatory guidelines and impose other restrictions or conditions permissible under the BR Act.\n(vi) Impose restrictions on directors\u2019 or management compensation, as applicable.\n(4) Capital related Actions\n(i) Detailed Board level review of capital planning.\n(ii) Submission of plans and proposals for raising additional capital.\n(iii) Requiring the bank to bolster reserves through retained profits.\n(iv) Restriction on investment in subsidiaries / associates.\n(v) Restriction in expansion of high risk-weighted assets to conserve capital.\n(vi) Reduction in exposure to high-risk sectors to conserve capital.\n(vii) Restrictions on increasing stake in subsidiaries and other group companies.\n(5) Credit Risk related Actions\n(i) Preparation of time bound plan and commitment for reduction of stock of NPAs.\n(ii) Preparation of and commitment to plan for containing generation of fresh NPAs.\n(iii) Higher provisions for NPAs / Non-Performing Investments (NPIs) and as part of the coverage regime.\n(iv) Strengthening of loan review mechanism.\n(v) Restrictions / reduction in total credit risk weight density (example: restriction / reduction in credit for borrowers below certain rating grades, restriction / reduction in unsecured exposures).\n(vi) Reduction in loan concentrations; in identified sectors, industries or borrowers.\n(vii) Sale of assets.\n(viii) Action plan for recovery of assets through identification of areas (geography wise, industry segment-wise, and borrower-wise) and setting up of dedicated Recovery Task Forces and Lok Adalats.\n(ix) Prohibition on expansion of credit / investment portfolios other than investment in government securities / other High-Quality Liquid Investments.\n(6) Market Risk related Actions\n(i) Restrictions on / reduction in borrowings from the inter-bank market.\n(ii) Restrictions on accessing / renewing wholesale deposits / costly deposits / certificates of deposits.\n(iii) Restrictions on derivative activities, derivatives that permit collateral substitution.\n(iv) Restriction on excess maintenance of collateral held that could contractually be called any time by the counterparty.\n(7) HR related Actions\n(i) Restriction on staff expansion.\n(ii) Review of specialized training needs of existing staff.\n(8) Profitability related Actions\n(i) Restrictions on capital expenditure, other than for technological upgradation within Board approved limits.\n(ii) Restrictions / reduction in variable operating costs.\n(9) Operations related Actions\n(i) Restrictions on branch expansion plans; domestic or overseas.\n(ii) Reduction in business at overseas branches / subsidiaries / in other entities.\n(iii) Restrictions on entering into new lines of business.\n(iv) Reduction in leverage through reduction in non-fund-based business.\n(v) Reduction in risky assets.\n(vi) Restrictions on non-credit asset creation.\n(vii) Restrictions on undertaking businesses as specified.\n(viii) Restriction / reduction of outsourcing activities.\n(ix) Restrictions on new borrowings.\n(10) Other Actions\n(i) Any other specific action that RBI may deem fit considering specific circumstances of the bank."
+  },
+  "c12d94ca61a8b346af2ba4964116da8c48cb6b1432b30ce30ee8c53058084663": {
+   "input_tokens": 805,
+   "latency_ms": 988.7,
+   "model": "claude-haiku-5-5",
+   "output_tokens": 8,
+   "parsed": {
+    "supported": true
+   },
+   "schema": "JudgeOutput",
+   "user": "Claim: Any dividend paid is also capped in aggregate at 75 per cent of PAT for the period.\n\nParagraphs:\n8. A bank incorporated in India which satisfies the eligibility criteria laid down in paragraph 7 above, may declare and pay dividend up to the limits prescribed under Table 1 below, but in aggregate not exceeding 75% of the PAT for the period for which the dividend is being proposed.\nTable 1\nBucket | CET 1 ratio as at the end of previous FY | Dividend allowed as a % of adjusted PAT for the period\nB1 | Up to (8 + z)% | 0\nB2 | Above (8 + z)% and up to (10 + z)% | 20\nB3 | Above (10 + z)% and up to (12 + z)% | 30\nB4 | Above (12 + z)% and up to (14 + z)% | 40\nB5 | Above (14 + z)% and up to (16 + z)% | 50\nB6 | Above (16 + z)% and up to (17 + z)% | 60\nB7 | Above (17 + z)% and up to (18 + z)% | 70\nB8 | Above (18 + z)% and up to (19 + z)% | 80\nB9 | Above (19 + z)% and up to (20 + z)% | 90\nB10 | Above (20 + z)% | 100\nNote: \u2018z\u2019 in Table 1 refers to the respective applicable D-SIB buffer. \u2018z\u2019 shall be zero for a bank not classified as D-SIB."
+  },
+  "fba873ba6edae374cb26346957063080a66b4a560cc136a284f2f53ef690b0b2": {
+   "input_tokens": 892,
+   "latency_ms": 1044.8,
+   "model": "claude-haiku-5-5",
+   "output_tokens": 8,
+   "parsed": {
+    "supported": true
+   },
+   "schema": "JudgeOutput",
+   "user": "Claim: 'z' is the applicable D-SIB buffer and is zero for a bank not classified as a D-SIB. For a non-D-SIB bank, a CET1 ratio of up to 8 per cent therefore allows no dividend. For a D-SIB, the zero-dividend bucket extends above 8 per cent, up to 8 per cent plus its buffer.\n\nParagraphs:\n8. A bank incorporated in India which satisfies the eligibility criteria laid down in paragraph 7 above, may declare and pay dividend up to the limits prescribed under Table 1 below, but in aggregate not exceeding 75% of the PAT for the period for which the dividend is being proposed.\nTable 1\nBucket | CET 1 ratio as at the end of previous FY | Dividend allowed as a % of adjusted PAT for the period\nB1 | Up to (8 + z)% | 0\nB2 | Above (8 + z)% and up to (10 + z)% | 20\nB3 | Above (10 + z)% and up to (12 + z)% | 30\nB4 | Above (12 + z)% and up to (14 + z)% | 40\nB5 | Above (14 + z)% and up to (16 + z)% | 50\nB6 | Above (16 + z)% and up to (17 + z)% | 60\nB7 | Above (17 + z)% and up to (18 + z)% | 70\nB8 | Above (18 + z)% and up to (19 + z)% | 80\nB9 | Above (19 + z)% and up to (20 + z)% | 90\nB10 | Above (20 + z)% | 100\nNote: \u2018z\u2019 in Table 1 refers to the respective applicable D-SIB buffer. \u2018z\u2019 shall be zero for a bank not classified as D-SIB."
+  }
+ },
+ "recorded": {
+  "caveats": [
+   "not_legal_advice"
+  ],
+  "node_log": [
+   {
+    "calls": 1,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.00020142000000000003,
+    "input_tokens": 1748,
+    "latency_ms": 1760.01,
+    "model": "claude-haiku-5-5",
+    "node": "parse",
+    "output_tokens": 98
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 1,
+    "embedding_tokens": 17,
+    "eur": 1.989e-06,
+    "input_tokens": 0,
+    "latency_ms": 334.8,
+    "model": null,
+    "node": "retrieve",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.11,
+    "model": null,
+    "node": "expand",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.04,
+    "model": null,
+    "node": "gate",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.0,
+    "model": null,
+    "node": "authority",
+    "output_tokens": 0
+   },
+   {
+    "calls": 1,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0357444,
+    "input_tokens": 5779,
+    "latency_ms": 7390.78,
+    "model": "claude-opus-5-5",
+    "node": "compose",
+    "output_tokens": 830
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 3.77,
+    "model": null,
+    "node": "verify",
+    "output_tokens": 0
+   },
+   {
+    "calls": 3,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.00024057,
+    "input_tokens": 2553,
+    "latency_ms": 3819.81,
+    "model": "claude-haiku-5-5",
+    "node": "judge",
+    "output_tokens": 24
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 3.07,
+    "model": null,
+    "node": "finalize",
+    "output_tokens": 0
+   }
+  ],
+  "outcome": "answer",
+  "path": "full",
+  "refusal_reason": null,
+  "response": {
+   "as_of": "2026-11-20",
+   "cost_eur": 0.036188,
+   "degraded": [],
+   "dropped": [
+    {
+     "detail": "in force 2026-01-09 to 2026-03-10, asked for 2026-11-20",
+     "para_id": "rbi:md:2025:0151:v3#p251",
+     "reason": "superseded"
+    },
+    {
+     "detail": "in force 2026-03-10 to 2026-05-08, asked for 2026-11-20",
+     "para_id": "rbi:md:2025:0151:v4#p251",
+     "reason": "superseded"
+    },
+    {
+     "detail": "in force 2026-05-08 to 2026-05-18, asked for 2026-11-20",
+     "para_id": "rbi:md:2025:0151:v5#p251",
+     "reason": "superseded"
+    }
+   ],
+   "entity_type": "cb",
+   "index_version": "idx_rbi_20261123_c23c1e8",
+   "latency_ms": 13312,
+   "notice": null,
+   "redactions": [],
+   "result": {
+    "caveats": [
+     "not_legal_advice"
+    ],
+    "claims": [
+     {
+      "citations": [
+       {
+        "authority_rank": 30,
+        "binding": true,
+        "doc_id": "rbi:md:2025:0387:v1",
+        "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+        "effective_from": "2026-03-10",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "para_id": "rbi:md:2025:0387:v1#p8",
+        "paragraph_number": "8",
+        "quote_end": 343,
+        "quote_start": 303,
+        "source_page": null,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319"
+       }
+      ],
+      "text": "For a bank incorporated in India, the dividend allowed depends on its CET1 ratio as at the end of the previous financial year. If that ratio is up to (8 + z) per cent, the dividend allowed is 0 per cent of adjusted PAT."
+     },
+     {
+      "citations": [
+       {
+        "authority_rank": 30,
+        "binding": true,
+        "doc_id": "rbi:md:2025:0387:v1",
+        "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+        "effective_from": "2026-03-10",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "para_id": "rbi:md:2025:0387:v1#p8",
+        "paragraph_number": "8",
+        "quote_end": 944,
+        "quote_start": 826,
+        "source_page": null,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319"
+       }
+      ],
+      "text": "'z' is the applicable D-SIB buffer and is zero for a bank not classified as a D-SIB. For a non-D-SIB bank, a CET1 ratio of up to 8 per cent therefore allows no dividend. For a D-SIB, the zero-dividend bucket extends above 8 per cent, up to 8 per cent plus its buffer."
+     },
+     {
+      "citations": [
+       {
+        "authority_rank": 30,
+        "binding": true,
+        "doc_id": "rbi:md:2025:0387:v1",
+        "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+        "effective_from": "2026-03-10",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "para_id": "rbi:md:2025:0387:v1#p7",
+        "paragraph_number": "7",
+        "quote_end": 279,
+        "quote_start": 118,
+        "source_page": null,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319"
+       }
+      ],
+      "text": "Separately, to be eligible to declare dividends at all, a bank must have complied with the applicable regulatory capital requirement at the end of the previous financial year. It must also stay compliant, including after paying the dividend."
+     },
+     {
+      "citations": [
+       {
+        "authority_rank": 30,
+        "binding": true,
+        "doc_id": "rbi:md:2025:0387:v1",
+        "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+        "effective_from": "2026-03-10",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "para_id": "rbi:md:2025:0387:v1#p8",
+        "paragraph_number": "8",
+        "quote_end": 243,
+        "quote_start": 187,
+        "source_page": null,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319"
+       }
+      ],
+      "text": "Any dividend paid is also capped in aggregate at 75 per cent of PAT for the period."
+     }
+    ],
+    "outcome": "answer"
+   },
+   "retrieved": [
+    {
+     "dense_rank": 1,
+     "expanded": false,
+     "fusion_score": 0.01639344262295082,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0387:v1#p8"
+    },
+    {
+     "dense_rank": 2,
+     "expanded": false,
+     "fusion_score": 0.016129032258064516,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0387:v1#p14"
+    },
+    {
+     "dense_rank": 3,
+     "expanded": false,
+     "fusion_score": 0.015873015873015872,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0387:v1#p13"
+    },
+    {
+     "dense_rank": 4,
+     "expanded": false,
+     "fusion_score": 0.015625,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2026:0416:v2#p11"
+    },
+    {
+     "dense_rank": 5,
+     "expanded": false,
+     "fusion_score": 0.015384615384615385,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0387:v1#p6"
+    },
+    {
+     "dense_rank": 6,
+     "expanded": false,
+     "fusion_score": 0.015151515151515152,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0387:v1#p7"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0387:v1#p5"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0387:v1#p9"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0387:v1#p12"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0387:v1#p15"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2026:0416:v2#p10"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2026:0416:v2#p12"
+    },
+    {
+     "dense_rank": 3,
+     "expanded": false,
+     "fusion_score": 0.015873015873015872,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0151:v3#p251"
+    },
+    {
+     "dense_rank": 4,
+     "expanded": false,
+     "fusion_score": 0.015625,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0151:v4#p251"
+    },
+    {
+     "dense_rank": 5,
+     "expanded": false,
+     "fusion_score": 0.015384615384615385,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0151:v5#p251"
+    }
+   ]
+  }
+ },
+ "spec": {
+  "as_of": "2026-11-20",
+  "entity": "cb",
+  "expect": "an answer with not_legal_advice: advice is a provision question, never a refusal",
+  "name": "adv_advice_should",
+  "question": "Should we stop paying dividends if our CET1 ratio falls below 8 per cent?"
+ },
+ "today": "2026-11-22"
+}

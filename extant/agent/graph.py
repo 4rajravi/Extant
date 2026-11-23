@@ -70,7 +70,9 @@ def route(state: AgentState) -> str:
 
 def _onward(to: str) -> Any:
     def edge(state: AgentState) -> str:
-        return "finalize" if state.refusal_reason is not None else to
+        if state.refusal_reason is not None or (state.retrieval_only and to != "authority"):
+            return "finalize"
+        return to
 
     return edge
 
@@ -89,7 +91,7 @@ def build(deps: Deps) -> Any:
     g.add_conditional_edges("authority", _onward("compose"), ["compose", "finalize"])
     g.add_conditional_edges("compose", _onward("verify"), ["verify", "finalize"])
     g.add_conditional_edges("verify", _onward("judge"), ["judge", "finalize"])
-    g.add_edge("judge", "finalize")
+    g.add_edge("judge", "finalize")  # judge ends either way: answer, refusal or retrieval only
     g.add_edge("finalize", END)
     return g.compile()
 

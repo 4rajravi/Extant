@@ -630,26 +630,26 @@
    ]
   }
  },
- "index_version": "idx_rbi_20261120_38ede3c",
+ "index_version": "idx_rbi_20261123_c23c1e8",
  "models": {
   "a6c849fea5f45be8bad1437e345036a40798d517ab15f8b919d07b1585b634de": {
    "input_tokens": 5712,
-   "latency_ms": 2223.6,
+   "latency_ms": 2069.5,
    "model": "claude-opus-5-5",
    "output_tokens": 104,
    "parsed": {
     "claims": [],
     "insufficient": true,
-    "missing": "None of the paragraphs address lending against lunar mining rights or mining rights of any kind. The paragraphs cover lending against gold and silver collateral, lending to REITs, and infrastructure financing. None of them sets requirements for this type of collateral."
+    "missing": "None of the paragraphs addresses lending against lunar mining rights. They cover lending against gold and silver collateral, lending to REITs, and infrastructure financing, but nothing on mining rights, extraterrestrial or otherwise, as collateral."
    },
    "schema": "ComposerOutput",
    "user": "Question: What does RBI require of banks when lending against lunar mining rights?\nEntity type: cb\nIn force on: 2026-11-20\n\n[0] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 37 (Chapter IV - Lending against Gold and Silver Collateral > B. Restrictions and Ceilings)\n37. A bank shall not extend a loan where ownership of the collateral is doubtful. A suitable document or declaration shall be obtained from the borrower in all cases to the effect that the borrower is the rightful owner of the eligible collateral. Multiple or frequent sanction of loans against eligible collateral to the same borrower, aggregating to a value in excess of a threshold to be decided by the lender, must be examined closely as part of the transaction monitoring under the anti-money laundering (AML) framework.\n\n[1] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 133D (Chapter VIII - Credit Facilities to Real Estate Sector > F1. General Conditions)\n133D. Lending banks shall ensure that the applicable legal provisions in respect of REITs neither constrain the borrowing REIT\u2019s eligibility to borrow nor restrict the banks\u2019 ability to enforce their security interest and lender\u2019s rights. Specifically, in cases where the REIT is established as a trust, the banks shall establish that the trust deed of the borrowing REIT has relevant provisions for borrowings in the manner that is under consideration by the bank.\n\n[2] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 133O (Chapter VIII - Credit Facilities to Real Estate Sector > F3. Security Coverage)\n133O. The contractual provisions of the loan agreement shall provide for a high degree of protection for a REIT lender, which shall include, but not limited to, provisions of an escrow account for ringfencing the project cash flows; and restrictions on the borrower entity and underlying SPVs from acting to the detriment of the creditors, e.g., restrictions on issuing additional debt without the consent of existing creditors.\n]\n\n[3] Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025, paragraph 36 (Chapter IV - Lending against Gold and Silver Collateral > B. Restrictions and Ceilings)\n36. A bank shall not extend a loan where ownership of the collateral is doubtful. A suitable document or declaration shall be obtained from the borrower in all cases to the effect that the borrower is the rightful owner of the eligible collateral. Multiple or frequent sanction of loans against eligible collateral to the same borrower, aggregating to a value in excess of a threshold to be decided by the lender, must be examined closely as part of the transaction monitoring under the anti-money laundering (AML) framework.\n\n[4] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 34 (Chapter IV - Lending against Gold and Silver Collateral > A. General Provisions)\n34. A bank may decide on a suitable approach for lending against eligible collateral as part of its credit risk management framework, consistent, inter alia, with the principle of proportionality and ease of access for small ticket loans. However, detailed credit assessment, including assessment of borrower\u2019s repayment capacity shall be undertaken in case the total loan amount against eligible collateral is above \u20b92.5 lakh to a borrower.\nProvided that in case of Bullet repayment loans, the threshold loan amount for detailed credit assessment shall be the total amount payable at maturity.\n\n[5] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 133C (Chapter VIII - Credit Facilities to Real Estate Sector > F1. General Conditions)\n133C. A bank shall put in place a Board approved policy on lending to REITs, which shall cover, inter alia, appraisal mechanism, sanctioning conditions, underwriting norms, including metrics such as the debt service coverage ratio (DSCR) and their corresponding benchmark levels, internal limits for individual exposures as well as the aggregate portfolio, and monitoring mechanisms, including stipulation of appropriate covenants.\n\n[6] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 33 (Chapter IV - Lending against Gold and Silver Collateral > A. General Provisions)\n33. The credit policy (hereinafter called the policy) of a bank, as required in terms of paragraph 5 of these Directions, shall include, inter alia, appropriate single borrower limits and aggregate limits for the portfolio of loans against collateral of jewellery, ornaments or coins made of gold or silver (\u201celigible collateral\u201d for this Chapter); maximum LTV ratio permissible for such loans; action to be taken in cases of breach of LTV ratio; valuation standards and norms; and standards of gold and silver purity. The policy shall also include appropriate documentation to be obtained and maintained for loans proposed to be categorised under priority sector lending.\n\n[7] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 35 (Chapter IV - Lending against Gold and Silver Collateral > A. General Provisions)\n35. A bank may renew an existing loan or sanction a top-up loan upon a formal request from the borrower, subject to a credit assessment in accordance with paragraph 34. Such renewal or top-up shall be permitted only within the permissible LTV, and provided the loan is classified as standard. Further, renewal of bullet repayment loan shall be allowed only after payment of accrued interest, if any. The bank shall ensure that such renewals and top-ups are clearly identifiable in its Core Banking System or Loan Processing System.\n\n[8] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 36 (Chapter IV - Lending against Gold and Silver Collateral > B. Restrictions and Ceilings)\n36. A bank shall not grant any advance or loan:\n(1) For purchase of gold in any form including primary gold, ornaments, jewellery, or coins, or for purchase of financial assets backed by gold, e.g., units of Exchange-traded funds (ETFs) or units of Mutual Funds; and\n(2) against primary gold or silver or financial assets backed by primary gold or silver.\nProvided that a bank may extend need-based working capital finance to borrowers who use gold or silver as a raw material or as an input in their manufacturing or industrial processing activity, where such gold or silver can also be accepted as security. A bank extending such finance shall ensure that borrowers do not acquire or hold gold for investment or speculative purposes.\n\n[9] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 38 (Chapter IV - Lending against Gold and Silver Collateral > B. Restrictions and Ceilings)\n38. A bank shall not:\n(1) Avail loans by re-pledging gold or silver pledged to it by its borrowers.\n(2) Extend loans to other lenders, entities or individuals by accepting gold or silver collateral pledged to such lenders, entities, or individuals by their borrowers as collateral.\nFor removal of doubt, it is clarified that the above provision does not preclude a lender from financing another lender against the security of underlying receivables.\n\n[10] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 133B (Chapter VIII - Credit Facilities to Real Estate Sector > F. Lending to Real Estate Investment Trusts (REITs))\n133B. Lending to REITs undertaken by overseas branches of Indian banks as part of syndication arrangements, shall not be subject to the Directions in paragraphs 133A and paragraphs 133E to 133O if the funding contribution of a bank under such a syndication arrangement for a particular deal, across all its overseas branches does not exceed 20 per cent of total funding under the deal. However, the banks shall ensure that the REIT being funded is registered with and regulated by a financial sector regulator in the relevant jurisdiction and is listed.\n\n[11] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 133E (Chapter VIII - Credit Facilities to Real Estate Sector > F1. General Conditions)\n133E. A bank shall strictly monitor the end use of funds lent to REITs to ensure that this route is not being used to finance activities which are not directly permitted to be financed under the extant regulations.\n\n[12] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 133N (Chapter VIII - Credit Facilities to Real Estate Sector > F3. Security Coverage)\n133N. Bank financing to a REIT shall be fully secured inter alia by charge over the underlying immovable property, an assignment of rental cash flows and receivables, a pledge of equity interests held by the REIT in the relevant SPV, and / or such other legally enforceable security interests as may be applicable. Where a charge is created over immovable property, it shall invariably be in the nature of an exclusive first charge, or a first pari passu charge where multiple lenders are involved, governed by an inter-creditor agreement or any other arrangements amongst such lenders.\nProvided that, a charge over the underlying immovable property shall be mandatory wherever the financing is extended for the purpose of acquisition or development of a property or refinancing of debt incurred in connection with such purposes, regardless of the structure through which such purpose is achieved. For this purpose, acquisition of a property shall be construed on a look-through basis and shall include, without limitation, direct acquisition of an immovable property by the REIT, as well as indirect acquisition of an immovable property by way of purchase of equity shares in a SPV, or any other ownership interest in an entity that holds, directly or through one or more intermediate entities, an immovable property.\n\n[13] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 134 (Chapter IX - Infrastructure Financing > A. Criteria for Financing)\n134. The bank shall finance technically feasible, financially viable and bankable infrastructure projects undertaken by both public sector and private sector undertakings subject to the following conditions:\n(1) The bank shall have the requisite expertise for appraising technical feasibility, financial viability and bankability of projects, with particular reference to the risk analysis and sensitivity analysis.\n(2) In respect of projects undertaken by public sector units, term loans shall be sanctioned only for corporate entities (i.e. public sector undertakings registered under Companies Act or a Corporation established under the relevant statute). Further, such term loans shall not be in lieu of or to substitute budgetary resources envisaged for the project. The term loan could supplement the budgetary resources if such supplementing was contemplated in the project design.\n(3) While such public sector units may include Special Purpose Vehicles (SPVs) registered under the Companies Act set up for financing infrastructure projects, it shall be ensured by the bank that these loans / investments are not used for financing the budget of the State Governments.\n(4) Whether such financing is done by way of extending loans or investing in bonds, the bank shall undertake due diligence on the viability and bankability of such projects to ensure that revenue stream from the project is sufficient to take care of the debt servicing obligations and that the repayment / servicing of debt is not out of budgetary resources.\n(5) In the case of financing SPVs, banks and financial institutions shall ensure that the funding proposals are for specific monitorable projects.\n(6) The bank may also lend to SPVs in the private sector, registered under the Companies Act for directly undertaking infrastructure projects which are financially viable and not for acting as mere financial intermediaries. The bank shall ensure that the bankruptcy or financial difficulties of the parent / sponsor shall not affect the financial health of the SPV.\n\n[14] Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025, paragraph 35 (Chapter IV - Lending against Gold and Silver Collateral > B. Restrictions and Ceilings)\n35. A bank shall not grant any advance or loan:\n(1) For purchase of gold in any form including primary gold, ornaments, jewellery, or coins, or for purchase of financial assets backed by gold, e.g., units of Exchange-traded funds (ETFs) or units of Mutual Funds; and\n(2) against primary gold or silver or financial assets backed by primary gold or silver.\nProvided that a Tier 3 or 4 bank may extend need-based working capital finance to borrowers who use gold or silver as a raw material or as an input in their manufacturing or industrial processing activity, where such gold or silver can also be accepted as security. A bank extending such finance shall ensure that borrowers do not acquire or hold gold for investment or speculative purposes.\n\n[15] Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025, paragraph 37 (Chapter IV - Lending against Gold and Silver Collateral > B. Restrictions and Ceilings)\n37. A bank shall not:\n(1) Avail loans by re-pledging gold or silver pledged to it by its borrowers.\n(2) Extend loans to other lenders, entities or individuals by accepting gold or silver collateral pledged to such lenders, entities, or individuals by their borrowers as collateral.\nFor removal of doubt, it is clarified that the above provision does not preclude a lender from financing another lender against the security of underlying receivables."
   },
-  "ab9e07aefc3a1576a35f315334f87375c90aad41a9cd36fe7c7fb1f3a5aa800b": {
-   "input_tokens": 1671,
-   "latency_ms": 1386.2,
+  "cf2834e8fdc74a5aaf847c05771e7db3e87a807abfa0287f5990bc41e96c2d36": {
+   "input_tokens": 1740,
+   "latency_ms": 1794.0,
    "model": "claude-haiku-5-5",
-   "output_tokens": 93,
+   "output_tokens": 94,
    "parsed": {
     "as_of": null,
     "compare_as_of": null,
@@ -659,9 +659,8 @@
     "query_kind": "applicability",
     "topic_terms": [
      "lending against mining rights",
-     "lunar mining",
-     "collateral requirements",
-     "bank lending norms"
+     "lunar mining rights",
+     "bank lending requirements"
     ]
    },
    "schema": "ParseOutput",
@@ -675,12 +674,12 @@
     "calls": 1,
     "embedding_calls": 0,
     "embedding_tokens": 0,
-    "eur": 0.00019224000000000002,
-    "input_tokens": 1671,
-    "latency_ms": 1386.25,
+    "eur": 0.0001989,
+    "input_tokens": 1740,
+    "latency_ms": 1794.03,
     "model": "claude-haiku-5-5",
     "node": "parse",
-    "output_tokens": 93
+    "output_tokens": 94
    },
    {
     "calls": 0,
@@ -688,7 +687,7 @@
     "embedding_tokens": 13,
     "eur": 1.521e-06,
     "input_tokens": 0,
-    "latency_ms": 340.53,
+    "latency_ms": 349.1,
     "model": null,
     "node": "retrieve",
     "output_tokens": 0
@@ -699,7 +698,7 @@
     "embedding_tokens": 0,
     "eur": 0.0,
     "input_tokens": 0,
-    "latency_ms": 0.16,
+    "latency_ms": 0.1,
     "model": null,
     "node": "expand",
     "output_tokens": 0
@@ -710,7 +709,7 @@
     "embedding_tokens": 0,
     "eur": 0.0,
     "input_tokens": 0,
-    "latency_ms": 0.05,
+    "latency_ms": 0.03,
     "model": null,
     "node": "gate",
     "output_tokens": 0
@@ -732,7 +731,7 @@
     "embedding_tokens": 0,
     "eur": 0.0224352,
     "input_tokens": 5712,
-    "latency_ms": 2223.68,
+    "latency_ms": 2069.56,
     "model": "claude-opus-5-5",
     "node": "compose",
     "output_tokens": 104
@@ -743,7 +742,7 @@
     "embedding_tokens": 0,
     "eur": 0.0,
     "input_tokens": 0,
-    "latency_ms": 0.34,
+    "latency_ms": 0.18,
     "model": null,
     "node": "finalize",
     "output_tokens": 0
@@ -754,7 +753,7 @@
   "refusal_reason": "no_support_found",
   "response": {
    "as_of": "2026-11-20",
-   "cost_eur": 0.022629,
+   "cost_eur": 0.022636,
    "degraded": [],
    "dropped": [
     {
@@ -779,10 +778,13 @@
     }
    ],
    "entity_type": "cb",
-   "index_version": "idx_rbi_20261120_38ede3c",
-   "latency_ms": 3951,
+   "index_version": "idx_rbi_20261123_c23c1e8",
+   "latency_ms": 4213,
+   "notice": null,
+   "redactions": [],
    "result": {
-    "message": "No RBI direction paragraph in force for an entity of type cb on 2026-11-20 establishes this: None of the paragraphs address lending against lunar mining rights or mining rights of any kind. The paragraphs cover lending against gold and silver collateral, lending to REITs, and infrastructure financing. None of them sets requirements for this type of collateral..",
+    "examples": [],
+    "message": "No RBI direction paragraph in force for an entity of type cb on 2026-11-20 establishes this: None of the paragraphs addresses lending against lunar mining rights. They cover lending against gold and silver collateral, lending to REITs, and infrastructure financing, but nothing on mining rights, extraterrestrial or otherwise, as collateral.",
     "nearest": [],
     "outcome": "refusal",
     "reason": "no_support_found"

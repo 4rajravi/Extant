@@ -57,6 +57,8 @@ WRITES: dict[str, frozenset[str]] = {
             "path",
             "caveats",
             "refusal_detail",
+            "degraded",
+            "retrieval_only",
         }
     ),
     "refuse_early": frozenset({"outcome", "refusal_reason", "refusal_detail"}),
@@ -83,11 +85,24 @@ WRITES: dict[str, frozenset[str]] = {
             "refusal_detail",
         }
     ),
-    "compose": frozenset({"draft_claims", "missing", "checks", "refusal_reason", "refusal_detail"}),
+    "compose": frozenset(
+        {
+            "draft_claims",
+            "missing",
+            "checks",
+            "refusal_reason",
+            "refusal_detail",
+            "degraded",
+            "caveats",
+            "retrieval_only",
+        }
+    ),
     "verify": frozenset(
         {"verified_claims", "checks", "residual", "refusal_reason", "refusal_detail"}
     ),
-    "judge": frozenset({"checks", "refusal_reason", "refusal_detail"}),
+    "judge": frozenset(
+        {"checks", "refusal_reason", "refusal_detail", "degraded", "caveats", "retrieval_only"}
+    ),
     "finalize": frozenset({"outcome", "response", "caveats"}),
 }
 APPEND_ONLY = frozenset({"dropped", "set_aside", "caveats", "degraded", "node_log"})

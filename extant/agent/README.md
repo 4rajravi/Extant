@@ -63,8 +63,10 @@ the fast and diff paths pass the same four checks and skip only the judge.
 
 ## Refusals and caveats
 
-Seven refusal classes are raised by the graph (`models.RefusalReason`); `cap_reached` is defined
-and raised only by the API layer (Phase 8). Messages (`refusals.py`) name the entity and date,
+Seven refusal classes are raised by the graph (`models.RefusalReason`); the eighth,
+`cap_reached`, is served by the service around the graph (`service.py`) when the daily cap is
+reached, with cached example answers. Phase 5 added the service, the middleware and the
+degradation ladder; see [`extant/guards/README.md`](../guards/README.md). Messages (`refusals.py`) name the entity and date,
 say what was found, suggest rephrasing only for `out_of_scope` and `entity_required`, and end
 with "Check the instrument itself before relying on this." where something was found but not
 stood behind. Five caveats attach to answers and never replace them.
@@ -82,10 +84,10 @@ uv run pytest tests/integration/test_agent_replay.py                    # replay
 uv run python -m evals.judge_labels draw                                # judge pairs for hand labels
 ```
 
-`record` runs twelve real questions through the real graph and keeps every index and model call
-in `tests/fixtures/agent/`; five more fixtures are derived from a recorded answer
-(`full_answer_third_person`) by a single named change, for outcomes the corpus cannot produce
-(it holds no FAQ or press release, and retrieval degrades only when the embedding call fails).
-A recorded fixture keeps what happened when it was recorded, refusals included:
-`full_answer_as_of_assumed` and `full_answer_not_legal_advice` were meant to answer and were
-refused by the numeric check, and they stay that way as evidence.
+`record` runs each question through the real service (admission, middleware, graph) on the
+real build and keeps every index and model call in `tests/fixtures/agent/`: the Phase 4
+questions and the Phase 5 adversarial cases and their twins (`adv_`). Five more fixtures are
+derived from a recorded answer (`full_answer_third_person`) by a single named change, for
+outcomes the corpus cannot produce (it holds no FAQ or press release, and retrieval degrades
+only when the embedding call fails). A recorded fixture keeps what happened when it was
+recorded, refusals included.

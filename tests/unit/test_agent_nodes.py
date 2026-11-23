@@ -349,8 +349,10 @@ def test_judge_with_nothing_residual_calls_nothing() -> None:
 
 def test_finalize_rejects_an_answer_with_nothing_verified() -> None:
     node = run_node("finalize", finalize.run, Deps())
-    # Two guards hold it: the Answer model needs a claim, the state needs a verified one.
-    with pytest.raises(Exception, match=r"answer with no verified claims|at least 1 item"):
+    # Three guards hold it: the post checks in finalize, the Answer model and the state.
+    with pytest.raises(
+        Exception, match=r"answer with no verified claims|at least 1 item|post checks failed"
+    ):
         node(state(as_of=TODAY, path="full"))
 
 

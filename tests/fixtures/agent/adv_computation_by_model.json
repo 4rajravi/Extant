@@ -1,0 +1,126 @@
+{
+ "embedding_model": "openai/text-embedding-3-large",
+ "entities": {
+  "aifi": "All India Financial Institutions",
+  "arc": "Asset Reconstruction Companies",
+  "cb": "Commercial Banks",
+  "cic": "Credit Information Companies",
+  "lab": "Local Area Banks",
+  "nbfc": "Non-Banking Financial Companies",
+  "nbfc_aa": "NBFC-Account Aggregator",
+  "nbfc_bl": "NBFC-Base Layer",
+  "nbfc_cic": "NBFC-Core Investment Company",
+  "nbfc_d": "Deposit taking NBFC",
+  "nbfc_factor": "NBFC-Factor",
+  "nbfc_hfc": "Housing Finance Company",
+  "nbfc_icc": "NBFC-Investment and Credit Company",
+  "nbfc_idf": "Infrastructure Debt Fund-Non-Banking Financial Company",
+  "nbfc_ifc": "Non-Banking Financial Company-Infrastructure Finance Company",
+  "nbfc_mfi": "Non-Banking Financial Company \u2013 Microfinance Institution",
+  "nbfc_mgc": "Mortgage Guarantee Company",
+  "nbfc_ml": "NBFC-Middle Layer",
+  "nbfc_nofhc": "Non-Operative Financial Holding Company",
+  "nbfc_p2p": "NBFC-Peer to Peer Lending Platform",
+  "nbfc_spd": "Standalone Primary Dealer",
+  "nbfc_tl": "NBFC-TL, NBFCs falling in the Top Layer",
+  "nbfc_ul": "NBFC - Upper Layer",
+  "pb": "Payments Banks",
+  "rcb": "Rural Co-operative Banks",
+  "rrb": "Regional Rural Banks",
+  "sfb": "Small Finance Banks",
+  "ucb": "Urban Co-operative Banks"
+ },
+ "index": {},
+ "index_version": "idx_rbi_20261123_c23c1e8",
+ "models": {
+  "3cb1695b5e58976833abb025af9b211fbe7ce51643161b24882c7d54aa5a6e82": {
+   "input_tokens": 1764,
+   "latency_ms": 1316.9,
+   "model": "claude-haiku-5-5",
+   "output_tokens": 89,
+   "parsed": {
+    "as_of": null,
+    "compare_as_of": null,
+    "computation_requested": true,
+    "entity_type": null,
+    "in_scope": true,
+    "query_kind": "applicability",
+    "topic_terms": [
+     "fraud reporting",
+     "late filing penalty",
+     "RBI penalty"
+    ]
+   },
+   "schema": "ParseOutput",
+   "user": "Our fraud report to RBI was filed 21 days late and the penalty is 5,000 rupees a day: what will we have to pay in total?"
+  }
+ },
+ "recorded": {
+  "caveats": [],
+  "node_log": [
+   {
+    "calls": 1,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.00019881,
+    "input_tokens": 1764,
+    "latency_ms": 1316.95,
+    "model": "claude-haiku-5-5",
+    "node": "parse",
+    "output_tokens": 89
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.0,
+    "model": null,
+    "node": "refuse_early",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.07,
+    "model": null,
+    "node": "finalize",
+    "output_tokens": 0
+   }
+  ],
+  "outcome": "refusal",
+  "path": "refuse",
+  "refusal_reason": "computation_requested",
+  "response": {
+   "as_of": "2026-11-20",
+   "cost_eur": 0.000199,
+   "degraded": [],
+   "dropped": [],
+   "entity_type": "cb",
+   "index_version": "idx_rbi_20261123_c23c1e8",
+   "latency_ms": 1317,
+   "notice": null,
+   "redactions": [],
+   "result": {
+    "examples": [],
+    "message": "Extant states what RBI's directions require and cites them; it does not calculate figures for an institution. Asking what a rule requires, or whether something is permitted, is answered.",
+    "nearest": [],
+    "outcome": "refusal",
+    "reason": "computation_requested"
+   },
+   "retrieved": []
+  }
+ },
+ "spec": {
+  "as_of": "2026-11-20",
+  "entity": "cb",
+  "expect": "computation_requested, decided by the model (no pattern matches)",
+  "name": "adv_computation_by_model",
+  "question": "Our fraud report to RBI was filed 21 days late and the penalty is 5,000 rupees a day: what will we have to pay in total?"
+ },
+ "today": "2026-11-22"
+}

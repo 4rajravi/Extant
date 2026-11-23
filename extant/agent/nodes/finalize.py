@@ -6,6 +6,12 @@ answers and never replace them: two are decided here from what was actually cite
 ``amendment_pending`` (a cited paragraph is replaced by a later version with effect from a
 date still in the future). ``dropped`` is populated on answers and refusals alike: it is
 what lets a reader see what the supersession gate removed.
+
+Before an answer leaves, the post checks run again over the final state
+(``extant.guards.post``). ``verify`` already ran them; a failure here means a path reached
+``finalize`` without passing through ``verify``, which is a bug, so it raises instead of
+refusing. A retrieval only response (a model failed after its retry) is checked the same way:
+every provision it shows is a candidate in force on the date asked.
 """
 
 from __future__ import annotations
@@ -13,6 +19,7 @@ from __future__ import annotations
 from typing import Any
 
 from extant.agent import refusals
+from extant.agent.checks import Located, citation
 from extant.agent.models import (
     AgentState,
     Answer,
@@ -22,9 +29,13 @@ from extant.agent.models import (
     Citation,
     Refusal,
     RefusalReason,
+    RetrievalOnly,
     Retrieved,
 )
 from extant.agent.runtime import Given, Spend, as_of
+from extant.guards import post
+
+PROVISIONS = 5  # how many retrieved provisions a retrieval only response shows
 
 _NEAREST = {
     RefusalReason.ENTITY_REQUIRED,
@@ -68,13 +79,37 @@ def _late_caveats(state: AgentState) -> list[Caveat]:
     return out
 
 
+def _whole(c: Candidate) -> Citation:
+    return citation(Located(c, c.body, 0, len(c.body)))
+
+
+def _retrieval_only(state: AgentState) -> RetrievalOnly:
+    shown = [c for c in state.candidates if c.rank is not None][:PROVISIONS]
+    post.assert_provisions(state, shown)
+    who = state.entity_type or "any entity type"
+    return RetrievalOnly(
+        message=(
+            f"An answer could not be composed just now, so these are the provisions found in"
+            f" force for {who} on {as_of(state).isoformat()}, quoted in full, with nothing"
+            f" drawn from them. {refusals.CHECK_THE_INSTRUMENT}"
+        ),
+        provisions=[_whole(c) for c in shown],
+        caveats=list(dict.fromkeys(state.caveats)),
+    )
+
+
 def run(state: AgentState, given: Given, spend: Spend) -> dict[str, Any]:
     on = as_of(state)
     late: list[Caveat] = []
-    if state.refusal_reason is None:
+    result: Answer | Refusal | RetrievalOnly
+    if state.refusal_reason is None and state.retrieval_only:
+        result = _retrieval_only(state)
+        outcome = "retrieval_only"
+    elif state.refusal_reason is None:
+        post.assert_answer(state)  # raises if a path bypassed verify
         late = _late_caveats(state)
         caveats = list(dict.fromkeys([*state.caveats, *late]))
-        result: Answer | Refusal = Answer(claims=state.verified_claims, caveats=caveats)
+        result = Answer(claims=state.verified_claims, caveats=caveats)
         outcome = "answer"
     else:
         reason = state.refusal_reason

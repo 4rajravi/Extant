@@ -31,7 +31,7 @@
   "ucb": "Urban Co-operative Banks"
  },
  "index": {},
- "index_version": "idx_rbi_20261120_38ede3c",
+ "index_version": "idx_rbi_20261123_c23c1e8",
  "models": {},
  "recorded": {
   "caveats": [],
@@ -64,7 +64,7 @@
     "embedding_tokens": 0,
     "eur": 0.0,
     "input_tokens": 0,
-    "latency_ms": 0.02,
+    "latency_ms": 0.04,
     "model": null,
     "node": "finalize",
     "output_tokens": 0
@@ -79,10 +79,13 @@
    "degraded": [],
    "dropped": [],
    "entity_type": "cb",
-   "index_version": "idx_rbi_20261120_38ede3c",
+   "index_version": "idx_rbi_20261123_c23c1e8",
    "latency_ms": 0,
+   "notice": null,
+   "redactions": [],
    "result": {
-    "message": "Extant states what RBI's directions require and cites them; it does not calculate figures for an institution or choose between options for it (the question asks to calculate).",
+    "examples": [],
+    "message": "Extant states what RBI's directions require and cites them; it does not calculate figures for an institution (the question asks to calculate). Asking what a rule requires, or whether something is permitted, is answered.",
     "nearest": [],
     "outcome": "refusal",
     "reason": "computation_requested"

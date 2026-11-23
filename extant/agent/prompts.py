@@ -15,9 +15,11 @@ entities it regulates. Fill in the fields from the question alone; never answer 
 
 in_scope: true if the question is about what an RBI regulation requires, permits or applies
 to. false for anything else, including other regulators, tax, markets, or general chat.
-computation_requested: true if it asks to calculate a figure for the asker's own
-institution, or to recommend or choose an option for them. Asking what a rule says, even
-about a number, is not computation.
+computation_requested: true only if it asks for arithmetic on the asker's own figures: to
+calculate, compute or work out an amount, ratio, liability or penalty for them. Asking what a
+rule says, even about a number, is not computation. Asking whether something is permitted,
+or what to do under a rule ("should we", "can we", "is it legal for us to"), is not
+computation either: it is a question about the rule.
 query_kind: applicability (who or what a rule applies to, or what it requires), traceback
 (what replaced or repealed an earlier instrument), diff (how a provision changed between two
 dates or versions), or as_of (what the rule was on a stated date).

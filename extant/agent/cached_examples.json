@@ -1,0 +1,538 @@
+{
+ "index_version": "idx_rbi_20261123_c23c1e8",
+ "built_on": "2026-11-23",
+ "examples": [
+  {
+   "question": "How did the minimum capital to risk weighted assets ratio for a small finance bank change between 15 January 2026 and 20 November 2026?",
+   "entity_type": "sfb",
+   "as_of": "2026-11-20",
+   "index_version": "idx_rbi_20261123_c23c1e8",
+   "answer": {
+    "outcome": "answer",
+    "claims": [
+     {
+      "text": "The same version of paragraph 20 of Reserve Bank of India (Small Finance Banks – Licensing) Guidelines, 2025 was in force on both dates asked about, and read as quoted.",
+      "citations": [
+       {
+        "para_id": "rbi:md:2025:0175:v1#p20",
+        "doc_id": "rbi:md:2025:0175:v1",
+        "doc_title": "Reserve Bank of India (Small Finance Banks – Licensing) Guidelines, 2025",
+        "paragraph_number": "20",
+        "effective_from": "2025-11-28",
+        "effective_to": null,
+        "entity_scope": [
+         "sfb"
+        ],
+        "authority_rank": 30,
+        "binding": true,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13135",
+        "source_page": null,
+        "quote_start": 0,
+        "quote_end": 558
+       }
+      ]
+     }
+    ],
+    "caveats": []
+   }
+  },
+  {
+   "question": "What replaced circular DOR.ACC.REC.87/21-02-067/2025-26?",
+   "entity_type": "cb",
+   "as_of": "2026-11-20",
+   "index_version": "idx_rbi_20261123_c23c1e8",
+   "answer": {
+    "outcome": "answer",
+    "claims": [
+     {
+      "text": "Circular DOR.ACC.REC.87/21-02-067/2025-26 was consolidated into Reserve Bank of India (Commercial Banks – Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026, as paragraph annex3 of Reserve Bank of India (Commercial Banks – Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026 records.",
+      "citations": [
+       {
+        "para_id": "rbi:md:2025:0387:v1#annex3",
+        "doc_id": "rbi:md:2025:0387:v1",
+        "doc_title": "Reserve Bank of India (Commercial Banks – Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+        "paragraph_number": "annex3",
+        "effective_from": "2026-03-10",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "authority_rank": 30,
+        "binding": true,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+        "source_page": null,
+        "quote_start": 84,
+        "quote_end": 116
+       }
+      ]
+     }
+    ],
+    "caveats": []
+   }
+  },
+  {
+   "question": "Can we still rely on circular DOR.ACC.REC.87/21-02-067/2025-26?",
+   "entity_type": "cb",
+   "as_of": "2026-11-22",
+   "index_version": "idx_rbi_20261123_c23c1e8",
+   "answer": {
+    "outcome": "answer",
+    "claims": [
+     {
+      "text": "Circular DOR.ACC.REC.87/21-02-067/2025-26 was consolidated into Reserve Bank of India (Commercial Banks – Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026, as paragraph annex3 of Reserve Bank of India (Commercial Banks – Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026 records.",
+      "citations": [
+       {
+        "para_id": "rbi:md:2025:0387:v1#annex3",
+        "doc_id": "rbi:md:2025:0387:v1",
+        "doc_title": "Reserve Bank of India (Commercial Banks – Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+        "paragraph_number": "annex3",
+        "effective_from": "2026-03-10",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "authority_rank": 30,
+        "binding": true,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+        "source_page": null,
+        "quote_start": 84,
+        "quote_end": 116
+       }
+      ]
+     }
+    ],
+    "caveats": [
+     "not_legal_advice",
+     "as_of_assumed"
+    ]
+   }
+  },
+  {
+   "question": "What minimum capital to risk weighted assets ratio must a small finance bank maintain?",
+   "entity_type": "sfb",
+   "as_of": "2026-11-22",
+   "index_version": "idx_rbi_20261123_c23c1e8",
+   "answer": {
+    "outcome": "answer",
+    "claims": [
+     {
+      "text": "A small finance bank must maintain a capital to risk-weighted assets ratio (CRAR) of at least 15 per cent on an ongoing basis.",
+      "citations": [
+       {
+        "para_id": "rbi:md:2025:0182:v8#p10",
+        "doc_id": "rbi:md:2025:0182:v8",
+        "doc_title": "Reserve Bank of India (Small Finance Banks – Prudential Norms on Capital Adequacy) Directions, 2025",
+        "paragraph_number": "10",
+        "effective_from": "2026-10-07",
+        "effective_to": null,
+        "entity_scope": [
+         "sfb"
+        ],
+        "authority_rank": 30,
+        "binding": true,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13127",
+        "source_page": null,
+        "quote_start": 195,
+        "quote_end": 289
+       },
+       {
+        "para_id": "rbi:md:2025:0182:v8#p8",
+        "doc_id": "rbi:md:2025:0182:v8",
+        "doc_title": "Reserve Bank of India (Small Finance Banks – Prudential Norms on Capital Adequacy) Directions, 2025",
+        "paragraph_number": "8",
+        "effective_from": "2026-10-07",
+        "effective_to": null,
+        "entity_scope": [
+         "sfb"
+        ],
+        "authority_rank": 30,
+        "binding": true,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13127",
+        "source_page": null,
+        "quote_start": 259,
+        "quote_end": 380
+       }
+      ]
+     },
+     {
+      "text": "The 15 per cent minimum applies subject to any higher percentage the RBI may prescribe, and the RBI may prescribe a higher minimum capital ratio for an individual bank under the Pillar 2 framework based on its risk profile.",
+      "citations": [
+       {
+        "para_id": "rbi:md:2025:0175:v1#p20",
+        "doc_id": "rbi:md:2025:0175:v1",
+        "doc_title": "Reserve Bank of India (Small Finance Banks – Licensing) Guidelines, 2025",
+        "paragraph_number": "20",
+        "effective_from": "2025-11-28",
+        "effective_to": null,
+        "entity_scope": [
+         "sfb"
+        ],
+        "authority_rank": 30,
+        "binding": true,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13135",
+        "source_page": null,
+        "quote_start": 59,
+        "quote_end": 240
+       },
+       {
+        "para_id": "rbi:md:2025:0182:v8#p8",
+        "doc_id": "rbi:md:2025:0182:v8",
+        "doc_title": "Reserve Bank of India (Small Finance Banks – Prudential Norms on Capital Adequacy) Directions, 2025",
+        "paragraph_number": "8",
+        "effective_from": "2026-10-07",
+        "effective_to": null,
+        "entity_scope": [
+         "sfb"
+        ],
+        "authority_rank": 30,
+        "binding": true,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13127",
+        "source_page": null,
+        "quote_start": 919,
+        "quote_end": 1044
+       }
+      ]
+     },
+     {
+      "text": "Within this minimum, CET1 capital must be at least 6 per cent of risk-weighted assets and Tier 1 capital at least 7.5 per cent.",
+      "citations": [
+       {
+        "para_id": "rbi:md:2025:0182:v8#p10",
+        "doc_id": "rbi:md:2025:0182:v8",
+        "doc_title": "Reserve Bank of India (Small Finance Banks – Prudential Norms on Capital Adequacy) Directions, 2025",
+        "paragraph_number": "10",
+        "effective_from": "2026-10-07",
+        "effective_to": null,
+        "entity_scope": [
+         "sfb"
+        ],
+        "authority_rank": 30,
+        "binding": true,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13127",
+        "source_page": null,
+        "quote_start": 392,
+        "quote_end": 465
+       }
+      ]
+     },
+     {
+      "text": "Tier 2 capital is limited to a maximum of 100 per cent of total Tier 1 capital.",
+      "citations": [
+       {
+        "para_id": "rbi:md:2025:0182:v8#p10",
+        "doc_id": "rbi:md:2025:0182:v8",
+        "doc_title": "Reserve Bank of India (Small Finance Banks – Prudential Norms on Capital Adequacy) Directions, 2025",
+        "paragraph_number": "10",
+        "effective_from": "2026-10-07",
+        "effective_to": null,
+        "entity_scope": [
+         "sfb"
+        ],
+        "authority_rank": 30,
+        "binding": true,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13127",
+        "source_page": null,
+        "quote_start": 920,
+        "quote_end": 1004
+       }
+      ]
+     }
+    ],
+    "caveats": [
+     "as_of_assumed"
+    ]
+   }
+  },
+  {
+   "question": "Can we declare a dividend if we are a commercial bank whose net NPA ratio is above 6 per cent?",
+   "entity_type": "cb",
+   "as_of": "2026-11-22",
+   "index_version": "idx_rbi_20261123_c23c1e8",
+   "answer": {
+    "outcome": "answer",
+    "claims": [
+     {
+      "text": "To be eligible to declare dividends, a bank must meet the prudential requirements in paragraph 7. These requirements are framed around regulatory capital, profit and explicit restrictions, not a net NPA ratio.",
+      "citations": [
+       {
+        "para_id": "rbi:md:2025:0387:v1#p7",
+        "doc_id": "rbi:md:2025:0387:v1",
+        "doc_title": "Reserve Bank of India (Commercial Banks – Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+        "paragraph_number": "7",
+        "effective_from": "2026-03-10",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "authority_rank": 30,
+        "binding": true,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+        "source_page": null,
+        "quote_start": 3,
+        "quote_end": 113
+       }
+      ]
+     },
+     {
+      "text": "The bank must have complied with the applicable regulatory capital requirement at the end of the previous financial year and must continue to comply at the end of the year in which the dividend is proposed to be paid.",
+      "citations": [
+       {
+        "para_id": "rbi:md:2025:0387:v1#p7",
+        "doc_id": "rbi:md:2025:0387:v1",
+        "doc_title": "Reserve Bank of India (Commercial Banks – Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+        "paragraph_number": "7",
+        "effective_from": "2026-03-10",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "authority_rank": 30,
+        "binding": true,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+        "source_page": null,
+        "quote_start": 118,
+        "quote_end": 365
+       }
+      ]
+     },
+     {
+      "text": "The bank's regulatory capital must not fall below the applicable requirement even after the dividend is paid.",
+      "citations": [
+       {
+        "para_id": "rbi:md:2025:0387:v1#p7",
+        "doc_id": "rbi:md:2025:0387:v1",
+        "doc_title": "Reserve Bank of India (Commercial Banks – Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+        "paragraph_number": "7",
+        "effective_from": "2026-03-10",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "authority_rank": 30,
+        "binding": true,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+        "source_page": null,
+        "quote_start": 370,
+        "quote_end": 507
+       }
+      ]
+     },
+     {
+      "text": "A bank incorporated in India must have positive adjusted Profit After Tax for the period for which the dividend is proposed.",
+      "citations": [
+       {
+        "para_id": "rbi:md:2025:0387:v1#p7",
+        "doc_id": "rbi:md:2025:0387:v1",
+        "doc_title": "Reserve Bank of India (Commercial Banks – Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+        "paragraph_number": "7",
+        "effective_from": "2026-03-10",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "authority_rank": 30,
+        "binding": true,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+        "source_page": null,
+        "quote_start": 512,
+        "quote_end": 645
+       }
+      ]
+     },
+     {
+      "text": "The bank must not be under any explicit restriction on declaring dividends from the Reserve Bank or any other authority.",
+      "citations": [
+       {
+        "para_id": "rbi:md:2025:0387:v1#p7",
+        "doc_id": "rbi:md:2025:0387:v1",
+        "doc_title": "Reserve Bank of India (Commercial Banks – Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+        "paragraph_number": "7",
+        "effective_from": "2026-03-10",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "authority_rank": 30,
+        "binding": true,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+        "source_page": null,
+        "quote_start": 808,
+        "quote_end": 961
+       }
+      ]
+     },
+     {
+      "text": "NPAs come into the decision through the Board. When considering a dividend proposal, the Board must consider any divergence in asset classification and provisioning for NPAs, including its trend, observed in the Reserve Bank's supervisory findings.",
+      "citations": [
+       {
+        "para_id": "rbi:md:2025:0387:v1#p6",
+        "doc_id": "rbi:md:2025:0387:v1",
+        "doc_title": "Reserve Bank of India (Commercial Banks – Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+        "paragraph_number": "6",
+        "effective_from": "2026-03-10",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "authority_rank": 30,
+        "binding": true,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+        "source_page": null,
+        "quote_start": 153,
+        "quote_end": 331
+       }
+      ]
+     },
+     {
+      "text": "For an eligible bank incorporated in India, the amount of dividend depends on its CET 1 ratio at the end of the previous financial year. In aggregate, the dividend cannot exceed 75% of the PAT for the period.",
+      "citations": [
+       {
+        "para_id": "rbi:md:2025:0387:v1#p8",
+        "doc_id": "rbi:md:2025:0387:v1",
+        "doc_title": "Reserve Bank of India (Commercial Banks – Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+        "paragraph_number": "8",
+        "effective_from": "2026-03-10",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "authority_rank": 30,
+        "binding": true,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+        "source_page": null,
+        "quote_start": 303,
+        "quote_end": 343
+       }
+      ]
+     },
+     {
+      "text": "The Reserve Bank may restrict dividend distribution where a bank is found to be non-compliant with applicable laws, regulations or guidelines issued by the Reserve Bank.",
+      "citations": [
+       {
+        "para_id": "rbi:md:2025:0387:v1#p13",
+        "doc_id": "rbi:md:2025:0387:v1",
+        "doc_title": "Reserve Bank of India (Commercial Banks – Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+        "paragraph_number": "13",
+        "effective_from": "2026-03-10",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "authority_rank": 30,
+        "binding": true,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+        "source_page": null,
+        "quote_start": 4,
+        "quote_end": 234
+       }
+      ]
+     }
+    ],
+    "caveats": [
+     "not_legal_advice",
+     "as_of_assumed"
+    ]
+   }
+  },
+  {
+   "question": "Can a commercial bank declare a dividend if its net NPA ratio is above 6 per cent?",
+   "entity_type": "cb",
+   "as_of": "2026-11-20",
+   "index_version": "idx_rbi_20261123_c23c1e8",
+   "answer": {
+    "outcome": "answer",
+    "claims": [
+     {
+      "text": "To be eligible to declare dividends, a bank must meet the prudential requirements listed in paragraph 7. These are: compliance with the applicable regulatory capital requirement at the end of the previous financial year and of the year in which the dividend is paid; capital not falling below that requirement after the dividend; positive adjusted Profit After Tax for the period (for a bank incorporated in India); and no explicit restriction on dividends from the Reserve Bank or any other authority. None of these criteria is a net NPA ratio ceiling.",
+      "citations": [
+       {
+        "para_id": "rbi:md:2025:0387:v1#p7",
+        "doc_id": "rbi:md:2025:0387:v1",
+        "doc_title": "Reserve Bank of India (Commercial Banks – Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+        "paragraph_number": "7",
+        "effective_from": "2026-03-10",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "authority_rank": 30,
+        "binding": true,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+        "source_page": null,
+        "quote_start": 3,
+        "quote_end": 113
+       }
+      ]
+     },
+     {
+      "text": "NPAs come in at Board level instead. When considering a dividend proposal, the Board must consider any divergence in asset classification and provisioning for NPAs, including its trend, observed in the Reserve Bank's supervisory findings.",
+      "citations": [
+       {
+        "para_id": "rbi:md:2025:0387:v1#p6",
+        "doc_id": "rbi:md:2025:0387:v1",
+        "doc_title": "Reserve Bank of India (Commercial Banks – Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+        "paragraph_number": "6",
+        "effective_from": "2026-03-10",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "authority_rank": 30,
+        "binding": true,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+        "source_page": null,
+        "quote_start": 153,
+        "quote_end": 330
+       }
+      ]
+     },
+     {
+      "text": "The amount of dividend a bank incorporated in India may pay depends on its CET 1 ratio at the end of the previous financial year. In aggregate, it may not exceed 75% of PAT.",
+      "citations": [
+       {
+        "para_id": "rbi:md:2025:0387:v1#p8",
+        "doc_id": "rbi:md:2025:0387:v1",
+        "doc_title": "Reserve Bank of India (Commercial Banks – Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+        "paragraph_number": "8",
+        "effective_from": "2026-03-10",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "authority_rank": 30,
+        "binding": true,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+        "source_page": null,
+        "quote_start": 303,
+        "quote_end": 343
+       }
+      ]
+     },
+     {
+      "text": "The Reserve Bank may still restrict dividend distribution where a bank is found to be non-compliant with applicable laws or with Reserve Bank regulations or guidelines.",
+      "citations": [
+       {
+        "para_id": "rbi:md:2025:0387:v1#p13",
+        "doc_id": "rbi:md:2025:0387:v1",
+        "doc_title": "Reserve Bank of India (Commercial Banks – Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+        "paragraph_number": "13",
+        "effective_from": "2026-03-10",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "authority_rank": 30,
+        "binding": true,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+        "source_page": null,
+        "quote_start": 4,
+        "quote_end": 155
+       }
+      ]
+     }
+    ],
+    "caveats": []
+   }
+  }
+ ]
+}

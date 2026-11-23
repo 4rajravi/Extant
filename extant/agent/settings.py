@@ -10,6 +10,7 @@ from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from extant.agent.llm import LangChainModel, StructuredModel, Tier
+from extant.guards.middleware import RetryPolicy, UsageStore, guard_all
 
 
 class AgentSettingsError(RuntimeError):
@@ -37,10 +38,17 @@ class AgentSettings(BaseSettings):
             ),
         }
 
-    def models(self) -> dict[str, StructuredModel]:
+    def models(
+        self, store: UsageStore, *, retry: RetryPolicy | None = None
+    ) -> dict[str, StructuredModel]:
+        """The only way to get a model: each comes wrapped in the middleware (cap, redaction,
+        retry, accounting), so a call added later is guarded without anyone remembering to."""
         if self.anthropic_api_key is None:
             raise AgentSettingsError("EXTANT_ANTHROPIC_API_KEY is not set in .env")
-        return {name: LangChainModel(t, self.anthropic_api_key) for name, t in self.tiers().items()}
+        raw: dict[str, StructuredModel] = {
+            name: LangChainModel(t, self.anthropic_api_key) for name, t in self.tiers().items()
+        }
+        return guard_all(raw, store, self.eur_per_usd, retry=retry)
 
 
 def load_agent_settings() -> AgentSettings:

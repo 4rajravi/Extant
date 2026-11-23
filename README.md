@@ -5,12 +5,14 @@ something, as of when, and for whom, and every answer carries a verified citatio
 refusal. The first corpus is the RBI Master Directions, followed by the Income-tax Act and
 then GST; each corpus is an adapter under `extant/corpora/`, not a rewrite.
 
-This repository is at **Phase 3**: on top of the Phase 0 scaffold, domain models, schema
-tooling, settings and CI, the RBI corpus is crawled, extracted, parsed into paragraphs and mined
-for gold labels (Phase 1), then chunked, embedded, assembled into a versioned, verified build
-schema and searched by a hybrid retrieval library (Phase 2), and retrieval is measured by an
-eval harness with six ablations, a committed baseline and a CI gate (Phase 3). There is no
-agent or refusal logic yet; no generative model is called anywhere.
+This repository is at **Phase 5**. On top of the Phase 0 scaffold, the RBI corpus is crawled,
+extracted, parsed and mined for gold labels (Phase 1), chunked, embedded and assembled into a
+versioned, verified build schema searched by a hybrid retrieval library (Phase 2), and
+retrieval is measured by an eval harness with six ablations and a CI gate (Phase 3). An agent
+graph answers a question with verified citations or a stated refusal (Phase 4), and guardrails
+wrap it: redaction at admission, middleware around every model call, a daily cap in Postgres,
+a degradation ladder, structured request logs and an adversarial suite that gates CI
+(Phase 5).
 
 - The corpus adapter and how to run it: [`extant/corpora/rbi/README.md`](extant/corpora/rbi/README.md)
 - The coverage report: [`evals/coverage-rbi-20261119.md`](evals/coverage-rbi-20261119.md), with
@@ -20,6 +22,37 @@ agent or refusal logic yet; no generative model is called anywhere.
   [`evals/recon-rbi-20261119.md`](evals/recon-rbi-20261119.md)
 - The retrieval eval, its leakage controls and the CI gate: [`evals/README.md`](evals/README.md),
   with the ablation table in [`evals/ablations.md`](evals/ablations.md)
+- The agent graph, its nodes, checks and refusals: [`extant/agent/README.md`](extant/agent/README.md)
+- The guardrails, the degradation ladder and the cap: [`extant/guards/README.md`](extant/guards/README.md),
+  with the adversarial suite's results in [`evals/adversarial-results.md`](evals/adversarial-results.md)
+
+## Why prompt injection is already bounded
+
+Extant has no injection filter, deliberately. A filter would add the appearance of security
+without the substance; the defence is structural.
+
+The corpus is government material and trusted. User input is not. But the one model that
+writes prose, the composer, has an output surface too narrow to do damage. It can emit claim
+text, integer indices into a candidate list that retrieval built, and quotes. It cannot emit a
+paragraph identifier (indices are resolved to ids by code, and an index out of range fails),
+cannot reach the database, cannot change the entity filter or the as-of date (both are fixed
+before it runs and set once), and cannot skip the checks. Those are post checks: pure
+functions of the final state that `verify` runs and `finalize` runs again, so whether they
+run is not something any model output decides. Every quote must be a literal substring of
+the cited paragraph, every number in a claim must appear in its own quotes, nothing cited may
+be out of force, and the prose may carry no internal label.
+
+So the worst outcome of a successful injection is a claim that fails verification and becomes
+a refusal. That is a bounded failure, bounded by the shape of the schema rather than by the
+wording of a system prompt. The adversarial suite holds it: a question that tells the system
+to ignore its instructions and assert that a bank needs no capital gets four verified claims
+about the 15 per cent ratio, and the suite fails if any answer ever carries the planted claim.
+
+One provision is made now for later. If third party commentary is ever ingested it enters the
+index marked untrusted (`chunks.trusted`, migration 0005), and retrieval excludes it unless a
+caller asks for it by name. That boundary is a column in the filter, not a sentence in a
+prompt, and adding it later would have meant migrating the one table the design never
+migrates.
 
 ## Two planes, one contract
 
@@ -27,9 +60,10 @@ An offline **index plane** writes and a stateless **serving plane** reads. Nothi
 migrated in place: every index build creates a brand new Postgres schema, and that schema is
 the contract between the two planes. Rollout is a `search_path` change on a new serving
 revision. Rollback is the previous revision, still pointing at the previous schema. Old
-schemas are kept for a bounded window so a disputed answer can be reproduced. Only two things
-outlive a build, and both live in `public`: the `vector` extension and `public.vec_cache`,
-the embedding cache keyed on content hash plus model identity.
+schemas are kept for a bounded window so a disputed answer can be reproduced. Only a few things
+outlive a build, and all live in `public`: the `vector` extension, `public.vec_cache` (the
+embedding cache keyed on content hash plus model identity), and the daily cap counter and
+request ledger (`public.usage_daily`, `public.request_ledger`).
 
 Build schemas are named
 
@@ -39,7 +73,8 @@ idx_<corpus>_<YYYYMMDD>_<short git commit>      e.g. idx_rbi_20261118_a3f91c4
 
 and the tooling refuses to create or drop any schema whose name does not match, so `public`
 cannot be dropped by a typo. Serving connects as the read only role `extant_reader`, which
-can `SELECT` from build schemas and nothing else.
+can `SELECT` from build schemas, and write exactly two tables in `public`: the daily cap
+counter and the request ledger, since the cap must bind a serving instance.
 
 ## Local setup
 

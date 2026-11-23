@@ -72,7 +72,7 @@
    ]
   }
  },
- "index_version": "idx_rbi_20261120_38ede3c",
+ "index_version": "idx_rbi_20261123_c23c1e8",
  "models": {},
  "recorded": {
   "caveats": [],
@@ -94,7 +94,7 @@
     "embedding_tokens": 0,
     "eur": 0.0,
     "input_tokens": 0,
-    "latency_ms": 391.73,
+    "latency_ms": 400.75,
     "model": null,
     "node": "resolve_reference",
     "output_tokens": 0
@@ -105,7 +105,7 @@
     "embedding_tokens": 0,
     "eur": 0.0,
     "input_tokens": 0,
-    "latency_ms": 0.0,
+    "latency_ms": 0.01,
     "model": null,
     "node": "gate",
     "output_tokens": 0
@@ -138,7 +138,7 @@
     "embedding_tokens": 0,
     "eur": 0.0,
     "input_tokens": 0,
-    "latency_ms": 0.61,
+    "latency_ms": 0.66,
     "model": null,
     "node": "verify",
     "output_tokens": 0
@@ -160,7 +160,7 @@
     "embedding_tokens": 0,
     "eur": 0.0,
     "input_tokens": 0,
-    "latency_ms": 0.17,
+    "latency_ms": 0.75,
     "model": null,
     "node": "finalize",
     "output_tokens": 0
@@ -175,8 +175,10 @@
    "degraded": [],
    "dropped": [],
    "entity_type": "cb",
-   "index_version": "idx_rbi_20261120_38ede3c",
-   "latency_ms": 393,
+   "index_version": "idx_rbi_20261123_c23c1e8",
+   "latency_ms": 403,
+   "notice": null,
+   "redactions": [],
    "result": {
     "caveats": [],
     "claims": [

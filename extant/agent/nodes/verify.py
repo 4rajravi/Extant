@@ -12,9 +12,10 @@ from __future__ import annotations
 
 from typing import Any
 
-from extant.agent.checks import OVERLAP_THRESHOLD, verify_claim
+from extant.agent.checks import OVERLAP_THRESHOLD
 from extant.agent.models import AgentState, CheckResult, RefusalReason
 from extant.agent.runtime import Given, Spend
+from extant.guards import post
 
 _PLAIN = {
     "plain_text": "the wording of a claim",
@@ -29,7 +30,7 @@ def run(state: AgentState, given: Given, spend: Spend) -> dict[str, Any]:
     if not state.draft_claims:
         return {"refusal_reason": RefusalReason.NO_SUPPORT_FOUND}
     checks: dict[str, CheckResult] = dict(state.checks)
-    verdicts = [verify_claim(i, c, state.candidates) for i, c in enumerate(state.draft_claims)]
+    verdicts = post.claim_verdicts(state)  # the post checks, hoisted; finalize runs them again
     first_failure: str | None = None
     for v in verdicts:
         for name, result in v.checks.items():

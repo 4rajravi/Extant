@@ -24,6 +24,7 @@ from extant.agent.llm import ModelOutputError
 from extant.agent.models import (
     AgentState,
     Candidate,
+    Caveat,
     CheckResult,
     ComposerOutput,
     DraftClaim,
@@ -31,8 +32,16 @@ from extant.agent.models import (
 )
 from extant.agent.runtime import Given, Spend, as_of, parsed
 from extant.core.identity import ref_variants
+from extant.guards.errors import ModelUnavailableError
 
 FAST_CLAIMS = 3
+# Rung 3 of the degradation ladder: the composer failed after its retry. The retrieved
+# provisions are shown whole, with no prose drawn from them.
+RETRIEVAL_ONLY: dict[str, Any] = {
+    "retrieval_only": True,
+    "degraded": ["retrieval_only"],
+    "caveats": [Caveat.DEGRADED_RETRIEVAL],
+}
 
 
 def _quoted_mention(body: str, canonical: str) -> str | None:
@@ -130,12 +139,16 @@ def run(state: AgentState, given: Given, spend: Spend) -> dict[str, Any]:
                 else "no paragraph was found in force on the first date",
             }
         return {"draft_claims": claims}
+    if state.retrieval_only:
+        return {}  # parse already degraded: nothing is composed
     if given.model is None:
         raise RuntimeError("compose needs a model on the full path")
     shown = list(state.candidates)
     user = prompts.compose_user(state.raw_query, state.entity_type, as_of(state), shown)
     try:
         done = spend.complete(given.model, ComposerOutput, system=prompts.COMPOSE_SYSTEM, user=user)
+    except ModelUnavailableError:
+        return RETRIEVAL_ONLY
     except (ModelOutputError, ValidationError) as exc:
         return {
             "checks": {

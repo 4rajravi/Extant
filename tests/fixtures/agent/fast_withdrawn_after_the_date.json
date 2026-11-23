@@ -50,7 +50,7 @@
    ]
   }
  },
- "index_version": "idx_rbi_20261120_38ede3c",
+ "index_version": "idx_rbi_20261123_c23c1e8",
  "models": {},
  "recorded": {
   "caveats": [],
@@ -72,7 +72,7 @@
     "embedding_tokens": 0,
     "eur": 0.0,
     "input_tokens": 0,
-    "latency_ms": 275.15,
+    "latency_ms": 284.69,
     "model": null,
     "node": "resolve_reference",
     "output_tokens": 0
@@ -94,7 +94,7 @@
     "embedding_tokens": 0,
     "eur": 0.0,
     "input_tokens": 0,
-    "latency_ms": 0.07,
+    "latency_ms": 0.09,
     "model": null,
     "node": "finalize",
     "output_tokens": 0
@@ -109,10 +109,13 @@
    "degraded": [],
    "dropped": [],
    "entity_type": "cb",
-   "index_version": "idx_rbi_20261120_38ede3c",
-   "latency_ms": 275,
+   "index_version": "idx_rbi_20261123_c23c1e8",
+   "latency_ms": 285,
+   "notice": null,
+   "redactions": [],
    "result": {
-    "message": "No RBI direction paragraph in force for an entity of type cb on 2024-03-14 establishes this. Dbod.no.dir.bc.1/13.03.00/2012-13 was withdrawn by rbi:circ:2025:0100:v1 with effect from 2025-11-28, which is after the date you asked about, so it may still have applied. Check the instrument itself before relying on this.",
+    "examples": [],
+    "message": "No RBI direction paragraph in force for an entity of type cb on 2024-03-14 establishes this. DBOD.No.Dir.BC.1/13.03.00/2012-13 was withdrawn by rbi:circ:2025:0100:v1 with effect from 2025-11-28, which is after the date you asked about, so it may still have applied. Check the instrument itself before relying on this.",
     "nearest": [],
     "outcome": "refusal",
     "reason": "no_support_found"
