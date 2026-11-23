@@ -30,7 +30,7 @@ def run(state: AgentState, given: Given, spend: Spend) -> dict[str, Any]:
     if not state.draft_claims:
         return {"refusal_reason": RefusalReason.NO_SUPPORT_FOUND}
     checks: dict[str, CheckResult] = dict(state.checks)
-    verdicts = post.claim_verdicts(state)  # the post checks, hoisted; finalize runs them again
+    verdicts = post.claim_verdicts(state, given.arm)  # the post checks; finalize reruns them
     first_failure: str | None = None
     for v in verdicts:
         for name, result in v.checks.items():
@@ -51,5 +51,7 @@ def run(state: AgentState, given: Given, spend: Spend) -> dict[str, Any]:
         for v in verdicts
         if v.overlap < OVERLAP_THRESHOLD and not state.draft_claims[v.index].templated
     ]
+    if not given.arm.verification:
+        residual = []  # the arm without verification has no judge either
     claims = [v.claim for v in verdicts if v.claim is not None]
     return {"verified_claims": claims, "checks": checks, "residual": residual}

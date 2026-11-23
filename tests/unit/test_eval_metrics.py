@@ -142,22 +142,3 @@ def test_audited_precision_is_a_gap_until_every_pair_is_judged() -> None:
     assert metrics.audited_precision([]) is None
     assert metrics.audited_precision(["correct", None]) is None
     assert metrics.audited_precision(["correct", "correct", "wrong", "correct"]) == 0.75
-
-
-@pytest.mark.parametrize(
-    "fn",
-    [
-        metrics.citation_validity,
-        metrics.groundedness,
-        metrics.refusal_correctness,
-        metrics.false_refusal_rate,
-    ],
-)
-def test_answer_level_metrics_are_phase_6(fn: object) -> None:
-    with pytest.raises(NotImplementedError, match="Phase 6"):
-        fn(None, None)  # type: ignore[operator]
-
-
-def test_cost_per_question_is_phase_6() -> None:
-    with pytest.raises(NotImplementedError, match="Phase 6"):
-        metrics.cost_per_question([])

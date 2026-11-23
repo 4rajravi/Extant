@@ -326,6 +326,8 @@ class AgentState(BaseModel):
     submitted_entity: str | None = None
     submitted_as_of: date | None = None
     today: date  # the date "today" means for this request, fixed at admission
+    # Eval only: False in the Phase 6 arm without supersession handling (extant.agent.arms).
+    supersession_on: bool = True
 
     # parse
     query_kind: QueryKind | None = None
@@ -411,6 +413,8 @@ class AgentState(BaseModel):
 
     @model_validator(mode="after")
     def no_repealed_candidate_reaches_compose(self) -> AgentState:
+        if not self.supersession_on:
+            return self  # the ablation arm that measures what this guard buys
         if self.draft_claims or self.verified_claims:
             stale = [c.para_id for c in self.candidates if not c.in_force()]
             if stale:

@@ -83,5 +83,18 @@ def compose_user(
     )
 
 
+def retry_note(failures: Sequence[str]) -> str:
+    """Eval only (the retry arm): what failed, appended to the composer's original message.
+    It quotes the composer's own claims and quotes back to it, never an expected answer."""
+    listed = "\n".join(f"- {f}" for f in failures)
+    return (
+        "\n\nYour previous answer failed verification and was withheld:\n"
+        f"{listed}\n"
+        "Write the answer again from the same numbered paragraphs. Every quote must be copied"
+        " character for character, every number in a claim must appear in that claim's own"
+        " quotes, and the claim text must not contain a bracketed number or an identifier."
+    )
+
+
 def judge_user(claim: str, bodies: Sequence[str]) -> str:
     return f"Claim: {claim}\n\nParagraphs:\n" + "\n\n".join(bodies)

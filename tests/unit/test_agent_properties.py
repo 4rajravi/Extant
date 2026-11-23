@@ -72,6 +72,8 @@ def test_nothing_out_of_force_survives_the_gate_and_every_removal_is_recorded(
     out = gate.run(s, Given(), Spend())
     kept = {c.para_id for c in out["candidates"]}
     dropped = {d.para_id: d for d in out["dropped"]}
+    # One dropped row per removed candidate, exactly: the dict above would hide a duplicate.
+    assert len(out["dropped"]) == len(rows) - len(out["candidates"])
     assert kept.isdisjoint(dropped)
     assert kept | set(dropped) == {c.para_id for c in rows}
     for c in rows:
@@ -92,6 +94,26 @@ def test_nothing_out_of_force_survives_the_gate_and_every_removal_is_recorded(
             RefusalReason.SUPERSEDED_ONLY,
             RefusalReason.NO_SUPPORT_FOUND,
         )
+
+
+@settings(max_examples=400, deadline=None)
+@given(rows=candidates(), on=days)
+def test_repealed_never_reaches_compose(rows: list[Candidate], on: date) -> None:
+    """The Phase 6 spec's form: every candidate retrieved for the state's own as-of date."""
+    rows = [c.model_copy(update={"asked_for": on}) for c in rows]
+    state = AgentState(
+        request_id="r",
+        index_version="idx_rbi_20261123_c23c1e8",
+        raw_query="q",
+        today=TODAY,
+        as_of=on,
+        candidates=rows,
+    )
+    out = gate.run(state, Given(), Spend())
+    for c in out["candidates"]:
+        assert c.valid_from <= on
+        assert c.valid_to is None or c.valid_to > on
+    assert len(out["dropped"]) == len(state.candidates) - len(out["candidates"])
 
 
 # --------------------------------------------------------------------------- planted defects

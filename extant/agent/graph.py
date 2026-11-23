@@ -23,7 +23,7 @@ from typing import Any
 
 from langgraph.graph import END, START, StateGraph
 
-from extant.agent.models import AgentState, AskResponse
+from extant.agent.models import AgentState, AskResponse, RefusalReason
 from extant.agent.nodes import (
     authority,
     compose,
@@ -35,6 +35,7 @@ from extant.agent.nodes import (
     refuse_early,
     resolve_reference,
     retrieve,
+    retry,
     verify,
 )
 from extant.agent.runtime import Deps, run_node
@@ -77,10 +78,19 @@ def _onward(to: str) -> Any:
     return edge
 
 
+def _after_verify(state: AgentState) -> str:
+    """Eval only, with the retry arm: a verification failure gets one retry."""
+    if state.refusal_reason is RefusalReason.VERIFICATION_FAILED:
+        return "retry"
+    return _onward("judge")(state)  # type: ignore[no-any-return]
+
+
 def build(deps: Deps) -> Any:
     g = StateGraph(AgentState)
     for name, fn in _FNS.items():
         g.add_node(name, run_node(name, fn, deps))  # type: ignore[call-overload]
+    if deps.arm.retry:
+        g.add_node("retry", run_node("retry", retry.run, deps))  # type: ignore[call-overload]
     g.add_edge(START, "parse")
     g.add_conditional_edges("parse", route, sorted(set(ROUTES.values())))
     g.add_edge("refuse_early", "finalize")
@@ -90,7 +100,11 @@ def build(deps: Deps) -> Any:
     g.add_conditional_edges("gate", _onward("authority"), ["authority", "finalize"])
     g.add_conditional_edges("authority", _onward("compose"), ["compose", "finalize"])
     g.add_conditional_edges("compose", _onward("verify"), ["verify", "finalize"])
-    g.add_conditional_edges("verify", _onward("judge"), ["judge", "finalize"])
+    if deps.arm.retry:
+        g.add_conditional_edges("verify", _after_verify, ["retry", "judge", "finalize"])
+        g.add_conditional_edges("retry", _onward("judge"), ["judge", "finalize"])
+    else:
+        g.add_conditional_edges("verify", _onward("judge"), ["judge", "finalize"])
     g.add_edge("judge", "finalize")  # judge ends either way: answer, refusal or retrieval only
     g.add_edge("finalize", END)
     return g.compile()
@@ -105,6 +119,7 @@ def ask(
     as_of: date | None = None,
     today: date | None = None,
     request_id: str | None = None,
+    supersession: bool = True,
 ) -> AgentState:
     """Run one question through the graph and return the final state."""
     start = AgentState(
@@ -114,6 +129,7 @@ def ask(
         submitted_entity=entity,
         submitted_as_of=as_of,
         today=today or date.today(),
+        supersession_on=supersession,
     )
     out = graph.invoke(start)
     return out if isinstance(out, AgentState) else AgentState.model_validate(out)

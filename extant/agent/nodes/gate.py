@@ -18,16 +18,17 @@ from extant.agent.models import AgentState, Candidate, Dropped, RefusalReason
 from extant.agent.runtime import Given, Spend, as_of
 
 
-def judge(c: Candidate, entity: str | None) -> Dropped | None:
-    """The reason ``c`` cannot stand, or None."""
+def judge(c: Candidate, entity: str | None, *, dates: bool = True) -> Dropped | None:
+    """The reason ``c`` cannot stand, or None. ``dates=False`` is the Phase 6 ablation arm
+    without supersession handling: entity scope still applies, dates do not."""
     on = c.asked_for
-    if c.valid_to is not None and c.valid_to <= on:
+    if dates and c.valid_to is not None and c.valid_to <= on:
         return Dropped(
             para_id=c.para_id,
             reason="superseded",
             detail=f"in force {c.valid_from} to {c.valid_to}, asked for {on}",
         )
-    if c.valid_from > on:
+    if dates and c.valid_from > on:
         return Dropped(
             para_id=c.para_id,
             reason="not_yet_effective",
@@ -47,7 +48,7 @@ def run(state: AgentState, given: Given, spend: Spend) -> dict[str, Any]:
     dropped: list[Dropped] = []
     set_aside: list[Candidate] = []
     for c in state.candidates:
-        why = judge(c, state.entity_type)
+        why = judge(c, state.entity_type, dates=given.arm.supersession)
         if why is None:
             keep.append(c)
         else:

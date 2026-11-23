@@ -106,7 +106,7 @@ def run(state: AgentState, given: Given, spend: Spend) -> dict[str, Any]:
         result = _retrieval_only(state)
         outcome = "retrieval_only"
     elif state.refusal_reason is None:
-        post.assert_answer(state)  # raises if a path bypassed verify
+        post.assert_answer(state, given.arm)  # raises if a path bypassed verify
         late = _late_caveats(state)
         caveats = list(dict.fromkeys([*state.caveats, *late]))
         result = Answer(claims=state.verified_claims, caveats=caveats)

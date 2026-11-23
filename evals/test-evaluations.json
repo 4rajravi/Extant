@@ -1,4 +1,7 @@
 {
+ "answers:answerable": 1,
+ "answers:as_of": 1,
+ "answers:unanswerable": 1,
  "concordance": 1,
  "temporal": 1,
  "withdrawal": 1

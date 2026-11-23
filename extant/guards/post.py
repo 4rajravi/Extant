@@ -23,6 +23,7 @@ from the drafts, and at least one cited paragraph is binding.
 
 from __future__ import annotations
 
+from extant.agent.arms import BASELINE, Arm
 from extant.agent.checks import OVERLAP_THRESHOLD, ClaimVerdict, verify_claim
 from extant.agent.models import AgentState, Candidate, CheckResult
 from extant.agent.runtime import InvariantError
@@ -37,9 +38,22 @@ class PostCheckError(InvariantError):
         super().__init__(f"post checks failed on the final state: {listed}")
 
 
-def claim_verdicts(state: AgentState) -> list[ClaimVerdict]:
+ALL_CHECKS = frozenset({"plain_text", "citation_exists", "quote_match", "supersession", "numerics"})
+
+
+def skipped(arm: Arm) -> frozenset[str]:
+    """The claim checks an ablation arm turns off. Serving's arm turns off none."""
+    if not arm.verification:
+        return ALL_CHECKS
+    return frozenset() if arm.supersession else frozenset({"supersession"})
+
+
+def claim_verdicts(state: AgentState, arm: Arm = BASELINE) -> list[ClaimVerdict]:
     """The hard checks on every draft claim, against the candidates in the state."""
-    return [verify_claim(i, c, state.candidates) for i, c in enumerate(state.draft_claims)]
+    skip = skipped(arm)
+    return [
+        verify_claim(i, c, state.candidates, skip=skip) for i, c in enumerate(state.draft_claims)
+    ]
 
 
 def _groundedness(state: AgentState, verdicts: list[ClaimVerdict]) -> list[CheckResult]:
@@ -57,11 +71,11 @@ def _groundedness(state: AgentState, verdicts: list[ClaimVerdict]) -> list[Check
     return out
 
 
-def answer_checks(state: AgentState) -> list[CheckResult]:
+def answer_checks(state: AgentState, arm: Arm = BASELINE) -> list[CheckResult]:
     """Every post check an answer must pass, run over the state as it stands."""
     if not state.draft_claims:
         return [CheckResult(name="claims", passed=False, detail="an answer with no draft claims")]
-    verdicts = claim_verdicts(state)
+    verdicts = claim_verdicts(state, arm)
     results = [
         r.model_copy(update={"name": f"claim{v.index}.{name}"})
         for v in verdicts
@@ -117,8 +131,10 @@ def _raise_on_failure(results: list[CheckResult]) -> None:
         raise PostCheckError(failed)
 
 
-def assert_answer(state: AgentState) -> None:
-    _raise_on_failure(answer_checks(state))
+def assert_answer(state: AgentState, arm: Arm = BASELINE) -> None:
+    if not arm.verification:
+        return  # the ablation arm with no verification: nothing between composer and answer
+    _raise_on_failure(answer_checks(state, arm))
 
 
 def assert_provisions(state: AgentState, provisions: list[Candidate]) -> None:
