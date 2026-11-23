@@ -144,6 +144,8 @@ class RetrievalOptions:
     # it fetches what the date filter hides so the gate can remove it on the record and say
     # what was repealed. Its rows are dropped before anything is composed.
     validity: Literal["in_force", "any"] = "in_force"
+    # Untrusted chunks are excluded unless asked for by name. Nothing in serving asks.
+    include_untrusted: bool = False
 
 
 @dataclass(frozen=True)
@@ -188,15 +190,18 @@ class RetrievalResult:
 
 # --------------------------------------------------------------------------- SQL
 
-_ENTITY = "entity_codes && %(entity)s::text[]"
+# Every filter starts with the trust test: an untrusted chunk (third party commentary, none
+# today) is never a candidate unless a caller sets ``include_untrusted``. It is a column in
+# the filter, not an instruction in a prompt, so no model output can widen it.
+_ENTITY = "(trusted OR %(untrusted)s) AND entity_codes && %(entity)s::text[]"
 _IN_FORCE = " AND valid_from <= %(as_of)s AND (valid_to IS NULL OR valid_to > %(as_of)s)"
 _FILTER = _ENTITY + _IN_FORCE
 _FILTER_C = (
-    "c.entity_codes && %(entity)s::text[]"
+    "(c.trusted OR %(untrusted)s) AND c.entity_codes && %(entity)s::text[]"
     " AND c.valid_from <= %(as_of)s"
     " AND (c.valid_to IS NULL OR c.valid_to > %(as_of)s)"
 )
-_ENTITY_C = "c.entity_codes && %(entity)s::text[]"
+_ENTITY_C = "(c.trusted OR %(untrusted)s) AND c.entity_codes && %(entity)s::text[]"
 
 
 def _filter(validity: Literal["in_force", "any"], *, prefixed: bool = False) -> str:
@@ -253,8 +258,8 @@ _NEIGHBOURS = (
     " JOIN chunks c ON c.doc_id = x.doc_id"
     "  AND c.ordinal BETWEEN x.ordinal - %(r)s AND x.ordinal + %(r)s AND c.ordinal <> x.ordinal"
     " JOIN paragraphs p ON p.para_id = c.para_id JOIN documents d ON d.doc_id = p.doc_id"
-    " WHERE c.entity_codes && %(entity)s::text[] AND c.valid_from <= %(as_of)s"
-    " AND (c.valid_to IS NULL OR c.valid_to > %(as_of)s)"
+    " WHERE (c.trusted OR %(untrusted)s) AND c.entity_codes && %(entity)s::text[]"
+    " AND c.valid_from <= %(as_of)s AND (c.valid_to IS NULL OR c.valid_to > %(as_of)s)"
     " ORDER BY c.para_id, x.from_rank"
 )
 
@@ -400,7 +405,12 @@ def retrieve(
         raise ValueError("query is empty")
     if not entity_codes:
         raise ValueError("at least one entity code is required")
-    params: dict[str, Any] = {"entity": list(entity_codes), "as_of": as_of, "k": opts.k}
+    params: dict[str, Any] = {
+        "entity": list(entity_codes),
+        "as_of": as_of,
+        "k": opts.k,
+        "untrusted": opts.include_untrusted,
+    }
 
     references = find_references(query)
     if references:

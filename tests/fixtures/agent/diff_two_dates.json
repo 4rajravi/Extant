@@ -647,11 +647,11 @@
    "valid_to": null
   }
  },
- "index_version": "idx_rbi_20261120_38ede3c",
+ "index_version": "idx_rbi_20261123_c23c1e8",
  "models": {
-  "5b1265a0d4e6d6f02bd110e10bfce79bef88fdab7e9c08e7709599f4679aab9a": {
-   "input_tokens": 1695,
-   "latency_ms": 1663.4,
+  "8dac3c6755e48ce229b907a355bbebf60b99f92937fbb744fff7efc9a14e946e": {
+   "input_tokens": 1764,
+   "latency_ms": 1142.9,
    "model": "claude-haiku-5-5",
    "output_tokens": 112,
    "parsed": {
@@ -678,9 +678,9 @@
     "calls": 1,
     "embedding_calls": 0,
     "embedding_tokens": 0,
-    "eur": 0.00020295,
-    "input_tokens": 1695,
-    "latency_ms": 1663.5,
+    "eur": 0.00020916,
+    "input_tokens": 1764,
+    "latency_ms": 1142.99,
     "model": "claude-haiku-5-5",
     "node": "parse",
     "output_tokens": 112
@@ -691,7 +691,7 @@
     "embedding_tokens": 31,
     "eur": 3.6270000000000006e-06,
     "input_tokens": 0,
-    "latency_ms": 377.78,
+    "latency_ms": 308.68,
     "model": null,
     "node": "retrieve",
     "output_tokens": 0
@@ -702,7 +702,7 @@
     "embedding_tokens": 0,
     "eur": 0.0,
     "input_tokens": 0,
-    "latency_ms": 0.01,
+    "latency_ms": 0.0,
     "model": null,
     "node": "expand",
     "output_tokens": 0
@@ -746,7 +746,7 @@
     "embedding_tokens": 0,
     "eur": 0.0,
     "input_tokens": 0,
-    "latency_ms": 2.13,
+    "latency_ms": 1.83,
     "model": null,
     "node": "verify",
     "output_tokens": 0
@@ -768,7 +768,7 @@
     "embedding_tokens": 0,
     "eur": 0.0,
     "input_tokens": 0,
-    "latency_ms": 0.07,
+    "latency_ms": 1.59,
     "model": null,
     "node": "finalize",
     "output_tokens": 0
@@ -779,12 +779,14 @@
   "refusal_reason": null,
   "response": {
    "as_of": "2026-11-20",
-   "cost_eur": 0.000207,
+   "cost_eur": 0.000213,
    "degraded": [],
    "dropped": [],
    "entity_type": "sfb",
-   "index_version": "idx_rbi_20261120_38ede3c",
-   "latency_ms": 2043,
+   "index_version": "idx_rbi_20261123_c23c1e8",
+   "latency_ms": 1455,
+   "notice": null,
+   "redactions": [],
    "result": {
     "caveats": [],
     "claims": [

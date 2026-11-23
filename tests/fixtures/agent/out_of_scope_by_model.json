@@ -31,11 +31,11 @@
   "ucb": "Urban Co-operative Banks"
  },
  "index": {},
- "index_version": "idx_rbi_20261120_38ede3c",
+ "index_version": "idx_rbi_20261123_c23c1e8",
  "models": {
-  "539beca9d8f7f3011ff6ff954bbdf0086376b57c18b9d6e0c9083595e35c8ede": {
-   "input_tokens": 1670,
-   "latency_ms": 1174.1,
+  "4bd6be2d7b85c49dc293ee383aa26025f67a84a06c2e1939ae0277db07f3b0de": {
+   "input_tokens": 1739,
+   "latency_ms": 1288.8,
    "model": "claude-haiku-5-5",
    "output_tokens": 89,
    "parsed": {
@@ -47,8 +47,8 @@
     "query_kind": "applicability",
     "topic_terms": [
      "demat account",
-     "KYC documents",
      "stockbroker",
+     "KYC documents",
      "account opening"
     ]
    },
@@ -63,9 +63,9 @@
     "calls": 1,
     "embedding_calls": 0,
     "embedding_tokens": 0,
-    "eur": 0.00019035,
-    "input_tokens": 1670,
-    "latency_ms": 1174.19,
+    "eur": 0.00019656,
+    "input_tokens": 1739,
+    "latency_ms": 1288.84,
     "model": "claude-haiku-5-5",
     "node": "parse",
     "output_tokens": 89
@@ -76,7 +76,7 @@
     "embedding_tokens": 0,
     "eur": 0.0,
     "input_tokens": 0,
-    "latency_ms": 0.01,
+    "latency_ms": 0.0,
     "model": null,
     "node": "refuse_early",
     "output_tokens": 0
@@ -87,7 +87,7 @@
     "embedding_tokens": 0,
     "eur": 0.0,
     "input_tokens": 0,
-    "latency_ms": 0.06,
+    "latency_ms": 0.15,
     "model": null,
     "node": "finalize",
     "output_tokens": 0
@@ -98,13 +98,16 @@
   "refusal_reason": "out_of_scope",
   "response": {
    "as_of": "2026-11-20",
-   "cost_eur": 0.00019,
+   "cost_eur": 0.000197,
    "degraded": [],
    "dropped": [],
    "entity_type": null,
-   "index_version": "idx_rbi_20261120_38ede3c",
-   "latency_ms": 1174,
+   "index_version": "idx_rbi_20261123_c23c1e8",
+   "latency_ms": 1289,
+   "notice": null,
+   "redactions": [],
    "result": {
+    "examples": [],
     "message": "This question is outside what Extant covers: RBI directions and the rules in them for regulated entities. Ask about an RBI requirement and it can be answered with a citation.",
     "nearest": [],
     "outcome": "refusal",

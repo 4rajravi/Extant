@@ -29,6 +29,8 @@ from typing import Annotated, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl, model_validator
 
+from extant.guards import pii
+
 # --------------------------------------------------------------------------- vocabularies
 
 QueryKind = Literal["applicability", "traceback", "diff", "as_of"]
@@ -45,8 +47,8 @@ class RefusalReason(StrEnum):
     SUPERSEDED_ONLY = "superseded_only"
     NON_BINDING_SUPPORT_ONLY = "non_binding_support_only"
     VERIFICATION_FAILED = "verification_failed"
-    # Raised by the API layer when the daily model call cap is spent (Phase 8). Defined here
-    # so the response shape is settled; nothing in the graph raises it.
+    # Served by the service layer (``extant.agent.service``) when the day's answered questions
+    # have reached the cap, with cached example answers. Nothing in the graph raises it.
     CAP_REACHED = "cap_reached"
 
 
@@ -57,6 +59,10 @@ class Caveat(StrEnum):
     AMENDMENT_PENDING = "amendment_pending"
     DEGRADED_RETRIEVAL = "degraded_retrieval"
 
+
+Outcome = Literal["answer", "refusal", "retrieval_only"]
+# The degradation ladder's markers on a response's ``degraded`` list, worst last.
+Degraded = Literal["lexical_only", "retrieval_only", "cached_examples", "static_page"]
 
 DropReason = Literal["superseded", "out_of_entity_scope", "not_yet_effective", "non_binding_only"]
 
@@ -250,15 +256,47 @@ class Answer(_Frozen):
     caveats: list[Caveat]
 
 
+class RetrievalOnly(_Frozen):
+    """Rung 3 of the degradation ladder: the model could not compose or check an answer, so
+    the response is the provisions retrieval found, each quoted whole, with no prose."""
+
+    outcome: Literal["retrieval_only"] = "retrieval_only"
+    message: str
+    provisions: list[Citation] = Field(min_length=1)
+    caveats: list[Caveat]
+
+
+class CachedExample(_Frozen):
+    """A pre-computed answer to an example question, served when no live answer can be:
+    rung 4 of the ladder, and the cap. ``index_version`` is the build it was computed on, so
+    a stale cache is detectable."""
+
+    question: str
+    entity_type: str | None
+    as_of: date
+    index_version: str
+    answer: Answer
+
+
 class Refusal(_Frozen):
     outcome: Literal["refusal"] = "refusal"
     reason: RefusalReason
     message: str
     nearest: list[Citation]  # what it found but could not stand behind
+    examples: list[CachedExample] = []  # only with cap_reached
+
+
+class Unavailable(_Frozen):
+    """Rungs 4 and 5: no live answer is possible (the database is unreachable). With cached
+    examples it is rung 4; with none it is rung 5, the static explanation."""
+
+    outcome: Literal["unavailable"] = "unavailable"
+    message: str
+    examples: list[CachedExample] = []
 
 
 class AskResponse(_Frozen):
-    result: Answer | Refusal = Field(discriminator="outcome")
+    result: Answer | Refusal | RetrievalOnly | Unavailable = Field(discriminator="outcome")
     as_of: date
     # The spec has an entity type always; a question asked with none that every candidate
     # agreed on has none to report.
@@ -269,6 +307,10 @@ class AskResponse(_Frozen):
     degraded: list[str]
     cost_eur: float
     latency_ms: int
+    # Admission: the kinds of identifier removed from the question, and the sentence that
+    # tells the user so. Someone who pasted a PAN should know it was stripped.
+    redactions: list[str] = []
+    notice: str | None = None
 
 
 # --------------------------------------------------------------------------- the state
@@ -315,8 +357,11 @@ class AgentState(BaseModel):
     checks: dict[str, CheckResult] = {}
     residual: list[int] = []  # claims that passed the substring check, below the overlap
 
+    # degradation: a model call failed after its retry, so the answer is retrieval only
+    retrieval_only: bool = False
+
     # terminal
-    outcome: Literal["answer", "refusal"] | None = None
+    outcome: Outcome | None = None
     refusal_reason: RefusalReason | None = None
     refusal_detail: str | None = None
     caveats: Annotated[list[Caveat], operator.add] = []
@@ -336,6 +381,17 @@ class AgentState(BaseModel):
         return self
 
     @model_validator(mode="after")
+    def the_question_is_already_redacted(self) -> AgentState:
+        # Redaction happens at admission, before this object exists. An identifier here
+        # means a caller skipped admission, and nothing downstream may see it.
+        hits = pii.found(self.raw_query)
+        if hits:
+            raise InvalidStateError(
+                f"raw_query carries an unredacted identifier: {sorted({k for k, _ in hits})}"
+            )
+        return self
+
+    @model_validator(mode="after")
     def answer_requires_verified_claims(self) -> AgentState:
         if self.outcome == "answer" and not self.verified_claims:
             raise InvalidTerminalState("answer with no verified claims")
@@ -343,6 +399,8 @@ class AgentState(BaseModel):
             raise InvalidTerminalState("an answer carries no refusal reason")
         if self.outcome == "refusal" and self.refusal_reason is None:
             raise InvalidTerminalState("a refusal needs a reason")
+        if self.outcome == "retrieval_only" and not self.retrieval_only:
+            raise InvalidTerminalState("a retrieval only outcome without the degradation flag")
         return self
 
     @model_validator(mode="after")

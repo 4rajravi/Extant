@@ -1,0 +1,806 @@
+{
+ "embedding_model": "openai/text-embedding-3-large",
+ "entities": {
+  "aifi": "All India Financial Institutions",
+  "arc": "Asset Reconstruction Companies",
+  "cb": "Commercial Banks",
+  "cic": "Credit Information Companies",
+  "lab": "Local Area Banks",
+  "nbfc": "Non-Banking Financial Companies",
+  "nbfc_aa": "NBFC-Account Aggregator",
+  "nbfc_bl": "NBFC-Base Layer",
+  "nbfc_cic": "NBFC-Core Investment Company",
+  "nbfc_d": "Deposit taking NBFC",
+  "nbfc_factor": "NBFC-Factor",
+  "nbfc_hfc": "Housing Finance Company",
+  "nbfc_icc": "NBFC-Investment and Credit Company",
+  "nbfc_idf": "Infrastructure Debt Fund-Non-Banking Financial Company",
+  "nbfc_ifc": "Non-Banking Financial Company-Infrastructure Finance Company",
+  "nbfc_mfi": "Non-Banking Financial Company \u2013 Microfinance Institution",
+  "nbfc_mgc": "Mortgage Guarantee Company",
+  "nbfc_ml": "NBFC-Middle Layer",
+  "nbfc_nofhc": "Non-Operative Financial Holding Company",
+  "nbfc_p2p": "NBFC-Peer to Peer Lending Platform",
+  "nbfc_spd": "Standalone Primary Dealer",
+  "nbfc_tl": "NBFC-TL, NBFCs falling in the Top Layer",
+  "nbfc_ul": "NBFC - Upper Layer",
+  "pb": "Payments Banks",
+  "rcb": "Rural Co-operative Banks",
+  "rrb": "Regional Rural Banks",
+  "sfb": "Small Finance Banks",
+  "ucb": "Urban Co-operative Banks"
+ },
+ "index": {
+  "[\"search\", \"Gold as collateral: what share of its value may a bank lend against it, per RBI?\", \"('cb',)\", \"2026-11-20\", \"any\", \"5\"]": {
+   "candidates": [
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "34. A bank may decide on a suitable approach for lending against eligible collateral as part of its credit risk management framework, consistent, inter alia, with the principle of proportionality and ease of access for small ticket loans. However, detailed credit assessment, including assessment of borrower\u2019s repayment capacity shall be undertaken in case the total loan amount against eligible collateral is above \u20b92.5 lakh to a borrower.\nProvided that in case of Bullet repayment loans, the threshold loan amount for detailed credit assessment shall be the total amount payable at maturity.",
+     "dense_rank": 1,
+     "doc_id": "rbi:md:2025:0154:v4",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "nbfc",
+      "nbfc_spd"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.01639344262295082,
+     "heading_path": "Chapter IV - Lending against Gold and Silver Collateral > A. General Provisions",
+     "lexical_rank": null,
+     "ordinal": 36,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0154:v4#p34",
+     "paragraph_number": "34",
+     "rank": 1,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/NotificationPreVersion.aspx?id=13156&Histid=214",
+     "valid_from": "2026-07-01",
+     "valid_to": "2026-07-15"
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "34. A bank may decide on a suitable approach for lending against eligible collateral as part of its credit risk management framework, consistent, inter alia, with the principle of proportionality and ease of access for small ticket loans. However, detailed credit assessment, including assessment of borrower\u2019s repayment capacity shall be undertaken in case the total loan amount against eligible collateral is above \u20b92.5 lakh to a borrower.\nProvided that in case of Bullet repayment loans, the threshold loan amount for detailed credit assessment shall be the total amount payable at maturity.",
+     "dense_rank": 2,
+     "doc_id": "rbi:md:2025:0154:v5",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "nbfc",
+      "nbfc_spd"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.016129032258064516,
+     "heading_path": "Chapter IV - Lending against Gold and Silver Collateral > A. General Provisions",
+     "lexical_rank": null,
+     "ordinal": 36,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0154:v5#p34",
+     "paragraph_number": "34",
+     "rank": 2,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/NotificationPreVersion.aspx?id=13156&Histid=271",
+     "valid_from": "2026-07-15",
+     "valid_to": "2026-10-01"
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "34. A bank may decide on a suitable approach for lending against eligible collateral as part of its credit risk management framework, consistent, inter alia, with the principle of proportionality and ease of access for small ticket loans. However, detailed credit assessment, including assessment of borrower\u2019s repayment capacity shall be undertaken in case the total loan amount against eligible collateral is above \u20b92.5 lakh to a borrower.\nProvided that in case of Bullet repayment loans, the threshold loan amount for detailed credit assessment shall be the total amount payable at maturity.",
+     "dense_rank": 3,
+     "doc_id": "rbi:md:2025:0154:v6",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "nbfc",
+      "nbfc_spd"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015873015873015872,
+     "heading_path": "Chapter IV - Lending against Gold and Silver Collateral > A. General Provisions",
+     "lexical_rank": null,
+     "ordinal": 36,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0154:v6#p34",
+     "paragraph_number": "34",
+     "rank": 3,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13156",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "36. A bank shall not grant any advance or loan:\n(1) For purchase of gold in any form including primary gold, ornaments, jewellery, or coins, or for purchase of financial assets backed by gold, e.g., units of Exchange-traded funds (ETFs) or units of Mutual Funds; and\n(2) against primary gold or silver or financial assets backed by primary gold or silver.\nProvided that a bank may extend need-based working capital finance to borrowers who use gold or silver as a raw material or as an input in their manufacturing or industrial processing activity, where such gold or silver can also be accepted as security. A bank extending such finance shall ensure that borrowers do not acquire or hold gold for investment or speculative purposes.",
+     "dense_rank": 4,
+     "doc_id": "rbi:md:2025:0154:v4",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "nbfc",
+      "nbfc_spd"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015625,
+     "heading_path": "Chapter IV - Lending against Gold and Silver Collateral > B. Restrictions and Ceilings",
+     "lexical_rank": null,
+     "ordinal": 38,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0154:v4#p36",
+     "paragraph_number": "36",
+     "rank": 4,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/NotificationPreVersion.aspx?id=13156&Histid=214",
+     "valid_from": "2026-07-01",
+     "valid_to": "2026-07-15"
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "36. A bank shall not grant any advance or loan:\n(1) For purchase of gold in any form including primary gold, ornaments, jewellery, or coins, or for purchase of financial assets backed by gold, e.g., units of Exchange-traded funds (ETFs) or units of Mutual Funds; and\n(2) against primary gold or silver or financial assets backed by primary gold or silver.\nProvided that a bank may extend need-based working capital finance to borrowers who use gold or silver as a raw material or as an input in their manufacturing or industrial processing activity, where such gold or silver can also be accepted as security. A bank extending such finance shall ensure that borrowers do not acquire or hold gold for investment or speculative purposes.",
+     "dense_rank": 5,
+     "doc_id": "rbi:md:2025:0154:v5",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "nbfc",
+      "nbfc_spd"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015384615384615385,
+     "heading_path": "Chapter IV - Lending against Gold and Silver Collateral > B. Restrictions and Ceilings",
+     "lexical_rank": null,
+     "ordinal": 38,
+     "origin": "probe",
+     "para_id": "rbi:md:2025:0154:v5#p36",
+     "paragraph_number": "36",
+     "rank": 5,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/NotificationPreVersion.aspx?id=13156&Histid=271",
+     "valid_from": "2026-07-15",
+     "valid_to": "2026-10-01"
+    }
+   ],
+   "degraded": [],
+   "embedding_calls": 0,
+   "embedding_tokens": 0,
+   "neighbours": []
+  },
+  "[\"search\", \"Gold as collateral: what share of its value may a bank lend against it, per RBI?\", \"('cb',)\", \"2026-11-20\", \"in_force\", \"6\"]": {
+   "candidates": [
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "34. A bank may decide on a suitable approach for lending against eligible collateral as part of its credit risk management framework, consistent, inter alia, with the principle of proportionality and ease of access for small ticket loans. However, detailed credit assessment, including assessment of borrower\u2019s repayment capacity shall be undertaken in case the total loan amount against eligible collateral is above \u20b92.5 lakh to a borrower.\nProvided that in case of Bullet repayment loans, the threshold loan amount for detailed credit assessment shall be the total amount payable at maturity.",
+     "dense_rank": 1,
+     "doc_id": "rbi:md:2025:0154:v6",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "nbfc",
+      "nbfc_spd"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.01639344262295082,
+     "heading_path": "Chapter IV - Lending against Gold and Silver Collateral > A. General Provisions",
+     "lexical_rank": null,
+     "ordinal": 36,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0154:v6#p34",
+     "paragraph_number": "34",
+     "rank": 1,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13156",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "36. A bank shall not grant any advance or loan:\n(1) For purchase of gold in any form including primary gold, ornaments, jewellery, or coins, or for purchase of financial assets backed by gold, e.g., units of Exchange-traded funds (ETFs) or units of Mutual Funds; and\n(2) against primary gold or silver or financial assets backed by primary gold or silver.\nProvided that a bank may extend need-based working capital finance to borrowers who use gold or silver as a raw material or as an input in their manufacturing or industrial processing activity, where such gold or silver can also be accepted as security. A bank extending such finance shall ensure that borrowers do not acquire or hold gold for investment or speculative purposes.",
+     "dense_rank": 2,
+     "doc_id": "rbi:md:2025:0154:v6",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "nbfc",
+      "nbfc_spd"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.016129032258064516,
+     "heading_path": "Chapter IV - Lending against Gold and Silver Collateral > B. Restrictions and Ceilings",
+     "lexical_rank": null,
+     "ordinal": 38,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0154:v6#p36",
+     "paragraph_number": "36",
+     "rank": 2,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13156",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "35. A bank shall not grant any advance or loan:\n(1) For purchase of gold in any form including primary gold, ornaments, jewellery, or coins, or for purchase of financial assets backed by gold, e.g., units of Exchange-traded funds (ETFs) or units of Mutual Funds; and\n(2) against primary gold or silver or financial assets backed by primary gold or silver.\nProvided that a Tier 3 or 4 bank may extend need-based working capital finance to borrowers who use gold or silver as a raw material or as an input in their manufacturing or industrial processing activity, where such gold or silver can also be accepted as security. A bank extending such finance shall ensure that borrowers do not acquire or hold gold for investment or speculative purposes.",
+     "dense_rank": 3,
+     "doc_id": "rbi:md:2025:0277:v4",
+     "doc_title": "Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "ucb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015873015873015872,
+     "heading_path": "Chapter IV - Lending against Gold and Silver Collateral > B. Restrictions and Ceilings",
+     "lexical_rank": null,
+     "ordinal": 34,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0277:v4#p35",
+     "paragraph_number": "35",
+     "rank": 3,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13028",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "33. A bank may decide on a suitable approach for lending against eligible collateral as part of its credit risk management framework, consistent, inter alia, with the principle of proportionality and ease of access for small ticket loans. However, detailed credit assessment, including assessment of borrower\u2019s repayment capacity shall be undertaken in case the total loan amount against eligible collateral is above \u20b92.5 lakh to a borrower.\nProvided that in case of Bullet repayment loans, the threshold loan amount for detailed credit assessment shall be the total amount payable at maturity.",
+     "dense_rank": 4,
+     "doc_id": "rbi:md:2025:0277:v4",
+     "doc_title": "Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "ucb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015625,
+     "heading_path": "Chapter IV - Lending against Gold and Silver Collateral > A. General Provisions",
+     "lexical_rank": null,
+     "ordinal": 32,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0277:v4#p33",
+     "paragraph_number": "33",
+     "rank": 4,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13028",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "37. A bank shall not extend a loan where ownership of the collateral is doubtful. A suitable document or declaration shall be obtained from the borrower in all cases to the effect that the borrower is the rightful owner of the eligible collateral. Multiple or frequent sanction of loans against eligible collateral to the same borrower, aggregating to a value in excess of a threshold to be decided by the lender, must be examined closely as part of the transaction monitoring under the anti-money laundering (AML) framework.",
+     "dense_rank": 5,
+     "doc_id": "rbi:md:2025:0154:v6",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "nbfc",
+      "nbfc_spd"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015384615384615385,
+     "heading_path": "Chapter IV - Lending against Gold and Silver Collateral > B. Restrictions and Ceilings",
+     "lexical_rank": null,
+     "ordinal": 39,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0154:v6#p37",
+     "paragraph_number": "37",
+     "rank": 5,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13156",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "36. A bank shall not extend a loan where ownership of the collateral is doubtful. A suitable document or declaration shall be obtained from the borrower in all cases to the effect that the borrower is the rightful owner of the eligible collateral. Multiple or frequent sanction of loans against eligible collateral to the same borrower, aggregating to a value in excess of a threshold to be decided by the lender, must be examined closely as part of the transaction monitoring under the anti-money laundering (AML) framework.",
+     "dense_rank": 6,
+     "doc_id": "rbi:md:2025:0277:v4",
+     "doc_title": "Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "ucb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": 0.015151515151515152,
+     "heading_path": "Chapter IV - Lending against Gold and Silver Collateral > B. Restrictions and Ceilings",
+     "lexical_rank": null,
+     "ordinal": 35,
+     "origin": "ranked",
+     "para_id": "rbi:md:2025:0277:v4#p36",
+     "paragraph_number": "36",
+     "rank": 6,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13028",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    }
+   ],
+   "degraded": [],
+   "embedding_calls": 1,
+   "embedding_tokens": 19,
+   "neighbours": [
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "33. The credit policy (hereinafter called the policy) of a bank, as required in terms of paragraph 5 of these Directions, shall include, inter alia, appropriate single borrower limits and aggregate limits for the portfolio of loans against collateral of jewellery, ornaments or coins made of gold or silver (\u201celigible collateral\u201d for this Chapter); maximum LTV ratio permissible for such loans; action to be taken in cases of breach of LTV ratio; valuation standards and norms; and standards of gold and silver purity. The policy shall also include appropriate documentation to be obtained and maintained for loans proposed to be categorised under priority sector lending.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0154:v6",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "nbfc",
+      "nbfc_spd"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0154:v6#p34",
+     "fusion_score": null,
+     "heading_path": "Chapter IV - Lending against Gold and Silver Collateral > A. General Provisions",
+     "lexical_rank": null,
+     "ordinal": 35,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0154:v6#p33",
+     "paragraph_number": "33",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13156",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "35. A bank may renew an existing loan or sanction a top-up loan upon a formal request from the borrower, subject to a credit assessment in accordance with paragraph 34. Such renewal or top-up shall be permitted only within the permissible LTV, and provided the loan is classified as standard. Further, renewal of bullet repayment loan shall be allowed only after payment of accrued interest, if any. The bank shall ensure that such renewals and top-ups are clearly identifiable in its Core Banking System or Loan Processing System.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0154:v6",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "nbfc",
+      "nbfc_spd"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0154:v6#p34",
+     "fusion_score": null,
+     "heading_path": "Chapter IV - Lending against Gold and Silver Collateral > A. General Provisions",
+     "lexical_rank": null,
+     "ordinal": 37,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0154:v6#p35",
+     "paragraph_number": "35",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13156",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "38. A bank shall not:\n(1) Avail loans by re-pledging gold or silver pledged to it by its borrowers.\n(2) Extend loans to other lenders, entities or individuals by accepting gold or silver collateral pledged to such lenders, entities, or individuals by their borrowers as collateral.\nFor removal of doubt, it is clarified that the above provision does not preclude a lender from financing another lender against the security of underlying receivables.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0154:v6",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "nbfc",
+      "nbfc_spd"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0154:v6#p37",
+     "fusion_score": null,
+     "heading_path": "Chapter IV - Lending against Gold and Silver Collateral > B. Restrictions and Ceilings",
+     "lexical_rank": null,
+     "ordinal": 40,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0154:v6#p38",
+     "paragraph_number": "38",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13156",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "32. The credit policy (hereinafter called the policy) of a bank, as required in terms of the Chapter \u2013 II on \u2018Board Approved Policies\u2019, shall include, inter alia, appropriate single borrower limits and aggregate limits for the portfolio of loans against collateral of jewellery, ornaments or coins made of gold or silver (\u201celigible collateral\u201d for this Chapter); maximum LTV ratio permissible for such loans; action to be taken in cases of breach of LTV ratio; valuation standards and norms; and standards of gold and silver purity. The policy shall also include appropriate documentation to be obtained and maintained for loans proposed to be categorised under priority sector lending.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0277:v4",
+     "doc_title": "Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "ucb"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0277:v4#p33",
+     "fusion_score": null,
+     "heading_path": "Chapter IV - Lending against Gold and Silver Collateral > A. General Provisions",
+     "lexical_rank": null,
+     "ordinal": 31,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0277:v4#p32",
+     "paragraph_number": "32",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13028",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "34. A bank may renew an existing loan or sanction a top-up loan upon a formal request from the borrower, subject to a credit assessment in accordance with paragraph 33. Such renewal or top-up shall be permitted only within the permissible LTV, and provided the loan is classified as standard. Further, renewal of bullet repayment loan shall be allowed only after payment of accrued interest, if any. The bank shall ensure that such renewals and top-ups are clearly identifiable in its Core Banking System or Loan Processing System.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0277:v4",
+     "doc_title": "Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "ucb"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0277:v4#p35",
+     "fusion_score": null,
+     "heading_path": "Chapter IV - Lending against Gold and Silver Collateral > A. General Provisions",
+     "lexical_rank": null,
+     "ordinal": 33,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0277:v4#p34",
+     "paragraph_number": "34",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13028",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    },
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "37. A bank shall not:\n(1) Avail loans by re-pledging gold or silver pledged to it by its borrowers.\n(2) Extend loans to other lenders, entities or individuals by accepting gold or silver collateral pledged to such lenders, entities, or individuals by their borrowers as collateral.\nFor removal of doubt, it is clarified that the above provision does not preclude a lender from financing another lender against the security of underlying receivables.",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0277:v4",
+     "doc_title": "Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025",
+     "entity_scope": [
+      "cb",
+      "ucb"
+     ],
+     "expanded": true,
+     "expanded_from": "rbi:md:2025:0277:v4#p36",
+     "fusion_score": null,
+     "heading_path": "Chapter IV - Lending against Gold and Silver Collateral > B. Restrictions and Ceilings",
+     "lexical_rank": null,
+     "ordinal": 36,
+     "origin": "expanded",
+     "para_id": "rbi:md:2025:0277:v4#p37",
+     "paragraph_number": "37",
+     "rank": null,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13028",
+     "valid_from": "2026-10-01",
+     "valid_to": null
+    }
+   ]
+  }
+ },
+ "index_version": "idx_rbi_20261123_c23c1e8",
+ "models": {
+  "73ee7a77d1e0e3fb063100c4c42451606072d41ee368fc62119a56f21331ff6f": {
+   "input_tokens": 4303,
+   "latency_ms": 7654.9,
+   "model": "claude-opus-5-5",
+   "output_tokens": 321,
+   "parsed": {
+    "claims": [],
+    "insufficient": true,
+    "missing": "The paragraphs do not state a numeric loan-to-value (LTV) ceiling for gold-backed loans by commercial banks. They only require a bank's credit policy to include the \"maximum LTV ratio permissible for such loans\", and say that renewals and top-ups must stay \"within the permissible LTV\". They never give the percentage itself."
+   },
+   "schema": "ComposerOutput",
+   "user": "Question: Gold as collateral: what share of its value may a bank lend against it, per RBI?\nEntity type: cb\nIn force on: 2026-11-20\n\n[0] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 34 (Chapter IV - Lending against Gold and Silver Collateral > A. General Provisions)\n34. A bank may decide on a suitable approach for lending against eligible collateral as part of its credit risk management framework, consistent, inter alia, with the principle of proportionality and ease of access for small ticket loans. However, detailed credit assessment, including assessment of borrower\u2019s repayment capacity shall be undertaken in case the total loan amount against eligible collateral is above \u20b92.5 lakh to a borrower.\nProvided that in case of Bullet repayment loans, the threshold loan amount for detailed credit assessment shall be the total amount payable at maturity.\n\n[1] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 36 (Chapter IV - Lending against Gold and Silver Collateral > B. Restrictions and Ceilings)\n36. A bank shall not grant any advance or loan:\n(1) For purchase of gold in any form including primary gold, ornaments, jewellery, or coins, or for purchase of financial assets backed by gold, e.g., units of Exchange-traded funds (ETFs) or units of Mutual Funds; and\n(2) against primary gold or silver or financial assets backed by primary gold or silver.\nProvided that a bank may extend need-based working capital finance to borrowers who use gold or silver as a raw material or as an input in their manufacturing or industrial processing activity, where such gold or silver can also be accepted as security. A bank extending such finance shall ensure that borrowers do not acquire or hold gold for investment or speculative purposes.\n\n[2] Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025, paragraph 35 (Chapter IV - Lending against Gold and Silver Collateral > B. Restrictions and Ceilings)\n35. A bank shall not grant any advance or loan:\n(1) For purchase of gold in any form including primary gold, ornaments, jewellery, or coins, or for purchase of financial assets backed by gold, e.g., units of Exchange-traded funds (ETFs) or units of Mutual Funds; and\n(2) against primary gold or silver or financial assets backed by primary gold or silver.\nProvided that a Tier 3 or 4 bank may extend need-based working capital finance to borrowers who use gold or silver as a raw material or as an input in their manufacturing or industrial processing activity, where such gold or silver can also be accepted as security. A bank extending such finance shall ensure that borrowers do not acquire or hold gold for investment or speculative purposes.\n\n[3] Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025, paragraph 33 (Chapter IV - Lending against Gold and Silver Collateral > A. General Provisions)\n33. A bank may decide on a suitable approach for lending against eligible collateral as part of its credit risk management framework, consistent, inter alia, with the principle of proportionality and ease of access for small ticket loans. However, detailed credit assessment, including assessment of borrower\u2019s repayment capacity shall be undertaken in case the total loan amount against eligible collateral is above \u20b92.5 lakh to a borrower.\nProvided that in case of Bullet repayment loans, the threshold loan amount for detailed credit assessment shall be the total amount payable at maturity.\n\n[4] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 37 (Chapter IV - Lending against Gold and Silver Collateral > B. Restrictions and Ceilings)\n37. A bank shall not extend a loan where ownership of the collateral is doubtful. A suitable document or declaration shall be obtained from the borrower in all cases to the effect that the borrower is the rightful owner of the eligible collateral. Multiple or frequent sanction of loans against eligible collateral to the same borrower, aggregating to a value in excess of a threshold to be decided by the lender, must be examined closely as part of the transaction monitoring under the anti-money laundering (AML) framework.\n\n[5] Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025, paragraph 36 (Chapter IV - Lending against Gold and Silver Collateral > B. Restrictions and Ceilings)\n36. A bank shall not extend a loan where ownership of the collateral is doubtful. A suitable document or declaration shall be obtained from the borrower in all cases to the effect that the borrower is the rightful owner of the eligible collateral. Multiple or frequent sanction of loans against eligible collateral to the same borrower, aggregating to a value in excess of a threshold to be decided by the lender, must be examined closely as part of the transaction monitoring under the anti-money laundering (AML) framework.\n\n[6] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 33 (Chapter IV - Lending against Gold and Silver Collateral > A. General Provisions)\n33. The credit policy (hereinafter called the policy) of a bank, as required in terms of paragraph 5 of these Directions, shall include, inter alia, appropriate single borrower limits and aggregate limits for the portfolio of loans against collateral of jewellery, ornaments or coins made of gold or silver (\u201celigible collateral\u201d for this Chapter); maximum LTV ratio permissible for such loans; action to be taken in cases of breach of LTV ratio; valuation standards and norms; and standards of gold and silver purity. The policy shall also include appropriate documentation to be obtained and maintained for loans proposed to be categorised under priority sector lending.\n\n[7] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 35 (Chapter IV - Lending against Gold and Silver Collateral > A. General Provisions)\n35. A bank may renew an existing loan or sanction a top-up loan upon a formal request from the borrower, subject to a credit assessment in accordance with paragraph 34. Such renewal or top-up shall be permitted only within the permissible LTV, and provided the loan is classified as standard. Further, renewal of bullet repayment loan shall be allowed only after payment of accrued interest, if any. The bank shall ensure that such renewals and top-ups are clearly identifiable in its Core Banking System or Loan Processing System.\n\n[8] Reserve Bank of India (Commercial Banks \u2013 Credit Facilities) Directions, 2025, paragraph 38 (Chapter IV - Lending against Gold and Silver Collateral > B. Restrictions and Ceilings)\n38. A bank shall not:\n(1) Avail loans by re-pledging gold or silver pledged to it by its borrowers.\n(2) Extend loans to other lenders, entities or individuals by accepting gold or silver collateral pledged to such lenders, entities, or individuals by their borrowers as collateral.\nFor removal of doubt, it is clarified that the above provision does not preclude a lender from financing another lender against the security of underlying receivables.\n\n[9] Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025, paragraph 32 (Chapter IV - Lending against Gold and Silver Collateral > A. General Provisions)\n32. The credit policy (hereinafter called the policy) of a bank, as required in terms of the Chapter \u2013 II on \u2018Board Approved Policies\u2019, shall include, inter alia, appropriate single borrower limits and aggregate limits for the portfolio of loans against collateral of jewellery, ornaments or coins made of gold or silver (\u201celigible collateral\u201d for this Chapter); maximum LTV ratio permissible for such loans; action to be taken in cases of breach of LTV ratio; valuation standards and norms; and standards of gold and silver purity. The policy shall also include appropriate documentation to be obtained and maintained for loans proposed to be categorised under priority sector lending.\n\n[10] Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025, paragraph 34 (Chapter IV - Lending against Gold and Silver Collateral > A. General Provisions)\n34. A bank may renew an existing loan or sanction a top-up loan upon a formal request from the borrower, subject to a credit assessment in accordance with paragraph 33. Such renewal or top-up shall be permitted only within the permissible LTV, and provided the loan is classified as standard. Further, renewal of bullet repayment loan shall be allowed only after payment of accrued interest, if any. The bank shall ensure that such renewals and top-ups are clearly identifiable in its Core Banking System or Loan Processing System.\n\n[11] Reserve Bank of India (Urban Co-operative Banks \u2013 Credit Facilities) Directions, 2025, paragraph 37 (Chapter IV - Lending against Gold and Silver Collateral > B. Restrictions and Ceilings)\n37. A bank shall not:\n(1) Avail loans by re-pledging gold or silver pledged to it by its borrowers.\n(2) Extend loans to other lenders, entities or individuals by accepting gold or silver collateral pledged to such lenders, entities, or individuals by their borrowers as collateral.\nFor removal of doubt, it is clarified that the above provision does not preclude a lender from financing another lender against the security of underlying receivables."
+  },
+  "8591d956de7c5e6918965c8840a3b3cde3fd7d70055e95d476f2690683276961": {
+   "input_tokens": 1746,
+   "latency_ms": 1442.7,
+   "model": "claude-haiku-5-5",
+   "output_tokens": 92,
+   "parsed": {
+    "as_of": null,
+    "compare_as_of": null,
+    "computation_requested": false,
+    "entity_type": null,
+    "in_scope": true,
+    "query_kind": "applicability",
+    "topic_terms": [
+     "gold collateral",
+     "loan to value",
+     "gold loans",
+     "bank lending limit"
+    ]
+   },
+   "schema": "ParseOutput",
+   "user": "Gold as collateral: what share of its value may a bank lend against it, per RBI?"
+  }
+ },
+ "recorded": {
+  "caveats": [],
+  "node_log": [
+   {
+    "calls": 1,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.00019854000000000003,
+    "input_tokens": 1746,
+    "latency_ms": 1442.75,
+    "model": "claude-haiku-5-5",
+    "node": "parse",
+    "output_tokens": 92
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 1,
+    "embedding_tokens": 19,
+    "eur": 2.223e-06,
+    "input_tokens": 0,
+    "latency_ms": 483.34,
+    "model": null,
+    "node": "retrieve",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.11,
+    "model": null,
+    "node": "expand",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.05,
+    "model": null,
+    "node": "gate",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.0,
+    "model": null,
+    "node": "authority",
+    "output_tokens": 0
+   },
+   {
+    "calls": 1,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0212688,
+    "input_tokens": 4303,
+    "latency_ms": 7654.99,
+    "model": "claude-opus-5-5",
+    "node": "compose",
+    "output_tokens": 321
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.13,
+    "model": null,
+    "node": "finalize",
+    "output_tokens": 0
+   }
+  ],
+  "outcome": "refusal",
+  "path": "full",
+  "refusal_reason": "no_support_found",
+  "response": {
+   "as_of": "2026-11-20",
+   "cost_eur": 0.02147,
+   "degraded": [],
+   "dropped": [
+    {
+     "detail": "in force 2026-07-01 to 2026-07-15, asked for 2026-11-20",
+     "para_id": "rbi:md:2025:0154:v4#p34",
+     "reason": "superseded"
+    },
+    {
+     "detail": "in force 2026-07-15 to 2026-10-01, asked for 2026-11-20",
+     "para_id": "rbi:md:2025:0154:v5#p34",
+     "reason": "superseded"
+    },
+    {
+     "detail": "in force 2026-07-01 to 2026-07-15, asked for 2026-11-20",
+     "para_id": "rbi:md:2025:0154:v4#p36",
+     "reason": "superseded"
+    },
+    {
+     "detail": "in force 2026-07-15 to 2026-10-01, asked for 2026-11-20",
+     "para_id": "rbi:md:2025:0154:v5#p36",
+     "reason": "superseded"
+    }
+   ],
+   "entity_type": "cb",
+   "index_version": "idx_rbi_20261123_c23c1e8",
+   "latency_ms": 9581,
+   "notice": null,
+   "redactions": [],
+   "result": {
+    "examples": [],
+    "message": "No RBI direction paragraph in force for an entity of type cb on 2026-11-20 establishes this: The paragraphs do not state a numeric loan-to-value (LTV) ceiling for gold-backed loans by commercial banks. They only require a bank's credit policy to include the \"maximum LTV ratio permissible for such loans\", and say that renewals and top-ups must stay \"within the permissible LTV\". They never give the percentage itself.",
+    "nearest": [],
+    "outcome": "refusal",
+    "reason": "no_support_found"
+   },
+   "retrieved": [
+    {
+     "dense_rank": 1,
+     "expanded": false,
+     "fusion_score": 0.01639344262295082,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0154:v6#p34"
+    },
+    {
+     "dense_rank": 2,
+     "expanded": false,
+     "fusion_score": 0.016129032258064516,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0154:v6#p36"
+    },
+    {
+     "dense_rank": 3,
+     "expanded": false,
+     "fusion_score": 0.015873015873015872,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0277:v4#p35"
+    },
+    {
+     "dense_rank": 4,
+     "expanded": false,
+     "fusion_score": 0.015625,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0277:v4#p33"
+    },
+    {
+     "dense_rank": 5,
+     "expanded": false,
+     "fusion_score": 0.015384615384615385,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0154:v6#p37"
+    },
+    {
+     "dense_rank": 6,
+     "expanded": false,
+     "fusion_score": 0.015151515151515152,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0277:v4#p36"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0154:v6#p33"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0154:v6#p35"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0154:v6#p38"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0277:v4#p32"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0277:v4#p34"
+    },
+    {
+     "dense_rank": null,
+     "expanded": true,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0277:v4#p37"
+    },
+    {
+     "dense_rank": 1,
+     "expanded": false,
+     "fusion_score": 0.01639344262295082,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0154:v4#p34"
+    },
+    {
+     "dense_rank": 2,
+     "expanded": false,
+     "fusion_score": 0.016129032258064516,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0154:v5#p34"
+    },
+    {
+     "dense_rank": 4,
+     "expanded": false,
+     "fusion_score": 0.015625,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0154:v4#p36"
+    },
+    {
+     "dense_rank": 5,
+     "expanded": false,
+     "fusion_score": 0.015384615384615385,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0154:v5#p36"
+    }
+   ]
+  }
+ },
+ "spec": {
+  "as_of": "2026-11-20",
+  "entity": "cb",
+  "expect": "no_support_found: the corpus states no gold loan LTV percentage for commercial banks",
+  "name": "adv_no_support_gold_ltv",
+  "question": "Gold as collateral: what share of its value may a bank lend against it, per RBI?"
+ },
+ "today": "2026-11-22"
+}

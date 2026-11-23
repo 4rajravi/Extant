@@ -63,7 +63,8 @@ class LangChainModel:
     def __init__(self, tier: Tier, api_key: SecretStr) -> None:
         from langchain.chat_models import init_chat_model
 
-        kwargs: dict[str, Any] = {"max_tokens": tier.max_tokens, "max_retries": 2}
+        # No client retries: the middleware owns the one retry policy (extant.guards.middleware).
+        kwargs: dict[str, Any] = {"max_tokens": tier.max_tokens, "max_retries": 0}
         if tier.effort is not None:
             kwargs["effort"] = tier.effort
         if tier.thinking is not None:

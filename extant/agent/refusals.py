@@ -105,14 +105,16 @@ def message(
     if reason is RefusalReason.COMPUTATION_REQUESTED:
         return (
             "Extant states what RBI's directions require and cites them; it does not calculate"
-            " figures for an institution or choose between options for it"
+            " figures for an institution"
             + (f" (the question asks to {detail})." if detail else ".")
+            + " Asking what a rule requires, or whether something is permitted, is answered."
         )
     if reason is RefusalReason.ENTITY_REQUIRED:
         parts = []
         for scope, cands in sorted((groups or {}).items()):
             paras = ", ".join(
-                f"paragraph {c.paragraph_number or c.para_id} of {c.doc_title}" for c in cands[:2]
+                f"paragraph {c.paragraph_number or c.para_id.partition('#')[2]} of {c.doc_title}"
+                for c in cands[:2]
             )
             parts.append(f"for {', '.join(scope)}: {paras}")
         return (
@@ -122,10 +124,14 @@ def message(
         )
     if reason is RefusalReason.NO_SUPPORT_FOUND:
         base = f"No RBI direction paragraph in force for {who} on {when} establishes this"
-        base += f": {detail}." if detail else "."
+        # The composer's own sentence ends with a full stop; one is enough.
+        base += f": {detail.rstrip('. ')}." if detail else "."
         later = _withdrawn_after(state)
         if later:
-            return f"{base} {'; '.join(later).capitalize()}. {CHECK_THE_INSTRUMENT}"
+            # Upper case the first letter only: str.capitalize would lower case the rest, and
+            # mangle a circular reference ("DBOD.No." into "Dbod.no.").
+            joined = "; ".join(later)
+            return f"{base} {joined[:1].upper()}{joined[1:]}. {CHECK_THE_INSTRUMENT}"
         return base
     if reason is RefusalReason.SUPERSEDED_ONLY:
         found = _superseded(state, probe)

@@ -50,7 +50,7 @@
    ]
   }
  },
- "index_version": "idx_rbi_20261120_38ede3c",
+ "index_version": "idx_rbi_20261123_c23c1e8",
  "models": {},
  "recorded": {
   "caveats": [],
@@ -72,7 +72,7 @@
     "embedding_tokens": 0,
     "eur": 0.0,
     "input_tokens": 0,
-    "latency_ms": 274.31,
+    "latency_ms": 302.01,
     "model": null,
     "node": "resolve_reference",
     "output_tokens": 0
@@ -83,7 +83,7 @@
     "embedding_tokens": 0,
     "eur": 0.0,
     "input_tokens": 0,
-    "latency_ms": 0.01,
+    "latency_ms": 0.02,
     "model": null,
     "node": "gate",
     "output_tokens": 0
@@ -94,7 +94,7 @@
     "embedding_tokens": 0,
     "eur": 0.0,
     "input_tokens": 0,
-    "latency_ms": 0.07,
+    "latency_ms": 0.2,
     "model": null,
     "node": "finalize",
     "output_tokens": 0
@@ -109,9 +109,12 @@
    "degraded": [],
    "dropped": [],
    "entity_type": "cb",
-   "index_version": "idx_rbi_20261120_38ede3c",
-   "latency_ms": 274,
+   "index_version": "idx_rbi_20261123_c23c1e8",
+   "latency_ms": 302,
+   "notice": null,
+   "redactions": [],
    "result": {
+    "examples": [],
     "message": "What addresses this was not in force for an entity of type cb on 2026-11-20: circular DBOD.No.Dir.BC.1/13.03.00/2012-13 was withdrawn by rbi:circ:2025:0100:v1 with effect from 2025-11-28. Nothing in force on that date replaces it in what was found. Check the instrument itself before relying on this.",
     "nearest": [],
     "outcome": "refusal",

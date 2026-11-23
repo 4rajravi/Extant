@@ -1,0 +1,104 @@
+{
+ "embedding_model": "openai/text-embedding-3-large",
+ "entities": {
+  "aifi": "All India Financial Institutions",
+  "arc": "Asset Reconstruction Companies",
+  "cb": "Commercial Banks",
+  "cic": "Credit Information Companies",
+  "lab": "Local Area Banks",
+  "nbfc": "Non-Banking Financial Companies",
+  "nbfc_aa": "NBFC-Account Aggregator",
+  "nbfc_bl": "NBFC-Base Layer",
+  "nbfc_cic": "NBFC-Core Investment Company",
+  "nbfc_d": "Deposit taking NBFC",
+  "nbfc_factor": "NBFC-Factor",
+  "nbfc_hfc": "Housing Finance Company",
+  "nbfc_icc": "NBFC-Investment and Credit Company",
+  "nbfc_idf": "Infrastructure Debt Fund-Non-Banking Financial Company",
+  "nbfc_ifc": "Non-Banking Financial Company-Infrastructure Finance Company",
+  "nbfc_mfi": "Non-Banking Financial Company \u2013 Microfinance Institution",
+  "nbfc_mgc": "Mortgage Guarantee Company",
+  "nbfc_ml": "NBFC-Middle Layer",
+  "nbfc_nofhc": "Non-Operative Financial Holding Company",
+  "nbfc_p2p": "NBFC-Peer to Peer Lending Platform",
+  "nbfc_spd": "Standalone Primary Dealer",
+  "nbfc_tl": "NBFC-TL, NBFCs falling in the Top Layer",
+  "nbfc_ul": "NBFC - Upper Layer",
+  "pb": "Payments Banks",
+  "rcb": "Rural Co-operative Banks",
+  "rrb": "Regional Rural Banks",
+  "sfb": "Small Finance Banks",
+  "ucb": "Urban Co-operative Banks"
+ },
+ "index": {},
+ "index_version": "idx_rbi_20261123_c23c1e8",
+ "models": {},
+ "recorded": {
+  "caveats": [],
+  "node_log": [
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.01,
+    "model": null,
+    "node": "parse",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.0,
+    "model": null,
+    "node": "refuse_early",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.02,
+    "model": null,
+    "node": "finalize",
+    "output_tokens": 0
+   }
+  ],
+  "outcome": "refusal",
+  "path": "out_of_scope",
+  "refusal_reason": "out_of_scope",
+  "response": {
+   "as_of": "2026-11-20",
+   "cost_eur": 0.0,
+   "degraded": [],
+   "dropped": [],
+   "entity_type": "cb",
+   "index_version": "idx_rbi_20261123_c23c1e8",
+   "latency_ms": 0,
+   "notice": null,
+   "redactions": [],
+   "result": {
+    "examples": [],
+    "message": "This question (it concerns GST) is outside what Extant covers: RBI directions and the rules in them for regulated entities. Ask about an RBI requirement and it can be answered with a citation.",
+    "nearest": [],
+    "outcome": "refusal",
+    "reason": "out_of_scope"
+   },
+   "retrieved": []
+  }
+ },
+ "spec": {
+  "as_of": "2026-11-20",
+  "entity": "cb",
+  "expect": "out_of_scope by pattern, zero model calls",
+  "name": "adv_out_of_scope_pattern",
+  "question": "What GST rate applies to gold jewellery sold by a bank?"
+ },
+ "today": "2026-11-22"
+}

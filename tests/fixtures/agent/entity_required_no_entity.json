@@ -573,11 +573,11 @@
    "ucb"
   ]
  },
- "index_version": "idx_rbi_20261120_38ede3c",
+ "index_version": "idx_rbi_20261123_c23c1e8",
  "models": {
-  "766da227c04be87e04220361a02a14582b082fd696619f8f395f2b9e463d4d8c": {
-   "input_tokens": 1671,
-   "latency_ms": 1319.0,
+  "4df96c00b4b12b5bb994eed5722aa4589b5c9680661c7f8b4618479115421e67": {
+   "input_tokens": 1740,
+   "latency_ms": 1218.5,
    "model": "claude-haiku-5-5",
    "output_tokens": 98,
    "parsed": {
@@ -590,7 +590,7 @@
     "topic_terms": [
      "single borrower exposure limit",
      "large exposures",
-     "credit concentration",
+     "concentration norms",
      "lender exposure cap"
     ]
    },
@@ -605,9 +605,9 @@
     "calls": 1,
     "embedding_calls": 0,
     "embedding_tokens": 0,
-    "eur": 0.00019449000000000002,
-    "input_tokens": 1671,
-    "latency_ms": 1319.06,
+    "eur": 0.0002007,
+    "input_tokens": 1740,
+    "latency_ms": 1218.58,
     "model": "claude-haiku-5-5",
     "node": "parse",
     "output_tokens": 98
@@ -618,7 +618,7 @@
     "embedding_tokens": 14,
     "eur": 1.6380000000000002e-06,
     "input_tokens": 0,
-    "latency_ms": 538.81,
+    "latency_ms": 1057.1,
     "model": null,
     "node": "retrieve",
     "output_tokens": 0
@@ -629,7 +629,7 @@
     "embedding_tokens": 0,
     "eur": 0.0,
     "input_tokens": 0,
-    "latency_ms": 0.26,
+    "latency_ms": 0.14,
     "model": null,
     "node": "expand",
     "output_tokens": 0
@@ -662,7 +662,7 @@
     "embedding_tokens": 0,
     "eur": 0.0,
     "input_tokens": 0,
-    "latency_ms": 0.24,
+    "latency_ms": 0.25,
     "model": null,
     "node": "finalize",
     "output_tokens": 0
@@ -673,7 +673,7 @@
   "refusal_reason": "entity_required",
   "response": {
    "as_of": "2026-11-20",
-   "cost_eur": 0.000196,
+   "cost_eur": 0.000202,
    "degraded": [],
    "dropped": [
     {
@@ -688,9 +688,12 @@
     }
    ],
    "entity_type": null,
-   "index_version": "idx_rbi_20261120_38ede3c",
-   "latency_ms": 1858,
+   "index_version": "idx_rbi_20261123_c23c1e8",
+   "latency_ms": 2276,
+   "notice": null,
+   "redactions": [],
    "result": {
+    "examples": [],
     "message": "The provision that governs this differs by entity type, and none was given, so nothing is assumed. In force on 2026-11-20, for cb: paragraph 80 of Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025, paragraph 15 of Reserve Bank of India (Commercial Banks - Concentration Risk Management) Directions, 2025; for lab: paragraph 7 of Reserve Bank of India (Local Area Banks - Concentration Risk Management)\nDirections, 2025, paragraph 10 of Reserve Bank of India (Local Area Banks - Concentration Risk Management)\nDirections, 2025. Ask again with the entity type to get the provision that applies.",
     "nearest": [
      {

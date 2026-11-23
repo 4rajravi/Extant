@@ -14,8 +14,9 @@ from __future__ import annotations
 from typing import Any
 
 from extant.agent import prompts
-from extant.agent.models import AgentState, CheckResult, JudgeOutput, RefusalReason
+from extant.agent.models import AgentState, Caveat, CheckResult, JudgeOutput, RefusalReason
 from extant.agent.runtime import Given, Spend, parsed
+from extant.guards.errors import ModelUnavailableError
 
 
 def run(state: AgentState, given: Given, spend: Spend) -> dict[str, Any]:
@@ -29,12 +30,22 @@ def run(state: AgentState, given: Given, spend: Spend) -> dict[str, Any]:
     for i in state.residual:
         claim = state.draft_claims[i]
         bodies = [by_id[p].body for p in claim.citation_ids]
-        done = spend.complete(
-            given.model,
-            JudgeOutput,
-            system=prompts.JUDGE_SYSTEM,
-            user=prompts.judge_user(claim.text, bodies),
-        )
+        try:
+            done = spend.complete(
+                given.model,
+                JudgeOutput,
+                system=prompts.JUDGE_SYSTEM,
+                user=prompts.judge_user(claim.text, bodies),
+            )
+        except ModelUnavailableError:
+            # A claim that cannot be judged cannot be stood behind; neither is it refuted.
+            # Rung 3: show what was retrieved, with no prose.
+            return {
+                "checks": checks,
+                "retrieval_only": True,
+                "degraded": ["retrieval_only"],
+                "caveats": [Caveat.DEGRADED_RETRIEVAL],
+            }
         out = parsed(done, JudgeOutput)
         checks[f"claim{i}.judge"] = CheckResult(name="judge", passed=out.supported)
         if not out.supported:

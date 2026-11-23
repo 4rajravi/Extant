@@ -95,6 +95,26 @@ def test_every_candidate_matches_the_entity_scope_and_is_in_force(
             assert in_force(c, as_of), (query, codes, as_of, c.para_id, c.valid_from, c.valid_to)
 
 
+def test_an_untrusted_chunk_is_never_a_candidate_unless_asked_for(db: Connection) -> None:
+    embedder, on = HashEmbedder(), date(2026, 6, 1)
+    first = retrieve(db, "dividend records", ("cb",), on, embedder=embedder, options=WIDE)
+    target = first.candidates[0].para_id
+    with db.transaction(force_rollback=True):  # the scratch build is shared: undo afterwards
+        db.execute("UPDATE chunks SET trusted = false WHERE para_id = %s", (target,))
+        for query, codes, as_of in itertools.product(QUERIES, ENTITY_SETS, AS_OF):
+            hidden = retrieve(db, query, codes, as_of, embedder=embedder, options=WIDE)
+            assert target not in {c.para_id for c in everything(hidden)}, (query, codes, as_of)
+        asked = retrieve(
+            db,
+            "dividend records",
+            ("cb",),
+            on,
+            embedder=embedder,
+            options=RetrievalOptions(k=100, top_n=50, include_untrusted=True),
+        )
+        assert target in {c.para_id for c in asked.candidates}
+
+
 def docs(result: RetrievalResult) -> set[str]:
     return {c.doc_id for c in everything(result)}
 

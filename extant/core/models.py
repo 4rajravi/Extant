@@ -236,6 +236,9 @@ class Chunk(_Row):
     valid_to: date | None = None
     authority_rank: AuthorityRank
     embedding: tuple[HalfFloat, ...] = Field(min_length=EMBEDDING_DIM, max_length=EMBEDDING_DIM)
+    # Migration 0005. Every chunk of the RBI corpus is trusted; retrieval excludes an
+    # untrusted one unless asked for it by name.
+    trusted: bool = True
 
     @model_validator(mode="after")
     def _consistent(self) -> Self:

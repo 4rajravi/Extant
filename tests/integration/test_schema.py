@@ -172,6 +172,7 @@ def test_create_records_the_build_manifest(conn: Connection, build: str) -> None
         "0002_source_anchor",
         "0003_withdrawal_key",
         "0004_chunk_order",
+        "0005_trusted",
     ]
     assert "created_at" in rows
     [info] = [b for b in list_builds(conn) if b.schema == build]

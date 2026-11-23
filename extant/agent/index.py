@@ -204,7 +204,8 @@ class PgIndex:
         doc_id, anchor = para_id.split("#", 1)
         direction = doc_id.rsplit(":v", 1)[0]
         row = self.conn.execute(
-            "SELECT c.chunk_id FROM chunks c WHERE c.doc_id LIKE %(d)s AND c.sub_index = 0"
+            "SELECT c.chunk_id FROM chunks c WHERE c.trusted AND c.doc_id LIKE %(d)s"
+            " AND c.sub_index = 0"
             " AND split_part(c.para_id, '#', 2) = %(a)s AND c.valid_from <= %(day)s"
             " AND (c.valid_to IS NULL OR c.valid_to > %(day)s) ORDER BY c.valid_from DESC LIMIT 1",
             {"d": direction + ":v%", "a": anchor, "day": day},

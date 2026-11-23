@@ -443,24 +443,24 @@
    ]
   }
  },
- "index_version": "idx_rbi_20261120_38ede3c",
+ "index_version": "idx_rbi_20261123_c23c1e8",
  "models": {
-  "1576a84454b31ae64807f1b16190f3ad648c5fd72414c8c3c0536b3f4f940030": {
-   "input_tokens": 832,
-   "latency_ms": 1337.3,
+  "7b3c8ecc0ec0df3505bee7d941dfbdb95e62bab70ae863b90573c088709a5f0a": {
+   "input_tokens": 836,
+   "latency_ms": 1165.1,
    "model": "claude-haiku-5-5",
    "output_tokens": 8,
    "parsed": {
     "supported": true
    },
    "schema": "JudgeOutput",
-   "user": "Claim: The amount of dividend an eligible Indian-incorporated bank may pay depends on its CET 1 ratio. In aggregate, it cannot exceed 75% of PAT.\n\nParagraphs:\n8. A bank incorporated in India which satisfies the eligibility criteria laid down in paragraph 7 above, may declare and pay dividend up to the limits prescribed under Table 1 below, but in aggregate not exceeding 75% of the PAT for the period for which the dividend is being proposed.\nTable 1\nBucket | CET 1 ratio as at the end of previous FY | Dividend allowed as a % of adjusted PAT for the period\nB1 | Up to (8 + z)% | 0\nB2 | Above (8 + z)% and up to (10 + z)% | 20\nB3 | Above (10 + z)% and up to (12 + z)% | 30\nB4 | Above (12 + z)% and up to (14 + z)% | 40\nB5 | Above (14 + z)% and up to (16 + z)% | 50\nB6 | Above (16 + z)% and up to (17 + z)% | 60\nB7 | Above (17 + z)% and up to (18 + z)% | 70\nB8 | Above (18 + z)% and up to (19 + z)% | 80\nB9 | Above (19 + z)% and up to (20 + z)% | 90\nB10 | Above (20 + z)% | 100\nNote: \u2018z\u2019 in Table 1 refers to the respective applicable D-SIB buffer. \u2018z\u2019 shall be zero for a bank not classified as D-SIB."
+   "user": "Claim: The amount of dividend a bank incorporated in India may pay depends on its CET 1 ratio at the end of the previous financial year. In aggregate, it may not exceed 75% of PAT.\n\nParagraphs:\n8. A bank incorporated in India which satisfies the eligibility criteria laid down in paragraph 7 above, may declare and pay dividend up to the limits prescribed under Table 1 below, but in aggregate not exceeding 75% of the PAT for the period for which the dividend is being proposed.\nTable 1\nBucket | CET 1 ratio as at the end of previous FY | Dividend allowed as a % of adjusted PAT for the period\nB1 | Up to (8 + z)% | 0\nB2 | Above (8 + z)% and up to (10 + z)% | 20\nB3 | Above (10 + z)% and up to (12 + z)% | 30\nB4 | Above (12 + z)% and up to (14 + z)% | 40\nB5 | Above (14 + z)% and up to (16 + z)% | 50\nB6 | Above (16 + z)% and up to (17 + z)% | 60\nB7 | Above (17 + z)% and up to (18 + z)% | 70\nB8 | Above (18 + z)% and up to (19 + z)% | 80\nB9 | Above (19 + z)% and up to (20 + z)% | 90\nB10 | Above (20 + z)% | 100\nNote: \u2018z\u2019 in Table 1 refers to the respective applicable D-SIB buffer. \u2018z\u2019 shall be zero for a bank not classified as D-SIB."
   },
-  "60fac260fe7671bd2e1c5bb8545e22c59e517edca1a5e16fa008d53e61889944": {
-   "input_tokens": 1682,
-   "latency_ms": 1097.1,
+  "ddb709b9f3959534b6fbc46e19a03fd968b42bde845933b22e532d4af3ec497d": {
+   "input_tokens": 1751,
+   "latency_ms": 1204.3,
    "model": "claude-haiku-5-5",
-   "output_tokens": 100,
+   "output_tokens": 98,
    "parsed": {
     "as_of": null,
     "compare_as_of": null,
@@ -472,28 +472,17 @@
      "dividend declaration",
      "net NPA ratio",
      "commercial banks",
-     "dividend restrictions"
+     "prudential norms"
     ]
    },
    "schema": "ParseOutput",
    "user": "Can a commercial bank declare a dividend if its net NPA ratio is above 6 per cent?"
   },
-  "bed2618ecfcbca6c37062fc9ba0883017f280a676d9949bb778d034dd5b727eb": {
-   "input_tokens": 436,
-   "latency_ms": 1213.1,
-   "model": "claude-haiku-5-5",
-   "output_tokens": 8,
-   "parsed": {
-    "supported": true
-   },
-   "schema": "JudgeOutput",
-   "user": "Claim: The Reserve Bank may restrict dividend distribution where a bank does not comply with applicable laws, regulations or guidelines.\n\nParagraphs:\n13. The Reserve Bank reserves the right to place restrictions on distribution of dividend or remittance of profit where a bank is found to be non-compliant with the applicable laws, regulations / guidelines issued by the Reserve Bank."
-  },
   "e5d6cd091075d039ca86c324900ef578df69470f69d1c7281823c878e3cc7039": {
    "input_tokens": 3976,
-   "latency_ms": 9959.8,
+   "latency_ms": 9577.2,
    "model": "claude-opus-5-5",
-   "output_tokens": 1151,
+   "output_tokens": 1058,
    "parsed": {
     "claims": [
      {
@@ -507,7 +496,7 @@
        "The bank incorporated in India shall have positive adjusted Profit After Tax (PAT) for the period for which the dividend is proposed.",
        "The bank shall not be under any explicit restrictions for declaration of dividends or remittance of profits from the Reserve Bank or any other authority."
       ],
-      "text": "To be eligible to declare dividends, a bank must meet the prudential requirements listed in paragraph 7. These are: compliance with the applicable regulatory capital requirement at the end of the previous and current financial year; regulatory capital not falling below that requirement after the dividend; positive adjusted PAT for an Indian-incorporated bank; and no explicit restrictions from the Reserve Bank or any other authority. None of these requirements is a net NPA ratio threshold."
+      "text": "To be eligible to declare dividends, a bank must meet the prudential requirements listed in paragraph 7. These are: compliance with the applicable regulatory capital requirement at the end of the previous financial year and of the year in which the dividend is paid; capital not falling below that requirement after the dividend; positive adjusted Profit After Tax for the period (for a bank incorporated in India); and no explicit restriction on dividends from the Reserve Bank or any other authority. None of these criteria is a net NPA ratio ceiling."
      },
      {
       "candidate_indices": [
@@ -516,7 +505,7 @@
       "quotes": [
        "The divergence in asset classification and provisioning for Non-Performing Assets (NPAs), including its trend, as observed if any, under supervisory findings of the Reserve Bank"
       ],
-      "text": "NPAs come into the decision through the Board of Directors. When considering a dividend proposal, the Board must consider any divergence in asset classification and provisioning for NPAs, including its trend, found in the Reserve Bank's supervisory findings."
+      "text": "NPAs come in at Board level instead. When considering a dividend proposal, the Board must consider any divergence in asset classification and provisioning for NPAs, including its trend, observed in the Reserve Bank's supervisory findings."
      },
      {
       "candidate_indices": [
@@ -524,9 +513,9 @@
       ],
       "quotes": [
        "CET 1 ratio as at the end of previous FY",
-       "in aggregate not exceeding 75% of the PAT"
+       "in aggregate not exceeding 75% of the PAT for the period for which the dividend is being proposed"
       ],
-      "text": "The amount of dividend an eligible Indian-incorporated bank may pay depends on its CET 1 ratio. In aggregate, it cannot exceed 75% of PAT."
+      "text": "The amount of dividend a bank incorporated in India may pay depends on its CET 1 ratio at the end of the previous financial year. In aggregate, it may not exceed 75% of PAT."
      },
      {
       "candidate_indices": [
@@ -535,7 +524,7 @@
       "quotes": [
        "The Reserve Bank reserves the right to place restrictions on distribution of dividend or remittance of profit where a bank is found to be non-compliant"
       ],
-      "text": "The Reserve Bank may restrict dividend distribution where a bank does not comply with applicable laws, regulations or guidelines."
+      "text": "The Reserve Bank may still restrict dividend distribution where a bank is found to be non-compliant with applicable laws or with Reserve Bank regulations or guidelines."
      }
     ],
     "insufficient": false,
