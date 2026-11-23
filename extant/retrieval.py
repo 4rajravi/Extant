@@ -55,7 +55,7 @@ from typing import Any, Literal, Protocol
 
 import psycopg
 
-from extant.core.identity import InvalidReferenceError, canonical_ref, ref_variants
+from extant.core.identity import find_references, ref_variants
 from extant.index.embed import Embedder, halfvec_literal, l2_normalise
 
 # --------------------------------------------------------------------------- types
@@ -139,6 +139,11 @@ class RetrievalOptions:
     # runs afterwards, the failure the design exists to avoid. Both modes return only rows
     # that pass the filter, so "post" loses recall and never leaks.
     filter_stage: Literal["pre", "post"] = "pre"
+    # "in_force" is the design: only paragraphs valid on the as-of date. "any" drops the date
+    # test (the entity test stays) and exists for one caller, the agent's supersession probe:
+    # it fetches what the date filter hides so the gate can remove it on the record and say
+    # what was repealed. Its rows are dropped before anything is composed.
+    validity: Literal["in_force", "any"] = "in_force"
 
 
 @dataclass(frozen=True)
@@ -158,6 +163,11 @@ class Candidate:
     arms: dict[str, int] = field(default_factory=dict)  # rank in each arm, best piece
     expanded: bool = False
     expanded_from: str | None = None
+    # What a citation needs and the hot table does not carry: the regulator's own numbering
+    # and where the paragraph is published. Added in Phase 4 for the agent's citations.
+    para_number: str | None = None
+    source_url: str = ""
+    source_page: int | None = None
 
 
 @dataclass(frozen=True)
@@ -178,22 +188,28 @@ class RetrievalResult:
 
 # --------------------------------------------------------------------------- SQL
 
-_FILTER = (
-    "entity_codes && %(entity)s::text[]"
-    " AND valid_from <= %(as_of)s"
-    " AND (valid_to IS NULL OR valid_to > %(as_of)s)"
-)
+_ENTITY = "entity_codes && %(entity)s::text[]"
+_IN_FORCE = " AND valid_from <= %(as_of)s AND (valid_to IS NULL OR valid_to > %(as_of)s)"
+_FILTER = _ENTITY + _IN_FORCE
 _FILTER_C = (
     "c.entity_codes && %(entity)s::text[]"
     " AND c.valid_from <= %(as_of)s"
     " AND (c.valid_to IS NULL OR c.valid_to > %(as_of)s)"
 )
+_ENTITY_C = "c.entity_codes && %(entity)s::text[]"
+
+
+def _filter(validity: Literal["in_force", "any"], *, prefixed: bool = False) -> str:
+    if validity == "any":
+        return _ENTITY_C if prefixed else _ENTITY
+    return _FILTER_C if prefixed else _FILTER
 
 
 def search_sql(
     lexical: LexicalArm,
     dense: DenseArm | None = None,
     filter_stage: Literal["pre", "post"] = "pre",
+    validity: Literal["in_force", "any"] = "in_force",
 ) -> str:
     """The hybrid search statement: filter first, materialised, then both arms. With
     ``filter_stage="post"``, the ablation: both arms over the whole build, filtered after."""
@@ -205,7 +221,8 @@ def search_sql(
     columns = f"chunk_id, {arm.column} AS embedding, fts"
     if filter_stage == "pre":
         return (
-            f"WITH allowed AS MATERIALIZED (SELECT {columns} FROM chunks WHERE {_FILTER}),"  # noqa: S608
+            f"WITH allowed AS MATERIALIZED (SELECT {columns} FROM chunks"  # noqa: S608
+            f" WHERE {_filter(validity)}),"
             f" dense AS ({arm.cte()}), lexical AS ({lexical.cte()})"
             " SELECT 'dense' AS src, chunk_id, dist AS score FROM dense"
             " UNION ALL SELECT 'lexical', chunk_id, score FROM lexical"
@@ -214,21 +231,23 @@ def search_sql(
         f"WITH allowed AS (SELECT {columns} FROM chunks),"  # noqa: S608
         f" dense AS ({arm.cte()}), lexical AS ({lexical.cte()})"
         " SELECT 'dense' AS src, x.chunk_id, x.dist AS score FROM dense x"
-        f" JOIN chunks c ON c.chunk_id = x.chunk_id WHERE {_FILTER_C}"
+        f" JOIN chunks c ON c.chunk_id = x.chunk_id WHERE {_filter(validity, prefixed=True)}"
         " UNION ALL SELECT 'lexical', x.chunk_id, x.score FROM lexical x"
-        f" JOIN chunks c ON c.chunk_id = x.chunk_id WHERE {_FILTER_C}"
+        f" JOIN chunks c ON c.chunk_id = x.chunk_id WHERE {_filter(validity, prefixed=True)}"
     )
 
 
 _HYDRATE = (
     "SELECT c.chunk_id, c.para_id, p.doc_id, d.title, p.heading_path, p.body, p.ordinal,"
-    " c.entity_codes, c.valid_from, c.valid_to, c.authority_rank"
+    " c.entity_codes, c.valid_from, c.valid_to, c.authority_rank,"
+    " p.para_number, d.source_url, p.source_page"
     " FROM chunks c JOIN paragraphs p ON p.para_id = c.para_id"
     " JOIN documents d ON d.doc_id = p.doc_id WHERE c.chunk_id = ANY(%(ids)s)"
 )
 _NEIGHBOURS = (
     "SELECT DISTINCT ON (c.para_id) c.para_id, x.from_para, p.doc_id, d.title, p.heading_path,"
-    " p.body, p.ordinal, c.entity_codes, c.valid_from, c.valid_to, c.authority_rank"
+    " p.body, p.ordinal, c.entity_codes, c.valid_from, c.valid_to, c.authority_rank,"
+    " p.para_number, d.source_url, p.source_page"
     " FROM unnest(%(docs)s::text[], %(ords)s::int[], %(froms)s::text[], %(ranks)s::int[])"
     "  AS x(doc_id, ordinal, from_para, from_rank)"
     " JOIN chunks c ON c.doc_id = x.doc_id"
@@ -238,10 +257,17 @@ _NEIGHBOURS = (
     " AND (c.valid_to IS NULL OR c.valid_to > %(as_of)s)"
     " ORDER BY c.para_id, x.from_rank"
 )
-_MENTIONS = (
-    f"SELECT chunk_id FROM chunks WHERE {_FILTER} AND body ILIKE ANY(%(patterns)s)"  # noqa: S608
-    " ORDER BY valid_from DESC, doc_id, ordinal, sub_index LIMIT %(k)s"
-)
+
+
+def _mentions_sql(validity: Literal["in_force", "any"]) -> str:
+    return (
+        f"SELECT chunk_id FROM chunks WHERE {_filter(validity)}"  # noqa: S608
+        " AND body ILIKE ANY(%(patterns)s)"
+        " ORDER BY valid_from DESC, doc_id, ordinal, sub_index LIMIT %(k)s"
+    )
+
+
+_MENTIONS = _mentions_sql("in_force")
 
 
 # --------------------------------------------------------------------------- pieces
@@ -269,35 +295,12 @@ def _rrf(
     return sorted(scores.items(), key=lambda kv: (-kv[1], kv[0]))
 
 
-_REF_TOKEN = re.compile(r"(?<![\w/])[A-Za-z][\w.()&-]*/[\w.()&/-]+")
-_SPACE_AFTER_NO = re.compile(r"\b(No\.)\s+(?=[\w(])", re.IGNORECASE)
-
-
-def _find_references(query: str) -> list[tuple[str, str]]:
-    """``(surface, canonical)`` for every literal reference in the query: a token that starts
-    with a letter, contains a slash and a digit, and that ``canonical_ref`` accepts."""
-    found: dict[str, str] = {}
-    for m in _REF_TOKEN.finditer(_SPACE_AFTER_NO.sub(r"\1", query)):
-        token = m.group(0).rstrip(".,;:")
-        if token.count("(") < token.count(")"):
-            token = token.rstrip(")")
-        if len(token) < 8 or not any(ch.isdigit() for ch in token):
-            continue
-        try:
-            canonical = canonical_ref(token)
-        except InvalidReferenceError:
-            continue
-        if "/" in canonical and canonical not in found.values():
-            found[token] = canonical
-    return list(found.items())
-
-
 def _like(text: str) -> str:
     return "%" + text.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_") + "%"
 
 
 def _candidate(row: Sequence[Any], **extra: Any) -> Candidate:
-    para_id, doc_id, title, heading, body, ordinal, codes, vf, vt, rank_ = row
+    para_id, doc_id, title, heading, body, ordinal, codes, vf, vt, rank_, number, url, page = row
     return Candidate(
         para_id=para_id,
         doc_id=doc_id,
@@ -309,6 +312,9 @@ def _candidate(row: Sequence[Any], **extra: Any) -> Candidate:
         valid_from=vf,
         valid_to=vt,
         authority_rank=int(rank_),
+        para_number=number,
+        source_url=str(url),
+        source_page=page,
         **extra,
     )
 
@@ -368,6 +374,9 @@ def _expand(
     return sorted(out, key=lambda c: (c.doc_id, c.ordinal))
 
 
+_find_references = find_references  # the Phase 2 name; detection now lives in identity
+
+
 # --------------------------------------------------------------------------- the function
 
 
@@ -383,8 +392,9 @@ def retrieve(
     """Ranked candidate paragraphs in force on ``as_of`` for any of ``entity_codes``.
 
     ``entity_codes`` is matched by overlap with each chunk's codes, as given: a caller asking
-    about an NBFC subtype passes the subtype and ``nbfc``. Every candidate, ranked or
-    expanded, on either path, satisfies both filters."""
+    about an NBFC subtype passes the subtype and ``nbfc``. With ``validity="any"`` (the agent's
+    supersession probe) the date test is dropped and nothing is expanded. Otherwise every
+    candidate, ranked or expanded, on either path, satisfies both filters."""
     opts = options or RetrievalOptions()
     if not query.strip():
         raise ValueError("query is empty")
@@ -392,19 +402,20 @@ def retrieve(
         raise ValueError("at least one entity code is required")
     params: dict[str, Any] = {"entity": list(entity_codes), "as_of": as_of, "k": opts.k}
 
-    references = _find_references(query)
+    references = find_references(query)
     if references:
         return _reference_path(conn, references, params, opts)
 
     vector = l2_normalise(embedder.embed([query], kind="query").vectors[0])
     rows = conn.execute(
-        search_sql(opts.lexical, opts.dense, opts.filter_stage),
+        search_sql(opts.lexical, opts.dense, opts.filter_stage, opts.validity),
         {**params, "q": query, "qvec": halfvec_literal(vector)},
     ).fetchall()
     arms = _rank_arms([(str(r[0]), int(r[1]), float(r[2])) for r in rows])
     fused = _rrf([arms["dense"], arms["lexical"]], opts.weights, opts.rrf_k)
     ranked = _collapse(conn, fused, arms, opts.top_n)
-    context = _expand(conn, ranked, params, opts.radius) if opts.expand else []
+    expand = opts.expand and opts.validity == "in_force"
+    context = _expand(conn, ranked, params, opts.radius) if expand else []
     return RetrievalResult("hybrid", ranked, context, [])
 
 
@@ -437,7 +448,8 @@ def _reference_path(
         for surface, c in references
     ]
     patterns = sorted({_like(v) for c in canon for v in ref_variants(c)})
-    ids = [r[0] for r in conn.execute(_MENTIONS, {**params, "patterns": patterns}).fetchall()]
+    mentions = _mentions_sql(opts.validity)
+    ids = [r[0] for r in conn.execute(mentions, {**params, "patterns": patterns}).fetchall()]
     targets = {d for m in matches for d in m.consolidated_into}
     rows = conn.execute(_HYDRATE, {"ids": ids}).fetchall() if ids else []
     order = {cid: i for i, cid in enumerate(ids)}
@@ -451,5 +463,6 @@ def _reference_path(
         ranked.append(_candidate(r[1:], rank=len(ranked) + 1, score=None, arms={"reference": 1}))
         if len(ranked) == opts.top_n:
             break
-    context = _expand(conn, ranked, params, opts.radius) if opts.expand else []
+    expand = opts.expand and opts.validity == "in_force"
+    context = _expand(conn, ranked, params, opts.radius) if expand else []
     return RetrievalResult("reference", ranked, context, matches)

@@ -1,0 +1,227 @@
+{
+ "embedding_model": "openai/text-embedding-3-large",
+ "entities": {
+  "aifi": "All India Financial Institutions",
+  "arc": "Asset Reconstruction Companies",
+  "cb": "Commercial Banks",
+  "cic": "Credit Information Companies",
+  "lab": "Local Area Banks",
+  "nbfc": "Non-Banking Financial Companies",
+  "nbfc_aa": "NBFC-Account Aggregator",
+  "nbfc_bl": "NBFC-Base Layer",
+  "nbfc_cic": "NBFC-Core Investment Company",
+  "nbfc_d": "Deposit taking NBFC",
+  "nbfc_factor": "NBFC-Factor",
+  "nbfc_hfc": "Housing Finance Company",
+  "nbfc_icc": "NBFC-Investment and Credit Company",
+  "nbfc_idf": "Infrastructure Debt Fund-Non-Banking Financial Company",
+  "nbfc_ifc": "Non-Banking Financial Company-Infrastructure Finance Company",
+  "nbfc_mfi": "Non-Banking Financial Company \u2013 Microfinance Institution",
+  "nbfc_mgc": "Mortgage Guarantee Company",
+  "nbfc_ml": "NBFC-Middle Layer",
+  "nbfc_nofhc": "Non-Operative Financial Holding Company",
+  "nbfc_p2p": "NBFC-Peer to Peer Lending Platform",
+  "nbfc_spd": "Standalone Primary Dealer",
+  "nbfc_tl": "NBFC-TL, NBFCs falling in the Top Layer",
+  "nbfc_ul": "NBFC - Upper Layer",
+  "pb": "Payments Banks",
+  "rcb": "Rural Co-operative Banks",
+  "rrb": "Regional Rural Banks",
+  "sfb": "Small Finance Banks",
+  "ucb": "Urban Co-operative Banks"
+ },
+ "index": {
+  "[\"reference\", \"What replaced circular DOR.ACC.REC.87/21-02-067/2025-26?\", \"('cb',)\", \"2026-11-20\"]": {
+   "candidates": [
+    {
+     "asked_for": "2026-11-20",
+     "authority_rank": 30,
+     "binding": true,
+     "body": "List of circulars repealed\nSr. No. | Circular Number | Date of Issue | Subject\n1. | DOR.ACC.REC.87/21-02-067/2025-26 | November 28, 2025 | Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividends and Remittance of Profit) Directions, 2025",
+     "dense_rank": null,
+     "doc_id": "rbi:md:2025:0387:v1",
+     "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+     "entity_scope": [
+      "cb"
+     ],
+     "expanded": false,
+     "expanded_from": null,
+     "fusion_score": null,
+     "heading_path": "Annex III",
+     "lexical_rank": null,
+     "ordinal": 21,
+     "origin": "reference",
+     "para_id": "rbi:md:2025:0387:v1#annex3",
+     "paragraph_number": null,
+     "rank": 1,
+     "source_page": null,
+     "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319",
+     "valid_from": "2026-03-10",
+     "valid_to": null
+    }
+   ],
+   "references": [
+    {
+     "canonical_ref": "DOR.ACC.REC.87/21-02-067/2025-26",
+     "consolidated_into": [
+      "rbi:md:2025:0387:v1"
+     ],
+     "surface": "DOR.ACC.REC.87/21-02-067/2025-26",
+     "withdrawals": []
+    }
+   ]
+  }
+ },
+ "index_version": "idx_rbi_20261120_38ede3c",
+ "models": {},
+ "recorded": {
+  "caveats": [],
+  "node_log": [
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.17,
+    "model": null,
+    "node": "parse",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 391.73,
+    "model": null,
+    "node": "resolve_reference",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.0,
+    "model": null,
+    "node": "gate",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.0,
+    "model": null,
+    "node": "authority",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.18,
+    "model": null,
+    "node": "compose",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.61,
+    "model": null,
+    "node": "verify",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.0,
+    "model": null,
+    "node": "judge",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.17,
+    "model": null,
+    "node": "finalize",
+    "output_tokens": 0
+   }
+  ],
+  "outcome": "answer",
+  "path": "fast",
+  "refusal_reason": null,
+  "response": {
+   "as_of": "2026-11-20",
+   "cost_eur": 0.0,
+   "degraded": [],
+   "dropped": [],
+   "entity_type": "cb",
+   "index_version": "idx_rbi_20261120_38ede3c",
+   "latency_ms": 393,
+   "result": {
+    "caveats": [],
+    "claims": [
+     {
+      "citations": [
+       {
+        "authority_rank": 30,
+        "binding": true,
+        "doc_id": "rbi:md:2025:0387:v1",
+        "doc_title": "Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026",
+        "effective_from": "2026-03-10",
+        "effective_to": null,
+        "entity_scope": [
+         "cb"
+        ],
+        "para_id": "rbi:md:2025:0387:v1#annex3",
+        "paragraph_number": "annex3",
+        "quote_end": 116,
+        "quote_start": 84,
+        "source_page": null,
+        "source_url": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13319"
+       }
+      ],
+      "text": "Circular DOR.ACC.REC.87/21-02-067/2025-26 was consolidated into Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026, as paragraph annex3 of Reserve Bank of India (Commercial Banks \u2013 Prudential Norms on Declaration of Dividend and Remittances of Profits) Directions, 2026 records."
+     }
+    ],
+    "outcome": "answer"
+   },
+   "retrieved": [
+    {
+     "dense_rank": null,
+     "expanded": false,
+     "fusion_score": null,
+     "lexical_rank": null,
+     "para_id": "rbi:md:2025:0387:v1#annex3"
+    }
+   ]
+  }
+ },
+ "spec": {
+  "as_of": "2026-11-20",
+  "entity": "cb",
+  "expect": "the fast path: zero model and zero embedding calls",
+  "name": "fast_answer_consolidated",
+  "question": "What replaced circular DOR.ACC.REC.87/21-02-067/2025-26?"
+ },
+ "today": "2026-11-22"
+}

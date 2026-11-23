@@ -1,0 +1,131 @@
+{
+ "embedding_model": "openai/text-embedding-3-large",
+ "entities": {
+  "aifi": "All India Financial Institutions",
+  "arc": "Asset Reconstruction Companies",
+  "cb": "Commercial Banks",
+  "cic": "Credit Information Companies",
+  "lab": "Local Area Banks",
+  "nbfc": "Non-Banking Financial Companies",
+  "nbfc_aa": "NBFC-Account Aggregator",
+  "nbfc_bl": "NBFC-Base Layer",
+  "nbfc_cic": "NBFC-Core Investment Company",
+  "nbfc_d": "Deposit taking NBFC",
+  "nbfc_factor": "NBFC-Factor",
+  "nbfc_hfc": "Housing Finance Company",
+  "nbfc_icc": "NBFC-Investment and Credit Company",
+  "nbfc_idf": "Infrastructure Debt Fund-Non-Banking Financial Company",
+  "nbfc_ifc": "Non-Banking Financial Company-Infrastructure Finance Company",
+  "nbfc_mfi": "Non-Banking Financial Company \u2013 Microfinance Institution",
+  "nbfc_mgc": "Mortgage Guarantee Company",
+  "nbfc_ml": "NBFC-Middle Layer",
+  "nbfc_nofhc": "Non-Operative Financial Holding Company",
+  "nbfc_p2p": "NBFC-Peer to Peer Lending Platform",
+  "nbfc_spd": "Standalone Primary Dealer",
+  "nbfc_tl": "NBFC-TL, NBFCs falling in the Top Layer",
+  "nbfc_ul": "NBFC - Upper Layer",
+  "pb": "Payments Banks",
+  "rcb": "Rural Co-operative Banks",
+  "rrb": "Regional Rural Banks",
+  "sfb": "Small Finance Banks",
+  "ucb": "Urban Co-operative Banks"
+ },
+ "index": {
+  "[\"reference\", \"Is circular DBOD.No.Dir.BC.1/13.03.00/2012-13 still in force?\", \"('cb',)\", \"2024-03-14\"]": {
+   "candidates": [],
+   "references": [
+    {
+     "canonical_ref": "DBOD.DIR.BC.1/13.03.00/2012-13",
+     "consolidated_into": [],
+     "surface": "DBOD.No.Dir.BC.1/13.03.00/2012-13",
+     "withdrawals": [
+      {
+       "circular_date": "2012-07-02",
+       "effective_on": "2025-11-28",
+       "title": "Master Circular on Interest Rates on Rupee Deposits held in Domestic, Ordinary Non-Resident (NRO) and Non-Resident (External) (NRE) Accounts",
+       "withdrawn_by_doc_id": "rbi:circ:2025:0100:v1"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "index_version": "idx_rbi_20261120_38ede3c",
+ "models": {},
+ "recorded": {
+  "caveats": [],
+  "node_log": [
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.04,
+    "model": null,
+    "node": "parse",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 275.15,
+    "model": null,
+    "node": "resolve_reference",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.02,
+    "model": null,
+    "node": "gate",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.07,
+    "model": null,
+    "node": "finalize",
+    "output_tokens": 0
+   }
+  ],
+  "outcome": "refusal",
+  "path": "fast",
+  "refusal_reason": "no_support_found",
+  "response": {
+   "as_of": "2024-03-14",
+   "cost_eur": 0.0,
+   "degraded": [],
+   "dropped": [],
+   "entity_type": "cb",
+   "index_version": "idx_rbi_20261120_38ede3c",
+   "latency_ms": 275,
+   "result": {
+    "message": "No RBI direction paragraph in force for an entity of type cb on 2024-03-14 establishes this. Dbod.no.dir.bc.1/13.03.00/2012-13 was withdrawn by rbi:circ:2025:0100:v1 with effect from 2025-11-28, which is after the date you asked about, so it may still have applied. Check the instrument itself before relying on this.",
+    "nearest": [],
+    "outcome": "refusal",
+    "reason": "no_support_found"
+   },
+   "retrieved": []
+  }
+ },
+ "spec": {
+  "as_of": "2024-03-14",
+  "entity": "cb",
+  "expect": "no_support_found that says it may still have applied",
+  "name": "fast_withdrawn_after_the_date",
+  "question": "Is circular DBOD.No.Dir.BC.1/13.03.00/2012-13 still in force?"
+ },
+ "today": "2026-11-22"
+}

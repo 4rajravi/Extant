@@ -1,0 +1,124 @@
+{
+ "embedding_model": "openai/text-embedding-3-large",
+ "entities": {
+  "aifi": "All India Financial Institutions",
+  "arc": "Asset Reconstruction Companies",
+  "cb": "Commercial Banks",
+  "cic": "Credit Information Companies",
+  "lab": "Local Area Banks",
+  "nbfc": "Non-Banking Financial Companies",
+  "nbfc_aa": "NBFC-Account Aggregator",
+  "nbfc_bl": "NBFC-Base Layer",
+  "nbfc_cic": "NBFC-Core Investment Company",
+  "nbfc_d": "Deposit taking NBFC",
+  "nbfc_factor": "NBFC-Factor",
+  "nbfc_hfc": "Housing Finance Company",
+  "nbfc_icc": "NBFC-Investment and Credit Company",
+  "nbfc_idf": "Infrastructure Debt Fund-Non-Banking Financial Company",
+  "nbfc_ifc": "Non-Banking Financial Company-Infrastructure Finance Company",
+  "nbfc_mfi": "Non-Banking Financial Company \u2013 Microfinance Institution",
+  "nbfc_mgc": "Mortgage Guarantee Company",
+  "nbfc_ml": "NBFC-Middle Layer",
+  "nbfc_nofhc": "Non-Operative Financial Holding Company",
+  "nbfc_p2p": "NBFC-Peer to Peer Lending Platform",
+  "nbfc_spd": "Standalone Primary Dealer",
+  "nbfc_tl": "NBFC-TL, NBFCs falling in the Top Layer",
+  "nbfc_ul": "NBFC - Upper Layer",
+  "pb": "Payments Banks",
+  "rcb": "Rural Co-operative Banks",
+  "rrb": "Regional Rural Banks",
+  "sfb": "Small Finance Banks",
+  "ucb": "Urban Co-operative Banks"
+ },
+ "index": {},
+ "index_version": "idx_rbi_20261120_38ede3c",
+ "models": {
+  "539beca9d8f7f3011ff6ff954bbdf0086376b57c18b9d6e0c9083595e35c8ede": {
+   "input_tokens": 1670,
+   "latency_ms": 1174.1,
+   "model": "claude-haiku-5-5",
+   "output_tokens": 89,
+   "parsed": {
+    "as_of": null,
+    "compare_as_of": null,
+    "computation_requested": false,
+    "entity_type": null,
+    "in_scope": false,
+    "query_kind": "applicability",
+    "topic_terms": [
+     "demat account",
+     "KYC documents",
+     "stockbroker",
+     "account opening"
+    ]
+   },
+   "schema": "ParseOutput",
+   "user": "What documents does a stockbroker need from me to open a demat account?"
+  }
+ },
+ "recorded": {
+  "caveats": [],
+  "node_log": [
+   {
+    "calls": 1,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.00019035,
+    "input_tokens": 1670,
+    "latency_ms": 1174.19,
+    "model": "claude-haiku-5-5",
+    "node": "parse",
+    "output_tokens": 89
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.01,
+    "model": null,
+    "node": "refuse_early",
+    "output_tokens": 0
+   },
+   {
+    "calls": 0,
+    "embedding_calls": 0,
+    "embedding_tokens": 0,
+    "eur": 0.0,
+    "input_tokens": 0,
+    "latency_ms": 0.06,
+    "model": null,
+    "node": "finalize",
+    "output_tokens": 0
+   }
+  ],
+  "outcome": "refusal",
+  "path": "out_of_scope",
+  "refusal_reason": "out_of_scope",
+  "response": {
+   "as_of": "2026-11-20",
+   "cost_eur": 0.00019,
+   "degraded": [],
+   "dropped": [],
+   "entity_type": null,
+   "index_version": "idx_rbi_20261120_38ede3c",
+   "latency_ms": 1174,
+   "result": {
+    "message": "This question is outside what Extant covers: RBI directions and the rules in them for regulated entities. Ask about an RBI requirement and it can be answered with a citation.",
+    "nearest": [],
+    "outcome": "refusal",
+    "reason": "out_of_scope"
+   },
+   "retrieved": []
+  }
+ },
+ "spec": {
+  "as_of": "2026-11-20",
+  "entity": null,
+  "expect": "out_of_scope decided by the cheap model",
+  "name": "out_of_scope_by_model",
+  "question": "What documents does a stockbroker need from me to open a demat account?"
+ },
+ "today": "2026-11-22"
+}
