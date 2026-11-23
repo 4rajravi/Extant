@@ -81,6 +81,12 @@ def emit(record: Mapping[str, Any]) -> None:
     sys.stdout.flush()
 
 
+def emit_stderr(record: Mapping[str, Any]) -> None:
+    """For a process whose stdout is a protocol channel (the MCP server over stdio)."""
+    sys.stderr.write(json.dumps(record, ensure_ascii=False, separators=(",", ":")) + "\n")
+    sys.stderr.flush()
+
+
 def _pct(values: list[float], q: float) -> float | None:
     if not values:
         return None

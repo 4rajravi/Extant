@@ -55,6 +55,7 @@ class Spec:
     valid_from: date
     valid_to: date | None
     supersedes: str | None = None
+    deleted: tuple[int, ...] = ()  # paragraph indexes replaced by a deletion marker
 
 
 D1V1 = Spec(
@@ -78,6 +79,8 @@ def body(spec: Spec, i: int, topic: str) -> str:
         f"{i + 1}. The {topic} requirement {i + 1} obliges the regulated entity to keep records"
         f" of its {topic} decisions and to report them every quarter."
     )
+    if i in spec.deleted:
+        return f"{i + 1}. *****"
     if spec is D2 and i == 6:
         return f"{i + 1}. {OVERSIZED}"
     if spec is D4 and i == 0:
@@ -87,11 +90,14 @@ def body(spec: Spec, i: int, topic: str) -> str:
     return text
 
 
-def build_inputs(*, drop_last: int = 0, unchunked: int = 0) -> BuildInputs:
+def build_inputs(
+    *, drop_last: int = 0, unchunked: int = 0, extra: tuple[Spec, ...] = ()
+) -> BuildInputs:
     """The synthetic corpus. ``drop_last`` removes that many paragraphs from each document;
-    ``unchunked`` leaves that many paragraphs without chunk rows (to fail coverage)."""
+    ``unchunked`` leaves that many paragraphs without chunk rows (to fail coverage); ``extra``
+    adds documents beyond the five, for tests that need a shape the five do not have."""
     documents, paragraphs, facets, chunks = [], [], [], []
-    for spec in SPECS:
+    for spec in (*SPECS, *extra):
         doc = f.document(
             doc_id=spec.doc_id,
             title=spec.title,
