@@ -73,6 +73,8 @@ select = [
 "tests/**" = ["S101", "S603", "S311"]
 # Seeded sampling for eval sets and bootstrap intervals, never for secrets.
 "evals/**" = ["S311"]
+# The answer level question table: one question per line reads as a table; wrapped it does not.
+"evals/answers/sets.py" = ["S311", "E501"]
 
 # --------------------------------------------------------------------------- mypy
 [tool.mypy]

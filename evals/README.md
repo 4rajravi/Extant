@@ -92,3 +92,37 @@ Until then the job skips the gate and posts a warning saying what is missing on 
 summary page, so a green run without Neon never looks like a gated one.
 The gate measures retrieval code and eval changes against a fixed published build; a change to
 chunking or parsing shows up only once a new build is published and a new baseline committed.
+
+## Answer level evaluation (Phase 6)
+
+Everything above measures retrieval and calls no model, so it runs on every push. The answer
+level eval (`evals/answers/`) measures whole answers against real model calls, so it costs
+money and runs on demand, after a dry run:
+
+```bash
+uv run python -m evals.answers.sets check      # the question sets and their evidence
+uv run python -m evals.answers.run plan        # the dry run: counts and EUR, no calls at all
+uv run python -m evals.answers.run ask         # the run: resumable, with a hard budget stop
+uv run python -m evals.answers.judge pass      # the judge over every answered claim
+uv run python -m evals.answers.judge draw      # 50 blind pairs for a person to label
+uv run python -m evals.answers.render          # evals/answers.md and the row level Parquet
+```
+
+- **Sets** (`evals/answers/sets/`): `answerable` (56 questions written from sampled in-force
+  paragraphs, the gold known by construction; this replaces the FAQ derived set, since RBI's
+  FAQ answers cite no provisions), `as_of` (five amended provisions asked on both sides of the
+  change) and `unanswerable` (ten each: absent topics, entity types no provision covers, dates
+  before the governing instrument, provisions repealed by the date asked). Every unanswerable
+  question records why, and a retrieval check of what the index does and does not hold for
+  it; one whose check does not bear out its reason fails validation.
+- **Arms** (`extant/agent/arms.py`, never set by serving): the baseline; no supersession
+  handling anywhere; no verification; and the bounded retry Phase 4 left out.
+- **Cassettes** (`evals/answers/cassettes/`): every model call and query embedding, keyed on
+  the exact call and stamped with the model and the date. A call already recorded is
+  replayed and costs nothing, so an arm that asks nothing new is free and a resumed run never
+  pays twice. No gold answer is in any prompt, fixture or cassette.
+- **Metrics** (`evals/answers/metrics.py`): citation validity as a count of violations (any
+  is a bug), the refusal pair (correct refusals on unanswerable questions and false refusals
+  on answerable ones) from one function that cannot return either alone, gold accuracy,
+  as-of correctness, recall beside it for the ablations, groundedness always beside the
+  judge's agreement with a person, and cost and latency at p50 and p95.

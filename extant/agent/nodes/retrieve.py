@@ -20,7 +20,7 @@ from __future__ import annotations
 from typing import Any
 
 from extant.agent.models import AgentState, Caveat
-from extant.agent.runtime import Given, InvariantError, Spend, as_of
+from extant.agent.runtime import Given, InvariantError, Search, Spend, as_of
 
 TOP_N = 6  # ranked candidates passed on; their neighbours come with them
 PROBE_N = 5
@@ -33,8 +33,14 @@ def run(state: AgentState, given: Given, spend: Spend) -> dict[str, Any]:
     on = as_of(state)
     codes = (state.entity_type,) if state.entity_type else index.entity_codes()
     query = state.raw_query
-    found = index.search(query, codes, on, validity="in_force", top_n=TOP_N)
-    probe = index.search(query, codes, on, validity="any", top_n=PROBE_N)
+    if not given.arm.supersession:
+        # Eval only: the arm without supersession handling ranks every version, in force or
+        # not, and needs no probe for what the date filter hides.
+        found = index.search(query, codes, on, validity="any", top_n=TOP_N)
+        probe = Search(candidates=[], neighbours=[])
+    else:
+        found = index.search(query, codes, on, validity="in_force", top_n=TOP_N)
+        probe = index.search(query, codes, on, validity="any", top_n=PROBE_N)
     spend.embedding_model = index.embedding_model
     spend.embedding_calls += found.embedding_calls + probe.embedding_calls
     spend.embedding_tokens += found.embedding_tokens + probe.embedding_tokens

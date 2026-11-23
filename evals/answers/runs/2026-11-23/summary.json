@@ -1,0 +1,31 @@
+{
+ "run": "2026-11-23",
+ "schema": "idx_rbi_20261123_c23c1e8",
+ "arms": [
+  "baseline",
+  "no_verification",
+  "retry",
+  "no_supersession"
+ ],
+ "scope": {
+  "baseline": "every question",
+  "no_verification": "every question",
+  "retry": "every question",
+  "no_supersession": "every question"
+ },
+ "splits": [
+  "dev",
+  "test"
+ ],
+ "planned": 424,
+ "budget_eur": 6.55,
+ "stopped": null,
+ "started": "2026-11-23T11:12:43",
+ "finished": "2026-11-23T11:32:20",
+ "estimate_eur": 6.5843,
+ "spend_eur": 5.027432,
+ "fresh_calls": 414,
+ "seconds": 1151.1,
+ "judge_pass_eur": 0.0397,
+ "judge_pass_calls": 493
+}

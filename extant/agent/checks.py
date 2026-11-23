@@ -213,7 +213,21 @@ class ClaimVerdict:
         return all(c.passed for c in self.checks.values())
 
 
-def verify_claim(i: int, claim: DraftClaim, candidates: Sequence[Candidate]) -> ClaimVerdict:
+def _skipped(name: str) -> CheckResult:
+    return CheckResult(name=name, passed=True, detail="not run in this ablation arm")
+
+
+def verify_claim(
+    i: int,
+    claim: DraftClaim,
+    candidates: Sequence[Candidate],
+    *,
+    skip: frozenset[str] = frozenset(),
+) -> ClaimVerdict:
+    """The hard checks on one claim. ``skip`` names checks an ablation arm turns off
+    (``extant.agent.arms``); serving never passes it."""
+    if skip:
+        return _verify_with_skips(i, claim, candidates, skip)
     by_id = {c.para_id: c for c in candidates}
     checks: dict[str, CheckResult] = {}
     labels = [m.group(0) for m in _INTERNAL_LABEL.finditer(claim.text)]
@@ -270,3 +284,34 @@ def verify_claim(i: int, claim: DraftClaim, candidates: Sequence[Candidate]) -> 
             by_para.setdefault(f.candidate.para_id, f)
         verified = Claim(text=claim.text, citations=[citation(f) for f in by_para.values()])
     return ClaimVerdict(i, checks, verified, score)
+
+
+def _verify_with_skips(
+    i: int, claim: DraftClaim, candidates: Sequence[Candidate], skip: frozenset[str]
+) -> ClaimVerdict:
+    """The same checks with some turned off: a skipped check passes, and a quote that cannot
+    be found (with quote_match skipped) is cited with an empty span at the paragraph start."""
+    full = verify_claim(i, claim, candidates)
+    checks = {n: (_skipped(n) if n in skip else r) for n, r in full.checks.items()}
+    for name in skip - set(checks):
+        checks[name] = _skipped(name)
+    if not all(r.passed for r in checks.values()):
+        return ClaimVerdict(i, checks, None, full.overlap)
+    by_id = {c.para_id: c for c in candidates}
+    found: list[Located] = []
+    for quote in claim.quotes:
+        for pid in claim.citation_ids:
+            start = by_id[pid].body.find(quote) if pid in by_id else -1
+            if start != -1:
+                found.append(Located(by_id[pid], quote, start, start + len(quote)))
+                break
+    cited = {f.candidate.para_id for f in found}
+    for pid in claim.citation_ids:
+        if pid not in cited and pid in by_id:
+            found.append(Located(by_id[pid], "", 0, 0))
+    by_para: dict[str, Located] = {}
+    for f in found:
+        by_para.setdefault(f.candidate.para_id, f)
+    score = overlap(claim.text, [f.quote for f in found if f.quote])
+    claim_out = Claim(text=claim.text, citations=[citation(f) for f in by_para.values()])
+    return ClaimVerdict(i, checks, claim_out, score)

@@ -38,6 +38,7 @@ from typing import Any
 import psycopg
 from psycopg import sql
 
+from extant.agent.arms import BASELINE, Arm
 from extant.agent.examples import STATIC_PAGE, ExampleCache
 from extant.agent.graph import ask, build
 from extant.agent.llm import StructuredModel
@@ -84,6 +85,7 @@ class Service:
     day: Callable[[], date] = today_in_india
     now: Callable[[], datetime] = _utcnow
     on_database_error: Callable[[], None] | None = None  # e.g. drop a broken connection
+    arm: Arm = BASELINE  # serving never sets this; only the Phase 6 harness does
 
     def ask(
         self,
@@ -150,6 +152,7 @@ class Service:
                     index=self.open_index(),
                     eur_per_usd=self.eur_per_usd,
                     entities=self.entities,
+                    arm=self.arm,
                 )
                 return ask(
                     build(deps),
@@ -159,6 +162,7 @@ class Service:
                     as_of=as_of,
                     today=today,
                     request_id=rid,
+                    supersession=self.arm.supersession,
                 )
             except DATABASE_ERRORS:
                 if self.on_database_error is not None:

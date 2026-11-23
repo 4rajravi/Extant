@@ -166,24 +166,32 @@ def run(state: AgentState, given: Given, spend: Spend) -> dict[str, Any]:
             "refusal_reason": RefusalReason.NO_SUPPORT_FOUND,
             "refusal_detail": out.missing,
         }
-    resolved = []
-    for n, claim in enumerate(out.claims):
-        bad = [i for i in claim.candidate_indices if not 0 <= i < len(shown)]
-        if bad:
-            return {
-                "checks": {
-                    "index_in_range": CheckResult(
-                        name="index_in_range",
-                        passed=False,
-                        detail=f"claim {n} cites {bad}; only 0 to {len(shown) - 1} were shown",
-                    )
-                },
-                "refusal_reason": RefusalReason.VERIFICATION_FAILED,
-                "refusal_detail": "a citation pointed at a paragraph that was not retrieved",
-            }
-        ids = tuple(dict.fromkeys(shown[i].para_id for i in claim.candidate_indices))
-        resolved.append(DraftClaim(text=claim.text, citation_ids=ids, quotes=tuple(claim.quotes)))
+    resolved, bad = resolve(out, shown)
+    if bad is not None:
+        return {
+            "checks": {"index_in_range": bad},
+            "refusal_reason": RefusalReason.VERIFICATION_FAILED,
+            "refusal_detail": "a citation pointed at a paragraph that was not retrieved",
+        }
     return {
         "draft_claims": resolved,
         "checks": {"index_in_range": CheckResult(name="index_in_range", passed=True)},
     }
+
+
+def resolve(
+    out: ComposerOutput, shown: list[Candidate]
+) -> tuple[list[DraftClaim], CheckResult | None]:
+    """Turn the composer's indices into para_ids. An index out of range fails here."""
+    resolved = []
+    for n, claim in enumerate(out.claims):
+        bad = [i for i in claim.candidate_indices if not 0 <= i < len(shown)]
+        if bad:
+            return [], CheckResult(
+                name="index_in_range",
+                passed=False,
+                detail=f"claim {n} cites {bad}; only 0 to {len(shown) - 1} were shown",
+            )
+        ids = tuple(dict.fromkeys(shown[i].para_id for i in claim.candidate_indices))
+        resolved.append(DraftClaim(text=claim.text, citation_ids=ids, quotes=tuple(claim.quotes)))
+    return resolved, None

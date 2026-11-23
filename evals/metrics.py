@@ -194,30 +194,4 @@ def audited_precision(verdicts: Sequence[str | None]) -> float | None:
     return sum(1 for v in judged if v == "correct") / len(judged)
 
 
-# --------------------------------------------------------------------------- Phase 6
-
-
-def citation_validity(answer: Any, retrieved: Any) -> float:
-    """Share of an answer's citations that resolve to a returned paragraph saying what the
-    citation claims. Needs the agent: Phase 6."""
-    raise NotImplementedError("citation validity is an answer level metric: Phase 6")
-
-
-def groundedness(answer: Any, retrieved: Any) -> float:
-    """Share of an answer's claims supported by the paragraphs it cites. Phase 6."""
-    raise NotImplementedError("groundedness is an answer level metric: Phase 6")
-
-
-def refusal_correctness(answers: Sequence[Any], should_refuse: Sequence[bool]) -> float:
-    """Share of questions the system should refuse that it did refuse. Phase 6."""
-    raise NotImplementedError("refusal correctness is an answer level metric: Phase 6")
-
-
-def false_refusal_rate(answers: Sequence[Any], should_refuse: Sequence[bool]) -> float:
-    """Share of answerable questions the system refused. Phase 6."""
-    raise NotImplementedError("false refusal rate is an answer level metric: Phase 6")
-
-
-def cost_per_question(usage: Sequence[Any]) -> float:
-    """Mean provider cost of answering one question, in EUR. Phase 6."""
-    raise NotImplementedError("cost per question needs the agent: Phase 6")
+# The answer level metrics Phase 3 declared here as signatures live in evals.answers.metrics.

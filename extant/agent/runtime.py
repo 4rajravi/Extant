@@ -24,6 +24,7 @@ from typing import Any, Literal, Protocol
 
 from pydantic import BaseModel
 
+from extant.agent.arms import BASELINE, Arm
 from extant.agent.llm import Completion, StructuredModel
 from extant.agent.models import AgentState, Candidate, NodeCost, ReferenceRecord
 from extant.agent.pricing import chat_eur, embedding_eur
@@ -104,6 +105,17 @@ WRITES: dict[str, frozenset[str]] = {
         {"checks", "refusal_reason", "refusal_detail", "degraded", "caveats", "retrieval_only"}
     ),
     "finalize": frozenset({"outcome", "response", "caveats"}),
+    # Eval only (extant.agent.arms): the bounded retry after a recoverable verify failure.
+    "retry": frozenset(
+        {
+            "draft_claims",
+            "verified_claims",
+            "residual",
+            "checks",
+            "refusal_reason",
+            "refusal_detail",
+        }
+    ),
 }
 APPEND_ONLY = frozenset({"dropped", "set_aside", "caveats", "degraded", "node_log"})
 SET_ONCE = frozenset({"entity_type", "as_of"})
@@ -198,6 +210,7 @@ class Deps:
     # Entity codes and labels, read once when the graph is built: parse shows them to the
     # model, which may name only one of them.
     entities: Mapping[str, str] = field(default_factory=dict)
+    arm: Arm = BASELINE  # serving never sets this; only the Phase 6 harness does
 
 
 @dataclass(frozen=True)
@@ -207,6 +220,7 @@ class Given:
     model: StructuredModel | None = None
     index: Index | None = None
     entities: Mapping[str, str] = field(default_factory=dict)
+    arm: Arm = BASELINE
 
 
 NodeFn = Callable[[AgentState, Given, Spend], dict[str, Any]]
@@ -228,10 +242,13 @@ def parsed[S: BaseModel](done: Completion, schema: type[S]) -> S:
 
 
 def given(name: str, deps: Deps) -> Given:
+    if name == "retry":  # eval only: the retry is a second composer call
+        return Given(model=deps.models.get("compose"), arm=deps.arm)
     return Given(
         model=deps.models.get(name) if name in _MODEL_NODES else None,
         index=deps.index if name in _INDEX_NODES else None,
         entities=deps.entities if name == "parse" else {},
+        arm=deps.arm,
     )
 
 
