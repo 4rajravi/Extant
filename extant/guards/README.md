@@ -102,3 +102,31 @@ uv run python -m extant.agent.record --schema <build>   # records the questions,
 uv run python -m extant.agent.examples build            # refreshes the cached examples
 uv run python -m evals.adversarial render               # writes the results file
 ```
+
+## Why prompt injection is already bounded
+
+Extant has no injection filter, deliberately. A filter would add the appearance of security
+without the substance; the defence is structural.
+
+The corpus is government material and trusted. User input is not. But the one model that
+writes prose, the composer, has an output surface too narrow to do damage. It can emit claim
+text, integer indices into a candidate list that retrieval built, and quotes. It cannot emit a
+paragraph identifier (indices are resolved to ids by code, and an index out of range fails),
+cannot reach the database, cannot change the entity filter or the as-of date (both are fixed
+before it runs and set once), and cannot skip the checks. Those are post checks: pure
+functions of the final state that `verify` runs and `finalize` runs again, so whether they
+run is not something any model output decides. Every quote must be a literal substring of
+the cited paragraph, every number in a claim must appear in its own quotes, nothing cited may
+be out of force, and the prose may carry no internal label.
+
+So the worst outcome of a successful injection is a claim that fails verification and becomes
+a refusal. That is a bounded failure, bounded by the shape of the schema rather than by the
+wording of a system prompt. The adversarial suite holds it: a question that tells the system
+to ignore its instructions and assert that a bank needs no capital gets four verified claims
+about the 15 per cent ratio, and the suite fails if any answer ever carries the planted claim.
+
+One provision is made now for later. If third party commentary is ever ingested it enters the
+index marked untrusted (`chunks.trusted`, migration 0005), and retrieval excludes it unless a
+caller asks for it by name. That boundary is a column in the filter, not a sentence in a
+prompt, and adding it later would have meant migrating the one table the design never
+migrates.
