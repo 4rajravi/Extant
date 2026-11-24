@@ -5,7 +5,7 @@ something, as of when, and for whom, and every answer carries a verified citatio
 refusal. The first corpus is the RBI Master Directions, followed by the Income-tax Act and
 then GST; each corpus is an adapter under `extant/corpora/`, not a rewrite.
 
-This repository is at **Phase 8**. On top of the Phase 0 scaffold, the RBI corpus is crawled,
+This repository is at **Phase 9**. On top of the Phase 0 scaffold, the RBI corpus is crawled,
 extracted, parsed and mined for gold labels (Phase 1), chunked, embedded and assembled into a
 versioned, verified build schema searched by a hybrid retrieval library (Phase 2), and
 retrieval is measured by an eval harness with six ablations and a CI gate (Phase 3). An agent
@@ -15,6 +15,9 @@ a degradation ladder, structured request logs and an adversarial suite that gate
 (Phase 5). Answers are measured end to end, with ablation arms and a bounded retry (Phase 6),
 the whole is served over MCP, statelessly, as six tools and two resources (Phase 7), and
 over HTTP as four endpoints with rate limiting, cap enforcement and split probes (Phase 8).
+One static page shows the working: the graph's progress node by node as it runs, then the
+verified answer once, with every citation expandable to its paragraph and the quoted span
+highlighted, and what the gate set aside visible beside it (Phase 9).
 
 - The corpus adapter and how to run it: [`extant/corpora/rbi/README.md`](extant/corpora/rbi/README.md)
 - The coverage report: [`evals/coverage-rbi-20261119.md`](evals/coverage-rbi-20261119.md), with
@@ -30,6 +33,8 @@ over HTTP as four endpoints with rate limiting, cap enforcement and split probes
 - The answer level eval: [`evals/answers.md`](evals/answers.md)
 - The MCP server, its tools and its verification boundary: [`extant/mcp_server/README.md`](extant/mcp_server/README.md)
 - The HTTP API, its status codes, probes and limits: [`extant/api/README.md`](extant/api/README.md)
+- The page, its boundary and the manual check: [`extant/web/README.md`](extant/web/README.md),
+  with screenshots in [`docs/screenshots/phase-9/`](docs/screenshots/phase-9/)
 
 ## Why prompt injection is already bounded
 
@@ -117,6 +122,7 @@ The DDL lives in `migrations/` as versioned SQL files: `public/` is applied by `
 ```bash
 make lint        # ruff check, ruff format --check, mypy --strict
 make test        # pytest
+uv run playwright install chromium && uv run pytest -m web   # the page, in Chromium
 ```
 
 `pytest` runs the unit tests on their own and skips the integration tests unless

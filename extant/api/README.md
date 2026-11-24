@@ -16,8 +16,11 @@ its readiness probe. Uvicorn's own proxy header handling is off (see Rate limiti
 | Route | Success | Other statuses |
 |---|---|---|
 | `POST /ask` | **200** with the Phase 4 `AskResponse`, unchanged, whatever the outcome: `answer`, `refusal`, `retrieval_only` or `unavailable` | **429** rate limited, no answer body · **422** invalid request |
+| `POST /ask/stream` | **200**, server sent events: the graph's progress, then the same `AskResponse` once (see below) | **429** · **422**, as `POST /ask`, before the stream starts |
 | `GET /paragraph/{para_id}` | **200** with the paragraph; `resolved_through_alias` and a `note` when the id was retired | **404** neither a paragraph nor an alias · **503** index unreachable · **422** not a paragraph id |
 | `GET /examples` | **200** with the cached answers, the build they came from and `stale` | none: it touches neither the database nor a model |
+| `GET /entity_types` | **200** with the build's entity taxonomy, for the page's selector | **503** index unreachable |
+| `GET /` | **200**, the page (`extant/web`), with a self only Content-Security-Policy | none |
 | `GET /health` | **200** ready | **503** not ready (manifest check failed, or the database unreachable) |
 | `GET /health/live` | **200** | none: it touches nothing |
 
@@ -52,6 +55,31 @@ rather than missed. It is served on answers and refusals alike.
 `GET /paragraph` and `GET /examples` send `Cache-Control: public, max-age=900`: a build is
 immutable, so neither can change under it, and fifteen minutes bounds how long a client keeps
 one after a new build. An answer is never cached.
+
+## Streaming: `POST /ask/stream`
+
+The same request as `POST /ask`, answered as server sent events, added in Phase 9 for the
+page. `POST /ask` is unchanged, for MCP and any client that wants one payload.
+
+| Event | When | Carries |
+|---|---|---|
+| `node_started` | a graph node begins | `node` |
+| `node_finished` | that node has returned | `node`, `latency_ms`, `model_calls`, and what it wrote: the route, entity and date (parse), paragraphs held, rows `dropped`, claims drafted or verified, every check recorded so far, degradation markers, a refusal reason |
+| `restarted` | the database failed and the service runs the graph once more | `attempt`, `reason` |
+| `response` | last, once | `response` (the `AskResponse`, byte for byte what `POST /ask` returns) and `retry_after` (an HTTP date on `cap_reached`, which `POST /ask` sends as a header) |
+| `failure` | last, instead of `response`, when the request failed after the stream began | `detail`, `index_version` |
+
+The events are true by construction: the node wrapper (`extant.agent.runtime.run_node`) calls
+an observer as each node starts and once it has returned, and nothing else emits one. A node
+that takes eleven seconds is eleven seconds between its two events. Every count in an event is
+counted in `extant.agent.progress`, so a client shows it as given. There is no token stream:
+the answer text exists only in `response`, after verification.
+
+The graph runs on a worker thread that writes events into a queue the response drains; it is
+still one request, with nothing kept after it. A client that disconnects does not stop the
+graph: the answer is computed and counted against the cap all the same. Proxies must not
+buffer the response (`X-Accel-Buffering: no` is sent; Cloud Run streams, unverified until
+Phase 10).
 
 ## Admission
 

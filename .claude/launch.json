@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "extant-fake",
+      "runtimeExecutable": "uv",
+      "runtimeArgs": ["run", "python", "/private/tmp/claude-501/-Users-rajravi-Extant/b51d402a-90d1-4652-a712-d95f567503bc/scratchpad/fake_server.py", "full_answer_third_person", "8099"],
+      "port": 8099
+    },
+    {
+      "name": "extant-api",
+      "runtimeExecutable": "uv",
+      "runtimeArgs": ["run", "python", "-m", "extant.api", "--port", "8080"],
+      "port": 8080
+    }
+  ]
+}

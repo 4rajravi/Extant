@@ -65,6 +65,17 @@ jobs:
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: uv run pytest
 
+      # The page in a real browser (tests/web): the two Playwright smoke tests are the gate
+      # for the frontend. They run on a replaying runtime: no database, no model.
+      - name: Install Chromium for Playwright
+        id: chromium
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: uv run playwright install --with-deps chromium
+
+      - name: pytest, the page in Chromium
+        if: ${{ !cancelled() && steps.chromium.outcome == 'success' }}
+        run: uv run pytest -m web
+
   # The retrieval gate: the shipped arm on every eval set's dev split, against the committed
   # baseline. It reads the published build on Neon as the read only role and embeds nothing
   # (query vectors are committed), so it is free to run on every push. See evals/README.md.

@@ -51,6 +51,7 @@ from extant.agent.models import (
     RetrievalOnly,
     Unavailable,
 )
+from extant.agent.progress import Observe, Restarted
 from extant.agent.runtime import Deps, Index
 from extant.core.migrations import index_migrations
 from extant.core.schema import schema_exists
@@ -96,8 +97,11 @@ class Service:
         entity: str | None = None,
         as_of: date | None = None,
         request_id: str | None = None,
+        observe: Observe | None = None,
     ) -> AskResponse:
-        return self.run(question, entity=entity, as_of=as_of, request_id=request_id).response
+        return self.run(
+            question, entity=entity, as_of=as_of, request_id=request_id, observe=observe
+        ).response
 
     def run(
         self,
@@ -106,7 +110,10 @@ class Service:
         entity: str | None = None,
         as_of: date | None = None,
         request_id: str | None = None,
+        observe: Observe | None = None,
     ) -> Served:
+        """Answer one question. ``observe``, when given, is told as each node of the graph
+        starts and finishes (``extant.agent.progress``); the response is the same either way."""
         clean = pii.redact(question)  # before anything else sees the question
         rid = request_id or uuid.uuid4().hex
         start = time.perf_counter()
@@ -117,7 +124,7 @@ class Service:
                 answered = self.store.answered(today)
                 if answered >= self.store.cap:
                     raise CapReachedError(f"{answered} of {self.store.cap} answered on {today}")
-                state = self._graph(clean.text, entity, as_of, today, rid)
+                state = self._graph(clean.text, entity, as_of, today, rid, observe)
                 if state.response is None:
                     raise RuntimeError("the graph ended without a response")
                 response = state.response
@@ -145,9 +152,17 @@ class Service:
     # ----------------------------------------------------------------------- the graph
 
     def _graph(
-        self, text: str, entity: str | None, as_of: date | None, today: date, rid: str
+        self,
+        text: str,
+        entity: str | None,
+        as_of: date | None,
+        today: date,
+        rid: str,
+        observe: Observe | None,
     ) -> AgentState:
         for attempt in (1, 2):  # Postgres: retry once, then the cached examples
+            if attempt == 2 and observe is not None:
+                observe(Restarted(attempt=2, reason="the index could not be reached"))
             try:
                 deps = Deps(
                     models=self.models,
@@ -155,6 +170,7 @@ class Service:
                     eur_per_usd=self.eur_per_usd,
                     entities=self.entities,
                     arm=self.arm,
+                    observe=observe,
                 )
                 return ask(
                     build(deps),

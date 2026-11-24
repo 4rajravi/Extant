@@ -9,8 +9,8 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from extant.agent.models import CachedExample
-from extant.catalog import ParagraphRecord
+from extant.agent.models import AskResponse, CachedExample
+from extant.catalog import EntityTypeRecord, ParagraphRecord
 
 
 class _Model(BaseModel):
@@ -47,6 +47,28 @@ class ExamplesResponse(_Model):
     built_on: date | None
     message: str
     examples: list[CachedExample]
+
+
+class EntityTypes(_Model):
+    index_version: str
+    entity_types: list[EntityTypeRecord]  # in the catalog's order
+
+
+class StreamFinal(_Model):
+    """The last event of ``POST /ask/stream``: the same ``AskResponse`` ``POST /ask`` returns,
+    and the Retry-After that ``POST /ask`` would have sent as a header (an HTTP date, only on
+    ``cap_reached``), since a stream's headers are gone before the cap is known."""
+
+    response: AskResponse
+    retry_after: str | None
+
+
+class StreamFailure(_Model):
+    """The last event when the request failed after the stream began: what ``POST /ask``
+    would have answered with a 500. Nothing was answered."""
+
+    detail: str
+    index_version: str
 
 
 class DailyCap(_Model):

@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Extant</title>
+<meta name="description" content="Questions on RBI Master Directions, answered with verified citations or a stated refusal.">
+<link rel="stylesheet" href="/static/app.css">
+<script src="/static/app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#question">Skip to the question</a>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="wordmark" href="/">Extant</a>
+    <p class="build-pill">build <code id="build-version">loading</code></p>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="ask-heading">
+    <div class="wrap hero-grid">
+      <div class="hero-main">
+        <p class="eyebrow">RBI Master Directions</p>
+        <h1 id="ask-heading">Ask what the rules say, as of your date</h1>
+        <p class="lede">Every answer cites the paragraph it rests on, with each quote checked against it. When Extant cannot stand behind an answer, it refuses and says why.</p>
+        <p class="notice" role="note"><strong>Not legal or tax advice.</strong> Extant reports what the directions say. Whether a provision applies to your facts is a judgement for a qualified professional.</p>
+
+        <form id="ask-form" class="ask-form" novalidate>
+          <div class="field">
+            <label for="question" class="field-label">Question</label>
+            <textarea id="question" name="question" rows="3" minlength="3" maxlength="2000" required
+              placeholder="What minimum capital to risk weighted assets ratio must a small finance bank maintain?"></textarea>
+          </div>
+          <div class="ask-row">
+            <div class="field">
+              <label for="entity" class="field-label">Entity type <span class="optional">optional</span></label>
+              <select id="entity" name="entity">
+                <option value="">Not specified</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="as-of" class="field-label">As of <span class="optional">optional</span></label>
+              <input id="as-of" name="as_of" type="date">
+            </div>
+          </div>
+          <div class="ask-actions">
+            <button id="ask-button" class="primary" type="submit">Ask</button>
+            <p class="field-help">Leave entity and date empty and Extant works them out from the question. It asks when the entity is unclear, and uses today in India for the date, saying so.</p>
+          </div>
+          <p id="form-status" class="form-status" role="status"></p>
+        </form>
+      </div>
+
+      <aside class="how" aria-labelledby="how-heading">
+        <h2 id="how-heading">How an answer is made</h2>
+        <ol class="how-steps">
+          <li>
+            <h3>Find</h3>
+            <p>Searches only the paragraphs in force on your date, for your entity type.</p>
+          </li>
+          <li>
+            <h3>Set aside</h3>
+            <p>Drops superseded, out of scope and non-binding paragraphs, and lists every one it dropped.</p>
+          </li>
+          <li>
+            <h3>Verify</h3>
+            <p>Checks every quote against its paragraph and every number against its quotes. A claim that fails is withheld.</p>
+          </li>
+        </ol>
+      </aside>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="examples-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="examples-heading">Start with an example</h2>
+        <p>Answered earlier and served from the cache: no model call, and they work even when the index is down.</p>
+      </div>
+      <p id="examples-status" class="examples-status"></p>
+      <ul id="examples-list" class="example-list"></ul>
+    </div>
+  </section>
+
+  <section id="answer-section" class="band" aria-labelledby="answer-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="answer-heading">The answer and its working</h2>
+        <p>The working shows as it happens. The answer appears once, after every quote in it has been checked.</p>
+      </div>
+      <div class="workspace">
+        <section id="progress" class="panel progress" aria-labelledby="progress-heading">
+          <h3 id="progress-heading" class="section-label">Working</h3>
+          <p id="progress-now" class="progress-now" aria-live="polite">Each step of the graph appears here as it runs.</p>
+          <ol id="progress-steps" class="steps"></ol>
+          <div id="progress-checks" class="checks" hidden>
+            <h4 class="minor-label">Checks recorded</h4>
+            <ul id="checks-list" class="check-list"></ul>
+            <p class="fine">An <code>overlap</code> below its threshold is not a failure on its own: it sends that claim to a second reading, recorded as its <code>judge</code> check.</p>
+          </div>
+        </section>
+
+        <section id="result" class="result" aria-labelledby="result-heading" aria-busy="false">
+          <h3 id="result-heading" class="visually-hidden">Result</h3>
+          <div id="result-body" class="result-body">
+            <p class="placeholder">Ask a question, or open one of the examples above.</p>
+          </div>
+        </section>
+
+        <section id="transparency" class="panel transparency" aria-labelledby="transparency-heading">
+          <h3 id="transparency-heading" class="section-label">What the answer rests on</h3>
+          <div id="transparency-body">
+            <p class="placeholder">Shown with each answer: every paragraph retrieved, with its scores, and every paragraph set aside, with the reason.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p>Extant answers from the RBI Master Directions held in the build named above. It is not legal or tax advice.</p>
+  </div>
+</footer>
+
+<template id="citation-template">
+  <div class="citation">
+    <button class="cite" type="button" aria-expanded="false">
+      <span class="cite-number"></span>
+      <span class="cite-title"></span>
+    </button>
+    <div class="cite-panel" hidden>
+      <dl class="cite-facts"></dl>
+      <p class="cite-status"></p>
+      <blockquote class="provision"></blockquote>
+      <p class="cite-source"></p>
+    </div>
+  </div>
+</template>
+</body>
+</html>

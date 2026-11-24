@@ -9,6 +9,7 @@ except the network. ``faults`` turns a dependency off, to reach a degradation ru
 from __future__ import annotations
 
 import json
+import time
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass
 from datetime import date
@@ -19,6 +20,7 @@ from extant.agent.examples import ExampleCache
 from extant.agent.index import RecordedIndex
 from extant.agent.llm import Completion, ReplayModel, StructuredModel
 from extant.agent.models import AgentState
+from extant.agent.progress import Observe
 from extant.agent.runtime import Index
 from extant.agent.service import Served, Service
 from extant.guards.errors import ModelUnavailableError
@@ -50,6 +52,22 @@ class Down:
         raise ModelUnavailableError(f"{self.name} unavailable after 2 attempts: overloaded")
 
 
+@dataclass
+class Slow:
+    """A model whose every call takes ``seconds`` of real time before answering."""
+
+    inner: StructuredModel
+    seconds: float
+
+    @property
+    def model(self) -> str:
+        return self.inner.model
+
+    def complete(self, schema: Any, *, system: str, user: str) -> Completion:
+        time.sleep(self.seconds)
+        return self.inner.complete(schema, system=system, user=user)
+
+
 def serve(
     data: Mapping[str, Any],
     *,
@@ -58,11 +76,17 @@ def serve(
     open_index: Callable[[], Index] | None = None,
     cache: ExampleCache | None = None,
     log: Callable[[Mapping[str, Any]], None] | None = None,
+    observe: Observe | None = None,
+    slow: Mapping[str, float] | None = None,
 ) -> Served:
+    """Replay a fixture through the real Service. ``slow`` makes a role's model call take
+    that many seconds of wall time, for tests that watch progress events arrive."""
     models: dict[str, StructuredModel] = {
         role: Down(model) if role in down else ReplayModel(model, data["models"], source=FIXTURES)
         for role, model in ROLES.items()
     }
+    for role, seconds in (slow or {}).items():
+        models[role] = Slow(models[role], seconds)
     index = RecordedIndex(data["index"], data["embedding_model"])
     service = Service(
         index_version=data["index_version"],
@@ -80,6 +104,7 @@ def serve(
         entity=spec["entity"],
         as_of=date.fromisoformat(spec["as_of"]) if spec["as_of"] else None,
         request_id=spec["name"],
+        observe=observe,
     )
 
 
