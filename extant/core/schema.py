@@ -20,8 +20,9 @@ the server as ``psycopg.sql.Identifier``, never through an f-string.
 from __future__ import annotations
 
 import argparse
+import contextlib
 import sys
-from collections.abc import Sequence
+from collections.abc import Iterator, Sequence
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Any
@@ -104,6 +105,22 @@ def _check_bootstrapped(conn: Connection) -> None:
 def schema_exists(conn: Connection, name: str) -> bool:
     row = conn.execute("SELECT 1 FROM pg_namespace WHERE nspname = %s", (name,)).fetchone()
     return row is not None
+
+
+@contextlib.contextmanager
+def in_build(conn: Connection, schema: str) -> Iterator[Connection]:
+    """A unit of work on ``schema``, inside one transaction with the build first on the path.
+
+    ``SET LOCAL`` lasts for the transaction, and a transaction-mode pooler (Neon's PgBouncer)
+    keeps one server connection for a transaction. A session ``SET search_path`` does not
+    survive such a pooler: each autocommit statement may run on another server connection,
+    and the setting is silently lost (48 of 60 statements in a test against Neon). The pooler
+    also refuses ``search_path`` as a startup option, so this is the way to name the build.
+    Inside an open transaction it nests as a savepoint, and the setting lasts until that
+    transaction ends."""
+    with conn.transaction():
+        conn.execute(sql.SQL("SET LOCAL search_path TO {}, public").format(sql.Identifier(schema)))
+        yield conn
 
 
 # --------------------------------------------------------------------------- operations

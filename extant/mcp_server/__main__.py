@@ -29,7 +29,7 @@ def main(argv: list[str] | None = None) -> int:
     except NotReadyError as exc:
         print(f"not ready: {exc}", file=sys.stderr)
         return 2
-    for warning in serving.readiness.warnings:
+    for warning in serving.readiness().warnings:
         print(f"warning: {warning}", file=sys.stderr)  # stderr: stdout is the stdio channel
     # Over stdio, stdout carries JSON-RPC: the request log goes to stderr instead.
     log = logs.emit_stderr if args.transport == "stdio" else logs.emit

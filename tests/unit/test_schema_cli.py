@@ -62,7 +62,11 @@ def test_cli_reports_missing_settings(tmp_path: Path) -> None:
 
 
 def test_migration_files_are_found_in_order() -> None:
-    assert [m.name for m in public_migrations()] == ["0001_bootstrap", "0002_usage"]
+    assert [m.name for m in public_migrations()] == [
+        "0001_bootstrap",
+        "0002_usage",
+        "0003_alias_hits",
+    ]
     assert [m.name for m in index_migrations()] == [
         "0001_initial",
         "0002_source_anchor",

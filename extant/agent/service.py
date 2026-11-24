@@ -59,6 +59,8 @@ from extant.guards.errors import CapReachedError
 from extant.guards.middleware import Ledger, RequestRecord, UsageStore, ledger, today_in_india
 
 DATABASE_ERRORS: tuple[type[Exception], ...] = (psycopg.OperationalError, psycopg.InterfaceError)
+# The public tables serving writes: the cap's counter and ledger, and the alias hit counter.
+SERVING_TABLES = ("public.usage_daily", "public.request_ledger", "public.para_id_alias_hits")
 
 
 @dataclass(frozen=True)
@@ -292,6 +294,13 @@ def readiness(
         ).fetchall()
     )
     problems = []
+    absent = [
+        t
+        for t in SERVING_TABLES
+        if conn.execute("SELECT to_regclass(%s)", (t,)).fetchone()[0] is None  # type: ignore[index]
+    ]
+    if absent:
+        problems.append(f"public lacks {absent}: run python -m extant.core.schema bootstrap")
     expected = [m.name for m in index_migrations()]
     if rows.get("migrations") != expected:
         problems.append(f"{schema} was built with {rows.get('migrations')}, not {expected}")

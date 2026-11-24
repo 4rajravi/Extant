@@ -1,4 +1,4 @@
-"""Read-only lookups over one build schema that are not ranked retrieval.
+"""Lookups over one build schema that are not ranked retrieval.
 
 A paragraph by its id, the directions in force for an entity on a date, a circular reference
 resolved, a direction's version history and the change between two of its versions, the
@@ -114,6 +114,20 @@ def fetch_paragraph(conn: Any, para_id: str) -> ParagraphRecord | None:
     if row is None:
         return None
     return _paragraph_record(row, resolved_from=para_id, resolution_reason=str(alias[1]))
+
+
+def record_alias_hit(conn: Any, old_para_id: str, new_para_id: str, index_version: str) -> int:
+    """Count one resolution of a retired id through an alias, in ``public.para_id_alias_hits``
+    (kept across builds), and return the count for this build. The one write in this module:
+    a citation endpoint calls it each time ``fetch_paragraph`` resolved through an alias."""
+    row = conn.execute(
+        "INSERT INTO public.para_id_alias_hits AS h (old_para_id, index_version, new_para_id,"
+        " hits) VALUES (%s, %s, %s, 1) ON CONFLICT (old_para_id, index_version) DO UPDATE"
+        " SET hits = h.hits + 1, last_hit_at = now(), new_para_id = EXCLUDED.new_para_id"
+        " RETURNING hits",
+        (old_para_id, index_version, new_para_id),
+    ).fetchone()
+    return int(row[0])
 
 
 # --------------------------------------------------------------------------- directions in force

@@ -70,7 +70,7 @@ class PgBackend:
 
     @property
     def entities(self) -> Mapping[str, str]:
-        return self.serving.entities
+        return self.serving.entities()
 
     def ask(self, question: str, entity: str | None, as_of: date | None) -> AskResponse:
         with service(self.serving, log=self.log) as s:
