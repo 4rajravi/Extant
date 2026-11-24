@@ -199,5 +199,8 @@ def test_the_page_is_served_with_a_self_only_policy() -> None:
     assert page.status_code == 200
     assert "default-src 'self'" in page.headers["content-security-policy"]
     assert '<script src="/static/app.js" defer></script>' in page.text
+    assert page.headers["cache-control"] == "no-cache"
     for asset in ("/static/app.js", "/static/app.css"):
-        assert c.get(asset).status_code == 200
+        served = c.get(asset)
+        assert served.status_code == 200
+        assert served.headers["cache-control"] == "no-cache"  # never a stale script or style

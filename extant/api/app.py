@@ -174,6 +174,10 @@ def create_app(
     async def name_the_build(request: Request, call_next: Any) -> Response:
         response: Response = await call_next(request)
         response.headers[INDEX_HEADER] = version
+        if request.url.path.startswith("/static/"):
+            # Revalidate every time (a 304 when unchanged), so a browser never pairs a new
+            # page with a stylesheet or script it cached before a deploy.
+            response.headers["Cache-Control"] = "no-cache"
         return response
 
     @app.exception_handler(RateLimitedError)
