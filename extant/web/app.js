@@ -161,12 +161,19 @@ function exampleButton(ex) {
   return h(
     "button",
     { type: "button", class: "example", onclick: () => showCachedExample(ex) },
-    ex.question,
+    h("span", { class: "example-question", text: ex.question }),
     h("span", {
       class: "example-meta",
       text: `${ex.entity_type ? `entity ${ex.entity_type} · ` : ""}as of ${ex.as_of}`,
     }),
+    h("span", { class: "example-cta", "aria-hidden": "true", text: "Show answer" }),
   );
+}
+
+function showAnswerSection() {
+  // The reader asked for something: bring the Answer section into view, once, at the start.
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  $("answer-section").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
 }
 
 // ------------------------------------------------------------------ asking
@@ -197,6 +204,7 @@ async function ask(body) {
   button.setAttribute("aria-disabled", "true");
   startProgress();
   waitingForResult();
+  showAnswerSection();
   let finished = false;
   try {
     const res = await fetch("/ask/stream", {
@@ -530,6 +538,7 @@ function showCachedExample(ex) {
   $("result").setAttribute("aria-busy", "false");
   const answer = ex.answer;
   const sheet = resultSheet("is-cached", "cached_example");
+  showAnswerSection();
   sheet.append(
     head("Cached example", [
       metaItem("as of", ex.as_of),

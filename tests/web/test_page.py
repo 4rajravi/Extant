@@ -307,6 +307,7 @@ def test_nothing_moves_when_the_answer_arrives(
     page: Page, serve: Callable[[Any], str], width: int
 ) -> None:
     page.set_viewport_size({"width": width, "height": 900})
+    page.emulate_media(reduced_motion="reduce")  # the scroll to the answer is then instant
     runtime = Gated(FULL)
     ask(page, serve(runtime), FULL)
     page.evaluate(
@@ -321,12 +322,18 @@ def test_nothing_moves_when_the_answer_arrives(
         runtime.release.release()
     expect(page.locator('.step[data-node="finalize"]')).to_have_attribute("data-state", "running")
     watched = page.locator("#progress")
-    before = watched.bounding_box()
+
+    def placed() -> tuple[float, float, float]:
+        box = watched.bounding_box()
+        assert box is not None
+        return box["x"], box["y"], box["width"]  # it may grow downwards; it may not move
+
+    before = placed()
     page.wait_for_timeout(700)  # past the browser's 500 ms grace after input
     runtime.release.release()
     expect(page.locator("#result-body")).to_have_attribute("data-outcome", "answer")
     page.wait_for_timeout(200)
-    assert watched.bounding_box() == before  # the panel being watched stays put
+    assert placed() == before  # the panel being watched stays put
     assert page.evaluate("window.__shift") == 0
     page.locator("#result-body .cite").first.click()
     expect(page.locator("#result-body .provision mark").first).to_be_visible()

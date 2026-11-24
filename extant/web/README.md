@@ -10,6 +10,17 @@ for everything else, mono for identifiers).
 uv run python -m extant.api --port 8080     # then open http://localhost:8080
 ```
 
+## Layout
+
+Monochrome and structured, on one 1200px grid and an 8px spacing scale: a black top bar
+naming the build; a hero with a large headline, the not-advice notice, the question form
+(grey filled fields) and a three step "How an answer is made" card; a grid of example cards
+with a pill to open each; then "The answer and its working", where the answer is a bordered
+reading sheet and the working and what it rests on are grey cards beside it (stacked on a
+phone, working first). Asking a question or opening an example scrolls that section into
+view, instantly under reduced motion. The status line above the steps holds two lines, so
+nothing below it moves when the answer lands.
+
 ## What it shows
 
 - **The question**, with an entity selector filled from `GET /entity_types` and an as of date.
@@ -100,7 +111,7 @@ Against the real API on local Postgres, real models, build `idx_rbi_20261123_c23
 - **Keyboard.** The whole page is reachable by Tab in reading order: skip link, question,
   entity, date (three stops: day, month, year), Ask, each example, each citation. Enter
   expands a citation; the focus ring is visible in both themes.
-- **Light and dark, 390 and 1280 wide.** See `docs/screenshots/phase-9/`. A table of retrieved
+- **Light and dark, 390 and 1280 wide.** See `docs/screenshots/phase-9/` (the current design, captured from recorded fixtures replayed with no model call: `home-*`, `answer-*`, `refusal-*`). A table of retrieved
   scores overflowed the page at first (the 17 digit scores widened the grid); it is now a list.
 
 What still felt wrong:
