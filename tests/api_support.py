@@ -8,7 +8,7 @@ test proves the graph never received an identifier.
 
 from __future__ import annotations
 
-from collections.abc import Sequence
+from collections.abc import Iterator, Sequence
 from dataclasses import dataclass, field
 from datetime import date
 from typing import Any
@@ -18,6 +18,7 @@ from extant.agent.examples import ExampleCache
 from extant.agent.index import RecordedIndex
 from extant.agent.llm import Completion, ReplayModel, StructuredModel
 from extant.agent.models import AskResponse, Candidate, ReferenceRecord
+from extant.agent.progress import Observe
 from extant.agent.runtime import Search
 from extant.agent.service import Readiness, Service
 from extant.guards.middleware import MemoryUsageStore
@@ -81,6 +82,8 @@ class FakeRuntime:
     answered_today: int = 0
     asked: list[tuple[str, str | None, date | None]] = field(default_factory=list)
     closed: bool = False
+    aliases: dict[str, str] = field(default_factory=dict)  # retired id -> live id
+    looked_up: list[str] = field(default_factory=list)
 
     @property
     def index_version(self) -> str:
@@ -94,7 +97,13 @@ class FakeRuntime:
     def cap(self) -> int:
         return self.store.cap
 
-    def ask(self, question: str, entity: str | None, as_of: date | None) -> AskResponse:
+    def ask(
+        self,
+        question: str,
+        entity: str | None,
+        as_of: date | None,
+        observe: Observe | None = None,
+    ) -> AskResponse:
         self.asked.append((question, entity, as_of))
         data = replay_support.load(self.fixture)
         models = {
@@ -114,10 +123,33 @@ class FakeRuntime:
             log=lambda record: None,
             day=lambda: date.fromisoformat(data["today"]),
         )
-        return service.ask(question, entity=entity, as_of=as_of)
+        return service.ask(question, entity=entity, as_of=as_of, observe=observe)
 
     def paragraph(self, para_id: str) -> catalog.ParagraphRecord | None:
-        return PARA if para_id == PARA.para_id else None
+        """PARA, or any paragraph the fixture's recorded index holds, as the catalog would
+        return it; a retired id in ``aliases`` resolves to its live one and says so."""
+        self.looked_up.append(para_id)
+        held = recorded_paragraphs(self.fixture)
+        if para_id in self.aliases:
+            live = held.get(self.aliases[para_id])
+            if live is None:
+                return None
+            return live.model_copy(
+                update={"resolved_from": para_id, "resolution_reason": "renumbered by the parser"}
+            )
+        return held.get(para_id)
+
+    def entity_types(self) -> list[catalog.EntityTypeRecord]:
+        entities: dict[str, str] = replay_support.load(self.fixture)["entities"]
+        return [
+            catalog.EntityTypeRecord(
+                code=code,
+                label=entities[code],
+                parent="nbfc" if code.startswith("nbfc_") and "nbfc" in entities else None,
+                children=sorted(c for c in entities if code == "nbfc" and c.startswith("nbfc_")),
+            )
+            for code in sorted(entities)
+        ]
 
     def readiness(self) -> Readiness:
         return self.ready
@@ -127,6 +159,41 @@ class FakeRuntime:
 
     def close(self) -> None:
         self.closed = True
+
+
+def _rows(node: Any) -> Iterator[dict[str, Any]]:
+    if isinstance(node, dict):
+        if "para_id" in node and "body" in node:
+            yield node
+        for value in node.values():
+            yield from _rows(value)
+    elif isinstance(node, list):
+        for value in node:
+            yield from _rows(value)
+
+
+def recorded_paragraphs(fixture: str) -> dict[str, catalog.ParagraphRecord]:
+    """Every paragraph a fixture's recorded index returned, as ``catalog.fetch_paragraph``
+    returns one, plus PARA."""
+    held = {PARA.para_id: PARA}
+    for row in _rows(replay_support.load(fixture)["index"]):
+        c = Candidate.model_validate(row)
+        held[c.para_id] = catalog.ParagraphRecord(
+            para_id=c.para_id,
+            doc_id=c.doc_id,
+            doc_title=c.doc_title,
+            paragraph_number=c.paragraph_number,
+            heading_path=c.heading_path,
+            body=c.body,
+            entity_scope=list(c.entity_scope),
+            in_force_from=c.valid_from,
+            in_force_to=c.valid_to,
+            authority_rank=c.authority_rank,
+            binding=c.binding,
+            source_url=c.source_url,
+            source_page=c.source_page,
+        )
+    return held
 
 
 def spec(fixture: str) -> dict[str, Any]:

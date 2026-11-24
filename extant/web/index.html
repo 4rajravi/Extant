@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Extant</title>
+<meta name="description" content="Questions on RBI Master Directions, answered with verified citations or a stated refusal.">
+<link rel="stylesheet" href="/static/app.css">
+<script src="/static/app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#question">Skip to the question</a>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <p class="wordmark">Extant</p>
+    <p class="strap">RBI Master Directions, answered from the text in force on your date, with every quote checked. Or a stated refusal.</p>
+    <p class="build">build <code id="build-version">loading</code></p>
+  </div>
+</header>
+
+<p class="notice" role="note"><strong>Not legal or tax advice.</strong> Extant reports what the directions say and cites the paragraph. Whether a provision applies to your facts is a judgement for a qualified professional.</p>
+
+<main class="page">
+  <section class="ask" aria-labelledby="ask-heading">
+    <h1 id="ask-heading" class="visually-hidden">Ask a question</h1>
+    <form id="ask-form" novalidate>
+      <label for="question" class="field-label">Question</label>
+      <textarea id="question" name="question" rows="3" minlength="3" maxlength="2000" required
+        placeholder="For example: what minimum capital to risk weighted assets ratio must a small finance bank maintain?"></textarea>
+      <div class="ask-row">
+        <div class="field">
+          <label for="entity" class="field-label">Entity type <span class="optional">optional</span></label>
+          <select id="entity" name="entity">
+            <option value="">Not specified</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="as-of" class="field-label">As of <span class="optional">optional</span></label>
+          <input id="as-of" name="as_of" type="date">
+        </div>
+        <button id="ask-button" class="primary" type="submit">Ask</button>
+      </div>
+      <p id="form-status" class="form-status" role="status"></p>
+      <p class="field-help">Leave entity and date empty to let Extant work them out from the question. It asks for the entity when the question does not say, and uses today in India for the date, saying so.</p>
+    </form>
+
+    <div class="examples" aria-labelledby="examples-heading">
+      <h2 id="examples-heading" class="section-label">Examples <span class="aside">answered earlier, shown from cache: no model call</span></h2>
+      <p id="examples-status" class="examples-status"></p>
+      <ul id="examples-list" class="example-list"></ul>
+    </div>
+  </section>
+
+  <div class="workspace">
+    <section id="progress" class="panel progress" aria-labelledby="progress-heading">
+      <h2 id="progress-heading" class="section-label">Working</h2>
+      <p id="progress-now" class="progress-now" aria-live="polite">Each step of the graph appears here as it runs.</p>
+      <ol id="progress-steps" class="steps"></ol>
+      <div id="progress-checks" class="checks" hidden>
+        <h3 class="minor-label">Checks recorded</h3>
+        <ul id="checks-list" class="check-list"></ul>
+        <p class="fine">An <code>overlap</code> below its threshold is not a failure on its own: it sends that claim to the second reading, recorded as its <code>judge</code> check.</p>
+      </div>
+    </section>
+
+    <section id="result" class="result" aria-labelledby="result-heading" aria-busy="false">
+      <h2 id="result-heading" class="visually-hidden">Result</h2>
+      <div id="result-body" class="result-body">
+        <p class="placeholder">Ask a question, or open one of the examples. The answer appears here once, after every quote in it has been checked against the paragraph it cites.</p>
+      </div>
+    </section>
+
+    <section id="transparency" class="panel transparency" aria-labelledby="transparency-heading">
+      <h2 id="transparency-heading" class="section-label">What the answer rests on</h2>
+      <div id="transparency-body">
+        <p class="placeholder">Shown with each answer: every paragraph retrieved, with its scores, and every paragraph set aside, with the reason.</p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<template id="citation-template">
+  <div class="citation">
+    <button class="cite" type="button" aria-expanded="false">
+      <span class="cite-number"></span>
+      <span class="cite-title"></span>
+    </button>
+    <div class="cite-panel" hidden>
+      <dl class="cite-facts"></dl>
+      <p class="cite-status"></p>
+      <blockquote class="provision"></blockquote>
+      <p class="cite-source"></p>
+    </div>
+  </div>
+</template>
+</body>
+</html>

@@ -223,7 +223,8 @@ def test_the_cap_is_read_from_its_postgres_row(make: Any, schema: str, todays_ro
 # --------------------------------------------------------------------------- admission
 
 
-def test_the_graph_never_receives_the_identifier(make: Any, schema: str) -> None:
+def test_the_graph_never_receives_the_identifier(make: Any, schema: str, todays_row: Any) -> None:
+    todays_row(0)  # the real day's count must not decide whether the graph runs
     parse = parse_says(entity_type="cb", topic_terms=["dividend"])
     compose = composer_says(insufficient=True, missing="nothing on dividends here")
     judge = judge_says()
@@ -293,3 +294,34 @@ def test_with_the_database_gone_examples_and_liveness_still_answer(make: Any) ->
     assert ladder.json()["result"]["outcome"] == "unavailable"
     assert ladder.json()["result"]["examples"]
     assert c.get(f"/paragraph/{D1V1.doc_id}%23p1").status_code == 503
+
+
+# --------------------------------------------------------------------------- the page's reads
+
+
+def test_entity_types_are_read_from_the_build(make: Any, schema: str) -> None:
+    r = make(schema).get("/entity_types")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["index_version"] == schema
+    assert [t["code"] for t in body["entity_types"]]  # whatever the synthetic build holds
+
+
+def test_the_stream_on_the_pool_reports_the_nodes_that_ran(
+    make: Any, schema: str, todays_row: Any
+) -> None:
+    todays_row(0)
+    r = make(schema).post("/ask/stream", json={"question": OUT_OF_SCOPE, "entity": "cb"})
+    assert r.status_code == 200
+    names = [
+        line.removeprefix("event: ") for line in r.text.splitlines() if line.startswith("event: ")
+    ]
+    assert names[-1] == "response"
+    assert names[:-1] == [
+        "node_started",
+        "node_finished",  # parse
+        "node_started",
+        "node_finished",  # refuse_early
+        "node_started",
+        "node_finished",  # finalize
+    ]

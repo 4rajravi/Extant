@@ -1,7 +1,8 @@
 """The layers below, as the HTTP API sees them.
 
-``Runtime`` is the whole of what the API may call: the Service for an answer, the catalog for
-a citation (and its alias hit counter), the readiness check and the cap's counter. The API
+``Runtime`` is the whole of what the API may call: the Service for an answer (with an
+observer for the streaming variant), the catalog for a citation (and its alias hit counter)
+and for the entity taxonomy, the readiness check and the cap's counter. The API
 owns transport and the operational guards; nothing here is retrieval or agent logic.
 ``PgRuntime`` runs on ``extant.agent.serving`` and its pool. Tests give the API a fake.
 
@@ -18,6 +19,7 @@ from typing import Any, Protocol
 from extant import catalog
 from extant.agent.examples import ExampleCache
 from extant.agent.models import AskResponse
+from extant.agent.progress import Observe
 from extant.agent.service import Readiness
 from extant.agent.serving import Serving, connection, service
 from extant.guards import logs
@@ -34,9 +36,17 @@ class Runtime(Protocol):
     @property
     def cap(self) -> int: ...
 
-    def ask(self, question: str, entity: str | None, as_of: date | None) -> AskResponse: ...
+    def ask(
+        self,
+        question: str,
+        entity: str | None,
+        as_of: date | None,
+        observe: Observe | None = None,
+    ) -> AskResponse: ...
 
     def paragraph(self, para_id: str) -> catalog.ParagraphRecord | None: ...
+
+    def entity_types(self) -> list[catalog.EntityTypeRecord]: ...  # raises a database error
 
     def readiness(self) -> Readiness: ...  # raises a database error if unreachable
 
@@ -64,9 +74,15 @@ class PgRuntime:
     def cap(self) -> int:
         return self.serving.cap
 
-    def ask(self, question: str, entity: str | None, as_of: date | None) -> AskResponse:
+    def ask(
+        self,
+        question: str,
+        entity: str | None,
+        as_of: date | None,
+        observe: Observe | None = None,
+    ) -> AskResponse:
         with service(self.serving, log=self.log) as s:
-            return s.ask(question, entity=entity, as_of=as_of)
+            return s.ask(question, entity=entity, as_of=as_of, observe=observe)
 
     def paragraph(self, para_id: str) -> catalog.ParagraphRecord | None:
         with connection(self.serving) as conn:
@@ -74,6 +90,10 @@ class PgRuntime:
             if found is not None and found.resolved_from is not None:
                 catalog.record_alias_hit(conn, para_id, found.para_id, self.serving.schema)
             return found
+
+    def entity_types(self) -> list[catalog.EntityTypeRecord]:
+        with connection(self.serving) as conn:
+            return catalog.entity_taxonomy(conn)
 
     def readiness(self) -> Readiness:
         return self.serving.readiness()

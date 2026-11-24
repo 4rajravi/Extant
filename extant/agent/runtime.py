@@ -7,7 +7,9 @@ Every node is wrapped by ``run_node``. The wrapper:
 - refuses a removal from ``candidates`` with no matching row in ``dropped``, and after the
   gate has run refuses any candidate that was not there before (they may only shrink);
 - appends the node's ``NodeCost``, including a zero row for a node that spent nothing;
-- validates the merged state, so a bad state fails on the hop that made it.
+- validates the merged state, so a bad state fails on the hop that made it;
+- tells ``Deps.observe``, when there is one, that the node started and what it did once it
+  finished (``extant.agent.progress``): the streaming endpoint's events are these calls.
 
 Each node is handed only what it needs. ``retrieve`` and ``resolve_reference`` receive the
 index; ``parse``, ``compose`` and ``judge`` receive their model; the rest receive neither, so
@@ -28,6 +30,7 @@ from extant.agent.arms import BASELINE, Arm
 from extant.agent.llm import Completion, StructuredModel
 from extant.agent.models import AgentState, Candidate, NodeCost, ReferenceRecord
 from extant.agent.pricing import chat_eur, embedding_eur
+from extant.agent.progress import NodeStarted, Observe, finished
 
 NODES = (
     "parse",
@@ -211,6 +214,8 @@ class Deps:
     # model, which may name only one of them.
     entities: Mapping[str, str] = field(default_factory=dict)
     arm: Arm = BASELINE  # serving never sets this; only the Phase 6 harness does
+    # Told as each node starts and finishes; None when nobody is watching (POST /ask, MCP).
+    observe: Observe | None = None
 
 
 @dataclass(frozen=True)
@@ -289,6 +294,8 @@ def run_node(name: str, fn: NodeFn, deps: Deps) -> Callable[[AgentState], dict[s
     handed = given(name, deps)
 
     def node(state: AgentState) -> dict[str, Any]:
+        if deps.observe is not None:
+            deps.observe(NodeStarted(node=name))
         spend = Spend()
         start = time.perf_counter()
         update = fn(state, handed, spend)
@@ -308,6 +315,8 @@ def run_node(name: str, fn: NodeFn, deps: Deps) -> Callable[[AgentState], dict[s
         )
         full = {**update, "node_log": [cost]}
         AgentState.model_validate(_merge(state, full))  # a bad state fails on this hop
+        if deps.observe is not None:
+            deps.observe(finished(name, update, cost))
         return full
 
     node.__name__ = name

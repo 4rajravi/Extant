@@ -43,6 +43,11 @@ invariant table on every hop:
 | `verified_claims` | `verify` | Non empty whenever the outcome is an answer (validator) |
 | `node_log` | every node | One row per node executed, including zero cost rows |
 
+`run_node` also tells an observer, when the caller passes one (`Service.run(observe=...)`), as
+each node starts and once it has returned (`progress.py`): `node_started`, then
+`node_finished` with the node's cost row and a projection of what it wrote. Those calls are
+the HTTP API's progress stream (`POST /ask/stream`); with no observer nothing changes.
+
 ## The composer contract
 
 The composer sees the candidates as a numbered list and names them only by number

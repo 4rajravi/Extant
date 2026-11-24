@@ -18,6 +18,14 @@ Two rules shape the contract.
 Every response names the build it came from: in the body, and in the X-Extant-Index-Version
 header, which also covers errors.
 
+``POST /ask/stream`` is the same request as ``POST /ask`` as server sent events: one event as
+each graph node starts and finishes (``extant.agent.progress``, emitted by the node wrapper,
+never on a timer), then the complete ``AskResponse`` once, verified, as the last event. There
+is no token stream of the answer text. It is still one HTTP request with no state kept
+between requests.
+
+``GET /`` serves the page in ``extant/web``: static files, nothing compiled.
+
 PII is redacted at admission by ``Service.run``, the first thing ``POST /ask`` calls: before
 the state is built, before any embedding, model call or log. Nothing in this module reads,
 logs or stores the question, and a validation error does not echo it back.
@@ -26,28 +34,38 @@ logs or stores the question, and a validation error does not echo it back.
 from __future__ import annotations
 
 import contextlib
-from collections.abc import AsyncIterator, Callable
+import logging
+import queue
+import threading
+from collections.abc import AsyncIterator, Callable, Iterator
 from datetime import UTC, datetime, time, timedelta
 from email.utils import format_datetime
+from pathlib import Path as FilePath
 from typing import Annotated, Any, Final
 from zoneinfo import ZoneInfo
 
 import psycopg
 from fastapi import Depends, FastAPI, Path, Request, Response
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
+from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel
 
 import extant
 from extant.agent.examples import STATIC_PAGE
 from extant.agent.models import AskResponse, Refusal, RefusalReason
+from extant.agent.progress import NodeFinished, NodeStarted, Progress, Restarted
 from extant.api.models import (
     AskRequest,
     DailyCap,
+    EntityTypes,
     ErrorBody,
     ExamplesResponse,
     Health,
     Live,
     ParagraphResponse,
+    StreamFailure,
+    StreamFinal,
 )
 from extant.api.ratelimit import RateLimiter, client_address
 from extant.api.runtime import Runtime
@@ -60,6 +78,22 @@ INDEX_HEADER: Final = "X-Extant-Index-Version"
 # fifteen minutes bounds how long a client keeps one after a new build is rolled out (the
 # body names its build either way). The answer is never cached: it moves the daily cap.
 READ_CACHE: Final = "public, max-age=900"
+WEB: Final = FilePath(__file__).resolve().parent.parent / "web"
+# The page loads nothing from anywhere else: no fonts, no scripts, no frames.
+PAGE_POLICY: Final = (
+    "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:;"
+    " connect-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'"
+)
+STREAM_HEADERS: Final = {"Cache-Control": "no-store", "X-Accel-Buffering": "no"}
+_log = logging.getLogger(__name__)
+_END = object()
+
+
+def sse(event: str, payload: BaseModel, *, exclude_none: bool = False) -> str:
+    """One server sent event; the payload is one line of JSON. Only progress events leave
+    out empty fields: the final ``AskResponse`` is serialised exactly as ``POST /ask`` sends it."""
+    data = payload.model_dump_json(exclude_none=exclude_none)
+    return f"event: {event}\ndata: {data}\n\n"
 
 
 def next_cap_reset(now: datetime) -> datetime:
@@ -99,6 +133,17 @@ ASK_RESPONSES: Final[dict[int | str, dict[str, Any]]] = {
         " no answer body. Not an outcome.",
         "headers": {"Retry-After": {**_RETRY_AFTER, "description": "Seconds to wait."}},
     },
+}
+STREAM_RESPONSES: Final[dict[int | str, dict[str, Any]]] = {
+    200: {
+        "description": "Server sent events. `node_started` and `node_finished` as each graph"
+        " node starts and finishes, with what it wrote (candidates held, rows dropped, checks"
+        " recorded); `restarted` if the graph runs again after a database failure; then"
+        " exactly one of `response` (the `AskResponse` of `POST /ask`, with `retry_after` on"
+        " `cap_reached`) or `failure`. The answer text arrives only in `response`.",
+        "content": {"text/event-stream": {"schema": {"type": "string"}}},
+    },
+    429: ASK_RESPONSES[429],
 }
 
 
@@ -176,10 +221,54 @@ def create_app(
     )
     def ask(body: AskRequest, response: Response) -> AskResponse:
         answer = runtime.ask(body.question, body.entity, body.as_of)
+        retry = retry_after(answer)
+        if retry is not None:
+            response.headers["Retry-After"] = retry
+        return answer
+
+    def retry_after(answer: AskResponse) -> str | None:
         result = answer.result
         if isinstance(result, Refusal) and result.reason is RefusalReason.CAP_REACHED:
-            response.headers["Retry-After"] = format_datetime(next_cap_reset(now()), usegmt=True)
-        return answer
+            return format_datetime(next_cap_reset(now()), usegmt=True)
+        return None
+
+    @app.post(
+        "/ask/stream",
+        response_class=StreamingResponse,
+        responses=STREAM_RESPONSES,
+        summary="Ask, streaming the graph's progress, then the verified answer once",
+        dependencies=[Depends(limited(ask_limit))],
+    )
+    def ask_stream(body: AskRequest) -> StreamingResponse:
+        events: queue.Queue[Progress | StreamFinal | StreamFailure | object] = queue.Queue()
+
+        def work() -> None:
+            # The graph runs on its own thread and reports into the queue as each node
+            # starts and finishes; the response below drains the queue as events arrive.
+            try:
+                answer = runtime.ask(body.question, body.entity, body.as_of, observe=events.put)
+                events.put(StreamFinal(response=answer, retry_after=retry_after(answer)))
+            except Exception:
+                _log.exception("POST /ask/stream failed")
+                events.put(
+                    StreamFailure(
+                        detail="The request failed; nothing was answered.", index_version=version
+                    )
+                )
+            finally:
+                events.put(_END)
+
+        def stream() -> Iterator[str]:
+            while (item := events.get()) is not _END:
+                if isinstance(item, StreamFinal):
+                    yield sse("response", item)
+                elif isinstance(item, StreamFailure):
+                    yield sse("failure", item)
+                elif isinstance(item, NodeStarted | NodeFinished | Restarted):
+                    yield sse(item.event, item, exclude_none=True)
+
+        threading.Thread(target=work, name="ask-stream", daemon=True).start()
+        return StreamingResponse(stream(), media_type="text/event-stream", headers=STREAM_HEADERS)
 
     @app.get(
         "/paragraph/{para_id}",
@@ -221,6 +310,21 @@ def create_app(
             ),
             paragraph=found,
         )
+
+    @app.get(
+        "/entity_types",
+        response_model=EntityTypes,
+        responses={503: {"model": ErrorBody, "description": "The index cannot be reached."}},
+        summary="The build's entity types, for the question's entity selector",
+        dependencies=[Depends(limited(read_limit))],
+    )
+    def entity_types(response: Response) -> EntityTypes | JSONResponse:
+        try:
+            found = runtime.entity_types()
+        except psycopg.Error:
+            return error(503, "The index cannot be reached; try again shortly.")
+        response.headers["Cache-Control"] = READ_CACHE
+        return EntityTypes(index_version=version, entity_types=found)
 
     @app.get(
         "/examples",
@@ -308,4 +412,12 @@ def create_app(
     def live() -> Live:
         return Live(index_version=version)
 
+    @app.get("/", include_in_schema=False)
+    def page() -> FileResponse:
+        return FileResponse(
+            WEB / "index.html",
+            headers={"Content-Security-Policy": PAGE_POLICY, "Cache-Control": "no-cache"},
+        )
+
+    app.mount("/static", StaticFiles(directory=WEB), name="static")
     return app
